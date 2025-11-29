@@ -156,7 +156,7 @@ const postsListEl = document.getElementById('posts-list');
 const postContentEl = document.getElementById('post-content');
 
 if (postsListEl && postContentEl) {
-  fetch('./posts/posts.json')
+  fetch('./Posts/posts.json')
     .then(resp => resp.json())
     .then(posts => {
       posts.forEach(p => {
@@ -171,7 +171,7 @@ if (postsListEl && postContentEl) {
     .catch(err => console.error('Failed to load posts.json', err));
 
   function loadPost(file) {
-    fetch(`./posts/${file}`)
+    fetch(`./Posts/${file}`)
       .then(r => r.text())
       .then(md => {
         if (window.marked) {
