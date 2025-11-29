@@ -1114,6 +1114,120 @@ main {
   line-height: 1.6;
 }
 
+/*-----------------------------------*
+  #BLOG - custom markdown/blog styles
+*-----------------------------------*/
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.post-link {
+  background: var(--border-gradient-onyx);
+  color: var(--white-2);
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--jet);
+  font-size: var(--fs-5);
+  font-weight: var(--fw-500);
+  text-align: left;
+  box-shadow: var(--shadow-2);
+  transition: background var(--transition-1), color var(--transition-1), transform var(--transition-1);
+}
+
+.post-link:hover,
+.post-link:focus {
+  background: var(--bg-gradient-yellow-1);
+  color: var(--smoky-black);
+  transform: translateY(-2px);
+}
+
+.post-content {
+  background: var(--eerie-black-2);
+  border: 1px solid var(--jet);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: var(--shadow-2);
+  color: var(--light-gray);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-300);
+  line-height: 1.75;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+  color: var(--white-2);
+  margin-bottom: 10px;
+}
+
+.post-content p { margin-bottom: 14px; }
+
+.post-content img { max-width: 100%; border-radius: 10px; display: block; margin: 12px auto; }
+
+.post-content pre {
+  background: hsla(240,2%,12%,0.9);
+  color: var(--light-gray);
+  padding: 14px;
+  border-radius: 10px;
+  overflow: auto;
+  margin: 12px 0;
+}
+
+.post-content code {
+  background: rgba(255,255,255,0.03);
+  padding: 2px 6px;
+  border-radius: 6px;
+  color: var(--white-2);
+}
+
+/* CV specific styling to match site theme */
+/* CV styles removed per user request */
+
+/* Responsive tweaks: keep list narrow on larger screens like About */
+@media (min-width: 580px) {
+  .posts-list { gap: 18px; }
+  .post-content { padding: 30px; }
+}
+
+
+/*-----------------------------------*
+  #BLOG - full page view
+*-----------------------------------*/
+
+.full-post .sidebar { display: none !important; }
+.full-post .navbar { display: none !important; }
+.full-post .main-content { width: 100% !important; min-width: 0; margin: 20px auto; }
+.full-post [data-page]:not(.blog) { display: none !important; }
+.full-post .blog { display: block !important; }
+.full-post .posts-list { display: none !important; }
+.full-post .post-content {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 36px;
+  border-radius: 16px;
+}
+
+.post-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: var(--border-gradient-onyx);
+  color: var(--light-gray);
+  border: 1px solid var(--jet);
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+.post-back-btn:hover { background: var(--bg-gradient-yellow-1); color: var(--smoky-black); }
+
+
 
 
 
