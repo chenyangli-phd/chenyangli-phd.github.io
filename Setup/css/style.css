@@ -1157,6 +1157,9 @@ main {
   line-height: 1.75;
 }
 
+/* Hide photography content area until a photography post is opened */
+.photography .post-content { display: none; }
+
 .post-content h1,
 .post-content h2,
 .post-content h3,
@@ -1199,13 +1202,20 @@ main {
   #BLOG - full page view
 *-----------------------------------*/
 
-.full-post .sidebar { display: none !important; }
-.full-post .navbar { display: none !important; }
-.full-post .main-content { width: 100% !important; min-width: 0; margin: 20px auto; }
-.full-post [data-page]:not(.blog) { display: none !important; }
-.full-post .blog { display: block !important; }
-.full-post .posts-list { display: none !important; }
-.full-post .post-content {
+.full-post-blog .sidebar,
+.full-post-photography .sidebar { display: none !important; }
+.full-post-blog .navbar,
+.full-post-photography .navbar { display: none !important; }
+.full-post-blog .main-content,
+.full-post-photography .main-content { width: 100% !important; min-width: 0; margin: 20px auto; }
+.full-post-blog [data-page]:not(.blog) { display: none !important; }
+.full-post-blog .blog { display: block !important; }
+.full-post-blog .posts-list { display: none !important; }
+.full-post-photography [data-page]:not(.photography) { display: none !important; }
+.full-post-photography .photography { display: block !important; }
+.full-post-photography #photos-list { display: none !important; }
+.full-post-blog .post-content,
+.full-post-photography .post-content {
   max-width: 1100px;
   margin: 30px auto;
   padding: 36px;

@@ -159,19 +159,21 @@ if (postsListEl && postContentEl) {
   fetch('./Files/blogs/posts.json')
     .then(resp => resp.json())
     .then(posts => {
+      console.log('posts.json loaded, count=', posts.length);
       posts.forEach(p => {
         const btn = document.createElement('button');
         btn.className = 'post-link';
         btn.textContent = p.title;
         btn.dataset.file = p.file;
-        btn.addEventListener('click', () => loadPost(p.file));
+        btn.addEventListener('click', () => { console.log('post button clicked', p.file); loadPost(p.file); });
         postsListEl.appendChild(btn);
       });
     })
     .catch(err => console.error('Failed to load posts.json', err));
 
   function loadPost(file) {
-    fetch(`./Files/blogs/${file}`)
+    console.log('loadPost called for', file);
+    fetch(encodeURI(`./Files/blogs/${file}`))
       .then(r => r.text())
       .then(md => {
         if (window.marked) {
@@ -180,15 +182,16 @@ if (postsListEl && postContentEl) {
           postContentEl.textContent = md;
         }
         window.scrollTo(0, 0);
-        // enter full-page mode
-        document.body.classList.add('full-post');
+        // enter full-page mode for blog
+        document.body.classList.add('full-post-blog');
+        document.body.classList.remove('full-post-photography');
         // add back button if not exists
         if (!document.getElementById('post-back-btn')) {
           const back = document.createElement('button');
           back.id = 'post-back-btn';
           back.className = 'post-back-btn';
           back.innerHTML = '← 返回博客列表';
-          back.addEventListener('click', exitFullPost);
+          back.addEventListener('click', function () { exitFull('blog'); });
           postContentEl.insertAdjacentElement('afterbegin', back);
         }
       })
@@ -196,17 +199,65 @@ if (postsListEl && postContentEl) {
   }
 }
 
-function exitFullPost() {
-  // remove full page class
-  document.body.classList.remove('full-post');
-  // remove back button
+function exitFull(pageName) {
+  // remove any full-post mode
+  document.body.classList.remove('full-post-blog');
+  document.body.classList.remove('full-post-photography');
   const back = document.getElementById('post-back-btn');
   if (back) back.remove();
-  // clear post content (optional) and show blog list again
   if (postContentEl) postContentEl.innerHTML = '';
-  // ensure blog page is active
   const pages = document.querySelectorAll('[data-page]');
-  pages.forEach(p => { if (p.dataset.page === 'blog') p.classList.add('active'); else p.classList.remove('active'); });
-  // scroll to blog section top
+  pages.forEach(p => { if (p.dataset.page === pageName) p.classList.add('active'); else p.classList.remove('active'); });
   window.scrollTo(0, 0);
 }
+
+// --------------------
+// Photography (markdown) loader
+// --------------------
+const photosListEl = document.getElementById('photos-list');
+const photoContentEl = document.getElementById('photo-content');
+
+if (photosListEl && photoContentEl) {
+  fetch('./Files/blogs/photography.json')
+    .then(resp => resp.json())
+    .then(posts => {
+      console.log('photography.json loaded, count=', posts.length);
+      posts.forEach(p => {
+        const btn = document.createElement('button');
+        btn.className = 'post-link';
+        btn.textContent = p.title;
+        btn.dataset.file = p.file;
+        btn.addEventListener('click', () => { console.log('photo button clicked', p.file); loadPhoto(p.file); });
+        photosListEl.appendChild(btn);
+      });
+    })
+    .catch(err => console.error('Failed to load photography.json', err));
+
+  function loadPhoto(file) {
+    console.log('loadPhoto called for', file);
+    fetch(encodeURI(`./Files/blogs/${file}`))
+      .then(r => r.text())
+      .then(md => {
+        if (window.marked) {
+          photoContentEl.innerHTML = marked.parse(md);
+        } else {
+          photoContentEl.textContent = md;
+        }
+        window.scrollTo(0, 0);
+        // enter full-page mode for photography
+        document.body.classList.add('full-post-photography');
+        document.body.classList.remove('full-post-blog');
+        if (!document.getElementById('post-back-btn')) {
+          const back = document.createElement('button');
+          back.id = 'post-back-btn';
+          back.className = 'post-back-btn';
+          back.innerHTML = '← 返回摄影列表';
+          back.addEventListener('click', function () { exitFull('photography'); });
+          photoContentEl.insertAdjacentElement('afterbegin', back);
+        }
+      })
+      .catch(err => { photoContentEl.textContent = '无法加载摄影集。'; console.error(err); });
+  }
+
+}
+
