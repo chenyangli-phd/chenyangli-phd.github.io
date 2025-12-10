@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Chenyang Li</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .blog-list-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
+        }
+        .blog-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .blog-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .blog-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        .blog-search {
+            max-width: 500px;
+            margin: 30px auto;
+            position: relative;
+        }
+        .blog-search input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            background: var(--glass-bg);
+            color: var(--text-primary);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .blog-search input:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.1);
+        }
+        .blog-search i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+        .blog-categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        .category-btn {
+            padding: 8px 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .category-btn:hover, .category-btn.active {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            border-color: var(--accent-primary);
+        }
+        .blog-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        .blog-item {
+            background: var(--glass-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+        }
+        .blog-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+        .blog-item-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: white;
+        }
+        .blog-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+        .blog-item-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .blog-item-tags span {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            background: rgba(100, 255, 218, 0.1);
+            color: var(--accent-primary);
+            border-radius: 10px;
+        }
+        .back-home {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            padding: 12px 25px;
+            background: var(--glass-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        .back-home:hover {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+        }
+        .blog-count {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+        @media (max-width: 768px) {
+            .blog-list {
+                grid-template-columns: 1fr;
+            }
+            .back-home {
+                top: 15px;
+                left: 15px;
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../../index.html" class="back-home">
+        <i class="fas fa-arrow-left"></i> 返回首页
+    </a>
+
+    <div class="blog-list-container">
+        <div class="blog-header">
+            <h1>📚 Blog</h1>
+            <p>分享技术、工具、生活与思考</p>
+        </div>
+
+        <div class="blog-search">
+            <input type="text" id="searchInput" placeholder="搜索文章...">
+            <i class="fas fa-search"></i>
+        </div>
+
+        <div class="blog-categories" id="categories">
+            <button class="category-btn active" data-category="all">全部</button>
+            <button class="category-btn" data-category="工具">工具</button>
+            <button class="category-btn" data-category="教程">教程</button>
+            <button class="category-btn" data-category="效率">效率</button>
+            <button class="category-btn" data-category="科研">科研</button>
+            <button class="category-btn" data-category="生活">生活</button>
+        </div>
+
+        <div class="blog-count" id="blogCount"></div>
+        <div class="blog-list" id="blogList"></div>
+    </div>
+
+    <script>
+        // 博客文章数据 - 根据文件名自动生成
+        const blogs = [
+            { file: "2022年计划表｜Notion治愈模版分享.md", tags: ["Notion", "效率"], icon: "fas fa-calendar-check", color: "#f093fb" },
+            { file: "Ai配音专家 免费配置教程（适用于mac和windows系统）.md", tags: ["工具", "教程"], icon: "fas fa-microphone", color: "#667eea" },
+            { file: "CAJ转PDF的一种快捷方法_2025-11-29.md", tags: ["工具", "科研"], icon: "fas fa-file-pdf", color: "#e74c3c" },
+            { file: "ChatGPT 镜像合集.md", tags: ["AI", "工具"], icon: "fas fa-robot", color: "#00d9ff" },
+            { file: "Internet Downlaod Manager破解教程.md", tags: ["工具", "教程"], icon: "fas fa-download", color: "#27ae60" },
+            { file: "Latex插入eps显示空白或者报错怎么办？.md", tags: ["LaTeX", "科研"], icon: "fas fa-file-code", color: "#9b59b6" },
+            { file: "Markdown 竟然还可以写思维导图.md", tags: ["Markdown", "效率"], icon: "fas fa-project-diagram", color: "#3498db" },
+            { file: "Notion学习笔记一：用Notion写markdown.md", tags: ["Notion", "教程"], icon: "fas fa-sticky-note", color: "#1abc9c" },
+            { file: "Notion学习笔记（二）：利用Notion做待办事项.md", tags: ["Notion", "效率"], icon: "fas fa-tasks", color: "#1abc9c" },
+            { file: "OBS直播配置教程.md", tags: ["工具", "教程"], icon: "fas fa-video", color: "#e91e63" },
+            { file: "Python画图不显示中文的有效解决方案.md", tags: ["Python", "科研"], icon: "fab fa-python", color: "#3776ab" },
+            { file: "VSCode 配置 Markdown.md", tags: ["VSCode", "教程"], icon: "fas fa-code", color: "#007acc" },
+            { file: "Win系统可以实现Mac界面吗？.md", tags: ["Windows", "教程"], icon: "fab fa-windows", color: "#00a4ef" },
+            { file: "Z-library 回归啦，我也回来啦！.md", tags: ["资源", "电子书"], icon: "fas fa-book", color: "#e67e22" },
+            { file: "iOS、iPadOS、macOS屏蔽系统更新，一个网站就够了！.md", tags: ["Apple", "技巧"], icon: "fab fa-apple", color: "#555" },
+            { file: "iphone 长截图.md", tags: ["iPhone", "技巧"], icon: "fas fa-mobile-alt", color: "#ff6b6b" },
+            { file: "overleaf 在线编辑器 | latex模版.md", tags: ["LaTeX", "科研"], icon: "fas fa-leaf", color: "#47a141" },
+            { file: "vs code配置latex环境.md", tags: ["LaTeX", "教程"], icon: "fas fa-cog", color: "#007acc" },
+            { file: "一个网站解决PDF切割 转换 拆分 合并 压缩所有问题.md", tags: ["工具", "PDF"], icon: "fas fa-file-pdf", color: "#e74c3c" },
+            { file: "一件事情坚持三年多就不只是热爱了.md", tags: ["生活", "感悟"], icon: "fas fa-heart", color: "#e91e63" },
+            { file: "一款影视解析客户端｜windows｜mac.md", tags: ["工具", "影视"], icon: "fas fa-film", color: "#9c27b0" },
+            { file: "一键翻译PDF神器.md", tags: ["工具", "翻译"], icon: "fas fa-language", color: "#00bcd4" },
+            { file: "三天搞定硕士毕业论文｜Latex公式识别神器.md", tags: ["LaTeX", "科研"], icon: "fas fa-graduation-cap", color: "#673ab7" },
+            { file: "不用校园网如何下载论文文献｜DOI号｜文献免费下载.md", tags: ["科研", "资源"], icon: "fas fa-download", color: "#2196f3" },
+            { file: "佛祖代码.md", tags: ["代码", "趣味"], icon: "fas fa-pray", color: "#ff9800" },
+            { file: "使用教育优惠申请到了1个T的Onedrive同步盘.md", tags: ["教育", "云盘"], icon: "fas fa-cloud", color: "#0078d4" },
+            { file: "做简历需要搞那么花里胡哨吗？｜简历｜模版.md", tags: ["效率", "模版"], icon: "fas fa-file-alt", color: "#607d8b" },
+            { file: "兄弟们！单篇文章阅读量破45万啦！附内容合集.md", tags: ["分享", "合集"], icon: "fas fa-fire", color: "#ff5722" },
+            { file: "兄弟们，那个网站复活啦｜镜像网站合集.md", tags: ["资源", "合集"], icon: "fas fa-link", color: "#795548" },
+            { file: "再见爱人2：有洞察才能共情.md", tags: ["生活", "感悟"], icon: "fas fa-comments", color: "#e91e63" },
+            { file: "再见爱人3_爱你的人首先教会你的，就是不自卑.md", tags: ["生活", "感悟"], icon: "fas fa-heart", color: "#e91e63" },
+            { file: "分享一个mac上的小技巧.md", tags: ["Mac", "效率"], icon: "fab fa-apple", color: "#333" },
+            { file: "分享一款镜像网站_2025-11-29.md", tags: ["资源", "网站"], icon: "fas fa-globe", color: "#4caf50" },
+            { file: "北京还是小时候的北京，我已经不是那个时候的我.md", tags: ["生活", "感悟"], icon: "fas fa-city", color: "#607d8b" },
+            { file: "原来冬天的海也可以非常浪漫！.md", tags: ["生活", "摄影"], icon: "fas fa-water", color: "#03a9f4" },
+            { file: "周杰伦2022新专辑《最伟大的作品》｜资源分享.md", tags: ["音乐", "资源"], icon: "fas fa-music", color: "#9c27b0" },
+            { file: "在Fenics上利用Chorin投影求解Navise-Stokes方程.md", tags: ["科研", "FEniCS"], icon: "fas fa-wave-square", color: "#3f51b5" },
+            { file: "大文件传输工具.md", tags: ["工具", "传输"], icon: "fas fa-exchange-alt", color: "#009688" },
+            { file: "奇怪的网站又增加了｜全球实况镜头.md", tags: ["网站", "趣味"], icon: "fas fa-camera", color: "#ff5722" },
+            { file: "如果利用高校学生邮箱申请Apple Music 5元_月.md", tags: ["Apple", "教育"], icon: "fas fa-music", color: "#fa243c" },
+            { file: "小白用Anacanda配置环境有多惨.md", tags: ["Python", "教程"], icon: "fab fa-python", color: "#44a833" },
+            { file: "当你的华强北耳机掉水里了怎么办？.md", tags: ["生活", "技巧"], icon: "fas fa-headphones", color: "#607d8b" },
+            { file: "影视神器.md", tags: ["工具", "影视"], icon: "fas fa-tv", color: "#673ab7" },
+            { file: "我的摄影作品合集.md", tags: ["摄影", "生活"], icon: "fas fa-camera-retro", color: "#795548" },
+            { file: "扫描文档.md", tags: ["工具", "效率"], icon: "fas fa-scanner", color: "#455a64" },
+            { file: "推荐一个检查语法的网站.md", tags: ["工具", "写作"], icon: "fas fa-spell-check", color: "#4caf50" },
+            { file: "推荐一款开源的电子书格式转换工具.md", tags: ["工具", "电子书"], icon: "fas fa-book-reader", color: "#ff9800" },
+            { file: "推荐一款截屏翻译工具｜截屏提取文字｜划词翻译.md", tags: ["工具", "翻译"], icon: "fas fa-crop", color: "#00bcd4" },
+            { file: "推荐一款文献管理工具 Zotero |附使用教程和学习路径.md", tags: ["科研", "工具"], icon: "fas fa-folder-open", color: "#cc2936" },
+            { file: "推荐一款文献管理神器 Mendeley Reference Manager .md", tags: ["科研", "工具"], icon: "fas fa-book-medical", color: "#b71c1c" },
+            { file: "推荐一款浏览器标签页.md", tags: ["工具", "效率"], icon: "fas fa-window-restore", color: "#2196f3" },
+            { file: "推荐一款电脑录屏软件｜腾讯会议不申请权限如何录屏.md", tags: ["工具", "录屏"], icon: "fas fa-record-vinyl", color: "#f44336" },
+            { file: "推荐一款表格神器.md", tags: ["工具", "效率"], icon: "fas fa-table", color: "#4caf50" },
+            { file: "推荐几款全网音乐下载神器｜告别Q网酷我音_2025-11-29.md", tags: ["音乐", "工具"], icon: "fas fa-headphones-alt", color: "#e91e63" },
+            { file: "推荐阅读.md", tags: ["资源", "合集"], icon: "fas fa-book-open", color: "#667eea" },
+            { file: "流固耦合问题.md", tags: ["科研", "数学"], icon: "fas fa-atom", color: "#3f51b5" },
+            { file: "淘宝是如何找pdf的.md", tags: ["技巧", "电子书"], icon: "fas fa-shopping-cart", color: "#ff5722" },
+            { file: "烟花模拟器.md", tags: ["趣味", "网站"], icon: "fas fa-fire-alt", color: "#ff9800" },
+            { file: "用PyCharm配置FEniCS的简单笔记.md", tags: ["科研", "教程"], icon: "fas fa-laptop-code", color: "#21d789" },
+            { file: "用代码模拟男女生吵架｜把爷整乐了.md", tags: ["代码", "趣味"], icon: "fas fa-laugh", color: "#ffc107" },
+            { file: "用苹果自带地图做旅游攻略｜维基百科镜像（粉丝投稿）.md", tags: ["Apple", "旅行"], icon: "fas fa-map-marked-alt", color: "#4caf50" },
+            { file: "电子书导航.md", tags: ["资源", "电子书"], icon: "fas fa-compass", color: "#ff9800" },
+            { file: "电脑端如何截屏网页全部内容.md", tags: ["技巧", "效率"], icon: "fas fa-desktop", color: "#607d8b" },
+            { file: "百度文库下载方法.md", tags: ["工具", "资源"], icon: "fas fa-file-download", color: "#2196f3" },
+            { file: "百度网盘下载神器.md", tags: ["工具", "下载"], icon: "fas fa-cloud-download-alt", color: "#06a7ff" },
+            { file: "知乎流量10W+我都写了啥.md", tags: ["分享", "知乎"], icon: "fab fa-zhihu", color: "#0084ff" },
+            { file: "突然登陆一下_2025-11-29.md", tags: ["生活", "日记"], icon: "fas fa-pen", color: "#9e9e9e" },
+            { file: "给状态栏添加一个可爱的小动物吧.md", tags: ["Mac", "趣味"], icon: "fas fa-cat", color: "#ff9800" },
+            { file: "网易云音乐_QQ音乐转移到applemusic.md", tags: ["音乐", "教程"], icon: "fas fa-exchange-alt", color: "#fa243c" },
+            { file: "视频转gif.md", tags: ["工具", "教程"], icon: "fas fa-image", color: "#9c27b0" },
+            { file: "解决了一个膈应多年的问题｜touch bar 防闪烁教程.md", tags: ["Mac", "教程"], icon: "fab fa-apple", color: "#333" },
+            { file: "认知觉醒：开始自我改变的原动力.md", tags: ["阅读", "感悟"], icon: "fas fa-brain", color: "#673ab7" },
+            { file: "道客巴巴文库下载方法.md", tags: ["工具", "资源"], icon: "fas fa-file-download", color: "#ff5722" }
+        ];
+
+        // 渲染博客列表
+        function renderBlogs(filter = 'all', search = '') {
+            const blogList = document.getElementById('blogList');
+            const blogCount = document.getElementById('blogCount');
+            
+            let filteredBlogs = blogs;
+            
+            // 分类筛选
+            if (filter !== 'all') {
+                filteredBlogs = filteredBlogs.filter(blog => 
+                    blog.tags.some(tag => tag.includes(filter))
+                );
+            }
+            
+            // 搜索筛选
+            if (search) {
+                const searchLower = search.toLowerCase();
+                filteredBlogs = filteredBlogs.filter(blog => 
+                    blog.file.toLowerCase().includes(searchLower) ||
+                    blog.tags.some(tag => tag.toLowerCase().includes(searchLower))
+                );
+            }
+            
+            blogCount.textContent = `共 ${filteredBlogs.length} 篇文章`;
+            
+            if (filteredBlogs.length === 0) {
+                blogList.innerHTML = '<div class="no-results"><i class="fas fa-search" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.5;"></i><p>没有找到匹配的文章</p></div>';
+                return;
+            }
+            
+            blogList.innerHTML = filteredBlogs.map(blog => {
+                const title = blog.file.replace('.md', '').replace(/_\d{4}-\d{2}-\d{2}/, '');
+                return `
+                    <a href="post.html?post=${encodeURIComponent(blog.file)}" class="blog-item">
+                        <div class="blog-item-icon" style="background: ${blog.color};">
+                            <i class="${blog.icon}"></i>
+                        </div>
+                        <h3>${title}</h3>
+                        <div class="blog-item-tags">
+                            ${blog.tags.map(tag => `<span>${tag}</span>`).join('')}
+                        </div>
+                    </a>
+                `;
+            }).join('');
+        }
+
+        // 分类按钮点击
+        document.getElementById('categories').addEventListener('click', (e) => {
+            if (e.target.classList.contains('category-btn')) {
+                document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+                e.target.classList.add('active');
+                renderBlogs(e.target.dataset.category, document.getElementById('searchInput').value);
+            }
+        });
+
+        // 搜索
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const activeCategory = document.querySelector('.category-btn.active').dataset.category;
+            renderBlogs(activeCategory, e.target.value);
+        });
+
+        // 初始渲染
+        renderBlogs();
+    </script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客文章 - Chenyang Li</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Markdown Parser -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../../css/style.css">
+
+    <style>
+        .blog-post-page {
+            padding: 120px 0 60px;
+            min-height: 100vh;
+        }
+
+        .blog-post-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .blog-post-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .blog-post-meta {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .blog-post-meta span {
+            margin: 0 10px;
+        }
+
+        .blog-post-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            gap: 12px;
+        }
+
+        /* Markdown Content Styles */
+        .markdown-body {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 40px;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+
+        .markdown-body h1 {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .markdown-body h2 {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin: 35px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-secondary);
+        }
+
+        .markdown-body h3 {
+            font-size: 1.25rem;
+            color: var(--accent-secondary);
+            margin: 25px 0 15px;
+        }
+
+        .markdown-body p {
+            margin-bottom: 16px;
+            text-indent: 2em;
+        }
+
+        .markdown-body strong {
+            color: var(--accent-secondary);
+        }
+
+        .markdown-body img {
+            max-width: 100%;
+            border-radius: 12px;
+            margin: 20px auto;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            display: block;
+        }
+
+        .markdown-body ul, .markdown-body ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .markdown-body li {
+            margin-bottom: 10px;
+        }
+
+        .markdown-body code {
+            background: rgba(139, 92, 246, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .markdown-body pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .markdown-body pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .markdown-body blockquote {
+            border-left: 4px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+            border-radius: 0 12px 12px 0;
+        }
+
+        .markdown-body blockquote p {
+            margin: 0;
+            text-indent: 0;
+        }
+
+        .markdown-body a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .markdown-body a:hover {
+            color: var(--accent-secondary);
+            border-bottom-color: var(--accent-secondary);
+        }
+
+        .markdown-body hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            margin: 30px 0;
+        }
+
+        .markdown-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .markdown-body th, .markdown-body td {
+            border: 1px solid var(--glass-border);
+            padding: 12px;
+            text-align: left;
+        }
+
+        .markdown-body th {
+            background: rgba(139, 92, 246, 0.2);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: var(--text-secondary);
+        }
+
+        .loading i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .error-message {
+            text-align: center;
+            padding: 40px;
+            color: #ef4444;
+        }
+
+        @media (max-width: 768px) {
+            .blog-post-header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .markdown-body {
+                padding: 25px;
+            }
+
+            .markdown-body h1 {
+                font-size: 1.5rem;
+            }
+
+            .markdown-body h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <a class="logo" href="../../index.html">Chenyang Li</a>
+
+        <div class="header-navigation">
+            <nav class="main-nav">
+                <a href="../../index.html#hero">Home</a>
+                <a href="../../index.html#about">About</a>
+                <a href="../../index.html#skills">Skills</a>
+                <a href="../../index.html#experience">Education</a>
+                <a href="../../index.html#experiences">Experiences</a>
+                <a href="../../index.html#blog">Blog</a>
+                <span class="nav-indicator"></span>
+            </nav>
+            <a href="../resume/CV_Chenyang LI.pdf" target="_blank" class="resume-button">Resume</a>
+
+            <button id="theme-toggle" class="theme-toggle-btn">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="blog-post-page">
+        <div class="container">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> 返回博客
+            </a>
+
+            <article class="blog-post-content">
+                <div id="markdown-content" class="markdown-body">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>加载文章中...</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-column footer-about">
+                <h3 class="footer-logo" style="white-space: nowrap;"><span>Chenyang</span> Li</h3>
+                <p>Ph.D. student in Computational Mathematics at the School of Mathematical Sciences, East China Normal University.</p>
+            </div>
+            <div class="footer-column footer-links">
+                <h4 class="footer-title">Quick Links</h4>
+                <ul>
+                    <li><a href="../../index.html#hero">Home</a></li>
+                    <li><a href="../resume/CV_Chenyang LI.pdf" target="_blank">Resume</a></li>
+                </ul>
+            </div>
+            <div class="footer-column footer-connect">
+                <h4 class="footer-title">Connect with Me</h4>
+                <ul>
+                    <li><a href="mailto:chenyangli1004@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                <p>Copyright © <span id="currentYear"></span> Chenyang Li. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // 获取 URL 参数中的 markdown 文件名
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // 加载并渲染 Markdown 文件
+        async function loadMarkdown() {
+            const mdFile = getQueryParam('post');
+            const contentDiv = document.getElementById('markdown-content');
+
+            if (!mdFile) {
+                contentDiv.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i><p>未指定文章</p></div>';
+                return;
+            }
+
+            try {
+                // 加载 markdown 文件
+                const response = await fetch(mdFile);
+                
+                if (!response.ok) {
+                    throw new Error('文章不存在');
+                }
+
+                const markdown = await response.text();
+                
+                // 使用 marked 解析 markdown
+                const html = marked.parse(markdown);
+                
+                contentDiv.innerHTML = html;
+
+                // 更新页面标题
+                const firstH1 = contentDiv.querySelector('h1');
+                if (firstH1) {
+                    document.title = firstH1.textContent + ' - Chenyang Li';
+                }
+
+            } catch (error) {
+                contentDiv.innerHTML = `<div class="error-message"><i class="fas fa-exclamation-circle"></i><p>加载文章失败: ${error.message}</p></div>`;
+            }
+        }
+
+        // 页面加载时执行
+        loadMarkdown();
+    </script>
+    <script src="../../js/scripts.js"></script>
+</body>
+
+</html>
