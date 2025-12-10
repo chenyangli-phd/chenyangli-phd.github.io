@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- TIÊU ĐỀ MỚI -->
+    <title>Chenyang Li - Phd</title>
+    <!-- THAY ICON MỚI (NẾU CÓ) -->
+    <link rel="icon" type="image/png" href="assets/pic/favicon.png" />
+
+    <!-- THÊM FONT MỚI TỪ GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- LINK CSS VÀ FONT AWESOME -->
+        <link rel="stylesheet" href="css/components/base.css" />
+    <link rel="stylesheet" href="css/components/header.css" />
+    <link rel="stylesheet" href="css/components/hero.css" />
+    <link rel="stylesheet" href="css/components/music-player.css" />
+    <link rel="stylesheet" href="css/components/sections.css" />
+    <link rel="stylesheet" href="css/components/about.css" />
+    <link rel="stylesheet" href="css/components/skills.css" />
+    <link rel="stylesheet" href="css/components/projects.css" />
+    <link rel="stylesheet" href="css/components/blog.css" />
+    <link rel="stylesheet" href="css/components/experience.css" />
+    <link rel="stylesheet" href="css/components/contact.css" />
+    <link rel="stylesheet" href="css/components/animations.css" />
+    <link rel="stylesheet" href="css/components/awards.css" />
+    <link rel="stylesheet" href="css/components/footer.css" />
+    <link rel="stylesheet" href="css/components/wakatime.css" />
+    <link rel="stylesheet" href="css/components/featured-projects.css" />
+    <link rel="stylesheet" href="css/components/interactive-skills.css" />
+    <link rel="stylesheet" href="css/components/theme.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <!-- Thanh tiến trình cuộn giữ nguyên -->
+    <div class="scroll-progress-bar"></div>
+
+    <header class="main-header">
+        <!-- Nhóm 1: Logo -->
+        <a class="logo" href="index.html">Chenyang Li</a>
+
+        <!-- Nhóm 2: Khối điều hướng -->
+        <div class="header-navigation"> <!-- THÊM THẺ NÀY -->
+            <nav class="main-nav">
+                <a href="#hero">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <!-- <a href="#coding-activity">Activity</a> -->
+                <a href="#experience">Education</a>
+                <a href="#experiences">Experiences</a>
+                <span class="nav-indicator"></span>
+            </nav>
+            <a href="assets/blogs/index.html" class="blog-button">Blog</a>
+            <a href="assets/photography-blog/index.html" class="photo-button">Photography</a>
+            <a href="assets/resume/CV_Chenyang LI.pdf" target="_blank" class="resume-button">Resume</a>
+
+            <button id="theme-toggle" class="theme-toggle-btn">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
+
+        </div> <!-- THÊM THẺ NÀY -->
+
+    </header>
+
+    <main>
+        <!-- ====================================================== -->
+        <!-- Section 1: Hero (THAY ĐỔI LỚN) -->
+        <!-- ====================================================== -->
+        <section id="hero" class="hero-section">
+            <div class="hero-background"></div>
+            <div class="container hero-container">
+                <!-- Profile Card (bên trái) -->
+                <div class="profile-card-container animate-on-scroll">
+                    <div class="profile-card glass-card">
+                        <div class="profile-header">
+                            <div class="avatar-wrapper">
+                                <img src="assets/pic/my_image1.jpg" alt="Avatar" class="avatar" />
+                                <div class="status-indicator online"></div>
+                            </div>
+                            <div class="profile-info">
+                                <h2>Chenyang Li</h2>
+                                <p class="job-title">Phd</p>
+                            </div>
+                        </div>
+                        <div class="profile-details">
+                            <p><i class="fas fa-map-marker-alt"></i> Shanghai China</p>
+                            <p><i class="fas fa-calendar-alt"></i> 04.Oct.1999</p>
+                            <p><i class="fas fa-briefcase"></i> East China Normal University</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Hero Text Content (ở giữa) -->
+                <div class="hero-text-content">
+                    <div class="welcome-badge animate-on-scroll">Welcome to my Portfolio</div>
+                    <h1 class="animate-on-scroll">
+                        <span class="gradient-text">Chenyang Li</span>
+                    </h1>
+                    <p style="color: white;" class="animate-on-scroll">I am a Ph.D. student in Computational Mathematics at the School of Mathematical Sciences, East China Normal University. My research focuses on numerical methods for partial differential equations, particularly the finite element method and its applications to coupled multi-physics problems. In addition to my academic pursuits, I have a strong interest in photography. Photography allows me to observe the world from different perspectives and fuels my creativity in both science and life.</p>
+                    <div class="social-links animate-on-scroll">
+                        <a style="color: white;" href="https://chenyangli-phd.github.io" aria-label="Homepage"><i
+                                class="fas fa-home"></i></a>
+                        <a style="color: white;" href="https://scholar.google.com/citations?user=EdKat8YAAAAJ&hl=zh-CN" aria-label="Google Scholar"><i
+                                class="fas fa-graduation-cap"></i></a>
+                        <a style="color: white;" href="https://www.zhihu.com/people/li-chen-yang-59-57" aria-label="Zhihu"><i
+                                class="fab fa-zhihu"></i></a>
+                        <a style="color: white;" href="https://mp.weixin.qq.com/s/ij2IJCCA_LOGfJffvB2-1w" aria-label="WeChat"><i
+                                class="fab fa-weixin"></i></a>
+                        <a style="color: white;" href="https://space.bilibili.com/85644653?spm_id_from=333.1007.0.0" aria-label="Bilibili"><i
+                                class="fab fa-bilibili"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-down-indicator"></div>
+        </section>
+
+        <!-- ====================================================== -->
+        <!-- Music Player Widget -->
+        <!-- ====================================================== -->
+        <div class="music-player-widget">
+            <img src="assets/pic/song-cover.png" alt="Song Cover" class="song-cover" id="song-cover">
+            <div class="song-info">
+                <h4 id="song-title">Điều chưa nói</h4>
+                <p id="song-artist">Tia ft. OMIXX</p>
+            </div>
+            <div class="player-controls">
+                <!-- Thêm ID cho các nút -->
+                <i class="fas fa-backward-step" id="prev-btn"></i>
+                <i class="fas fa-pause" id="play-pause-btn"></i> <!-- Bắt đầu với icon pause -->
+                <i class="fas fa-forward-step" id="next-btn"></i>
+            </div>
+            <i class="fas fa-volume-high"></i> <!-- Phần volume sẽ làm sau nếu bạn muốn -->
+        </div>
+
+        <!-- ====================================================== -->
+        <!-- Section 2: About Me (CẬP NHẬT) -->
+        <!-- ====================================================== -->
+        <section id="about" class="content-section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <div class="section-badge">My personal story</div>
+                    <h2 class="section-title">About Me</h2>
+                    <div class="title-underline"></div>
+                </div>
+                <div class="about-grid">
+                    <div class="about-image-wrapper animate-on-scroll">
+                        <img src="assets/pic/my_image.jpg" alt="A pensive anime character in a snowy city scene">
+                        <div class="status-tag">
+                            <span class="green-dot"></span> Available for work
+                        </div>
+                    </div>
+                    <div class="about-text-content animate-on-scroll">
+                        <p><strong>Primary Research Areas:</strong> Computational fluid dynamics, Numerical solution of partial diﬀerential equations (PDEs), Finite element methods, Stabilized mixed finite element methods.</p>
+                        <p><strong>Analysis of Coupled Systems:</strong> Numerical analysis and simulation of the time-dependent coupling model including Navier-Stokes equation, Stokes-Darcy System, Natural Convection Model, Magnetohydrodynamics (MHD) System, Chemotaxis–Navier-Stokes System.</p>
+                        <p><strong>Models with Variable Density:</strong> The time-dependent coupling model with variable density including Navier-Stokes Equation with variable density, Natural Convection Model with variable density, Magnetohydrodynamics System with variable density, Ericksen-Leslie system with variable density.</p>
+                        <div class="info-box-wrapper glass-card">
+                            <div class="info-box">
+                                <div>
+                                    <span class="info-label">Name</span>
+                                    <p>Chenyang Li</p>
+                                </div>
+                                <div>
+                                    <span class="info-label">Email</span>
+                                    <p>chenyangli1004@gmail.com</p>
+                                </div>
+                                <div>
+                                    <span class="info-label">Location</span>
+                                    <p>Shanghai China</p>
+                                </div>
+                            </div>
+                            <a href="assets/resume/CV_Chenyang LI.pdf" download class="btn-download-resume">Download Resume <i
+                                    class="fas fa-download"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================================== -->
+        <!-- Section 3: Skills (CẬP NHẬT) -->
+        <!-- ====================================================== -->
+        <section id="skills" class="content-section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <!-- Thêm lại badge "My Skills" -->
+                    <div class="section-badge">My Skills</div>
+                    <!-- Đổi tiêu đề -->
+                    <h2 class="section-title">Technical Stack</h2>
+                    <div class="title-underline"></div>
+                </div>
+
+                <div class="skills-wrapper">
+                    <div class="skills-grid">
+                        <!-- JavaScript sẽ tự động chèn các thanh kỹ năng vào đây -->
+                        <p class="skills-loading">
+                            <i class="fas fa-spinner fa-spin"></i> Loading technical skills...
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+        <!-- ====================================================== -->
+        <!-- Section: Coding Activity (MỚI) -->
+        <!-- ====================================================== -->
+        <!-- <section id="coding-activity" class="content-section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <div class="section-badge">Developer Insights</div>
+                    <h2 class="section-title">Coding Activity</h2>
+                    <div class="title-underline"></div>
+                </div>
+
+                <div class="wakatime-grid animate-on-scroll">
+                     WakaTime Chart 1: Ngôn ngữ lập trình 
+                    <div class="wakatime-card glass-card">
+                        <h3>Languages (All time)</h3>
+
+
+<figure><embed src="https://wakatime.com/share/@TranHuuDat2004/2702fa9b-4da9-4c2a-8088-051ea8a07211.svg"></embed></figure>
+
+                    </div>
+
+                     WakaTime Chart 2: Hoạt động hàng ngày 
+                    <div class="wakatime-card glass-card">
+                        <h3>Daily Activity (All time)</h3>
+
+                         DÁN MÃ IFRAME BIỂU ĐỒ HOẠT ĐỘNG CỦA BẠN VÀO ĐÂY 
+                        <figure><embed
+                                src="https://wakatime.com/share/@TranHuuDat2004/8f2a8fe2-d87f-487b-926a-daed1065ce97.svg"></embed>
+                        </figure>
+
+                    </div>
+                </div>
+            </div>
+         </section> -->
+
+        <!-- ====================================================== -->
+        <!-- Section 6: Experience (ĐÃ CẬP NHẬT CHO BẠN) -->
+        <!-- ====================================================== -->
+        <section id="experience" class="content-section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2 class="section-title">Education</h2>
+                    <div class="title-underline"></div>
+                </div>
+                <div class="timeline">
+                    <!-- Timeline Item 1: Ph.D. -->
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <h3>East China Normal University</h3>
+                            <p class="timeline-meta">Sept. 2023 - Present | Ph.D. student in Computational Mathematics</p>
+                            <p><strong>Shanghai, China</strong></p>
+                            <p>Address: School of Mathematical Sciences, East China Normal University, Shanghai 200241, China.</p>
+                            <p>Concentration: Numerical analysis and simulation of incompressible flow coupled with multi-physics fields.</p>
+                            <p>Supervisor: Haibiao Zheng, Professor, School of Mathematical Sciences and Shanghai Key Laboratory of Pure Mathematics and Mathematical Practice, East China Normal University, Shanghai 200241, China. (hbzheng@math.ecnu.edu.cn)</p>
+                        </div>
+                    </div>
+                    <!-- Timeline Item 2: M.S. -->
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <h3>Wenzhou University</h3>
+                            <p class="timeline-meta">Sept. 2020 - Jul. 2023 | M.S. in Computational Mathematics</p>
+                            <p><strong>Wenzhou, China</strong></p>
+                            <p>Address: College of Mathematics and Physics, Wenzhou University, Wenzhou 325035, China.</p>
+                            <p>Concentration: Finite element discretizations for incompressible flow with variable density.</p>
+                            <p>Dissertation: Research on the first-order Euler finite element algorithm for two-dimensional variable density MHD system.</p>
+                            <p>Supervisor: Yuan Li (Associate Professor, liyuan@wzu.edu.cn) & Rong An (Professor, anrong@wzu.edu.cn). College of Mathematics and Physics, Wenzhou University, Wenzhou 325035, China.</p>
+                        </div>
+                    </div>
+                    <!-- Timeline Item 3: B.S. -->
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <h3>Zhejiang Ocean University</h3>
+                            <p class="timeline-meta">Sept. 2016 - Jul. 2020 | B.S. in Mathematics and Applied Mathematics (Normal Major)</p>
+                            <p><strong>Zhoushan, China</strong></p>
+                            <p>Address: School of Information Engineering, Zhejiang Ocean University, Zhoushan 316000, China.</p>
+                            <p>Dissertation: The integration of mathematical modeling concepts into secondary school mathematics.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================================== -->
+        <!-- Section: Experiences -->
+        <!-- ====================================================== -->
+        <section id="experiences" class="content-section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2 class="section-title">Experiences</h2>
+                    <div class="title-underline"></div>
+                </div>
+                <div class="timeline">
+                    <!-- Timeline Item 1: University of Dundee -->
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <h3>University of Dundee</h3>
+                            <p class="timeline-meta">15.Sept. 2025 - 15.Sept. 2026 | Associate Staff in School of Science and Engineering</p>
+                            <p><strong>Dundee, UK</strong></p>
+                            <p>Address: School of Science & Engineering, University of Dundee, Dundee DD1 4HN, United Kingdom.</p>
+                            <p>Concentration: Numerical analysis and simulation of Phase-Field Models.</p>
+                            <p>Host: Ping Lin, Chair (Professor) of Numerical Analysis/Computational Math (2007– now), School of Science and Engineering, University of Dundee, UK (p.lin@dundee.ac.uk)</p>
+                        </div>
+                    </div>
+                    <!-- Timeline Item 2: Xinjiang University -->
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <h3>Xinjiang University</h3>
+                            <p class="timeline-meta">Aug. 2025 | Academic visitor in College of Mathematics and System Sciences</p>
+                            <p><strong>Urumqi, China</strong></p>
+                            <p>Address: College of Mathematics and System Sciences, Xinjiang University, Urumqi, 830046, PR China.</p>
+                            <p>Host: Jianping Zhao, Professor of College of Mathematics and System Sciences, Xinjiang University, Urumqi, 830046, PR China.</p>
+                        </div>
+                    </div>
+                    <!-- Timeline Item 3: University of Science and Technology of China -->
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <h3>University of Science and Technology of China</h3>
+                            <p class="timeline-meta">Aug. 2024 | Participant in The Fourth Summer School on Computational and Numerical Methods for PDEs</p>
+                            <p><strong>Hefei, China</strong></p>
+                            <p>Address: School of Mathematical Sciences, University of Science and Technology of China, Hefei 230026, Anhui, China.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================================== -->
+        <!-- Section 7:  Section Blog -->
+        <!-- ====================================================== -->
+        <section id="blog" class="content-section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2 class="section-title">Blog</h2>
+                    <div class="title-underline"></div>
+                </div>
+
+                <!-- Blog内容区域 - 精选文章 -->
+                <div class="blog-grid">
+                    <!-- 博客文章卡片: 45万阅读量 -->
+                    <div class="blog-post-card glass-card animate-on-scroll">
+                        <a href="assets/blogs/post.html?post=兄弟们！单篇文章阅读量破45万啦！附内容合集.md" class="blog-card-image-link">
+                            <div class="blog-card-image" style="background: linear-gradient(135deg, #ff5722 0%, #ff9800 100%); display: flex; align-items: center; justify-content: center; min-height: 200px;">
+                                <i class="fas fa-fire" style="font-size: 4rem; color: white; opacity: 0.9;"></i>
+                            </div>
+                        </a>
+                        <div class="blog-card-content">
+                            <div class="blog-card-tags">
+                                <span>分享</span><span>合集</span><span>热门</span>
+                            </div>
+                            <h3><a href="assets/blogs/post.html?post=兄弟们！单篇文章阅读量破45万啦！附内容合集.md">单篇文章阅读量破45万啦！附内容合集</a></h3>
+                            <p>分享我在知乎上阅读量最高的文章，以及精心整理的内容合集。</p>
+                            <a href="assets/blogs/post.html?post=兄弟们！单篇文章阅读量破45万啦！附内容合集.md" class="blog-card-link">阅读更多 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 博客文章卡片: FEniCS NS方程 -->
+                    <div class="blog-post-card glass-card animate-on-scroll">
+                        <a href="assets/blogs/post.html?post=在Fenics上利用Chorin投影求解Navise-Stokes方程.md" class="blog-card-image-link">
+                            <div class="blog-card-image" style="background: linear-gradient(135deg, #3f51b5 0%, #2196f3 100%); display: flex; align-items: center; justify-content: center; min-height: 200px;">
+                                <i class="fas fa-wave-square" style="font-size: 4rem; color: white; opacity: 0.9;"></i>
+                            </div>
+                        </a>
+                        <div class="blog-card-content">
+                            <div class="blog-card-tags">
+                                <span>科研</span><span>FEniCS</span><span>数值计算</span>
+                            </div>
+                            <h3><a href="assets/blogs/post.html?post=在Fenics上利用Chorin投影求解Navise-Stokes方程.md">在FEniCS上利用Chorin投影求解Navier-Stokes方程</a></h3>
+                            <p>介绍如何使用FEniCS有限元库实现Chorin投影方法求解不可压缩流体的Navier-Stokes方程。</p>
+                            <a href="assets/blogs/post.html?post=在Fenics上利用Chorin投影求解Navise-Stokes方程.md" class="blog-card-link">阅读更多 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 博客文章卡片: 认知觉醒 -->
+                    <div class="blog-post-card glass-card animate-on-scroll">
+                        <a href="assets/blogs/post.html?post=认知觉醒：开始自我改变的原动力.md" class="blog-card-image-link">
+                            <div class="blog-card-image" style="background: linear-gradient(135deg, #673ab7 0%, #9c27b0 100%); display: flex; align-items: center; justify-content: center; min-height: 200px;">
+                                <i class="fas fa-brain" style="font-size: 4rem; color: white; opacity: 0.9;"></i>
+                            </div>
+                        </a>
+                        <div class="blog-card-content">
+                            <div class="blog-card-tags">
+                                <span>阅读</span><span>感悟</span><span>成长</span>
+                            </div>
+                            <h3><a href="assets/blogs/post.html?post=认知觉醒：开始自我改变的原动力.md">认知觉醒：开始自我改变的原动力</a></h3>
+                            <p>关于认知觉醒的读书笔记与思考，探索自我改变的内在动力与方法。</p>
+                            <a href="assets/blogs/post.html?post=认知觉醒：开始自我改变的原动力.md" class="blog-card-link">阅读更多 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 查看全部博客按钮 -->
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="assets/blogs/index.html" class="btn-primary" style="display: inline-flex; align-items: center; gap: 10px; padding: 15px 35px; font-size: 1rem;">
+                        <i class="fas fa-th-list"></i> 查看全部 70+ 篇文章
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================================== -->
+        <!-- Section 8: Photography -->
+        <!-- ====================================================== -->
+        <section id="photography" class="content-section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2 class="section-title">Photography</h2>
+                    <div class="title-underline"></div>
+                </div>
+
+                <!-- Photography内容区域 - 精选相册 -->
+                <div class="blog-grid">
+                    <!-- 摄影作品卡片: 格拉斯哥 -->
+                    <div class="blog-post-card glass-card animate-on-scroll">
+                        <a href="assets/photography-blog/post.html?post=20251203 格拉斯哥 Glasgow.md" class="blog-card-image-link">
+                            <div class="blog-card-image" style="background: url('assets/photography/20251203 格拉斯哥 Glasgow/LEE03859.JPG') center/cover; min-height: 200px;">
+                            </div>
+                        </a>
+                        <div class="blog-card-content">
+                            <div class="blog-card-tags">
+                                <span>城市</span><span>旅行</span><span>苏格兰</span>
+                            </div>
+                            <h3><a href="assets/photography-blog/post.html?post=20251203 格拉斯哥 Glasgow.md">20251203 格拉斯哥 Glasgow</a></h3>
+                            <p>2025年12月，漫步在苏格兰最大的城市格拉斯哥，感受维多利亚时代建筑与现代艺术的独特融合。</p>
+                            <a href="assets/photography-blog/post.html?post=20251203 格拉斯哥 Glasgow.md" class="blog-card-link">查看相册 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 摄影作品卡片: 爱丁堡 -->
+                    <div class="blog-post-card glass-card animate-on-scroll">
+                        <a href="assets/photography-blog/post.html?post=20251023 爱丁堡 Edinburgh.md" class="blog-card-image-link">
+                            <div class="blog-card-image" style="background: url('assets/photography/20251023 爱丁堡 Edinburgh/LEE03182.JPG') center/cover; min-height: 200px;">
+                            </div>
+                        </a>
+                        <div class="blog-card-content">
+                            <div class="blog-card-tags">
+                                <span>城市</span><span>旅行</span><span>苏格兰</span>
+                            </div>
+                            <h3><a href="assets/photography-blog/post.html?post=20251023 爱丁堡 Edinburgh.md">20251023 爱丁堡 Edinburgh</a></h3>
+                            <p>2025年10月，探访苏格兰首府爱丁堡，这座充满历史与文化魅力的城市。</p>
+                            <a href="assets/photography-blog/post.html?post=20251023 爱丁堡 Edinburgh.md" class="blog-card-link">查看相册 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 摄影作品卡片: 圣安德鲁斯 -->
+                    <div class="blog-post-card glass-card animate-on-scroll">
+                        <a href="assets/photography-blog/post.html?post=20251001 圣安德鲁斯 St Andrews.md" class="blog-card-image-link">
+                            <div class="blog-card-image" style="background: url('assets/photography/20251001 圣安德鲁斯 St Andrews/LEE03139.JPG') center/cover; min-height: 200px;">
+                            </div>
+                        </a>
+                        <div class="blog-card-content">
+                            <div class="blog-card-tags">
+                                <span>海滨</span><span>旅行</span><span>苏格兰</span>
+                            </div>
+                            <h3><a href="assets/photography-blog/post.html?post=20251001 圣安德鲁斯 St Andrews.md">20251001 圣安德鲁斯 St Andrews</a></h3>
+                            <p>2025年10月，探访苏格兰著名的海滨小镇圣安德鲁斯，高尔夫运动的发源地。</p>
+                            <a href="assets/photography-blog/post.html?post=20251001 圣安德鲁斯 St Andrews.md" class="blog-card-link">查看相册 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 查看全部摄影按钮 -->
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="assets/photography-blog/index.html" class="btn-primary" style="display: inline-flex; align-items: center; gap: 10px; padding: 15px 35px; font-size: 1rem;">
+                        <i class="fas fa-camera"></i> 查看全部相册
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ====================================================== -->
+    <!-- Footer (MỚI) -->
+    <!-- ====================================================== -->
+
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <!-- Cột 1: Giới thiệu -->
+            <div class="footer-column footer-about">
+                <h3 class="footer-logo"><span>Chenyang</span> Li</h3>
+                <p>Ph.D. student in Computational Mathematics at the School of Mathematical Sciences, East China Normal University.</p>
+            </div>
+
+            <!-- Cột 2: Quick Links -->
+            <div class="footer-column footer-links">
+                <h4 class="footer-title">Quick Links</h4>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="assets/resume/CV_Chenyang LI.pdf" download>Resume</a></li>
+                </ul>
+            </div>
+
+            <!-- Cột 3: Connect with Me -->
+            <div class="footer-column footer-connect">
+                <h4 class="footer-title">Connect with Me</h4>
+                <ul>
+                    <li><a href="mailto:chenyangli1004@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Dòng Copyright ở dưới cùng -->
+        <div class="footer-copyright">
+            <div class="container">
+                <p>Copyright © <span id="currentYear"></span> Chenyang Li. All rights reserved.</p>
+                <p>Last updated: <b> October 14th 2025</b></p>
+            </div>
+        </div>
+    </footer>
+
+    <audio id="audio-source"></audio>
+    <script src="js/playlist.js"></script>
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>
