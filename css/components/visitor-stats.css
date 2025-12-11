@@ -1,0 +1,217 @@
+/* ===================================
+   Visitor Statistics Styles
+   =================================== */
+
+#visitor-stats {
+    padding: 80px 0;
+    background: linear-gradient(135deg, 
+        rgba(var(--color-primary-rgb), 0.02) 0%, 
+        rgba(var(--color-accent-rgb), 0.02) 100%);
+}
+
+.visitor-stats-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+/* 访客计数卡片 */
+.visitor-counter {
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.visitor-counter h3 {
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.visitor-counter h3 i {
+    color: var(--color-primary);
+}
+
+.counter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.counter-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 25px 15px;
+    background: var(--bg-secondary);
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.counter-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(var(--color-primary-rgb), 0.1);
+}
+
+.counter-item i {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: 5px;
+}
+
+.counter-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.counter-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.stats-note {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 20px;
+    opacity: 0.8;
+}
+
+/* 访客地图卡片 */
+.visitor-map {
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.visitor-map h3 {
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.visitor-map h3 i {
+    color: var(--color-accent);
+}
+
+.map-container {
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-secondary);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.map-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.map-note {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 15px;
+}
+
+.map-note a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.map-note a:hover {
+    text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 900px) {
+    .visitor-stats-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .visitor-counter,
+    .visitor-map {
+        padding: 25px 20px;
+    }
+
+    .counter-grid {
+        gap: 15px;
+    }
+
+    .counter-item {
+        padding: 20px 10px;
+    }
+
+    .counter-number {
+        font-size: 2rem;
+    }
+
+    .counter-item i {
+        font-size: 1.5rem;
+    }
+
+    .map-container {
+        min-height: 200px;
+        padding: 15px;
+    }
+}
+
+/* 深色模式适配 */
+[data-theme="dark"] .counter-item {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .map-container {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* 动画效果 */
+.visitor-counter.animate-on-scroll,
+.visitor-map.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.visitor-counter.animate-on-scroll.visible,
+.visitor-map.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 计数器数字动画 */
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.counter-number {
+    animation: countUp 0.5s ease-out;
+}
