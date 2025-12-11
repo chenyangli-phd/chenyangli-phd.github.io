@@ -20,7 +20,7 @@
 
 /* 3D 地球卡片 */
 .visitor-globe-card {
-    padding: 40px;
+    padding: 16px;
     border-radius: 24px;
     display: flex;
     align-items: center;
@@ -140,7 +140,7 @@
     }
 
     .visitor-globe-card {
-        padding: 25px;
+        padding: 12px;
     }
 
     .globe-container {
