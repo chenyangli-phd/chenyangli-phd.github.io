@@ -41,14 +41,74 @@
 
 .timeline-content {
     padding: 1.5rem;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(16,24,40,0.06);
 }
 
-.timeline-content h3 {
-    font-size: 1.2rem;
-}
+ .timeline-content h3 {
+     font-size: 1.25rem;
+     color: var(--text-primary);
+     font-weight: 700;
+     margin-bottom: 0.4rem;
+ }
 
-.timeline-meta {
+ .timeline-meta {
+     color: var(--text-primary);
+     font-size: 0.95rem;
+     font-weight: 600;
+     margin-bottom: 0.5rem;
+     letter-spacing: 0.02em;
+     opacity: 0.9;
+ }
+
+.timeline-content p {
     color: var(--text-secondary);
-    font-size: 0.875rem;
-    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 0.45rem;
+    line-height: 1.5;
+}
+.timeline-content p strong {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+/* meta-label 紫色样式 */
+.meta-label {
+    color: var(--gradient-purple);
+    background: linear-gradient(90deg, rgba(192,132,252,0.06), rgba(244,114,182,0.02));
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-weight: 700;
+    margin-right: 6px;
+}
+
+/* 更明显的时间线圆点与连线 */
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    background: linear-gradient(180deg, rgba(79,70,229,0.25), rgba(255,82,82,0.08));
+    top: 0;
+    bottom: 0;
+    left: 13px;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gradient-purple), var(--gradient-pink));
+    border: 3px solid rgba(255,255,255,0.06);
+    box-shadow: 0 6px 18px rgba(16,24,40,0.08);
+    z-index: 2;
+}
+
+.timeline-item {
+    padding-left: 56px;
+    position: relative;
+    margin-bottom: 2.25rem;
 }
