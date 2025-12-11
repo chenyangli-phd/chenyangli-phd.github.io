@@ -166,3 +166,35 @@
 .photo-button:hover {
     transform: scale(1.05);
 }
+
+/* Nav Buttons - 导航栏快捷按钮 */
+.nav-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.nav-btn:hover {
+    transform: scale(1.05);
+    color: #fff;
+}
+
+.nav-btn.blog-link {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.nav-btn.photo-link {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.nav-btn.resume-link {
+    background: var(--resume-button-bg);
+    color: #121212;
+}
