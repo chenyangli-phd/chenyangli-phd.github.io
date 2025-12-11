@@ -87,7 +87,7 @@ const translations = {
 
         // Visitor Stats
         'visitor.title': 'Visitor Statistics',
-        'visitor.subtitle': 'Thanks to visitors from around the world 🌍',
+        
         'visitor.stats': 'Statistics',
         'visitor.visitors': 'Visitors',
         'visitor.pageviews': 'Page Views',
@@ -191,7 +191,7 @@ const translations = {
 
         // Visitor Stats
         'visitor.title': '访客统计',
-        'visitor.subtitle': '感谢来自世界各地的访客 🌍',
+        
         'visitor.stats': '访问统计',
         'visitor.visitors': '访客数',
         'visitor.pageviews': '浏览量',

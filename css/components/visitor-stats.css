@@ -14,7 +14,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 60px;
+    gap: 40px;
     margin-top: 50px;
 }
 
@@ -58,6 +58,40 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* 感谢卡片（地图左侧） */
+.visitor-ack {
+    max-width: 360px;
+    padding: 16px;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    min-width: 300px;
+    min-height: 300px;
+}
+
+.visitor-ack-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+    background: linear-gradient(90deg, #8653a6, #3accc3);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+}
+
+.visitor-ack-sub {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    opacity: 0.95;
+    text-align: center;
+    margin: 0;
 }
 
 /* 统计卡片区域 */
@@ -131,6 +165,14 @@
     .visitor-stats-wrapper {
         flex-direction: column;
         gap: 40px;
+    }
+
+    .visitor-ack {
+        max-width: 100%;
+        width: 100%;
+        text-align: center;
+        align-items: center;
+        min-height: auto;
     }
 }
 
