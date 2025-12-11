@@ -3,7 +3,7 @@ const playlist = [
     {
         title: 'Rumour Has It',
         artist: 'Adele',
-        coverPath: 'assets/covers/rumour_has_it.jpg',
+        coverPath: 'assets/covers/rumor has it.png',
         audioPath: 'assets/music/Rumour Has It - Adele.mp3'
     },
 
