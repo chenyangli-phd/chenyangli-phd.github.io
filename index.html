@@ -771,7 +771,9 @@
                 (function(){
                     var img = document.getElementById('visitor-badge-img');
                     if(!img) return;
-                    var url = encodeURIComponent(window.location.href);
+                    var loc = window.location;
+                    var key = loc.origin + loc.pathname + (loc.search || '');
+                    var url = encodeURIComponent(key);
                     img.src = 'https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=' + url + '&count_bg=%234F46E5&title_bg=%23555555&icon=&icon_color=%23E7E7EF&title=views&edge_flat=true';
                 })();
             </script>
