@@ -13,6 +13,19 @@ document.addEventListener('DOMContentLoaded', () => {
         yearSpan.textContent = new Date().getFullYear();
     }
 
+    // Cập nhật ngày cập nhật cuối cùng
+    const lastUpdatedSpan = document.getElementById('lastUpdated');
+    if (lastUpdatedSpan) {
+        const now = new Date();
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                        'July', 'August', 'September', 'October', 'November', 'December'];
+        const day = now.getDate();
+        const suffix = (day === 1 || day === 21 || day === 31) ? 'st' : 
+                       (day === 2 || day === 22) ? 'nd' : 
+                       (day === 3 || day === 23) ? 'rd' : 'th';
+        lastUpdatedSpan.textContent = `${months[now.getMonth()]} ${day}${suffix} ${now.getFullYear()}`;
+    }
+
     // Theo dõi sự kiện cuộn trang
     window.addEventListener('scroll', () => {
         // Hiển thị header khi cuộn xuống
