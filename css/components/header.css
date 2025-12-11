@@ -18,23 +18,18 @@
     left: 50%;
     z-index: 999;
 
-    width: 95%;
-    max-width: 1400px;
+    width: 98%;
+    max-width: 1700px;
 
     background: rgba(24, 24, 27, 0.8);
     backdrop-filter: blur(10px);
     border: 1px solid var(--border-color);
     border-radius: 9999px;
-    padding: 0.75rem 2rem;
+    padding: 0.65rem 1.2rem;
     display: flex;
     align-items: center;
-
-    /* === THAY ĐỔI DÒNG NÀY === */
     justify-content: center;
-    /* Căn giữa tất cả các mục */
-
-    gap: 1.5rem;
-    /* Tăng khoảng cách giữa logo và khối nav */
+    gap: 2.2rem;
     opacity: 0;
     transform: translate(-50%, -100px);
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;

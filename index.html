@@ -743,31 +743,28 @@
             <h2 class="section-title animate-on-scroll" data-i18n="visitor.title">Visitor Statistics</h2>
             <p class="section-subtitle animate-on-scroll" data-i18n="visitor.subtitle">感谢来自世界各地的访客 🌍</p>
 
-            <div class="visitor-stats-container animate-on-scroll">
-                <!-- 访客计数 -->
-                <div class="visitor-counter glass-card">
-                    <h3><i class="fas fa-chart-line"></i> <span data-i18n="visitor.stats">访问统计</span></h3>
-                    <div class="counter-grid">
-                        <div class="counter-item">
-                            <i class="fas fa-users"></i>
-                            <span class="counter-number"><span id="busuanzi_value_site_uv">Loading...</span></span>
-                            <span class="counter-label" data-i18n="visitor.visitors">访客数</span>
-                        </div>
-                        <div class="counter-item">
-                            <i class="fas fa-eye"></i>
-                            <span class="counter-number"><span id="busuanzi_value_site_pv">Loading...</span></span>
-                            <span class="counter-label" data-i18n="visitor.pageviews">浏览量</span>
-                        </div>
+            <div class="visitor-stats-wrapper animate-on-scroll">
+                <!-- 左侧：3D地球 -->
+                <div class="visitor-globe-card glass-card">
+                    <div class="globe-container">
+                        <script type="text/javascript" id="mmvst_globe" src="//mapmyvisitors.com/globe.js?d=_0t_Y3ZxzjxO0qnxS7crP2BUF70HhHx6TQirOlEdlo0"></script>
                     </div>
                 </div>
 
-                <!-- 访客地图 -->
-                <div class="visitor-map glass-card">
-                    <h3><i class="fas fa-globe-asia"></i> <span data-i18n="visitor.map">访客地图</span></h3>
-                    <div class="map-container">
-                        <!-- MapMyVisitors 3D Globe -->
-                        <script type="text/javascript" id="mmvst_globe" src="//mapmyvisitors.com/globe.js?d=_0t_Y3ZxzjxO0qnxS7crP2BUF70HhHx6TQirOlEdlo0"></script>
+                <!-- 右侧：真实统计数字 -->
+                <div class="visitor-stats-cards">
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-label" data-i18n="visitor.pageviews">浏览量</span>
+                            <a href="https://hits.seeyoufarm.com">
+                                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fchenyangli-phd.github.io&count_bg=%234F46E5&title_bg=%23555555&icon=&icon_color=%23E7E7EF&title=views&edge_flat=true" class="visitor-badge"/>
+                            </a>
+                        </div>
                     </div>
+                    <p class="stats-note">📊 真实访问统计 · 每次访问自动计数</p>
                 </div>
             </div>
         </div>
@@ -849,8 +846,6 @@
     </div>
 
     <audio id="audio-source"></audio>
-    <!-- 不蒜子统计脚本 -->
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/playlist.js"></script>
     <script src="js/scripts.js"></script>
