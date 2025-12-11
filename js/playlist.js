@@ -1,10 +1,10 @@
 // *** QUAN TRỌNG: Đã cập nhật theo danh sách nhạc của bạn ***
 const playlist = [
     {
-        title: 'On & On',
-        artist: 'Cartoon, Jéja',
-        coverPath: 'assets/covers/on&on.png',
-        audioPath: 'assets/music/Cartoon, Jéja - On & On.mp3'
+        title: 'Rumour Has It',
+        artist: 'Adele',
+        coverPath: 'assets/covers/rumour_has_it.jpg',
+        audioPath: 'assets/music/Rumour Has It - Adele.mp3'
     },
 
     {
