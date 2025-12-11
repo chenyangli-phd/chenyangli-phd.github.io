@@ -688,7 +688,7 @@
                     <!-- 摄影作品卡片: 格拉斯哥 -->
                     <div class="blog-post-card glass-card animate-on-scroll">
                         <a href="assets/photography-blog/post.html?post=20251203 格拉斯哥 Glasgow.md" class="blog-card-image-link">
-                            <div class="blog-card-image" style="background: url('assets/photography/20251203 格拉斯哥 Glasgow/LEE03859.JPG') center/cover; min-height: 200px;">
+                                <div class="blog-card-image" style="background: url('assets/photography/20251203 格拉斯哥 Glasgow/thumbs/LEE03859.JPG') center/cover; min-height: 200px;" data-full="assets/photography/20251203 格拉斯哥 Glasgow/LEE03859.JPG">
                             </div>
                         </a>
                         <div class="blog-card-content">
@@ -704,7 +704,7 @@
                     <!-- 摄影作品卡片: 爱丁堡 -->
                     <div class="blog-post-card glass-card animate-on-scroll">
                         <a href="assets/photography-blog/post.html?post=20251023 爱丁堡 Edinburgh.md" class="blog-card-image-link">
-                            <div class="blog-card-image" style="background: url('assets/photography/20251023 爱丁堡 Edinburgh/LEE03182.JPG') center/cover; min-height: 200px;">
+                            <div class="blog-card-image" style="background: url('assets/photography/20251023 爱丁堡 Edinburgh/thumbs/LEE03182.JPG') center/cover; min-height: 200px;" data-full="assets/photography/20251023 爱丁堡 Edinburgh/LEE03182.JPG">
                             </div>
                         </a>
                         <div class="blog-card-content">
@@ -720,7 +720,7 @@
                     <!-- 摄影作品卡片: 圣安德鲁斯 -->
                     <div class="blog-post-card glass-card animate-on-scroll">
                         <a href="assets/photography-blog/post.html?post=20251001 圣安德鲁斯 St Andrews.md" class="blog-card-image-link">
-                            <div class="blog-card-image" style="background: url('assets/photography/20251001 圣安德鲁斯 St Andrews/LEE03139.JPG') center/cover; min-height: 200px;">
+                            <div class="blog-card-image" style="background: url('assets/photography/20251001 圣安德鲁斯 St Andrews/thumbs/LEE03139.JPG') center/cover; min-height: 200px;" data-full="assets/photography/20251001 圣安德鲁斯 St Andrews/LEE03139.JPG">
                             </div>
                         </a>
                         <div class="blog-card-content">
@@ -846,6 +846,38 @@
     </div>
 
     <audio id="audio-source"></audio>
+        <!-- Photography 原图弹窗 -->
+        <div id="photo-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.8);z-index:9999;justify-content:center;align-items:center;">
+            <span id="photo-modal-close" style="position:absolute;top:30px;right:40px;font-size:2rem;color:#fff;cursor:pointer;z-index:10001;">&times;</span>
+            <img id="photo-modal-img" src="" alt="原图" style="max-width:90vw;max-height:80vh;border-radius:10px;box-shadow:0 0 30px #000;">
+        </div>
+        <script>
+        // 点击缩略图弹窗显示原图
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.blog-card-image').forEach(function(div) {
+                div.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var full = div.getAttribute('data-full');
+                    if(full) {
+                        var modal = document.getElementById('photo-modal');
+                        var img = document.getElementById('photo-modal-img');
+                        img.src = full;
+                        modal.style.display = 'flex';
+                    }
+                });
+            });
+            document.getElementById('photo-modal-close').onclick = function() {
+                document.getElementById('photo-modal').style.display = 'none';
+                document.getElementById('photo-modal-img').src = '';
+            };
+            document.getElementById('photo-modal').onclick = function(e) {
+                if(e.target === this) {
+                    this.style.display = 'none';
+                    document.getElementById('photo-modal-img').src = '';
+                }
+            };
+        });
+        </script>
     <script src="js/i18n.js"></script>
     <script src="js/playlist.js"></script>
     <script src="js/scripts.js"></script>
