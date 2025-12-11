@@ -37,6 +37,15 @@
     <link rel="stylesheet" href="css/components/visitor-stats.css" />
     <link rel="stylesheet" href="css/components/i18n.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0XYR096YMX"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-0XYR096YMX');
+        </script>
 </head>
 
 <body>
@@ -747,36 +756,10 @@
                 <!-- 左侧：3D地球 -->
                 <div class="visitor-globe-card glass-card">
                     <div class="globe-container">
-                        <script type="text/javascript" id="mmvst_globe" src="//mapmyvisitors.com/globe.js?d=_0t_Y3ZxzjxO0qnxS7crP2BUF70HhHx6TQirOlEdlo0"></script>
+                        <script type='text/javascript' id='mapmyvisitors' src='https://mapmyvisitors.com/map.js?cl=ffffff&w=688&t=tt&d=7Zd1y8OLRnC4AfA6L5-y3OzevUT5UBDFjys4SLMz_sI'></script>
                     </div>
-                </div>
-
-                <!-- 右侧：真实统计数字 -->
-                <div class="visitor-stats-cards">
-                    <div class="stat-card glass-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                        <div class="stat-content">
-                            <span class="stat-label" data-i18n="visitor.pageviews">浏览量</span>
-                            <a href="https://hits.seeyoufarm.com">
-                                <img id="visitor-badge-img" src="" alt="visitor count badge" class="visitor-badge"/>
-                            </a>
-                        </div>
-                    </div>
-                    <p class="stats-note">📊 真实访问统计 · 每次访问自动计数</p>
                 </div>
             </div>
-            <script>
-                (function(){
-                    var img = document.getElementById('visitor-badge-img');
-                    if(!img) return;
-                    var loc = window.location;
-                    var key = loc.origin + loc.pathname + (loc.search || '');
-                    var url = encodeURIComponent(key);
-                    img.src = 'https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=' + url + '&count_bg=%234F46E5&title_bg=%23555555&icon=&icon_color=%23E7E7EF&title=views&edge_flat=true';
-                })();
-            </script>
         </div>
     </section>
 
@@ -818,6 +801,8 @@
             </div>
         </div>
     </footer>
+
+    <!-- Statcounter 已移除，页面仅保留地图展示 -->
 
     <!-- Floating Share Button -->
     <div class="floating-share">
