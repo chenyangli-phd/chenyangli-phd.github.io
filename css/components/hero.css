@@ -95,6 +95,46 @@
     margin-bottom: 0.5rem;
 }
 
+/* Profile Quick Links */
+.profile-links {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+}
+
+.profile-link-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.profile-link-btn:hover {
+    transform: scale(1.05);
+    color: #fff;
+}
+
+.profile-link-btn.blog-link {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.profile-link-btn.photo-link {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.profile-link-btn.resume-link {
+    background: var(--resume-button-bg);
+    color: #121212;
+}
+
 .card-divider {
     border: none;
     height: 1px;
