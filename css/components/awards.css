@@ -244,3 +244,118 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* ====================================================== */
+/* --- PUBLICATIONS LIST STYLES --- */
+/* ====================================================== */
+
+.publications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.publication-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.publication-item:hover {
+    transform: translateX(5px);
+}
+
+.publication-item .publication-number {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gradient-purple), var(--gradient-pink));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.publication-item .publication-content h3 {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+.publication-item .publication-content h3 .author-highlight {
+    color: var(--gradient-purple);
+    font-weight: 600;
+}
+
+.publication-item .publication-journal {
+    font-size: 0.875rem;
+    color: var(--gradient-green);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.publication-item .publication-journal i {
+    color: var(--gradient-green);
+}
+
+/* Ongoing Works Styles */
+.ongoing-list .publication-item.ongoing .publication-number {
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+}
+
+.ongoing-list .publication-item.ongoing .publication-number i {
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.publication-item .publication-status {
+    font-size: 0.875rem;
+    color: #f59e0b;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.publication-item .publication-status i {
+    color: #f59e0b;
+}
+
+.publication-item .publication-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--gradient-purple);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+.publication-item .publication-link:hover {
+    color: var(--gradient-pink);
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .publication-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .publication-item .publication-number {
+        margin-bottom: 0.5rem;
+    }
+}
