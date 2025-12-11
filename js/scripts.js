@@ -325,4 +325,73 @@ document.addEventListener('DOMContentLoaded', () => {
             setTheme(savedTheme);
         }
     }
+
+    // ======================================================
+    // --- 7. FLOATING SHARE BUTTON ---
+    // ======================================================
+    initShareLinks();
+
 }); // <-- Dấu ngoặc đóng của sự kiện DOMContentLoaded duy nhất
+
+// ======== Social Share Functions (Global) ========
+function initShareLinks() {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent(document.title);
+    
+    const weiboShare = document.getElementById('weibo-share');
+    const twitterShare = document.getElementById('twitter-share');
+    const facebookShare = document.getElementById('facebook-share');
+    const linkedinShare = document.getElementById('linkedin-share');
+    
+    if (weiboShare) weiboShare.href = `https://service.weibo.com/share/share.php?url=${url}&title=${title}`;
+    if (twitterShare) twitterShare.href = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+    if (facebookShare) facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+    if (linkedinShare) linkedinShare.href = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+}
+
+function toggleShareMenu() {
+    const floatingShare = document.querySelector('.floating-share');
+    if (floatingShare) {
+        floatingShare.classList.toggle('active');
+    }
+}
+
+function shareToWechat() {
+    const modal = document.getElementById('wechat-modal');
+    if (modal) modal.classList.add('show');
+}
+
+function closeWechatModal() {
+    copyLink();
+    const modal = document.getElementById('wechat-modal');
+    if (modal) modal.classList.remove('show');
+}
+
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+        const btn = document.querySelector('.share-btn.copy-link');
+        if (btn) {
+            btn.classList.add('copied');
+            btn.innerHTML = '<i class="fas fa-check"></i>';
+            
+            setTimeout(() => {
+                btn.classList.remove('copied');
+                btn.innerHTML = '<i class="fas fa-link"></i>';
+            }, 2000);
+        }
+    });
+}
+
+// Close modal on outside click
+document.addEventListener('click', function(e) {
+    const modal = document.getElementById('wechat-modal');
+    if (modal && e.target === modal) {
+        modal.classList.remove('show');
+    }
+    
+    // Close share menu when clicking outside
+    const floatingShare = document.querySelector('.floating-share');
+    if (floatingShare && !floatingShare.contains(e.target)) {
+        floatingShare.classList.remove('active');
+    }
+});

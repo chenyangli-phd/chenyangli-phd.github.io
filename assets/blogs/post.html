@@ -215,6 +215,114 @@
             color: #ef4444;
         }
 
+        /* Social Share Styles */
+        .share-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .share-section h4 {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .share-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            color: #fff;
+        }
+
+        .share-btn.wechat { background: #07c160; }
+        .share-btn.weibo { background: #e6162d; }
+        .share-btn.twitter { background: #1da1f2; }
+        .share-btn.facebook { background: #1877f2; }
+        .share-btn.linkedin { background: #0a66c2; }
+        .share-btn.copy-link { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+
+        .share-btn.copied {
+            background: #22c55e !important;
+        }
+
+        /* WeChat QR Modal */
+        .wechat-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wechat-modal.show {
+            display: flex;
+        }
+
+        .wechat-modal-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            max-width: 320px;
+        }
+
+        .wechat-modal-content h3 {
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .wechat-modal-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .wechat-modal-content .close-modal {
+            background: var(--accent-color);
+            color: #fff;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .wechat-modal-content .close-modal:hover {
+            transform: scale(1.05);
+        }
+
         @media (max-width: 768px) {
             .blog-post-header h1 {
                 font-size: 1.6rem;
@@ -272,9 +380,43 @@
                         <p>加载文章中...</p>
                     </div>
                 </div>
+
+                <!-- Social Share Section -->
+                <div class="share-section">
+                    <h4><i class="fas fa-share-alt"></i> 分享文章</h4>
+                    <div class="share-buttons">
+                        <button class="share-btn wechat" onclick="shareToWechat()" title="微信">
+                            <i class="fab fa-weixin"></i>
+                        </button>
+                        <a class="share-btn weibo" id="weibo-share" href="#" target="_blank" title="微博">
+                            <i class="fab fa-weibo"></i>
+                        </a>
+                        <a class="share-btn twitter" id="twitter-share" href="#" target="_blank" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a class="share-btn facebook" id="facebook-share" href="#" target="_blank" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="share-btn linkedin" id="linkedin-share" href="#" target="_blank" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <button class="share-btn copy-link" onclick="copyLink()" title="复制链接">
+                            <i class="fas fa-link"></i>
+                        </button>
+                    </div>
+                </div>
             </article>
         </div>
     </main>
+
+    <!-- WeChat Share Modal -->
+    <div class="wechat-modal" id="wechat-modal">
+        <div class="wechat-modal-content">
+            <h3><i class="fab fa-weixin" style="color: #07c160;"></i> 微信分享</h3>
+            <p>请复制链接后，在微信中分享给好友</p>
+            <button class="close-modal" onclick="closeWechatModal()">复制链接并关闭</button>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="main-footer">
@@ -351,6 +493,62 @@
 
         // 页面加载时执行
         loadMarkdown();
+
+        // ======== Social Share Functions ========
+        function initShareLinks() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            
+            // Weibo
+            document.getElementById('weibo-share').href = 
+                `https://service.weibo.com/share/share.php?url=${url}&title=${title}`;
+            
+            // Twitter
+            document.getElementById('twitter-share').href = 
+                `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+            
+            // Facebook
+            document.getElementById('facebook-share').href = 
+                `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+            
+            // LinkedIn
+            document.getElementById('linkedin-share').href = 
+                `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+        }
+
+        // WeChat share
+        function shareToWechat() {
+            document.getElementById('wechat-modal').classList.add('show');
+        }
+
+        function closeWechatModal() {
+            copyLink();
+            document.getElementById('wechat-modal').classList.remove('show');
+        }
+
+        // Close modal on outside click
+        document.getElementById('wechat-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('show');
+            }
+        });
+
+        // Copy link
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                const btn = document.querySelector('.share-btn.copy-link');
+                btn.classList.add('copied');
+                btn.innerHTML = '<i class="fas fa-check"></i>';
+                
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = '<i class="fas fa-link"></i>';
+                }, 2000);
+            });
+        }
+
+        // Initialize share links after page loads
+        setTimeout(initShareLinks, 500);
     </script>
     <script src="../../js/scripts.js"></script>
 </body>
