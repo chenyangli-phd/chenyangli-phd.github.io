@@ -116,3 +116,131 @@
     font-size: 0.9rem;
     color: var(--text-secondary);
 }
+
+/* ====================================================== */
+/* --- NEW AWARDS LIST STYLES --- */
+/* ====================================================== */
+
+.awards-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.award-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.award-item:hover {
+    transform: translateY(-5px);
+}
+
+.award-item .award-icon {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--gradient-yellow), #f97316);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: #fff;
+}
+
+.award-item .award-content h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.award-item .award-org {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.award-item .award-year {
+    font-size: 0.8rem;
+    color: var(--gradient-purple);
+    font-weight: 600;
+}
+
+/* ====================================================== */
+/* --- PROJECTS GRID STYLES --- */
+/* ====================================================== */
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.project-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card .project-icon {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--gradient-purple), var(--gradient-pink));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: #fff;
+}
+
+.project-card .project-content h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+}
+
+.project-card .project-meta {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.35rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.project-card .project-meta i {
+    width: 16px;
+    color: var(--gradient-purple);
+}
+
+.project-card .project-source {
+    font-size: 0.85rem;
+    color: var(--gradient-green);
+    font-weight: 500;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 768px) {
+    .projects-grid,
+    .awards-list {
+        grid-template-columns: 1fr;
+    }
+}
