@@ -109,9 +109,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- BƯỚC 1: ĐỊNH NGHĨA KỸ NĂNG CỐT LÕI VÀ ICON ---
         // Sử dụng Font Awesome icons thay vì hình ảnh
         const skillsMap = new Map([
+            ['Lightroom', { name: 'Lightroom', percentage: 90, iconClass: 'fas fa-camera-retro' }],
             ['FreeFem++', { name: 'FreeFem++', percentage: 80, iconClass: 'fas fa-calculator' }],
+            ['Final Cut Pro', { name: 'Final Cut Pro', percentage: 70, iconClass: 'fas fa-film' }],
             ['Matlab', { name: 'Matlab', percentage: 50, iconClass: 'fas fa-chart-line' }],
             ['Fenics', { name: 'Fenics', percentage: 50, iconClass: 'fas fa-cube' }],
+            ['ParaView', { name: 'ParaView', percentage: 40, iconClass: 'fas fa-cube' }],
             ['Python', { name: 'Python', percentage: 40, iconClass: 'fab fa-python' }],
             ['C++', { name: 'C++', percentage: 40, iconClass: 'fas fa-code' }],
             ['HTML', { name: 'HTML', percentage: 30, iconClass: 'fab fa-html5' }],
