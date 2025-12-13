@@ -191,13 +191,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function playSong() {
         isPlaying = true;
-        playPauseBtn.classList.replace('fa-play', 'fa-pause');
+        playPauseBtn.classList.remove('fa-play');
+        playPauseBtn.classList.add('fa-pause');
         audio.play();
     }
 
     function pauseSong() {
         isPlaying = false;
-        playPauseBtn.classList.replace('fa-pause', 'fa-play');
+        playPauseBtn.classList.remove('fa-pause');
+        playPauseBtn.classList.add('fa-play');
         audio.pause();
     }
 
