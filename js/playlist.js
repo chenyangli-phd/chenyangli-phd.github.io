@@ -1,15 +1,15 @@
 // *** QUAN TRỌNG: Đã cập nhật theo danh sách nhạc của bạn ***
 const playlist = [
+        {
+        title: 'One More Light',
+        artist: 'Linkin Park',
+         coverPath: 'assets/pic/music.png',
+        audioPath: 'assets/music/One More Light.mp3'
+    },
        {
         title: 'Stay with me',
         artist: 'Sam Smith',
-        coverPath: 'assets/covers/lily.jpg',
+        coverPath: 'assets/pic/music.png',
         audioPath: 'assets/music/Stay with me.mp3'
-    },
-    {
-        title: 'Rumour Has It',
-        artist: 'Adele',
-        coverPath: 'assets/covers/rumor has it.png',
-        audioPath: 'assets/music/Rumour Has It - Adele.mp3'
     }
 ];
