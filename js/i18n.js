@@ -124,7 +124,7 @@ const translations = {
 
         // Hero Section
         'hero.welcome': '欢迎来到我的主页',
-        'hero.intro': '我是华东师范大学数学科学学院计算数学方向的博士研究生。我的研究方向主要是偏微分方程的数值方法，特别是有限元方法及其在耦合多物理场问题中的应用。除了学术研究，我对摄影也有浓厚的兴趣。摄影让我能够从不同的视角观察世界，激发我在科学和生活中的创造力。',
+        'hero.intro': '我是华东师范大学数学科学学院计算数学专业的博士研究生。我的研究聚焦于流体动力学和多物理场系统中偏微分方程的数值分析，尤其强调有限元方法。在学术研究之外，我热爱摄影，摄影让我以不同视角观察世界，也激发了我在科学与生活中的创造力。',
         'hero.job': '博士研究生',
 
         // Profile Card
@@ -138,9 +138,9 @@ const translations = {
         'about.badge': '我的故事',
         'about.title': '关于我',
         'about.status': '可接受工作机会',
-        'about.research1': '<strong>主要研究方向：</strong>计算流体力学、偏微分方程数值解、有限元方法、稳定化混合有限元方法。',
-        'about.research2': '<strong>耦合系统分析：</strong>时间相关耦合模型的数值分析与模拟，包括Navier-Stokes方程、Stokes-Darcy系统、自然对流模型、磁流体动力学(MHD)系统、趋化-Navier-Stokes系统。',
-        'about.research3': '<strong>变密度模型：</strong>变密度时间相关耦合模型，包括变密度Navier-Stokes方程、变密度自然对流模型、变密度磁流体动力学系统、变密度Ericksen-Leslie系统。',
+        'about.research1': '<span style="color: #8e44ad; font-weight: bold;">数值方法与有限元分析。</span> 我的研究以流体动力学和多物理场系统中偏微分方程的数值分析为核心，重点关注有限元方法，尤其是不可压流的稳定化混合有限元格式。我的工作聚焦于数值稳定性、适定性与最优误差估计，特别关注时间相关问题。',
+        'about.research2': '<span style="color: #8e44ad; font-weight: bold;">变密度与复杂流体模型。</span> 我也致力于变密度耦合模型的数值分析与模拟，这类模型因失去反对称性和引入额外的非线性输运效应而带来显著的理论与计算挑战。研究对象包括变密度Navier–Stokes方程、变密度自然对流模型、变密度磁流体动力学系统以及变密度Ericksen–Leslie液晶系统。',
+        'about.research3': '<span style="color: #8e44ad; font-weight: bold;">时间相关多物理场耦合系统。</span> 我的研究还包括时间相关多物理场耦合系统的有限元格式设计与分析，如Navier–Stokes方程、Stokes–Darcy系统、自然对流模型、磁流体动力学（MHD）系统和趋化–Navier–Stokes模型。这些系统具有强非线性耦合和多场相互作用的特点。',
         'about.name': '姓名',
         'about.email': '邮箱',
         'about.location': '所在地',
