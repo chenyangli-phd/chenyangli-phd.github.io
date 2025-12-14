@@ -109,8 +109,9 @@
         
         /* 视频网格布局 */
         .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             gap: 40px;
             margin-bottom: 80px;
         }
@@ -122,6 +123,8 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
             border: 1px solid var(--border-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 650px;
+            max-width: 100%;
         }
         
         .video-item:hover {
