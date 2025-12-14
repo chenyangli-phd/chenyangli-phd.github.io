@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我和相机的故事 | Chenyang Li</title>
+    <link rel="icon" type="image/png" href="assets/pic/favicon.png" />
+    
+    <!-- 字体和图标 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="css/components/base.css" />
+    <link rel="stylesheet" href="css/components/header.css" />
+    <link rel="stylesheet" href="css/components/footer.css" />
+    <link rel="stylesheet" href="css/components/theme.css" />
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --text-primary: #e4e4e7;
+            --text-secondary: #a1a1aa;
+            --accent-primary: #64ffda;
+            --bilibili-pink: #FB7299;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Sora', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* 返回按钮 */
+        .back-btn {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            padding: 12px 25px;
+            background: var(--glass-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        .back-btn:hover {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+        }
+        
+        /* 主容器 */
+        .video-page-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
+        }
+        
+        /* 页面头部 */
+        .video-page-header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .video-page-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--bilibili-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            position: relative;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .video-page-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        
+        /* 视频网格布局 */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        .video-item {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .video-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 350px;
+        }
+        
+        .bilibili-player {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-info {
+            padding: 25px;
+        }
+        
+        .video-title {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        .video-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .meta-item i {
+            color: var(--bilibili-pink);
+        }
+        
+        /* 标签 */
+        .video-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .tag {
+            background: rgba(251, 114, 153, 0.1);
+            color: var(--bilibili-pink);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(251, 114, 153, 0.2);
+        }
+        
+        /* 分享按钮 */
+        .share-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .share-section h4 {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .share-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            color: #fff;
+        }
+        
+        .share-btn.wechat { background: #07c160; }
+        .share-btn.weibo { background: #e6162d; }
+        .share-btn.twitter { background: #1da1f2; }
+        .share-btn.facebook { background: #1877f2; }
+        .share-btn.linkedin { background: #0a66c2; }
+        .share-btn.copy-link { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        
+        .share-btn.copied {
+            background: #22c55e !important;
+        }
+        
+        /* 装饰元素 */
+        .decoration-dots {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-image: radial-gradient(var(--bilibili-pink) 2px, transparent 2px);
+            background-size: 20px 20px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .dot-1 {
+            top: 10%;
+            right: 5%;
+        }
+        
+        .dot-2 {
+            bottom: 20%;
+            left: 5%;
+        }
+        
+        /* 页脚 */
+        .page-footer {
+            text-align: center;
+            padding: 50px 0 30px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .video-page-container {
+                padding: 80px 15px 40px;
+            }
+            
+            .video-page-title {
+                font-size: 2.5rem;
+            }
+            
+            .video-wrapper {
+                height: 250px;
+            }
+            
+            .video-title {
+                font-size: 1.4rem;
+            }
+            
+            .back-btn {
+                top: 15px;
+                left: 15px;
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .video-meta {
+                gap: 15px;
+            }
+            
+            .video-info {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .video-page-title {
+                font-size: 2rem;
+            }
+            
+            .video-wrapper {
+                height: 200px;
+            }
+            
+            .video-title {
+                font-size: 1.2rem;
+            }
+            
+            .video-meta {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> 
+        <span class="btn-text">返回首页</span>
+    </a>
+    
+    <!-- 装饰元素 -->
+    <div class="decoration-dots dot-1"></div>
+    <div class="decoration-dots dot-2"></div>
+    
+    <main class="video-page-container">
+        <!-- 页面头部 -->
+        <header class="video-page-header">
+            <h1 class="video-page-title">我和相机的故事</h1>
+            <p class="video-page-subtitle">用镜头记录生活，用画面讲述故事</p>
+        </header>
+        
+        <!-- 视频网格 -->
+        <div class="video-grid">
+            <!-- 视频 1 -->
+            <div class="video-item">
+                <div class="video-wrapper">
+                    <iframe 
+                        class="bilibili-player"
+                        src="//player.bilibili.com/player.html?isOutside=true&aid=115639712750473&bvid=BV1nDSiBZEcs&cid=34397686854&p=1&autoplay=0"
+                        scrolling="no"
+                        border="0"
+                        frameborder="no"
+                        framespacing="0"
+                        allowfullscreen="true">
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">VLOG20251130 我与相机的故事·第四期</h2>
+                    <div class="video-tags">
+                        <span class="tag">摄影</span>
+                        <span class="tag">VLOG</span>
+                        <span class="tag">故事</span>
+                    </div>
+                    <div class="video-meta">
+                        <div class="meta-item">
+                            <i class="fab fa-bilibili"></i>
+                            <span>Bilibili</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="far fa-calendar"></i>
+                            <span>2025年11月30日</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="far fa-clock"></i>
+                            <span>15:23</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 视频 2 -->
+            <div class="video-item">
+                <div class="video-wrapper">
+                    <iframe 
+                        class="bilibili-player"
+                        src="//player.bilibili.com/player.html?isOutside=true&aid=115442647635840&bvid=BV175sCzFEMT&cid=33424934495&p=1&autoplay=0"
+                        scrolling="no"
+                        border="0"
+                        frameborder="no"
+                        framespacing="0"
+                        allowfullscreen="true">
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">VLOG20251115 我与相机的故事·第三期</h2>
+                    <div class="video-tags">
+                        <span class="tag">摄影</span>
+                        <span class="tag">VLOG</span>
+                        <span class="tag">器材</span>
+                    </div>
+                    <div class="video-meta">
+                        <div class="meta-item">
+                            <i class="fab fa-bilibili"></i>
+                            <span>Bilibili</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="far fa-calendar"></i>
+                            <span>2025年11月15日</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="far fa-clock"></i>
+                            <span>18:45</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 视频 3 -->
+            <div class="video-item">
+                <div class="video-wrapper">
+                    <iframe 
+                        class="bilibili-player"
+                        src="//player.bilibili.com/player.html?isOutside=true&aid=115442463019711&bvid=BV1qdsCzcEb9&cid=33424607432&p=1&autoplay=0"
+                        scrolling="no"
+                        border="0"
+                        frameborder="no"
+                        framespacing="0"
+                        allowfullscreen="true">
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">VLOG20251101 我与相机的故事·第二期</h2>
+                    <div class="video-tags">
+                        <span class="tag">摄影</span>
+                        <span class="tag">VLOG</span>
+                        <span class="tag">技巧</span>
+                    </div>
+                    <div class="video-meta">
+                        <div class="meta-item">
+                            <i class="fab fa-bilibili"></i>
+                            <span>Bilibili</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="far fa-calendar"></i>
+                            <span>2025年11月1日</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="far fa-clock"></i>
+                            <span>22:10</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 视频 4 -->
+            <div class="video-item">
+                <div class="video-wrapper">
+                    <iframe 
+                        class="bilibili-player"
+                        src="//player.bilibili.com/player.html?isOutside=true&aid=115442345579984&bvid=BV12vsCzyEsU&cid=33424346227&p=1&autoplay=0"
+                        scrolling="no"
+                        border="0"
+                        frameborder="no"
+                        framespacing="0"
+                        allowfullscreen="true">
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">VLOG20251015 我与相机的故事·第一期</h2>
+                    <div class="video-tags">
+                        <span class="tag">摄影</span>
+                        <span class="tag">VLOG</span>
+                        <span class="tag">入门</span>
+                    </div>
+                    <div class="video-meta">
+                        <div class="meta-item">
+                            <i class="fab fa-bilibili"></i>
+                            <span>Bilibili</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="far fa-calendar"></i>
+                            <span>2025年10月15日</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="far fa-clock"></i>
+                            <span>25:30</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 分享区 -->
+        <div class="share-section">
+            <h4><i class="fas fa-share-alt"></i> 分享视频集</h4>
+            <div class="share-buttons">
+                <button class="share-btn wechat" onclick="shareToWechat()" title="微信">
+                    <i class="fab fa-weixin"></i>
+                </button>
+                <a class="share-btn weibo" id="weibo-share" href="#" target="_blank" title="微博">
+                    <i class="fab fa-weibo"></i>
+                </a>
+                <a class="share-btn twitter" id="twitter-share" href="#" target="_blank" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a class="share-btn facebook" id="facebook-share" href="#" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a class="share-btn linkedin" id="linkedin-share" href="#" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <button class="share-btn copy-link" onclick="copyLink()" title="复制链接">
+                    <i class="fas fa-link"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 页脚 -->
+        <div class="page-footer">
+            <p>© 2025 Chenyang Li. 我和相机的故事 | 最后更新: 2025年12月</p>
+            <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">
+                <i class="fab fa-bilibili" style="color: #FB7299;"></i> 视频来源: Bilibili
+            </p>
+        </div>
+    </main>
+    
+    <!-- WeChat Share Modal -->
+    <div class="wechat-modal" id="wechat-modal">
+        <div class="wechat-modal-content">
+            <h3><i class="fab fa-weixin" style="color: #07c160;"></i> 微信分享</h3>
+            <p>请复制链接后，在微信中分享给好友</p>
+            <button class="close-modal" onclick="closeWechatModal()">复制链接并关闭</button>
+        </div>
+    </div>
+    
+    <script>
+        // 页面加载完成后执行的函数
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化分享链接
+            initShareLinks();
+            
+            // 为分享按钮添加事件
+            setupShareButtons();
+            
+            // 添加视频悬停效果
+            setupVideoHover();
+            
+            // 确保所有视频不自动播放
+            ensureNoAutoplay();
+        });
+        
+        // 初始化分享链接
+        function initShareLinks() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            
+            // Weibo
+            document.getElementById('weibo-share').href = 
+                `https://service.weibo.com/share/share.php?url=${url}&title=${title}`;
+            
+            // Twitter
+            document.getElementById('twitter-share').href = 
+                `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+            
+            // Facebook
+            document.getElementById('facebook-share').href = 
+                `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+            
+            // LinkedIn
+            document.getElementById('linkedin-share').href = 
+                `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+        }
+        
+        // 设置分享按钮
+        function setupShareButtons() {
+            // WeChat share
+            function shareToWechat() {
+                document.getElementById('wechat-modal').classList.add('show');
+            }
+            
+            function closeWechatModal() {
+                copyLink();
+                document.getElementById('wechat-modal').classList.remove('show');
+            }
+            
+            // 绑定事件
+            document.querySelector('.share-btn.wechat').addEventListener('click', shareToWechat);
+            document.querySelector('.wechat-modal .close-modal').addEventListener('click', closeWechatModal);
+            
+            // Close modal on outside click
+            document.getElementById('wechat-modal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('show');
+                }
+            });
+            
+            // Copy link
+            function copyLink() {
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    const btn = document.querySelector('.share-btn.copy-link');
+                    const originalHTML = btn.innerHTML;
+                    btn.classList.add('copied');
+                    btn.innerHTML = '<i class="fas fa-check"></i>';
+                    
+                    setTimeout(() => {
+                        btn.classList.remove('copied');
+                        btn.innerHTML = originalHTML;
+                    }, 2000);
+                });
+            }
+            
+            // 绑定复制链接事件
+            document.querySelector('.share-btn.copy-link').addEventListener('click', copyLink);
+        }
+        
+        // 设置视频悬停效果
+        function setupVideoHover() {
+            const videoItems = document.querySelectorAll('.video-item');
+            
+            videoItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.5)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.3)';
+                });
+            });
+        }
+        
+        // 确保视频不自动播放
+        function ensureNoAutoplay() {
+            // B站iframe默认不自动播放，这里确保URL中不包含autoplay参数
+            const iframes = document.querySelectorAll('.bilibili-player');
+            iframes.forEach(iframe => {
+                const src = iframe.src;
+                // 确保没有autoplay=1参数
+                if (src.includes('autoplay=1')) {
+                    iframe.src = src.replace('autoplay=1', 'autoplay=0');
+                }
+            });
+        }
+        
+        // 页面滚动效果
+        window.addEventListener('scroll', function() {
+            const scrollY = window.scrollY;
+            const backBtn = document.querySelector('.back-btn');
+            
+            // 根据滚动位置调整返回按钮透明度
+            if (scrollY > 100) {
+                backBtn.style.opacity = '0.9';
+                backBtn.style.backdropFilter = 'blur(20px)';
+            } else {
+                backBtn.style.opacity = '1';
+                backBtn.style.backdropFilter = 'blur(10px)';
+            }
+        });
+    </script>
+    
+    <!-- 内联WeChat Modal样式 -->
+    <style>
+        .wechat-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .wechat-modal.show {
+            display: flex;
+        }
+        
+        .wechat-modal-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            max-width: 320px;
+        }
+        
+        .wechat-modal-content h3 {
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+        
+        .wechat-modal-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        
+        .wechat-modal-content .close-modal {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .wechat-modal-content .close-modal:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</body>
+</html>
