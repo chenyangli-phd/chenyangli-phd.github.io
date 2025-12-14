@@ -156,27 +156,6 @@
             line-height: 1.4;
         }
         
-        .video-meta {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            padding-top: 15px;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-        
-        .meta-item i {
-            color: var(--bilibili-pink);
-        }
-        
-        /* 标签 */
         .video-tags {
             display: flex;
             flex-wrap: wrap;
@@ -192,6 +171,46 @@
             font-size: 0.8rem;
             font-weight: 500;
             border: 1px solid rgba(251, 114, 153, 0.2);
+        }
+        
+        .video-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .meta-item i {
+            color: var(--bilibili-pink);
+        }
+        
+        /* 前往B站按钮 */
+        .bilibili-go-btn {
+            margin-left: auto;
+            background: rgba(251, 114, 153, 0.1);
+            padding: 6px 15px;
+            border-radius: 20px;
+            color: var(--bilibili-pink) !important;
+            text-decoration: none;
+            border: 1px solid rgba(251, 114, 153, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .bilibili-go-btn:hover {
+            background: var(--bilibili-pink);
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(251, 114, 153, 0.3);
         }
         
         /* 分享按钮 */
@@ -318,6 +337,14 @@
             .video-info {
                 padding: 20px;
             }
+            
+            .bilibili-go-btn {
+                margin-left: 0;
+                order: 4;
+                width: 100%;
+                text-align: center;
+                margin-top: 10px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -393,6 +420,11 @@
                             <i class="far fa-clock"></i>
                             <span>15:23</span>
                         </div>
+                        <!-- 新增：前往B站按钮 -->
+                        <a href="https://www.bilibili.com/video/BV1nDSiBZEcs" target="_blank" class="meta-item bilibili-go-btn" title="前往B站观看完整视频">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>前往B站</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -430,6 +462,11 @@
                             <i class="far fa-clock"></i>
                             <span>18:45</span>
                         </div>
+                        <!-- 新增：前往B站按钮 -->
+                        <a href="https://www.bilibili.com/video/BV175sCzFEMT" target="_blank" class="meta-item bilibili-go-btn" title="前往B站观看完整视频">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>前往B站</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -467,6 +504,11 @@
                             <i class="far fa-clock"></i>
                             <span>22:10</span>
                         </div>
+                        <!-- 新增：前往B站按钮 -->
+                        <a href="https://www.bilibili.com/video/BV1qdsCzcEb9" target="_blank" class="meta-item bilibili-go-btn" title="前往B站观看完整视频">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>前往B站</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -504,6 +546,11 @@
                             <i class="far fa-clock"></i>
                             <span>25:30</span>
                         </div>
+                        <!-- 新增：前往B站按钮 -->
+                        <a href="https://www.bilibili.com/video/BV12vsCzyEsU" target="_blank" class="meta-item bilibili-go-btn" title="前往B站观看完整视频">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>前往B站</span>
+                        </a>
                     </div>
                 </div>
             </div>
