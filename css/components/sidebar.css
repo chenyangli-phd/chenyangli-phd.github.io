@@ -67,15 +67,22 @@ body.light-mode .sidebar {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  margin-top: 2rem;
-  padding-left: 2rem;
+  margin-top: 0;
+  padding-left: 0;
+  align-items: flex-start;
+  margin-left: 1.2em;
 }
 .sidebar .main-nav a {
+    display: block;
+    text-align: left;
   font-size: 1.1rem;
   color: var(--text-primary, #333);
   text-decoration: none;
   padding: 0.5rem 0;
   transition: color 0.2s;
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 .sidebar .main-nav a:hover {
   color: var(--accent-primary, #6c63ff);
