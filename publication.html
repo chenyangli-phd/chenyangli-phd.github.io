@@ -92,7 +92,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: var(--card-radius);
-            padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+            padding: 1.5rem 1.5rem 1.5rem 3.5rem;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
@@ -118,7 +118,7 @@
 
         .paper-number {
             position: absolute;
-            left: -10px;
+            left: 10px;
             top: 50%;
             transform: translateY(-50%);
             width: 35px;
@@ -132,7 +132,7 @@
             font-weight: 700;
             font-size: 0.9rem;
             box-shadow: 0 4px 12px rgba(142, 68, 173, 0.3);
-            z-index: 1;
+            z-index: 2;
         }
 
         .paper-number.ongoing {
@@ -224,7 +224,7 @@
             height: 40px;
             background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
             color: white;
-            border-radius: 50%; /* 改为圆形 */
+            border-radius: 50%;
             font-size: 1.2rem;
             transition: all 0.3s ease;
             flex-shrink: 0;
@@ -264,7 +264,7 @@
             }
             
             .publication-item {
-                padding: 1.2rem 1.2rem 1.2rem 2.2rem;
+                padding: 1.2rem 1.2rem 1.2rem 3.2rem;
             }
             
             .publication-content {
@@ -287,6 +287,13 @@
             .publication-title {
                 font-size: 0.95rem;
             }
+            
+            .paper-number {
+                left: 8px;
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -298,13 +305,6 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 0.5rem;
-            }
-            
-            .paper-number {
-                width: 30px;
-                height: 30px;
-                font-size: 0.8rem;
-                left: -8px;
             }
         }
 
@@ -336,14 +336,6 @@
             height: 5px;
             background: linear-gradient(to right, #8e44ad, #9b59b6);
             border-radius: 3px;
-        }
-
-        .page-header p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 2rem auto 0;
-            line-height: 1.6;
         }
 
         .research-areas {
@@ -460,8 +452,7 @@
 
     <main>
         <div class="page-header">
-            <h1>Research Publications</h1>
-            <p>Numerical analysis, finite element methods, and computational fluid dynamics research with applications in bioconvection, magnetohydrodynamics, and multi-physics systems.</p>
+            <h1>Publications</h1>
             
             <div class="research-areas">
                 <span class="research-tag">Numerical Analysis</span>
