@@ -1,14 +1,34 @@
 // Gộp tất cả logic vào MỘT sự kiện DOMContentLoaded duy nhất
 document.addEventListener('DOMContentLoaded', () => {
-    // 监听点击侧边栏外部关闭侧边栏
+    // 监听点击侧边栏外部关闭侧边栏，并控制body滚动
     const sidebar = document.getElementById('sidebar');
     function closeSidebar() {
         sidebar.classList.remove('open');
+        document.body.style.overflow = '';
     }
-    document.addEventListener('click', function(e) {
+    function openSidebar() {
+        sidebar.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    // 三条杠按钮打开侧边栏时禁止body滚动
+    const toggleBtn = document.getElementById('sidebar-toggle');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            openSidebar();
+        });
+    }
+    // 关闭按钮
+    const closeBtn = document.getElementById('sidebar-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeSidebar();
+        });
+    }
+    // 点击侧边栏外部关闭
+    document.addEventListener('mousedown', function(e) {
         if (sidebar.classList.contains('open')) {
-            // 如果点击的不是侧边栏本身，也不是侧边栏的子元素，也不是三条杠按钮
-            const toggleBtn = document.getElementById('sidebar-toggle');
             if (!sidebar.contains(e.target) && (!toggleBtn || !toggleBtn.contains(e.target))) {
                 closeSidebar();
             }
