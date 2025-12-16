@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="css/components/share.css" />
     <link rel="stylesheet" href="css/components/visitor-stats.css" />
     <link rel="stylesheet" href="css/components/i18n.css" />
+    <link rel="stylesheet" href="css/components/sidebar.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-0XYR096YMX"></script>
@@ -53,41 +54,44 @@
     <div class="scroll-progress-bar"></div>
 
     <header class="main-header">
-        <!-- Nhóm 1: Logo -->
-        <a class="logo" href="index.html">Chenyang Li</a>
+        <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Open Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
 
-        <!-- Nhóm 2: Khối điều hướng -->
-        <div class="header-navigation"> <!-- THÊM THẺ NÀY -->
-            <nav class="main-nav">
-                <a href="#hero" data-i18n="nav.home">Home</a>
-                <a href="#about" data-i18n="nav.about">About</a>
-                <a href="#skills" data-i18n="nav.skills">Skills</a>
-                <!-- <a href="#coding-activity">Activity</a> -->
-                <a href="#experience" data-i18n="nav.education">Education</a>
-                <a href="#experiences" data-i18n="nav.experiences">Experiences</a>
-                <a href="#projects" data-i18n="nav.projects">Projects</a>
-                <a href="#awards" data-i18n="nav.awards">Awards</a>
-                <a href="#publications" data-i18n="nav.publications">Publications</a>
-                <a href="teaching.html" class="nav-btn teaching-link">Teaching</a>
-                <a href="#ongoing" data-i18n="nav.ongoing" style="display:none;">Ongoing</a>
-                <span class="nav-indicator"></span>
-            </nav>
-
-            <a href="video.html" class="nav-btn video-link">Video</a>
+    <aside id="sidebar" class="sidebar">
+        <button id="sidebar-close" class="sidebar-close-btn" aria-label="Close Menu">
+            <i class="fas fa-times"></i>
+        </button>
+        <a class="logo" href="index.html" style="margin:1.5rem 0 0 2rem;font-size:1.5rem;font-weight:700;display:inline-block;letter-spacing:1px;">
+            <span data-i18n="nav.home">Home</span>
+        </a>
+        <nav class="main-nav">
+            <a href="#hero" data-i18n="nav.home">Home</a>
+            <a href="#about" data-i18n="nav.about">About</a>
+            <a href="#skills" data-i18n="nav.skills">Skills</a>
+            <a href="#experience" data-i18n="nav.education">Education</a>
+            <a href="#experiences" data-i18n="nav.experiences">Experiences</a>
+            <a href="#projects" data-i18n="nav.projects">Projects</a>
+            <a href="#awards" data-i18n="nav.awards">Awards</a>
+            <a href="#publications" data-i18n="nav.publications">Publications</a>
+            <a href="teaching.html" class="nav-btn teaching-link" data-i18n="nav.teaching">Teaching</a>
+            <a href="#ongoing" data-i18n="nav.ongoing" style="display:none;">Ongoing</a>
+            <a href="video.html" class="nav-btn video-link" data-i18n="nav.video">Video</a>
             <a href="assets/blogs/index.html" class="nav-btn blog-link" data-i18n="nav.blog">Blog</a>
             <a href="assets/photography-blog/index.html" class="nav-btn photo-link" data-i18n="nav.photography">Photography</a>
             <a href="assets/resume/CV_Chenyang LI.pdf" target="_blank" class="nav-btn resume-link" data-i18n="nav.resume">Resume</a>
-
+        </nav>
+        <div class="sidebar-actions">
             <button id="theme-toggle" class="theme-toggle-btn">
                 <i class="fas fa-sun"></i>
                 <i class="fas fa-moon"></i>
             </button>
-
             <button id="lang-toggle" class="lang-toggle-btn" onclick="toggleLanguage()" title="Switch to Chinese">
                 <span class="lang-text">中</span>
             </button>
-
-        </div> <!-- THÊM THẺ NÀY -->
+        </div>
+    </aside>
 
     </header>
 
@@ -880,6 +884,39 @@
     <script src="js/i18n.js"></script>
     <script src="js/playlist.js"></script>
     <script src="js/scripts.js"></script>
+</script>
+<script>
+// 侧边栏交互
+document.addEventListener('DOMContentLoaded', function() {
+    var sidebar = document.getElementById('sidebar');
+    var openBtn = document.getElementById('sidebar-toggle');
+    var closeBtn = document.getElementById('sidebar-close');
+    // 打开侧边栏
+    openBtn && openBtn.addEventListener('click', function() {
+        sidebar.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    });
+    // 关闭侧边栏
+    closeBtn && closeBtn.addEventListener('click', function() {
+        sidebar.classList.remove('open');
+        document.body.style.overflow = '';
+    });
+    // 点击侧边栏外部关闭
+    sidebar && sidebar.addEventListener('click', function(e) {
+        if (e.target === sidebar) {
+            sidebar.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    });
+    // 点击导航项后自动关闭（移动端体验）
+    sidebar.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+            sidebar.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+    });
+});
+</script>
 </body>
 
 </html>

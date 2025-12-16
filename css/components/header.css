@@ -12,36 +12,46 @@
 .scroll-progress-bar {
     position: fixed;
     top: 0;
-    left: 0;
-    height: 4px;
-    background: linear-gradient(to right, var(--gradient-purple), var(--gradient-pink));
-    width: 0%;
-    z-index: 1000;
-    transition: width 0.1s linear;
-}
-
-.main-header {
-    position: fixed;
-    top: 1.5rem;
-    left: 50%;
-    z-index: 999;
-
-    width: 98%;
-    max-width: 1700px;
-
-    background: rgba(24, 24, 27, 0.8);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--border-color);
-    border-radius: 9999px;
-    padding: 0.65rem 1.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2.2rem;
-    opacity: 0;
-    transform: translate(-50%, -100px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
+    .main-header {
+        position: static;
+        background: none;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        width: auto;
+        height: auto;
+        display: block;
+    }
+    .sidebar-toggle-btn {
+        position: fixed;
+        top: 1.2rem;
+        left: 1.2rem;
+        z-index: 10010;
+        background: rgba(36,36,36,0.85);
+        border-radius: 50%;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+        color: #fff;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    .sidebar-toggle-btn:hover {
+        background: rgba(80,80,80,0.95);
+    }
+        max-width: none;
+        box-shadow: none;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0;
+    }
 
 /* === THAY ĐỔI LOGO THEO THIẾT KẾ MỚI === */
 .logo {
