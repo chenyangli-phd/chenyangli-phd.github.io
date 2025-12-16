@@ -1,5 +1,19 @@
 // Gộp tất cả logic vào MỘT sự kiện DOMContentLoaded duy nhất
 document.addEventListener('DOMContentLoaded', () => {
+    // 监听点击侧边栏外部关闭侧边栏
+    const sidebar = document.getElementById('sidebar');
+    function closeSidebar() {
+        sidebar.classList.remove('open');
+    }
+    document.addEventListener('click', function(e) {
+        if (sidebar.classList.contains('open')) {
+            // 如果点击的不是侧边栏本身，也不是侧边栏的子元素，也不是三条杠按钮
+            const toggleBtn = document.getElementById('sidebar-toggle');
+            if (!sidebar.contains(e.target) && (!toggleBtn || !toggleBtn.contains(e.target))) {
+                closeSidebar();
+            }
+        }
+    });
 
     // ======================================================
     // --- 1. LOGIC CHUNG & HEADER/PROGRESS BAR ---
