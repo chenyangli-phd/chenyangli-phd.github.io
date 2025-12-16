@@ -607,8 +607,8 @@
                 photoItem.className = 'photo-item';
                 photoItem.style.animationDelay = `${index * 0.1}s`;
                 
-                // 添加最近日期标识
-                const isRecent = index === 0 ? '<span style="font-size:0.75rem;background:#ff4757;color:white;padding:2px 8px;border-radius:10px;margin-left:10px;vertical-align:middle;">最新</span>' : '';
+                // 不再添加“最新”标签
+                const isRecent = '';
                 
                 photoItem.innerHTML = `
                     <div class="photo-item-cover" style="background: ${photo.color};">
