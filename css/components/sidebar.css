@@ -93,7 +93,7 @@ body.light-mode .sidebar {
   padding: 2rem;
   display: flex;
   gap: 1.5rem;
-  justify-content: flex-start;
+  justify-content: center;
 }
 @media (max-width: 600px) {
   .sidebar {
