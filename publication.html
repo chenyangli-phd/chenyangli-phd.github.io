@@ -115,19 +115,48 @@
             border-radius: 3px 0 0 3px;
         }
 
-        .publication-item.published::before {
-            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
-        }
-
-        .publication-item.preprint::before {
-            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
-        }
-
         .publication-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 1.2rem;
+        }
+
+        .paper-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(142, 68, 173, 0.3);
+            position: relative;
+            z-index: 1;
+            flex-shrink: 0;
+        }
+
+        .paper-badge::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.3;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.05); opacity: 0.2; }
+            100% { transform: scale(1); opacity: 0.3; }
         }
 
         .publication-authors {
@@ -148,7 +177,7 @@
             font-size: 1.25rem;
             font-weight: 600;
             line-height: 1.4;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
             color: var(--text-color);
             transition: color 0.3s ease;
         }
@@ -157,12 +186,22 @@
             color: #9b59b6;
         }
 
+        .publication-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
         .publication-venue {
             font-size: 1rem;
             font-style: italic;
             color: #3498db;
-            margin-bottom: 0.5rem;
             font-weight: 500;
+            flex: 1;
+            min-width: 200px;
         }
 
         .publication-venue i {
@@ -170,11 +209,30 @@
             color: #9b59b6;
         }
 
+        .pdf-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .pdf-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(142, 68, 173, 0.4);
+        }
+
         .publication-meta {
             display: flex;
             flex-wrap: wrap;
             gap: 1.2rem;
-            margin-top: 1.2rem;
             font-size: 0.95rem;
             color: var(--text-secondary);
         }
@@ -190,64 +248,6 @@
 
         .publication-year i {
             margin-right: 5px;
-        }
-
-        .publication-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 0.4rem 1rem;
-            border-radius: 18px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .status-published {
-            background: rgba(142, 68, 173, 0.2);
-            color: #d6bcfa;
-            border: 1px solid rgba(142, 68, 173, 0.3);
-        }
-
-        .status-submitted {
-            background: rgba(245, 158, 11, 0.2);
-            color: #fbbf24;
-            border: 1px solid rgba(245, 158, 11, 0.3);
-        }
-
-        .status-arxiv {
-            background: rgba(59, 130, 246, 0.2);
-            color: #93c5fd;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-        }
-
-        .publication-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .link-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 0.6rem 1.2rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: #9b59b6;
-            text-decoration: none;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            background: rgba(30, 41, 59, 0.5);
-        }
-
-        .link-btn:hover {
-            background: rgba(155, 89, 182, 0.2);
-            border-color: #9b59b6;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(142, 68, 173, 0.3);
         }
 
         .arxiv-id {
@@ -285,13 +285,13 @@
                 align-items: flex-start;
             }
             
-            .publication-links {
+            .publication-info {
                 flex-direction: column;
+                align-items: flex-start;
             }
             
-            .link-btn {
-                width: 100%;
-                justify-content: center;
+            .pdf-link {
+                align-self: flex-start;
             }
         }
 
@@ -481,11 +481,9 @@
             
             <div class="publication-list">
                 <!-- Paper 1 -->
-                <div class="publication-item published glass-card">
+                <div class="publication-item glass-card">
                     <div class="publication-header">
-                        <span class="publication-status status-published">
-                            <i class="fas fa-check-circle"></i> Published
-                        </span>
+                        <div class="paper-badge">01</div>
                     </div>
                     
                     <div class="publication-authors">
@@ -496,8 +494,13 @@
                         Temporal error analysis of a BDF2 time-discrete scheme for the incompressible Navier-Stokes equations with variable density
                     </div>
                     
-                    <div class="publication-venue">
-                        <i class="fas fa-book"></i> Journal of Computational and Applied Mathematics
+                    <div class="publication-info">
+                        <div class="publication-venue">
+                            <i class="fas fa-book"></i> Journal of Computational and Applied Mathematics
+                        </div>
+                        <a href="#" class="pdf-link" target="_blank">
+                            <i class="fas fa-file-pdf"></i> PDF
+                        </a>
                     </div>
                     
                     <div class="publication-meta">
@@ -505,23 +508,12 @@
                         <span><i class="fas fa-file-alt"></i> Volume 474</span>
                         <span><i class="fas fa-pager"></i> 0377-0427</span>
                     </div>
-                    
-                    <div class="publication-links">
-                        <a href="#" class="link-btn" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> View Article
-                        </a>
-                        <a href="#" class="link-btn">
-                            <i class="fas fa-file-pdf"></i> Download PDF
-                        </a>
-                    </div>
                 </div>
 
                 <!-- Paper 2 -->
-                <div class="publication-item published glass-card">
+                <div class="publication-item glass-card">
                     <div class="publication-header">
-                        <span class="publication-status status-published">
-                            <i class="fas fa-check-circle"></i> Published
-                        </span>
+                        <div class="paper-badge">02</div>
                     </div>
                     
                     <div class="publication-authors">
@@ -532,8 +524,13 @@
                         Efficient and Long-Time Accurate Second-Order Decoupled Method for the Blood Solute Dynamics Model
                     </div>
                     
-                    <div class="publication-venue">
-                        <i class="fas fa-book"></i> International Journal of Numerical Analysis and Modeling
+                    <div class="publication-info">
+                        <div class="publication-venue">
+                            <i class="fas fa-book"></i> International Journal of Numerical Analysis and Modeling
+                        </div>
+                        <a href="#" class="pdf-link" target="_blank">
+                            <i class="fas fa-file-pdf"></i> PDF
+                        </a>
                     </div>
                     
                     <div class="publication-meta">
@@ -541,23 +538,12 @@
                         <span><i class="fas fa-file-alt"></i> Volume 23, Issue 1</span>
                         <span><i class="fas fa-pager"></i> 24-62</span>
                     </div>
-                    
-                    <div class="publication-links">
-                        <a href="#" class="link-btn" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> View Article
-                        </a>
-                        <a href="#" class="link-btn">
-                            <i class="fas fa-file-pdf"></i> Download PDF
-                        </a>
-                    </div>
                 </div>
 
                 <!-- Paper 3 -->
-                <div class="publication-item published glass-card">
+                <div class="publication-item glass-card">
                     <div class="publication-header">
-                        <span class="publication-status status-published">
-                            <i class="fas fa-check-circle"></i> Published
-                        </span>
+                        <div class="paper-badge">03</div>
                     </div>
                     
                     <div class="publication-authors">
@@ -568,8 +554,13 @@
                         Optimal L² error analysis of first-order Euler linearized finite element scheme for the 2D magnetohydrodynamics system with variable density
                     </div>
                     
-                    <div class="publication-venue">
-                        <i class="fas fa-book"></i> Computers and Mathematics with Applications
+                    <div class="publication-info">
+                        <div class="publication-venue">
+                            <i class="fas fa-book"></i> Computers and Mathematics with Applications
+                        </div>
+                        <a href="https://doi.org/10.1016/j.camwa.2022.10.034" class="pdf-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> DOI
+                        </a>
                     </div>
                     
                     <div class="publication-meta">
@@ -577,23 +568,12 @@
                         <span><i class="fas fa-file-alt"></i> Volume 128</span>
                         <span><i class="fas fa-pager"></i> 96-107</span>
                     </div>
-                    
-                    <div class="publication-links">
-                        <a href="https://doi.org/10.1016/j.camwa.2022.10.034" class="link-btn" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> View Article
-                        </a>
-                        <a href="#" class="link-btn">
-                            <i class="fas fa-file-pdf"></i> Download PDF
-                        </a>
-                    </div>
                 </div>
 
                 <!-- Paper 4 -->
-                <div class="publication-item published glass-card">
+                <div class="publication-item glass-card">
                     <div class="publication-header">
-                        <span class="publication-status status-published">
-                            <i class="fas fa-check-circle"></i> Published
-                        </span>
+                        <div class="paper-badge">04</div>
                     </div>
                     
                     <div class="publication-authors">
@@ -604,23 +584,19 @@
                         Introduction of Several Biological Population Models
                     </div>
                     
-                    <div class="publication-venue">
-                        <i class="fas fa-book"></i> Hans Journal of Computational Biology
+                    <div class="publication-info">
+                        <div class="publication-venue">
+                            <i class="fas fa-book"></i> Hans Journal of Computational Biology
+                        </div>
+                        <a href="#" class="pdf-link" target="_blank">
+                            <i class="fas fa-file-pdf"></i> PDF
+                        </a>
                     </div>
                     
                     <div class="publication-meta">
                         <span class="publication-year"><i class="far fa-calendar"></i> 2019</span>
                         <span><i class="fas fa-file-alt"></i> Volume 09, Issue 04</span>
                         <span><i class="fas fa-pager"></i> 80-85</span>
-                    </div>
-                    
-                    <div class="publication-links">
-                        <a href="#" class="link-btn" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> View Article
-                        </a>
-                        <a href="#" class="link-btn">
-                            <i class="fas fa-file-pdf"></i> Download PDF
-                        </a>
                     </div>
                 </div>
             </div>
@@ -634,11 +610,9 @@
             
             <div class="publication-list">
                 <!-- Preprint 1 -->
-                <div class="publication-item preprint glass-card">
+                <div class="publication-item glass-card">
                     <div class="publication-header">
-                        <span class="publication-status status-submitted">
-                            <i class="fas fa-paper-plane"></i> Under Review
-                        </span>
+                        <div class="paper-badge">A</div>
                     </div>
                     
                     <div class="publication-authors">
@@ -649,23 +623,24 @@
                         Spatial error analysis of a new Euler finite element scheme for the incompressible flows with variable density
                     </div>
                     
-                    <div class="publication-meta">
-                        <span class="publication-year"><i class="far fa-calendar"></i> 2024</span>
+                    <div class="publication-info">
+                        <div class="publication-venue">
+                            <i class="fas fa-hourglass-half"></i> Under Review
+                        </div>
+                        <a href="#" class="pdf-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Manuscript
+                        </a>
                     </div>
                     
-                    <div class="publication-links">
-                        <a href="#" class="link-btn">
-                            <i class="fas fa-file-alt"></i> View Manuscript
-                        </a>
+                    <div class="publication-meta">
+                        <span class="publication-year"><i class="far fa-calendar"></i> 2024</span>
                     </div>
                 </div>
 
                 <!-- Preprint 2 -->
-                <div class="publication-item preprint glass-card">
+                <div class="publication-item glass-card">
                     <div class="publication-header">
-                        <span class="publication-status status-arxiv">
-                            <i class="fas fa-archive"></i> arXiv Preprint
-                        </span>
+                        <div class="paper-badge">B</div>
                     </div>
                     
                     <div class="publication-authors">
@@ -676,31 +651,25 @@
                         Error analysis of a Euler finite element scheme for Natural convection model with variable density
                     </div>
                     
-                    <div class="publication-venue">
-                        <i class="fas fa-archive"></i> arXiv preprint
+                    <div class="publication-info">
+                        <div class="publication-venue">
+                            <i class="fas fa-archive"></i> arXiv Preprint
+                        </div>
+                        <a href="https://arxiv.org/abs/2504.04381" class="pdf-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> arXiv
+                        </a>
                     </div>
                     
                     <div class="publication-meta">
                         <span class="publication-year"><i class="far fa-calendar"></i> 2025</span>
                         <span class="arxiv-id"><i class="fas fa-hashtag"></i> arXiv:2504.04381</span>
                     </div>
-                    
-                    <div class="publication-links">
-                        <a href="https://arxiv.org/abs/2504.04381" class="link-btn" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> View on arXiv
-                        </a>
-                        <a href="#" class="link-btn">
-                            <i class="fas fa-file-pdf"></i> Download PDF
-                        </a>
-                    </div>
                 </div>
 
                 <!-- Preprint 3 -->
-                <div class="publication-item preprint glass-card">
+                <div class="publication-item glass-card">
                     <div class="publication-header">
-                        <span class="publication-status status-arxiv">
-                            <i class="fas fa-archive"></i> arXiv Preprint
-                        </span>
+                        <div class="paper-badge">C</div>
                     </div>
                     
                     <div class="publication-authors">
@@ -711,31 +680,25 @@
                         Error Estimate of a linearized Second-order Fully Discrete Finite Element Method for the bioconvection flows with concentration dependent viscosity
                     </div>
                     
-                    <div class="publication-venue">
-                        <i class="fas fa-archive"></i> arXiv preprint
+                    <div class="publication-info">
+                        <div class="publication-venue">
+                            <i class="fas fa-archive"></i> arXiv Preprint
+                        </div>
+                        <a href="https://arxiv.org/abs/2504.04357" class="pdf-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> arXiv
+                        </a>
                     </div>
                     
                     <div class="publication-meta">
                         <span class="publication-year"><i class="far fa-calendar"></i> 2025</span>
                         <span class="arxiv-id"><i class="fas fa-hashtag"></i> arXiv:2504.04357</span>
                     </div>
-                    
-                    <div class="publication-links">
-                        <a href="https://arxiv.org/abs/2504.04357" class="link-btn" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> View on arXiv
-                        </a>
-                        <a href="#" class="link-btn">
-                            <i class="fas fa-file-pdf"></i> Download PDF
-                        </a>
-                    </div>
                 </div>
 
                 <!-- Preprint 4 -->
-                <div class="publication-item preprint glass-card">
+                <div class="publication-item glass-card">
                     <div class="publication-header">
-                        <span class="publication-status status-arxiv">
-                            <i class="fas fa-archive"></i> arXiv Preprint
-                        </span>
+                        <div class="paper-badge">D</div>
                     </div>
                     
                     <div class="publication-authors">
@@ -746,31 +709,25 @@
                         Fully discrete finite element approximation for the projection method to solve the Chemotaxis-Fluid System
                     </div>
                     
-                    <div class="publication-venue">
-                        <i class="fas fa-archive"></i> arXiv preprint
+                    <div class="publication-info">
+                        <div class="publication-venue">
+                            <i class="fas fa-archive"></i> arXiv Preprint
+                        </div>
+                        <a href="https://arxiv.org/abs/2506.06792" class="pdf-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> arXiv
+                        </a>
                     </div>
                     
                     <div class="publication-meta">
                         <span class="publication-year"><i class="far fa-calendar"></i> 2025</span>
                         <span class="arxiv-id"><i class="fas fa-hashtag"></i> arXiv:2506.06792</span>
                     </div>
-                    
-                    <div class="publication-links">
-                        <a href="https://arxiv.org/abs/2506.06792" class="link-btn" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> View on arXiv
-                        </a>
-                        <a href="#" class="link-btn">
-                            <i class="fas fa-file-pdf"></i> Download PDF
-                        </a>
-                    </div>
                 </div>
 
                 <!-- Preprint 5 -->
-                <div class="publication-item preprint glass-card">
+                <div class="publication-item glass-card">
                     <div class="publication-header">
-                        <span class="publication-status status-arxiv">
-                            <i class="fas fa-archive"></i> arXiv Preprint
-                        </span>
+                        <div class="paper-badge">E</div>
                     </div>
                     
                     <div class="publication-authors">
@@ -781,31 +738,25 @@
                         A decoupled Crank-Nicolson leap-frog scheme for the unsteady bioconvection flows problem with concentration dependent viscosity
                     </div>
                     
-                    <div class="publication-venue">
-                        <i class="fas fa-archive"></i> arXiv preprint
+                    <div class="publication-info">
+                        <div class="publication-venue">
+                            <i class="fas fa-archive"></i> arXiv Preprint
+                        </div>
+                        <a href="https://arxiv.org/abs/2510.14034" class="pdf-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> arXiv
+                        </a>
                     </div>
                     
                     <div class="publication-meta">
                         <span class="publication-year"><i class="far fa-calendar"></i> 2025</span>
                         <span class="arxiv-id"><i class="fas fa-hashtag"></i> arXiv:2510.14034</span>
                     </div>
-                    
-                    <div class="publication-links">
-                        <a href="https://arxiv.org/abs/2510.14034" class="link-btn" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> View on arXiv
-                        </a>
-                        <a href="#" class="link-btn">
-                            <i class="fas fa-file-pdf"></i> Download PDF
-                        </a>
-                    </div>
                 </div>
 
                 <!-- Preprint 6 -->
-                <div class="publication-item preprint glass-card">
+                <div class="publication-item glass-card">
                     <div class="publication-header">
-                        <span class="publication-status status-arxiv">
-                            <i class="fas fa-archive"></i> arXiv Preprint
-                        </span>
+                        <div class="paper-badge">F</div>
                     </div>
                     
                     <div class="publication-authors">
@@ -816,22 +767,18 @@
                         Unconditionally stable Gauge–Uzawa finite element schemes for the chemo-repulsion Navier-Stokes system
                     </div>
                     
-                    <div class="publication-venue">
-                        <i class="fas fa-archive"></i> arXiv preprint
+                    <div class="publication-info">
+                        <div class="publication-venue">
+                            <i class="fas fa-archive"></i> arXiv Preprint
+                        </div>
+                        <a href="https://arxiv.org/abs/2510.27026" class="pdf-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> arXiv
+                        </a>
                     </div>
                     
                     <div class="publication-meta">
                         <span class="publication-year"><i class="far fa-calendar"></i> 2025</span>
                         <span class="arxiv-id"><i class="fas fa-hashtag"></i> arXiv:2510.27026</span>
-                    </div>
-                    
-                    <div class="publication-links">
-                        <a href="https://arxiv.org/abs/2510.27026" class="link-btn" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> View on arXiv
-                        </a>
-                        <a href="#" class="link-btn">
-                            <i class="fas fa-file-pdf"></i> Download PDF
-                        </a>
                     </div>
                 </div>
             </div>
@@ -916,6 +863,23 @@
             sidebar.querySelectorAll('a').forEach(function(link) {
                 link.addEventListener('click', function() {
                     sidebar.classList.remove('open');
+                });
+            });
+
+            // 为论文卡片添加交互效果
+            document.querySelectorAll('.publication-item').forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    const badge = this.querySelector('.paper-badge');
+                    if (badge) {
+                        badge.style.transform = 'scale(1.1) rotate(5deg)';
+                    }
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    const badge = this.querySelector('.paper-badge');
+                    if (badge) {
+                        badge.style.transform = 'scale(1) rotate(0deg)';
+                    }
                 });
             });
         });
