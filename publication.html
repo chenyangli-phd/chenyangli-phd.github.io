@@ -84,7 +84,7 @@
         .publication-list {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1.2rem;
         }
 
         .publication-item {
@@ -92,15 +92,16 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: var(--card-radius);
-            padding: 2rem;
+            padding: 1.5rem 1.5rem 1.5rem 2.5rem;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            min-height: 100px;
         }
 
         .publication-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--card-shadow);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             border-color: var(--accent-color);
         }
 
@@ -115,155 +116,142 @@
             border-radius: 3px 0 0 3px;
         }
 
-        .publication-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1.2rem;
-        }
-
-        .paper-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
+        .paper-number {
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 35px;
+            height: 35px;
             background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
             color: white;
             border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 0.9rem;
             box-shadow: 0 4px 12px rgba(142, 68, 173, 0.3);
-            position: relative;
             z-index: 1;
-            flex-shrink: 0;
         }
 
-        .paper-badge::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
-            border-radius: 50%;
-            z-index: -1;
-            opacity: 0.3;
-            animation: pulse 2s infinite;
+        .paper-number.ongoing {
+            background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%);
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.3; }
-            50% { transform: scale(1.05); opacity: 0.2; }
-            100% { transform: scale(1); opacity: 0.3; }
+        .publication-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            width: 100%;
         }
 
+        .publication-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* 作者信息样式 */
         .publication-authors {
-            font-size: 1.05rem;
-            line-height: 1.6;
-            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 0.6rem;
             color: var(--text-color);
+            font-weight: 500;
         }
 
         .highlight-author {
             font-weight: 700;
             color: #9b59b6;
             position: relative;
-            padding: 0 2px;
         }
 
+        /* 标题样式 */
         .publication-title {
-            font-size: 1.25rem;
+            font-size: 1.05rem;
             font-weight: 600;
             line-height: 1.4;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             color: var(--text-color);
             transition: color 0.3s ease;
+            font-style: italic;
         }
 
         .publication-item:hover .publication-title {
             color: #9b59b6;
         }
 
-        .publication-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .publication-venue {
-            font-size: 1rem;
-            font-style: italic;
-            color: #3498db;
-            font-weight: 500;
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .publication-venue i {
-            margin-right: 8px;
-            color: #9b59b6;
-        }
-
-        .pdf-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 0.6rem 1.2rem;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: white;
-            text-decoration: none;
-            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .pdf-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(142, 68, 173, 0.4);
-        }
-
         .publication-meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 1.2rem;
-            font-size: 0.95rem;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.9rem;
             color: var(--text-secondary);
         }
 
+        .publication-venue {
+            font-style: italic;
+            color: #3498db;
+            font-weight: 500;
+        }
+
+        .publication-venue i {
+            margin-right: 6px;
+            color: #9b59b6;
+        }
+
         .publication-year {
-            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-weight: 600;
+            background: rgba(142, 68, 173, 0.2);
+            color: #d6bcfa;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            font-weight: 500;
             font-size: 0.85rem;
         }
 
         .publication-year i {
-            margin-right: 5px;
+            margin-right: 4px;
+            font-size: 0.8rem;
+        }
+
+        .pdf-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+            color: white;
+            border-radius: 50%; /* 改为圆形 */
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .pdf-btn:hover {
+            transform: translateY(-2px) scale(1.1);
+            box-shadow: 0 6px 20px rgba(142, 68, 173, 0.4);
         }
 
         .arxiv-id {
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            padding: 0.3rem 0.8rem;
+            padding: 0.2rem 0.6rem;
             background: rgba(59, 130, 246, 0.2);
             color: #93c5fd;
-            border-radius: 15px;
+            border-radius: 10px;
             font-size: 0.85rem;
             font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
 
-        .arxiv-id i {
-            font-size: 0.8rem;
+        .arxiv-id:hover {
+            background: rgba(59, 130, 246, 0.3);
         }
 
         @media (max-width: 768px) {
@@ -276,22 +264,28 @@
             }
             
             .publication-item {
-                padding: 1.5rem;
+                padding: 1.2rem 1.2rem 1.2rem 2.2rem;
             }
             
-            .publication-header {
+            .publication-content {
                 flex-direction: column;
-                gap: 1rem;
-                align-items: flex-start;
+                align-items: stretch;
+                gap: 0.8rem;
             }
             
-            .publication-info {
-                flex-direction: column;
-                align-items: flex-start;
+            .pdf-btn {
+                align-self: flex-end;
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
             }
             
-            .pdf-link {
-                align-self: flex-start;
+            .publication-authors {
+                font-size: 0.95rem;
+            }
+            
+            .publication-title {
+                font-size: 0.95rem;
             }
         }
 
@@ -300,12 +294,17 @@
                 font-size: 1.8rem;
             }
             
-            .publication-title {
-                font-size: 1.1rem;
+            .publication-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
             }
             
-            .publication-authors {
-                font-size: 0.95rem;
+            .paper-number {
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+                left: -8px;
             }
         }
 
@@ -473,6 +472,159 @@
             </div>
         </div>
 
+        <!-- Ongoing Works 放在前面 -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Ongoing Works</h2>
+                <div class="title-underline"></div>
+            </div>
+            
+            <div class="publication-list">
+                <!-- Work 1 -->
+                <div class="publication-item glass-card">
+                    <div class="paper-number ongoing">A</div>
+                    <div class="publication-content">
+                        <div class="publication-details">
+                            <div class="publication-authors">
+                                Yuan Li, <span class="highlight-author">Chenyang Li</span>, Xuewei Cui
+                            </div>
+                            <div class="publication-title">
+                                Spatial error analysis of a new Euler finite element scheme for the incompressible flows with variable density
+                            </div>
+                            <div class="publication-meta">
+                                <span class="publication-year"><i class="far fa-calendar"></i> 2024</span>
+                                <span>Under Review</span>
+                            </div>
+                        </div>
+                        <a href="#" class="pdf-btn" target="_blank">
+                            <i class="fas fa-file-pdf"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Work 2 -->
+                <div class="publication-item glass-card">
+                    <div class="paper-number ongoing">B</div>
+                    <div class="publication-content">
+                        <div class="publication-details">
+                            <div class="publication-authors">
+                                Li Hang, <span class="highlight-author">Chenyang Li*</span>
+                            </div>
+                            <div class="publication-title">
+                                Error analysis of a Euler finite element scheme for Natural convection model with variable density
+                            </div>
+                            <div class="publication-meta">
+                                <span class="publication-year"><i class="far fa-calendar"></i> 2025</span>
+                                <a href="https://arxiv.org/abs/2504.04381" class="arxiv-id" target="_blank">
+                                    arXiv:2504.04381
+                                </a>
+                            </div>
+                        </div>
+                        <a href="https://arxiv.org/abs/2504.04381" class="pdf-btn" target="_blank">
+                            <i class="fas fa-file-pdf"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Work 3 -->
+                <div class="publication-item glass-card">
+                    <div class="paper-number ongoing">C</div>
+                    <div class="publication-content">
+                        <div class="publication-details">
+                            <div class="publication-authors">
+                                <span class="highlight-author">Chenyang Li*</span>, Yuze Lu, Haibiao Zheng
+                            </div>
+                            <div class="publication-title">
+                                Error Estimate of a linearized Second-order Fully Discrete Finite Element Method for the bioconvection flows with concentration dependent viscosity
+                            </div>
+                            <div class="publication-meta">
+                                <span class="publication-year"><i class="far fa-calendar"></i> 2025</span>
+                                <a href="https://arxiv.org/abs/2504.04357" class="arxiv-id" target="_blank">
+                                    arXiv:2504.04357
+                                </a>
+                            </div>
+                        </div>
+                        <a href="https://arxiv.org/abs/2504.04357" class="pdf-btn" target="_blank">
+                            <i class="fas fa-file-pdf"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Work 4 -->
+                <div class="publication-item glass-card">
+                    <div class="paper-number ongoing">D</div>
+                    <div class="publication-content">
+                        <div class="publication-details">
+                            <div class="publication-authors">
+                                <span class="highlight-author">Chenyang Li</span>, Ping Lin, Haibiao Zheng
+                            </div>
+                            <div class="publication-title">
+                                Fully discrete finite element approximation for the projection method to solve the Chemotaxis-Fluid System
+                            </div>
+                            <div class="publication-meta">
+                                <span class="publication-year"><i class="far fa-calendar"></i> 2025</span>
+                                <a href="https://arxiv.org/abs/2506.06792" class="arxiv-id" target="_blank">
+                                    arXiv:2506.06792
+                                </a>
+                            </div>
+                        </div>
+                        <a href="https://arxiv.org/abs/2506.06792" class="pdf-btn" target="_blank">
+                            <i class="fas fa-file-pdf"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Work 5 -->
+                <div class="publication-item glass-card">
+                    <div class="paper-number ongoing">E</div>
+                    <div class="publication-content">
+                        <div class="publication-details">
+                            <div class="publication-authors">
+                                <span class="highlight-author">Chenyang Li</span>
+                            </div>
+                            <div class="publication-title">
+                                A decoupled Crank-Nicolson leap-frog scheme for the unsteady bioconvection flows problem with concentration dependent viscosity
+                            </div>
+                            <div class="publication-meta">
+                                <span class="publication-year"><i class="far fa-calendar"></i> 2025</span>
+                                <a href="https://arxiv.org/abs/2510.14034" class="arxiv-id" target="_blank">
+                                    arXiv:2510.14034
+                                </a>
+                            </div>
+                        </div>
+                        <a href="https://arxiv.org/abs/2510.14034" class="pdf-btn" target="_blank">
+                            <i class="fas fa-file-pdf"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Work 6 -->
+                <div class="publication-item glass-card">
+                    <div class="paper-number ongoing">F</div>
+                    <div class="publication-content">
+                        <div class="publication-details">
+                            <div class="publication-authors">
+                                <span class="highlight-author">Chenyang Li</span>, Ping Lin, Haibiao Zheng
+                            </div>
+                            <div class="publication-title">
+                                Unconditionally stable Gauge–Uzawa finite element schemes for the chemo-repulsion Navier-Stokes system
+                            </div>
+                            <div class="publication-meta">
+                                <span class="publication-year"><i class="far fa-calendar"></i> 2025</span>
+                                <a href="https://arxiv.org/abs/2510.27026" class="arxiv-id" target="_blank">
+                                    arXiv:2510.27026
+                                </a>
+                            </div>
+                        </div>
+                        <a href="https://arxiv.org/abs/2510.27026" class="pdf-btn" target="_blank">
+                            <i class="fas fa-file-pdf"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Published Papers 放在后面 -->
         <div class="section">
             <div class="section-header">
                 <h2 class="section-title">Published Papers</h2>
@@ -482,303 +634,101 @@
             <div class="publication-list">
                 <!-- Paper 1 -->
                 <div class="publication-item glass-card">
-                    <div class="publication-header">
-                        <div class="paper-badge">01</div>
-                    </div>
-                    
-                    <div class="publication-authors">
-                        <span class="highlight-author">Chenyang Li</span>, Haibiao Zheng
-                    </div>
-                    
-                    <div class="publication-title">
-                        Temporal error analysis of a BDF2 time-discrete scheme for the incompressible Navier-Stokes equations with variable density
-                    </div>
-                    
-                    <div class="publication-info">
-                        <div class="publication-venue">
-                            <i class="fas fa-book"></i> Journal of Computational and Applied Mathematics
+                    <div class="paper-number">1</div>
+                    <div class="publication-content">
+                        <div class="publication-details">
+                            <div class="publication-authors">
+                                <span class="highlight-author">Chenyang Li</span>, Haibiao Zheng
+                            </div>
+                            <div class="publication-title">
+                                Temporal error analysis of a BDF2 time-discrete scheme for the incompressible Navier-Stokes equations with variable density
+                            </div>
+                            <div class="publication-meta">
+                                <span class="publication-venue">
+                                    <i class="fas fa-book"></i> Journal of Computational and Applied Mathematics
+                                </span>
+                                <span class="publication-year"><i class="far fa-calendar"></i> 2026</span>
+                                <span>Volume 474</span>
+                            </div>
                         </div>
-                        <a href="#" class="pdf-link" target="_blank">
-                            <i class="fas fa-file-pdf"></i> PDF
+                        <a href="#" class="pdf-btn" target="_blank">
+                            <i class="fas fa-file-pdf"></i>
                         </a>
-                    </div>
-                    
-                    <div class="publication-meta">
-                        <span class="publication-year"><i class="far fa-calendar"></i> 2026</span>
-                        <span><i class="fas fa-file-alt"></i> Volume 474</span>
-                        <span><i class="fas fa-pager"></i> 0377-0427</span>
                     </div>
                 </div>
 
                 <!-- Paper 2 -->
                 <div class="publication-item glass-card">
-                    <div class="publication-header">
-                        <div class="paper-badge">02</div>
-                    </div>
-                    
-                    <div class="publication-authors">
-                        Atrout Sabah, Md. Abdullah Al Mahbub, <span class="highlight-author">Chenyang Li</span>, Haibiao Zheng
-                    </div>
-                    
-                    <div class="publication-title">
-                        Efficient and Long-Time Accurate Second-Order Decoupled Method for the Blood Solute Dynamics Model
-                    </div>
-                    
-                    <div class="publication-info">
-                        <div class="publication-venue">
-                            <i class="fas fa-book"></i> International Journal of Numerical Analysis and Modeling
+                    <div class="paper-number">2</div>
+                    <div class="publication-content">
+                        <div class="publication-details">
+                            <div class="publication-authors">
+                                Atrout Sabah, Md. Abdullah Al Mahbub, <span class="highlight-author">Chenyang Li</span>, Haibiao Zheng
+                            </div>
+                            <div class="publication-title">
+                                Efficient and Long-Time Accurate Second-Order Decoupled Method for the Blood Solute Dynamics Model
+                            </div>
+                            <div class="publication-meta">
+                                <span class="publication-venue">
+                                    <i class="fas fa-book"></i> International Journal of Numerical Analysis and Modeling
+                                </span>
+                                <span class="publication-year"><i class="far fa-calendar"></i> 2026</span>
+                                <span>Volume 23, Issue 1</span>
+                            </div>
                         </div>
-                        <a href="#" class="pdf-link" target="_blank">
-                            <i class="fas fa-file-pdf"></i> PDF
+                        <a href="#" class="pdf-btn" target="_blank">
+                            <i class="fas fa-file-pdf"></i>
                         </a>
-                    </div>
-                    
-                    <div class="publication-meta">
-                        <span class="publication-year"><i class="far fa-calendar"></i> 2026</span>
-                        <span><i class="fas fa-file-alt"></i> Volume 23, Issue 1</span>
-                        <span><i class="fas fa-pager"></i> 24-62</span>
                     </div>
                 </div>
 
                 <!-- Paper 3 -->
                 <div class="publication-item glass-card">
-                    <div class="publication-header">
-                        <div class="paper-badge">03</div>
-                    </div>
-                    
-                    <div class="publication-authors">
-                        <span class="highlight-author">Chenyang Li</span>, Yuan Li
-                    </div>
-                    
-                    <div class="publication-title">
-                        Optimal L² error analysis of first-order Euler linearized finite element scheme for the 2D magnetohydrodynamics system with variable density
-                    </div>
-                    
-                    <div class="publication-info">
-                        <div class="publication-venue">
-                            <i class="fas fa-book"></i> Computers and Mathematics with Applications
+                    <div class="paper-number">3</div>
+                    <div class="publication-content">
+                        <div class="publication-details">
+                            <div class="publication-authors">
+                                <span class="highlight-author">Chenyang Li</span>, Yuan Li
+                            </div>
+                            <div class="publication-title">
+                                Optimal L² error analysis of first-order Euler linearized finite element scheme for the 2D magnetohydrodynamics system with variable density
+                            </div>
+                            <div class="publication-meta">
+                                <span class="publication-venue">
+                                    <i class="fas fa-book"></i> Computers and Mathematics with Applications
+                                </span>
+                                <span class="publication-year"><i class="far fa-calendar"></i> 2022</span>
+                                <span>Volume 128</span>
+                            </div>
                         </div>
-                        <a href="https://doi.org/10.1016/j.camwa.2022.10.034" class="pdf-link" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> DOI
+                        <a href="https://doi.org/10.1016/j.camwa.2022.10.034" class="pdf-btn" target="_blank">
+                            <i class="fas fa-file-pdf"></i>
                         </a>
-                    </div>
-                    
-                    <div class="publication-meta">
-                        <span class="publication-year"><i class="far fa-calendar"></i> 2022</span>
-                        <span><i class="fas fa-file-alt"></i> Volume 128</span>
-                        <span><i class="fas fa-pager"></i> 96-107</span>
                     </div>
                 </div>
 
                 <!-- Paper 4 -->
                 <div class="publication-item glass-card">
-                    <div class="publication-header">
-                        <div class="paper-badge">04</div>
-                    </div>
-                    
-                    <div class="publication-authors">
-                        <span class="highlight-author">Chenyang Li</span>, Jian Sun, Hailiang Zhang
-                    </div>
-                    
-                    <div class="publication-title">
-                        Introduction of Several Biological Population Models
-                    </div>
-                    
-                    <div class="publication-info">
-                        <div class="publication-venue">
-                            <i class="fas fa-book"></i> Hans Journal of Computational Biology
+                    <div class="paper-number">4</div>
+                    <div class="publication-content">
+                        <div class="publication-details">
+                            <div class="publication-authors">
+                                <span class="highlight-author">Chenyang Li</span>, Jian Sun, Hailiang Zhang
+                            </div>
+                            <div class="publication-title">
+                                Introduction of Several Biological Population Models
+                            </div>
+                            <div class="publication-meta">
+                                <span class="publication-venue">
+                                    <i class="fas fa-book"></i> Hans Journal of Computational Biology
+                                </span>
+                                <span class="publication-year"><i class="far fa-calendar"></i> 2019</span>
+                                <span>Volume 09, Issue 04</span>
+                            </div>
                         </div>
-                        <a href="#" class="pdf-link" target="_blank">
-                            <i class="fas fa-file-pdf"></i> PDF
+                        <a href="#" class="pdf-btn" target="_blank">
+                            <i class="fas fa-file-pdf"></i>
                         </a>
-                    </div>
-                    
-                    <div class="publication-meta">
-                        <span class="publication-year"><i class="far fa-calendar"></i> 2019</span>
-                        <span><i class="fas fa-file-alt"></i> Volume 09, Issue 04</span>
-                        <span><i class="fas fa-pager"></i> 80-85</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header">
-                <h2 class="section-title">Preprints & Ongoing Works</h2>
-                <div class="title-underline"></div>
-            </div>
-            
-            <div class="publication-list">
-                <!-- Preprint 1 -->
-                <div class="publication-item glass-card">
-                    <div class="publication-header">
-                        <div class="paper-badge">A</div>
-                    </div>
-                    
-                    <div class="publication-authors">
-                        Yuan Li, <span class="highlight-author">Chenyang Li</span>, Xuewei Cui
-                    </div>
-                    
-                    <div class="publication-title">
-                        Spatial error analysis of a new Euler finite element scheme for the incompressible flows with variable density
-                    </div>
-                    
-                    <div class="publication-info">
-                        <div class="publication-venue">
-                            <i class="fas fa-hourglass-half"></i> Under Review
-                        </div>
-                        <a href="#" class="pdf-link" target="_blank">
-                            <i class="fas fa-file-alt"></i> Manuscript
-                        </a>
-                    </div>
-                    
-                    <div class="publication-meta">
-                        <span class="publication-year"><i class="far fa-calendar"></i> 2024</span>
-                    </div>
-                </div>
-
-                <!-- Preprint 2 -->
-                <div class="publication-item glass-card">
-                    <div class="publication-header">
-                        <div class="paper-badge">B</div>
-                    </div>
-                    
-                    <div class="publication-authors">
-                        Li Hang, <span class="highlight-author">Chenyang Li*</span>
-                    </div>
-                    
-                    <div class="publication-title">
-                        Error analysis of a Euler finite element scheme for Natural convection model with variable density
-                    </div>
-                    
-                    <div class="publication-info">
-                        <div class="publication-venue">
-                            <i class="fas fa-archive"></i> arXiv Preprint
-                        </div>
-                        <a href="https://arxiv.org/abs/2504.04381" class="pdf-link" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> arXiv
-                        </a>
-                    </div>
-                    
-                    <div class="publication-meta">
-                        <span class="publication-year"><i class="far fa-calendar"></i> 2025</span>
-                        <span class="arxiv-id"><i class="fas fa-hashtag"></i> arXiv:2504.04381</span>
-                    </div>
-                </div>
-
-                <!-- Preprint 3 -->
-                <div class="publication-item glass-card">
-                    <div class="publication-header">
-                        <div class="paper-badge">C</div>
-                    </div>
-                    
-                    <div class="publication-authors">
-                        <span class="highlight-author">Chenyang Li*</span>, Yuze Lu, Haibiao Zheng
-                    </div>
-                    
-                    <div class="publication-title">
-                        Error Estimate of a linearized Second-order Fully Discrete Finite Element Method for the bioconvection flows with concentration dependent viscosity
-                    </div>
-                    
-                    <div class="publication-info">
-                        <div class="publication-venue">
-                            <i class="fas fa-archive"></i> arXiv Preprint
-                        </div>
-                        <a href="https://arxiv.org/abs/2504.04357" class="pdf-link" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> arXiv
-                        </a>
-                    </div>
-                    
-                    <div class="publication-meta">
-                        <span class="publication-year"><i class="far fa-calendar"></i> 2025</span>
-                        <span class="arxiv-id"><i class="fas fa-hashtag"></i> arXiv:2504.04357</span>
-                    </div>
-                </div>
-
-                <!-- Preprint 4 -->
-                <div class="publication-item glass-card">
-                    <div class="publication-header">
-                        <div class="paper-badge">D</div>
-                    </div>
-                    
-                    <div class="publication-authors">
-                        <span class="highlight-author">Chenyang Li</span>, Ping Lin, Haibiao Zheng
-                    </div>
-                    
-                    <div class="publication-title">
-                        Fully discrete finite element approximation for the projection method to solve the Chemotaxis-Fluid System
-                    </div>
-                    
-                    <div class="publication-info">
-                        <div class="publication-venue">
-                            <i class="fas fa-archive"></i> arXiv Preprint
-                        </div>
-                        <a href="https://arxiv.org/abs/2506.06792" class="pdf-link" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> arXiv
-                        </a>
-                    </div>
-                    
-                    <div class="publication-meta">
-                        <span class="publication-year"><i class="far fa-calendar"></i> 2025</span>
-                        <span class="arxiv-id"><i class="fas fa-hashtag"></i> arXiv:2506.06792</span>
-                    </div>
-                </div>
-
-                <!-- Preprint 5 -->
-                <div class="publication-item glass-card">
-                    <div class="publication-header">
-                        <div class="paper-badge">E</div>
-                    </div>
-                    
-                    <div class="publication-authors">
-                        <span class="highlight-author">Chenyang Li</span>
-                    </div>
-                    
-                    <div class="publication-title">
-                        A decoupled Crank-Nicolson leap-frog scheme for the unsteady bioconvection flows problem with concentration dependent viscosity
-                    </div>
-                    
-                    <div class="publication-info">
-                        <div class="publication-venue">
-                            <i class="fas fa-archive"></i> arXiv Preprint
-                        </div>
-                        <a href="https://arxiv.org/abs/2510.14034" class="pdf-link" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> arXiv
-                        </a>
-                    </div>
-                    
-                    <div class="publication-meta">
-                        <span class="publication-year"><i class="far fa-calendar"></i> 2025</span>
-                        <span class="arxiv-id"><i class="fas fa-hashtag"></i> arXiv:2510.14034</span>
-                    </div>
-                </div>
-
-                <!-- Preprint 6 -->
-                <div class="publication-item glass-card">
-                    <div class="publication-header">
-                        <div class="paper-badge">F</div>
-                    </div>
-                    
-                    <div class="publication-authors">
-                        <span class="highlight-author">Chenyang Li</span>, Ping Lin, Haibiao Zheng
-                    </div>
-                    
-                    <div class="publication-title">
-                        Unconditionally stable Gauge–Uzawa finite element schemes for the chemo-repulsion Navier-Stokes system
-                    </div>
-                    
-                    <div class="publication-info">
-                        <div class="publication-venue">
-                            <i class="fas fa-archive"></i> arXiv Preprint
-                        </div>
-                        <a href="https://arxiv.org/abs/2510.27026" class="pdf-link" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> arXiv
-                        </a>
-                    </div>
-                    
-                    <div class="publication-meta">
-                        <span class="publication-year"><i class="far fa-calendar"></i> 2025</span>
-                        <span class="arxiv-id"><i class="fas fa-hashtag"></i> arXiv:2510.27026</span>
                     </div>
                 </div>
             </div>
@@ -863,23 +813,6 @@
             sidebar.querySelectorAll('a').forEach(function(link) {
                 link.addEventListener('click', function() {
                     sidebar.classList.remove('open');
-                });
-            });
-
-            // 为论文卡片添加交互效果
-            document.querySelectorAll('.publication-item').forEach(item => {
-                item.addEventListener('mouseenter', function() {
-                    const badge = this.querySelector('.paper-badge');
-                    if (badge) {
-                        badge.style.transform = 'scale(1.1) rotate(5deg)';
-                    }
-                });
-                
-                item.addEventListener('mouseleave', function() {
-                    const badge = this.querySelector('.paper-badge');
-                    if (badge) {
-                        badge.style.transform = 'scale(1) rotate(0deg)';
-                    }
                 });
             });
         });
