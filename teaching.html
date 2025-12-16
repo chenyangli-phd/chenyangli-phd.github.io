@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-        <style>
+    <style>
         .back-btn, .back-home { display: none !important; }
-        </style>
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teaching | Chenyang Li</title>
@@ -23,6 +23,7 @@
             --text-secondary: #a1a1aa;
             --accent-primary: #64ffda;
             --accent-secondary: #8e44ad;
+            --accent-gradient: linear-gradient(135deg, #64ffda, #8e44ad);
             --border-color: rgba(255, 255, 255, 0.1);
             --glass-bg: rgba(255, 255, 255, 0.03);
             --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
@@ -41,6 +42,56 @@
             color: var(--text-primary);
             line-height: 1.8;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* 添加背景装饰元素 */
+        .bg-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
+            filter: blur(60px);
+        }
+        
+        .circle-1 {
+            width: 400px;
+            height: 400px;
+            top: 20%;
+            right: -200px;
+            animation: float 25s infinite ease-in-out;
+        }
+        
+        .circle-2 {
+            width: 300px;
+            height: 300px;
+            bottom: 10%;
+            left: -150px;
+            animation: float 30s infinite ease-in-out reverse;
+        }
+        
+        .circle-3 {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 30%;
+            background: radial-gradient(circle, rgba(142, 68, 173, 0.1) 0%, transparent 70%);
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
         }
         
         .back-btn {
@@ -59,63 +110,84 @@
             transition: var(--transition-smooth);
             z-index: 100;
             backdrop-filter: blur(10px);
+            font-weight: 500;
         }
         
         .back-btn:hover {
             background: var(--accent-primary);
             color: var(--bg-primary);
             transform: translateX(-5px);
+            border-color: var(--accent-primary);
         }
         
         .teaching-container {
             max-width: 900px;
             margin: 0 auto;
             padding: 100px 20px 60px;
+            position: relative;
         }
         
         .teaching-header {
             text-align: center;
-            margin-bottom: 60px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 80px;
+            padding-bottom: 40px;
+            position: relative;
         }
         
         .teaching-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            background: var(--accent-gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             display: inline-block;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .teaching-header h1:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
         }
         
         .teaching-header p {
             color: var(--text-secondary);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             max-width: 600px;
             margin: 0 auto;
+            line-height: 1.6;
         }
         
         .courses-container {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 40px;
+            gap: 50px;
         }
         
         .course-card {
-            background: var(--glass-bg);
+            background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
             border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 2.5rem;
+            border-radius: 24px;
+            padding: 3rem;
             transition: var(--transition-smooth);
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
         }
         
         .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--card-shadow);
+            transform: translateY(-8px);
+            box-shadow: 0 30px 80px rgba(100, 255, 218, 0.1);
             border-color: rgba(100, 255, 218, 0.2);
         }
         
@@ -124,163 +196,209 @@
             position: absolute;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.03), rgba(142, 68, 173, 0.03));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .course-card:hover:before {
+            opacity: 1;
+        }
+        
+        .course-card:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 4px;
             height: 100%;
-            background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary));
+            background: var(--accent-gradient);
         }
         
         .course-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-            gap: 15px;
+            margin-bottom: 30px;
+            position: relative;
         }
         
         .course-title {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: 600;
             color: var(--text-primary);
-            margin: 0;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, var(--accent-primary), #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
         }
         
-        .course-code {
-            background: rgba(100, 255, 218, 0.1);
-            color: var(--accent-primary);
-            padding: 6px 14px;
-            border-radius: 6px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            border: 1px solid rgba(100, 255, 218, 0.2);
-        }
-        
-        .course-description {
+        .course-subtitle {
             color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 30px;
-            font-size: 1.05rem;
-        }
-        
-        .course-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-        
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            border: 1px solid var(--border-color);
-        }
-        
-        .meta-item i {
-            color: var(--accent-primary);
-        }
-        
-        .materials-section {
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .materials-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--text-primary);
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
-        .materials-title i {
+        .course-subtitle i {
             color: var(--accent-primary);
+        }
+        
+        .course-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 35px;
+            font-size: 1.1rem;
+            padding-left: 10px;
+            border-left: 2px solid rgba(100, 255, 218, 0.2);
+        }
+        
+        .course-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+        }
+        
+        .meta-item:hover {
+            background: rgba(100, 255, 218, 0.05);
+            border-color: rgba(100, 255, 218, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .meta-item i {
+            color: var(--accent-primary);
+            font-size: 1.1rem;
         }
         
         .materials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
         }
         
         .material-card {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 16px;
+            padding: 25px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             transition: var(--transition-smooth);
             text-decoration: none;
             color: inherit;
+            position: relative;
+            overflow: hidden;
         }
         
         .material-card:hover {
-            background: rgba(100, 255, 218, 0.05);
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.08), rgba(142, 68, 173, 0.08));
             border-color: rgba(100, 255, 218, 0.3);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .material-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(100, 255, 218, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .material-card:hover:before {
+            opacity: 1;
         }
         
         .material-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            border-radius: 10px;
+            width: 60px;
+            height: 60px;
+            background: var(--accent-gradient);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--bg-primary);
-            font-size: 1.2rem;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+        }
+        
+        .material-info {
+            position: relative;
+            z-index: 1;
+            flex-grow: 1;
         }
         
         .material-info h4 {
-            margin: 0 0 5px 0;
-            font-size: 1rem;
+            margin: 0 0 8px 0;
+            font-size: 1.2rem;
             font-weight: 600;
             color: var(--text-primary);
         }
         
         .material-info p {
             margin: 0;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-        
-        .download-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 25px;
-        }
-        
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-            color: var(--bg-primary);
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
             font-size: 0.95rem;
-            transition: var(--transition-smooth);
-            border: none;
-            cursor: pointer;
+            color: var(--text-secondary);
+            line-height: 1.6;
         }
         
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(100, 255, 218, 0.2);
+        .material-arrow {
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: var(--transition-smooth);
+        }
+        
+        .material-card:hover .material-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .course-footer {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+        
+        .course-footer-text {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .course-footer-text i {
+            color: var(--accent-primary);
         }
         
         @media (max-width: 768px) {
@@ -296,35 +414,29 @@
             }
             
             .teaching-header h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
             .course-card {
                 padding: 2rem;
             }
             
-            .course-header {
-                flex-direction: column;
-                align-items: flex-start;
+            .course-title {
+                font-size: 1.8rem;
             }
             
             .materials-grid {
                 grid-template-columns: 1fr;
             }
             
-            .download-buttons {
-                flex-direction: column;
-            }
-            
-            .download-btn {
-                width: 100%;
-                justify-content: center;
+            .material-card {
+                padding: 20px;
             }
         }
         
         @media (max-width: 480px) {
             .teaching-header h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .course-card {
@@ -334,10 +446,64 @@
             .course-title {
                 font-size: 1.5rem;
             }
+            
+            .course-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .meta-item {
+                width: 100%;
+            }
+        }
+        
+        /* 粒子背景效果 */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(100, 255, 218, 0.1);
+            border-radius: 50%;
+            animation: particle-float linear infinite;
+        }
+        
+        @keyframes particle-float {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 背景装饰 -->
+    <div class="bg-decoration">
+        <div class="bg-circle circle-1"></div>
+        <div class="bg-circle circle-2"></div>
+        <div class="bg-circle circle-3"></div>
+    </div>
+    
+    <!-- 粒子背景 -->
+    <div class="particles" id="particles"></div>
+    
     <nav class="top-navbar" style="width:100%;padding:0.8rem 0 0.2rem 0;text-align:center;font-size:1.08rem;background:none !important;box-shadow:none !important;border:none !important;z-index:1001;">
         <a href="index.html" style="color:inherit;text-decoration:none;margin:0 1.2rem;">Home</a>
         <a href="publication.html" style="color:inherit;text-decoration:none;margin:0 1.2rem;">Publication</a>
@@ -348,160 +514,230 @@
     </nav>
 
     <a href="index.html" class="back-btn">
-        <i class="fas fa-arrow-left"></i> 返回首页
+        <i class="fas fa-arrow-left"></i> Back to Home
     </a>
 
     <main class="teaching-container">
         <div class="teaching-header">
-            <h1>Teaching</h1>
+            <h1>Teaching Experience</h1>
+            <p>Sharing knowledge and inspiring students through interactive teaching and comprehensive course materials.</p>
         </div>
         
         <div class="courses-container">
             <!-- 高等数学B课程卡片 -->
             <div class="course-card">
                 <div class="course-header">
-                    <div>
-                        <h2 class="course-title">高等数学B</h2>
-                        <div class="course-code">课程代码: MATH101B</div>
+                    <h2 class="course-title">高等数学B</h2>
+                    <div class="course-subtitle">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span>Assistant Teaching Fellow | Spring 2025</span>
                     </div>
                 </div>
+                
+                <p class="course-description">
+                    本课程面向理工科本科生，系统讲解微积分的基本概念、理论与方法。作为助教，我负责设计并主讲习题课、批改作业、进行答疑辅导，并开发了全套的教学材料。课程内容涵盖函数与极限、导数与微分、积分及其应用、多元函数微积分等核心数学知识，注重培养学生的数学思维和问题解决能力。
+                </p>
                 
                 <div class="course-meta">
                     <div class="meta-item">
                         <i class="fas fa-user-graduate"></i>
-                        <span>面向理工科本科生</span>
+                        <span>面向对象: 理工科本科生</span>
                     </div>
                     <div class="meta-item">
                         <i class="fas fa-calendar-alt"></i>
                         <span>学期: 2025年春季学期</span>
                     </div>
                     <div class="meta-item">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                        <span>助教: Chenyang Li</span>
+                        <i class="fas fa-tasks"></i>
+                        <span>职责: 习题课主讲、作业批改、答疑辅导</span>
                     </div>
                 </div>
                 
-                <p class="course-description">
-                    本课程是面向理工科本科生的一门重要基础课，系统讲解微积分的基本概念、理论与方法。课程内容涵盖函数与极限、导数与微分、积分及其应用、多元函数微积分等核心内容。作为助教，我负责习题课讲解、作业批改和答疑辅导，并整理了详细的讲义和习题解答。
-                </p>
+                <div class="materials-grid">
+                    <a href="assets/resume/高数B习题课-讲义.pdf" target="_blank" class="material-card">
+                        <div class="material-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <div class="material-info">
+                            <h4>高等数学B习题课讲义</h4>
+                            <p>完整版讲义，包含所有章节的习题讲解、解题技巧和扩展练习</p>
+                        </div>
+                        <div class="material-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                    
+                    <a href="assets/resume/高数B习题课-纯享版.pdf" target="_blank" class="material-card">
+                        <div class="material-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="material-info">
+                            <h4>习题课纯享版讲义</h4>
+                            <p>精简版讲义，重点突出核心解题方法和典型例题分析</p>
+                        </div>
+                        <div class="material-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
                 
-                <div class="materials-section">
-                    <h3 class="materials-title"><i class="fas fa-file-download"></i> 教学资料下载</h3>
-                    
-                    <div class="materials-grid">
-                        <a href="assets/resume/高数B习题课-讲义.pdf" target="_blank" class="material-card">
-                            <div class="material-icon">
-                                <i class="fas fa-book-open"></i>
-                            </div>
-                            <div class="material-info">
-                                <h4>高等数学B习题课讲义</h4>
-                                <p>完整版讲义，包含所有章节的习题讲解和解题技巧</p>
-                            </div>
-                        </a>
-                        
-                        <a href="assets/resume/高数B习题课-纯享版.pdf" target="_blank" class="material-card">
-                            <div class="material-icon">
-                                <i class="fas fa-file-pdf"></i>
-                            </div>
-                            <div class="material-info">
-                                <h4>习题课纯享版讲义</h4>
-                                <p>精简版讲义，重点突出核心解题方法和典型例题</p>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <div class="download-buttons">
-                        <a href="assets/resume/高数B习题课-讲义.pdf" target="_blank" class="download-btn">
-                            <i class="fas fa-download"></i> 下载完整讲义
-                        </a>
-                        <a href="assets/resume/高数B习题课-纯享版.pdf" target="_blank" class="download-btn">
-                            <i class="fas fa-download"></i> 下载纯享版
-                        </a>
-                    </div>
+                <div class="course-footer">
+                    <p class="course-footer-text">
+                        <i class="fas fa-lightbulb"></i>
+                        所有教学材料均免费提供，旨在帮助学生更好地理解和掌握课程内容
+                    </p>
                 </div>
             </div>
         </div>
     </main>
     
     <script>
+        // 创建粒子背景
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // 随机大小
+                const size = Math.random() * 4 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // 随机位置
+                particle.style.left = `${Math.random() * 100}vw`;
+                
+                // 随机动画时长
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${delay}s`;
+                
+                // 随机颜色
+                const colors = [
+                    'rgba(100, 255, 218, 0.2)',
+                    'rgba(142, 68, 173, 0.2)',
+                    'rgba(255, 255, 255, 0.1)'
+                ];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
         // 等待DOM完全加载后执行
         document.addEventListener('DOMContentLoaded', function() {
             console.log("Teaching页面加载完成");
             
-            // 1. 为课程卡片添加悬停效果
+            // 创建粒子效果
+            createParticles();
+            
+            // 为课程卡片添加悬浮效果
             const courseCards = document.querySelectorAll('.course-card');
             
-            courseCards.forEach(card => {
-                // 只对可见的卡片添加效果
-                if(card.style.display !== 'none' && getComputedStyle(card).display !== 'none') {
-                    card.addEventListener('mouseenter', function() {
-                        this.style.zIndex = '10';
-                        // 添加更明显的悬停提示
-                        this.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.4)';
-                    });
-                    
-                    card.addEventListener('mouseleave', function() {
-                        this.style.zIndex = '1';
-                        this.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.3)';
-                    });
-                }
+            courseCards.forEach((card, index) => {
+                // 设置延迟显示动画
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+                
+                // 添加鼠标悬停效果
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.01)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
             });
             
-            // 2. 为下载按钮添加点击反馈
-            const downloadBtns = document.querySelectorAll('.download-btn, .material-card[href]');
-            
-            downloadBtns.forEach(btn => {
-                btn.addEventListener('click', function(e) {
+            // 为材料卡片添加点击效果
+            const materialCards = document.querySelectorAll('.material-card');
+            materialCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // 创建涟漪效果
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        border-radius: 50%;
+                        background: rgba(100, 255, 218, 0.3);
+                        transform: scale(0);
+                        animation: ripple-animation 0.6s linear;
+                        width: ${size}px;
+                        height: ${size}px;
+                        top: ${y}px;
+                        left: ${x}px;
+                        pointer-events: none;
+                    `;
+                    
+                    this.appendChild(ripple);
+                    
+                    // 移除涟漪元素
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                    
+                    // 如果链接有效，显示下载提示
                     if(this.getAttribute('href') && this.getAttribute('href') !== '#') {
-                        // 添加点击反馈动画
-                        this.style.transform = 'scale(0.95)';
                         setTimeout(() => {
-                            this.style.transform = '';
-                        }, 200);
-                        
-                        // 如果是真实链接，可以记录下载次数等
-                        console.log('下载文件:', this.getAttribute('href'));
-                        
-                        // 显示下载成功提示
-                        showDownloadToast('文件下载中...');
-                    } else {
-                        // 阻止默认行为（如果没有有效链接）
-                        e.preventDefault();
+                            showDownloadToast('文件开始下载...');
+                        }, 300);
                     }
                 });
             });
             
-            // 3. 为材料卡片添加点击效果
-            const materialCards = document.querySelectorAll('.material-card');
-            materialCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    this.style.background = 'rgba(100, 255, 218, 0.1)';
-                    setTimeout(() => {
-                        this.style.background = '';
-                    }, 300);
+            // 返回按钮增强效果
+            const backBtn = document.querySelector('.back-btn');
+            if(backBtn) {
+                backBtn.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('i');
+                    icon.style.transform = 'translateX(-5px)';
+                    icon.style.transition = 'transform 0.3s ease';
+                });
+                
+                backBtn.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('i');
+                    icon.style.transform = 'translateX(0)';
+                });
+            }
+            
+            // 导航栏交互效果
+            const navLinks = document.querySelectorAll('.top-navbar a');
+            navLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    if(!this.style.color.includes('64ffda')) {
+                        this.style.transform = 'translateY(-2px)';
+                        this.style.transition = 'transform 0.3s ease';
+                    }
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
                 });
             });
             
-            // 4. 返回按钮的增强效果
-            const backBtn = document.querySelector('.back-btn');
-            backBtn.addEventListener('mouseenter', function() {
-                this.querySelector('i').style.transform = 'translateX(-5px)';
+            // 页面滚动效果
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+                
+                // 背景元素视差效果
+                document.querySelector('.circle-1').style.transform = `translateY(${rate * 0.1}px)`;
+                document.querySelector('.circle-2').style.transform = `translateY(${rate * 0.2}px)`;
+                document.querySelector('.circle-3').style.transform = `translateY(${rate * 0.15}px)`;
             });
-            
-            backBtn.addEventListener('mouseleave', function() {
-                this.querySelector('i').style.transform = 'translateX(0)';
-            });
-            
-            // 5. 添加页面加载动画
-            const teachingContainer = document.querySelector('.teaching-container');
-            teachingContainer.style.opacity = '0';
-            teachingContainer.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                teachingContainer.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                teachingContainer.style.opacity = '1';
-                teachingContainer.style.transform = 'translateY(0)';
-            }, 100);
         });
         
         // 显示下载提示
@@ -509,30 +745,39 @@
             // 检查是否已存在提示
             let toast = document.querySelector('.download-toast');
             if (toast) {
-                document.body.removeChild(toast);
+                toast.remove();
             }
             
             // 创建提示元素
             toast = document.createElement('div');
             toast.className = 'download-toast';
-            toast.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+            toast.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <span>${message}</span>
+            `;
+            
+            // 样式
             toast.style.cssText = `
                 position: fixed;
                 bottom: 30px;
                 right: 30px;
-                background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+                background: linear-gradient(135deg, rgba(100, 255, 218, 0.9), rgba(142, 68, 173, 0.9));
                 color: var(--bg-primary);
-                padding: 15px 25px;
-                border-radius: 10px;
+                padding: 16px 28px;
+                border-radius: 12px;
                 font-weight: 600;
                 display: flex;
                 align-items: center;
-                gap: 10px;
-                z-index: 1000;
-                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-                transform: translateY(100px);
+                gap: 12px;
+                z-index: 10000;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                transform: translateY(100px) scale(0.9);
                 opacity: 0;
-                transition: transform 0.3s ease, opacity 0.3s ease;
+                transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                            opacity 0.4s ease;
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                max-width: 350px;
             `;
             
             // 添加到页面
@@ -540,26 +785,33 @@
             
             // 显示动画
             setTimeout(() => {
-                toast.style.transform = 'translateY(0)';
+                toast.style.transform = 'translateY(0) scale(1)';
                 toast.style.opacity = '1';
             }, 10);
             
-            // 3秒后自动消失
+            // 3.5秒后自动消失
             setTimeout(() => {
-                toast.style.transform = 'translateY(100px)';
+                toast.style.transform = 'translateY(100px) scale(0.9)';
                 toast.style.opacity = '0';
                 setTimeout(() => {
                     if (toast.parentNode) {
-                        document.body.removeChild(toast);
+                        toast.remove();
                     }
-                }, 300);
-            }, 3000);
+                }, 400);
+            }, 3500);
         }
         
-        // 为CSS变量添加JavaScript访问
-        document.documentElement.style.setProperty('--accent-primary', '#64ffda');
-        document.documentElement.style.setProperty('--accent-secondary', '#8e44ad');
-        document.documentElement.style.setProperty('--bg-primary', '#0a0a0f');
+        // 添加涟漪动画的CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple-animation {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
