@@ -143,7 +143,23 @@
         .blog-item-content {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 12px;
+        }
+        
+        /* 修改编号样式，去掉# */
+        .blog-item-number {
+            font-family: 'Sora', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            background: rgba(100, 255, 218, 0.1);
+            padding: 4px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            min-width: 45px;
+            text-align: center;
+            flex-shrink: 0;
+            letter-spacing: 0.5px;
         }
         
         .blog-item-icon {
@@ -239,11 +255,17 @@
             }
             
             .blog-item-content {
-                gap: 15px;
+                gap: 12px;
             }
             
             .blog-item {
                 padding: 16px;
+            }
+            
+            .blog-item-number {
+                font-size: 0.8rem;
+                padding: 3px 8px;
+                min-width: 40px;
             }
             
             .blog-item-icon {
@@ -262,6 +284,11 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 12px;
+            }
+            
+            .blog-item-number {
+                align-self: flex-start;
+                margin-top: 4px;
             }
             
             .blog-item-icon {
@@ -386,12 +413,34 @@
             { file: "道客巴巴文库下载方法.md", tags: ["工具", "资源"], icon: "fas fa-file-download", color: "#ff5722" }
         ];
 
+        // 为每篇文章添加固定编号（倒序）
+        // 数组最后一个元素（最新的文章）会获得编号01，第一个元素（最早的文章）获得最大编号
+        function addBlogNumbers() {
+            // 反转数组，让最新的文章（最后添加的）在前面
+            const reversedBlogs = [...blogs].reverse();
+            
+            // 为每篇文章添加固定编号，从01开始
+            const totalBlogs = reversedBlogs.length;
+            reversedBlogs.forEach((blog, index) => {
+                // 01, 02, 03, ..., 99
+                blog.number = (index + 1).toString().padStart(2, '0');
+                // 保存固定编号，用于搜索和筛选时保持编号不变
+                blog.fixedNumber = blog.number;
+            });
+            
+            return reversedBlogs;
+        }
+
+        // 获取带编号的博客列表
+        const numberedBlogs = addBlogNumbers();
+
         // 渲染博客列表
         function renderBlogs(filter = 'all', search = '') {
             const blogList = document.getElementById('blogList');
             const blogCount = document.getElementById('blogCount');
             
-            let filteredBlogs = blogs;
+            // 使用带编号的博客列表
+            let filteredBlogs = numberedBlogs;
             
             // 分类筛选
             if (filter !== 'all') {
@@ -421,6 +470,10 @@
                 return `
                     <a href="post.html?post=${encodeURIComponent(blog.file)}" class="blog-item">
                         <div class="blog-item-content">
+                            <!-- 使用固定编号，去掉#号 -->
+                            <div class="blog-item-number">
+                                ${blog.fixedNumber}
+                            </div>
                             <div class="blog-item-icon" style="background: ${blog.color};">
                                 <i class="${blog.icon}"></i>
                             </div>
@@ -453,6 +506,11 @@
 
         // 初始渲染
         renderBlogs();
+        
+        // 验证：显示排序信息
+        console.log("倒序排列验证:");
+        console.log("第一篇文章（编号01）:", numberedBlogs[0].file);
+        console.log("最后一篇文章（编号" + numberedBlogs[numberedBlogs.length-1].fixedNumber + "）:", numberedBlogs[numberedBlogs.length-1].file);
     </script>
 </body>
 </html>
