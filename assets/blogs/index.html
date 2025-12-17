@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-        <style>
+    <style>
         .back-btn, .back-home { display: none !important; }
-        </style>
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Chenyang Li</title>
@@ -13,121 +13,177 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../../css/style.css">
     <style>
-        .blog-list-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 120px 20px 60px;
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --text-primary: #e4e4e7;
+            --text-secondary: #a1a1aa;
+            --accent-primary: #64ffda;
+            --accent-secondary: #8e44ad;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.03);
         }
+        
+        body {
+            font-family: 'Sora', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .blog-list-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 20px 60px;
+        }
+        
         .blog-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
+        
         .blog-header h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 10px;
+            background: linear-gradient(90deg, #64ffda, #8e44ad);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
+        
         .blog-header p {
             color: var(--text-secondary);
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
+        
         .blog-search {
             max-width: 500px;
-            margin: 30px auto;
+            margin: 25px auto;
             position: relative;
         }
+        
         .blog-search input {
             width: 100%;
-            padding: 15px 50px 15px 20px;
+            padding: 12px 45px 12px 18px;
             border: 1px solid var(--border-color);
-            border-radius: 30px;
+            border-radius: 25px;
             background: var(--glass-bg);
             color: var(--text-primary);
-            font-size: 1rem;
+            font-size: 0.95rem;
             outline: none;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
+        
         .blog-search input:focus {
             border-color: var(--accent-primary);
             box-shadow: 0 0 20px rgba(100, 255, 218, 0.1);
         }
+        
         .blog-search i {
             position: absolute;
-            right: 20px;
+            right: 18px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-secondary);
         }
+        
         .blog-categories {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 40px;
+            gap: 8px;
+            margin-bottom: 30px;
         }
+        
         .category-btn {
-            padding: 8px 20px;
+            padding: 6px 16px;
             border: 1px solid var(--border-color);
-            border-radius: 20px;
+            border-radius: 18px;
             background: transparent;
             color: var(--text-secondary);
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
+        
         .category-btn:hover, .category-btn.active {
             background: var(--accent-primary);
             color: var(--bg-primary);
             border-color: var(--accent-primary);
         }
+        
+        /* 改为列表布局 - 一行一篇文章 */
         .blog-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
+        
         .blog-item {
             background: var(--glass-bg);
             border: 1px solid var(--border-color);
-            border-radius: 15px;
-            padding: 25px;
+            border-radius: 12px;
+            padding: 20px;
             transition: all 0.3s ease;
             cursor: pointer;
             text-decoration: none;
             display: block;
+            backdrop-filter: blur(10px);
         }
+        
         .blog-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             border-color: var(--accent-primary);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.05), rgba(142, 68, 173, 0.05));
         }
+        
+        /* 列表项内部布局 */
+        .blog-item-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
         .blog-item-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: white;
+            flex-shrink: 0;
         }
-        .blog-item h3 {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
+        
+        .blog-item-info {
+            flex-grow: 1;
+        }
+        
+        .blog-item-info h3 {
+            font-size: 1.05rem;
+            margin-bottom: 8px;
             color: var(--text-primary);
             line-height: 1.4;
+            font-weight: 500;
         }
+        
         .blog-item-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
         }
+        
         .blog-item-tags span {
-            font-size: 0.75rem;
-            padding: 4px 10px;
+            font-size: 0.7rem;
+            padding: 3px 8px;
             background: rgba(100, 255, 218, 0.1);
             color: var(--accent-primary);
-            border-radius: 10px;
+            border-radius: 8px;
         }
+        
         .back-home {
             position: fixed;
             top: 30px;
@@ -143,30 +199,73 @@
             gap: 10px;
             transition: all 0.3s ease;
             z-index: 100;
+            backdrop-filter: blur(10px);
         }
+        
         .back-home:hover {
             background: var(--accent-primary);
             color: var(--bg-primary);
+            transform: translateX(-5px);
+            border-color: var(--accent-primary);
         }
+        
         .blog-count {
             text-align: center;
             color: var(--text-secondary);
             margin-bottom: 20px;
+            font-size: 0.9rem;
         }
+        
         .no-results {
             text-align: center;
-            padding: 60px 20px;
+            padding: 40px 20px;
             color: var(--text-secondary);
         }
+        
         @media (max-width: 768px) {
-            .blog-list {
-                grid-template-columns: 1fr;
+            .blog-list-container {
+                padding: 80px 15px 40px;
             }
+            
+            .blog-header h1 {
+                font-size: 1.8rem;
+            }
+            
             .back-home {
                 top: 15px;
                 left: 15px;
                 padding: 10px 15px;
                 font-size: 0.9rem;
+            }
+            
+            .blog-item-content {
+                gap: 15px;
+            }
+            
+            .blog-item {
+                padding: 16px;
+            }
+            
+            .blog-item-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+            
+            .blog-item-info h3 {
+                font-size: 0.95rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .blog-item-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            
+            .blog-item-icon {
+                align-self: flex-start;
             }
         }
     </style>
@@ -313,7 +412,7 @@
             blogCount.textContent = `共 ${filteredBlogs.length} 篇文章`;
             
             if (filteredBlogs.length === 0) {
-                blogList.innerHTML = '<div class="no-results"><i class="fas fa-search" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.5;"></i><p>没有找到匹配的文章</p></div>';
+                blogList.innerHTML = '<div class="no-results"><i class="fas fa-search" style="font-size: 2.5rem; margin-bottom: 15px; opacity: 0.5;"></i><p>没有找到匹配的文章</p></div>';
                 return;
             }
             
@@ -321,12 +420,16 @@
                 const title = blog.file.replace('.md', '').replace(/_\d{4}-\d{2}-\d{2}/, '');
                 return `
                     <a href="post.html?post=${encodeURIComponent(blog.file)}" class="blog-item">
-                        <div class="blog-item-icon" style="background: ${blog.color};">
-                            <i class="${blog.icon}"></i>
-                        </div>
-                        <h3>${title}</h3>
-                        <div class="blog-item-tags">
-                            ${blog.tags.map(tag => `<span>${tag}</span>`).join('')}
+                        <div class="blog-item-content">
+                            <div class="blog-item-icon" style="background: ${blog.color};">
+                                <i class="${blog.icon}"></i>
+                            </div>
+                            <div class="blog-item-info">
+                                <h3>${title}</h3>
+                                <div class="blog-item-tags">
+                                    ${blog.tags.map(tag => `<span>${tag}</span>`).join('')}
+                                </div>
+                            </div>
                         </div>
                     </a>
                 `;
