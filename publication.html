@@ -428,11 +428,11 @@
         <a href="assets/photography-blog/index.html" style="color:inherit;text-decoration:none;margin:0 1.2rem;">Photography</a>
     </nav>
     
-        <header class="main-header">
+        <!-- <header class="main-header">
             <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Open Menu">
                 <i class="fas fa-bars"></i>
             </button>
-        </header>
+        </header> -->
     <aside id="sidebar" class="sidebar">
         <button id="sidebar-close" class="sidebar-close-btn" aria-label="Close Menu">
             <i class="fas fa-times"></i>
@@ -731,71 +731,20 @@
 
     <script src="js/scripts.js"></script>
     <script>
-        // 侧边栏交互
+        // 侧边栏交互（已移除移动端三条杠按钮）
         document.addEventListener('DOMContentLoaded', function() {
             var sidebar = document.getElementById('sidebar');
             var closeBtn = document.getElementById('sidebar-close');
-            
-            // 添加一个简单的菜单按钮
-            var menuBtn = document.createElement('button');
-            menuBtn.id = 'mobile-menu-btn';
-            menuBtn.className = 'mobile-menu-btn';
-            menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            menuBtn.setAttribute('aria-label', 'Open Menu');
-            
-            // 添加样式
-            var style = document.createElement('style');
-            style.textContent = `
-                .mobile-menu-btn {
-                    position: fixed;
-                    top: 20px;
-                    left: 20px;
-                    z-index: 999;
-                    background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
-                    color: white;
-                    border: none;
-                    border-radius: 50%;
-                    width: 50px;
-                    height: 50px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    cursor: pointer;
-                    box-shadow: 0 4px 15px rgba(142, 68, 173, 0.3);
-                    transition: all 0.3s ease;
-                }
-                
-                .mobile-menu-btn:hover {
-                    transform: scale(1.1);
-                    box-shadow: 0 6px 20px rgba(142, 68, 173, 0.4);
-                }
-                
-                @media (min-width: 1024px) {
-                    .mobile-menu-btn {
-                        display: none;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-            document.body.appendChild(menuBtn);
-            
-            // 打开侧边栏
-            menuBtn.addEventListener('click', function() {
-                sidebar.classList.add('open');
-            });
-            
             // 关闭侧边栏
             closeBtn.addEventListener('click', function() {
                 sidebar.classList.remove('open');
             });
-            
             // 点击侧边栏外部关闭
             sidebar.addEventListener('click', function(e) {
                 if (e.target === sidebar) {
                     sidebar.classList.remove('open');
                 }
             });
-            
             // 点击导航项后自动关闭
             sidebar.querySelectorAll('a').forEach(function(link) {
                 link.addEventListener('click', function() {
