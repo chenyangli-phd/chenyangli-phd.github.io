@@ -413,22 +413,24 @@
             { file: "道客巴巴文库下载方法.md", tags: ["工具", "资源"], icon: "fas fa-file-download", color: "#ff5722" }
         ];
 
-        // 为每篇文章添加固定编号（倒序）
-        // 数组最后一个元素（最新的文章）会获得编号01，第一个元素（最早的文章）获得最大编号
+        // 为每篇文章添加固定编号（顺序编号）
         function addBlogNumbers() {
-            // 反转数组，让最新的文章（最后添加的）在前面
-            const reversedBlogs = [...blogs].reverse();
+            // 保持原数组顺序不变（最新的文章在最后）
+            // 为每篇文章添加固定编号，从73开始递减到01
+            const totalBlogs = blogs.length;
+            const numberedBlogs = [...blogs];
             
-            // 为每篇文章添加固定编号，从01开始
-            const totalBlogs = reversedBlogs.length;
-            reversedBlogs.forEach((blog, index) => {
-                // 01, 02, 03, ..., 99
-                blog.number = (index + 1).toString().padStart(2, '0');
-                // 保存固定编号，用于搜索和筛选时保持编号不变
+            // 为每篇文章添加固定编号
+            // 最新的文章（最后一条）获得最大的编号73，最老的文章（第一条）获得最小的编号01
+            numberedBlogs.forEach((blog, index) => {
+                // 计算编号：最新的文章（index=73）-> 73，最老的文章（index=0）-> 1
+                blog.number = (totalBlogs - index).toString().padStart(2, '0');
+                // 保存固定编号
                 blog.fixedNumber = blog.number;
             });
             
-            return reversedBlogs;
+            // 为了显示顺序，需要反转数组，让最新的文章（编号73）在最前面
+            return numberedBlogs.reverse();
         }
 
         // 获取带编号的博客列表
@@ -508,9 +510,10 @@
         renderBlogs();
         
         // 验证：显示排序信息
-        console.log("倒序排列验证:");
-        console.log("第一篇文章（编号01）:", numberedBlogs[0].file);
-        console.log("最后一篇文章（编号" + numberedBlogs[numberedBlogs.length-1].fixedNumber + "）:", numberedBlogs[numberedBlogs.length-1].file);
+        console.log("新版排序验证:");
+        console.log("第一篇文章（最新，编号73）:", numberedBlogs[0].file, "编号:", numberedBlogs[0].fixedNumber);
+        console.log("最后一篇文章（最老，编号01）:", numberedBlogs[numberedBlogs.length-1].file, "编号:", numberedBlogs[numberedBlogs.length-1].fixedNumber);
+        console.log("总文章数:", numberedBlogs.length);
     </script>
 </body>
 </html>
