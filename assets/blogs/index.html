@@ -388,7 +388,8 @@
         ];
 
         // 反转数组，让最新的文章在顶部
-        const sortedBlogs = [...blogs].reverse();
+        // 保持原始顺序，不反转
+        const sortedBlogs = blogs;
 
         // 渲染博客列表
         function renderBlogs(filter = 'all', search = '') {
