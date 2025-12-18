@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <style>
-        .back-btn, .back-home { display: none !important; }
-    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Chenyang Li</title>
+
+    <!-- 字体 & 图标 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../../css/style.css">
+
     <style>
         :root {
             --bg-primary: #0a0a0f;
@@ -20,66 +19,77 @@
             --text-secondary: #a1a1aa;
             --accent-primary: #64ffda;
             --accent-secondary: #8e44ad;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --glass-bg: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255,255,255,0.1);
+            --glass-bg: rgba(255,255,255,0.03);
         }
-        
+
         body {
+            margin: 0;
             font-family: 'Sora', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
         }
-        
+
+        /* 顶部导航 */
+        .top-navbar {
+            width: 100%;
+            padding: 0.9rem 0;
+            text-align: center;
+            font-size: 1.05rem;
+        }
+
+        .top-navbar a {
+            color: inherit;
+            text-decoration: none;
+            margin: 0 1.2rem;
+        }
+
+        .top-navbar a.active {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* 主容器 */
         .blog-list-container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 100px 20px 60px;
+            padding: 80px 20px 60px;
         }
-        
+
         .blog-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
         }
-        
+
         .blog-header h1 {
             font-size: 2.2rem;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, #64ffda, #8e44ad);
+            background: linear-gradient(90deg,#64ffda,#8e44ad);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-        
+
         .blog-header p {
             color: var(--text-secondary);
-            font-size: 1rem;
         }
-        
+
+        /* 搜索 */
         .blog-search {
             max-width: 500px;
-            margin: 25px auto;
+            margin: 20px auto;
             position: relative;
         }
-        
+
         .blog-search input {
             width: 100%;
             padding: 12px 45px 12px 18px;
-            border: 1px solid var(--border-color);
             border-radius: 25px;
+            border: 1px solid var(--border-color);
             background: var(--glass-bg);
             color: var(--text-primary);
-            font-size: 0.95rem;
             outline: none;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
         }
-        
-        .blog-search input:focus {
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 20px rgba(100, 255, 218, 0.1);
-        }
-        
+
         .blog-search i {
             position: absolute;
             right: 18px;
@@ -87,230 +97,142 @@
             transform: translateY(-50%);
             color: var(--text-secondary);
         }
-        
+
+        /* 分类 */
         .blog-categories {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
-        
+
         .category-btn {
             padding: 6px 16px;
-            border: 1px solid var(--border-color);
             border-radius: 18px;
+            border: 1px solid var(--border-color);
             background: transparent;
             color: var(--text-secondary);
             cursor: pointer;
-            transition: all 0.3s ease;
             font-size: 0.85rem;
         }
-        
-        .category-btn:hover, .category-btn.active {
+
+        .category-btn.active,
+        .category-btn:hover {
             background: var(--accent-primary);
-            color: var(--bg-primary);
+            color: #000;
             border-color: var(--accent-primary);
         }
-        
-        /* 改为列表布局 - 一行一篇文章 */
+
+        /* 博客列表 */
         .blog-list {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 14px;
         }
-        
+
         .blog-item {
+            text-decoration: none;
+            color: inherit;
             background: var(--glass-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 20px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-decoration: none;
-            display: block;
-            backdrop-filter: blur(10px);
+            padding: 18px;
+            transition: 0.3s;
         }
-        
+
         .blog-item:hover {
             transform: translateY(-3px);
             border-color: var(--accent-primary);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, rgba(100, 255, 218, 0.05), rgba(142, 68, 173, 0.05));
         }
-        
-        /* 列表项内部布局 */
+
         .blog-item-content {
             display: flex;
+            gap: 14px;
             align-items: center;
-            gap: 12px;
         }
-        
+
+        /* 编号 + 图标 */
         .blog-item-icon {
-            width: 45px;
-            height: 45px;
+            width: 46px;
+            height: 46px;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
-            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #000;
             flex-shrink: 0;
         }
-        
-        .blog-item-info {
-            flex-grow: 1;
-        }
-        
+
         .blog-item-info h3 {
-            font-size: 1.05rem;
-            margin-bottom: 8px;
-            color: var(--text-primary);
-            line-height: 1.4;
+            margin: 0 0 6px;
+            font-size: 1rem;
             font-weight: 500;
         }
-        
-        .blog-item-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-        
+
         .blog-item-tags span {
             font-size: 0.7rem;
             padding: 3px 8px;
-            background: rgba(100, 255, 218, 0.1);
+            background: rgba(100,255,218,0.12);
             color: var(--accent-primary);
-            border-radius: 8px;
+            border-radius: 6px;
+            margin-right: 6px;
         }
-        
-        .back-home {
-            position: fixed;
-            top: 30px;
-            left: 30px;
-            padding: 12px 25px;
-            background: var(--glass-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 30px;
-            color: var(--text-primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-        }
-        
-        .back-home:hover {
-            background: var(--accent-primary);
-            color: var(--bg-primary);
-            transform: translateX(-5px);
-            border-color: var(--accent-primary);
-        }
-        
+
         .blog-count {
             text-align: center;
             color: var(--text-secondary);
-            margin-bottom: 20px;
             font-size: 0.9rem;
+            margin-bottom: 12px;
         }
-        
+
         .no-results {
             text-align: center;
-            padding: 40px 20px;
+            padding: 40px;
             color: var(--text-secondary);
-        }
-        
-        @media (max-width: 768px) {
-            .blog-list-container {
-                padding: 80px 15px 40px;
-            }
-            
-            .blog-header h1 {
-                font-size: 1.8rem;
-            }
-            
-            .back-home {
-                top: 15px;
-                left: 15px;
-                padding: 10px 15px;
-                font-size: 0.9rem;
-            }
-            
-            .blog-item-content {
-                gap: 12px;
-            }
-            
-            .blog-item {
-                padding: 16px;
-            }
-            
-            .blog-item-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 1.1rem;
-            }
-            
-            .blog-item-info h3 {
-                font-size: 0.95rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .blog-item-content {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
-            }
-            
-            .blog-item-icon {
-                align-self: flex-start;
-            }
         }
     </style>
 </head>
+
 <body>
-    <nav class="top-navbar" style="width:100%;padding:0.8rem 0 0.2rem 0;text-align:center;font-size:1.08rem;background:none !important;box-shadow:none !important;border:none !important;z-index:1001;">
-        <a href="../../index.html" style="color:inherit;text-decoration:none;margin:0 1.2rem;">Home</a>
-        <a href="../../publication.html" style="color:inherit;text-decoration:none;margin:0 1.2rem;">Publication</a>
-        <a href="../../teaching.html" style="color:inherit;text-decoration:none;margin:0 1.2rem;">Teaching</a>
-        <a href="index.html" style="color:#64ffda;font-weight:600;text-decoration:none;margin:0 1.2rem;">Blog</a>
-        <a href="../../video.html" style="color:inherit;text-decoration:none;margin:0 1.2rem;">Video</a>
-        <a href="../photography-blog/index.html" style="color:inherit;text-decoration:none;margin:0 1.2rem;">Photography</a>
-    </nav>
 
-    <a href="../../index.html" class="back-home">
-        <i class="fas fa-arrow-left"></i> 返回首页
-    </a>
+<nav class="top-navbar">
+    <a href="../../index.html">Home</a>
+    <a href="../../publication.html">Publication</a>
+    <a href="../../teaching.html">Teaching</a>
+    <a href="#" class="active">Blog</a>
+    <a href="../../video.html">Video</a>
+    <a href="../photography-blog/index.html">Photography</a>
+</nav>
 
-    <div class="blog-list-container">
-        <div class="blog-header">
-            <h1>📚 Blog</h1>
-            <p>分享技术、工具、生活与思考</p>
-        </div>
+<div class="blog-list-container">
 
-        <div class="blog-search">
-            <input type="text" id="searchInput" placeholder="搜索文章...">
-            <i class="fas fa-search"></i>
-        </div>
-
-        <div class="blog-categories" id="categories">
-            <button class="category-btn active" data-category="all">全部</button>
-            <button class="category-btn" data-category="工具">工具</button>
-            <button class="category-btn" data-category="教程">教程</button>
-            <button class="category-btn" data-category="效率">效率</button>
-            <button class="category-btn" data-category="科研">科研</button>
-            <button class="category-btn" data-category="生活">生活</button>
-        </div>
-
-        <div class="blog-count" id="blogCount"></div>
-        <div class="blog-list" id="blogList"></div>
+    <div class="blog-header">
+        <h1>📚 Blog</h1>
+        <p>分享技术、科研、工具与思考</p>
     </div>
 
-    <script>
-        // 博客文章数据 - 根据文件名自动生成
-        const blogs = [
+    <div class="blog-search">
+        <input id="searchInput" placeholder="搜索文章...">
+        <i class="fas fa-search"></i>
+    </div>
+
+    <div class="blog-categories" id="categories">
+        <button class="category-btn active" data-category="all">全部</button>
+        <button class="category-btn" data-category="工具">工具</button>
+        <button class="category-btn" data-category="教程">教程</button>
+        <button class="category-btn" data-category="科研">科研</button>
+        <button class="category-btn" data-category="生活">生活</button>
+    </div>
+
+    <div class="blog-count" id="blogCount"></div>
+    <div class="blog-list" id="blogList"></div>
+</div>
+
+<script>
+ const blogs = [
             { file: "公众号内容更新的一个转折点｜附内容合集.md", tags: ["生活", "感悟"], icon: "fas fa-calendar-check", color: "#f093fb" },
             { file: "Ai配音专家 免费配置教程（适用于mac和windows系统）.md", tags: ["工具", "教程"], icon: "fas fa-microphone", color: "#667eea" },
             { file: "CAJ转PDF的一种快捷方法_2025-11-29.md", tags: ["工具", "科研"], icon: "fas fa-file-pdf", color: "#e74c3c" },
@@ -387,78 +309,66 @@
             { file: "2022年计划表｜Notion治愈模版分享.md", tags: ["Notion", "效率"], icon: "fas fa-calendar-check", color: "#f093fb" }
         ];
 
-        // 反转数组，让最新的文章在顶部
-        // 保持原始顺序，不反转
-        const sortedBlogs = blogs;
+function renderBlogs(filter="all", search="") {
+    let list = blogs;
 
-        // 渲染博客列表
-        function renderBlogs(filter = 'all', search = '') {
-            const blogList = document.getElementById('blogList');
-            const blogCount = document.getElementById('blogCount');
-            
-            // 使用已排序的博客列表（最新文章在顶部）
-            let filteredBlogs = sortedBlogs;
-            
-            // 分类筛选
-            if (filter !== 'all') {
-                filteredBlogs = filteredBlogs.filter(blog => 
-                    blog.tags.some(tag => tag.includes(filter))
-                );
-            }
-            
-            // 搜索筛选
-            if (search) {
-                const searchLower = search.toLowerCase();
-                filteredBlogs = filteredBlogs.filter(blog => 
-                    blog.file.toLowerCase().includes(searchLower) ||
-                    blog.tags.some(tag => tag.toLowerCase().includes(searchLower))
-                );
-            }
-            
-            blogCount.textContent = `共 ${filteredBlogs.length} 篇文章`;
-            
-            if (filteredBlogs.length === 0) {
-                blogList.innerHTML = '<div class="no-results"><i class="fas fa-search" style="font-size: 2.5rem; margin-bottom: 15px; opacity: 0.5;"></i><p>没有找到匹配的文章</p></div>';
-                return;
-            }
-            
-            blogList.innerHTML = filteredBlogs.map(blog => {
-                const title = blog.file.replace('.md', '').replace(/_\d{4}-\d{2}-\d{2}/, '');
-                return `
-                    <a href="post.html?post=${encodeURIComponent(blog.file)}" class="blog-item">
-                        <div class="blog-item-content">
-                            <div class="blog-item-icon" style="background: ${blog.color};">
-                                <i class="${blog.icon}"></i>
-                            </div>
-                            <div class="blog-item-info">
-                                <h3>${title}</h3>
-                                <div class="blog-item-tags">
-                                    ${blog.tags.map(tag => `<span>${tag}</span>`).join('')}
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                `;
-            }).join('');
-        }
+    if (filter !== "all") {
+        list = list.filter(b => b.tags.some(t => t.includes(filter)));
+    }
 
-        // 分类按钮点击
-        document.getElementById('categories').addEventListener('click', (e) => {
-            if (e.target.classList.contains('category-btn')) {
-                document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-                e.target.classList.add('active');
-                renderBlogs(e.target.dataset.category, document.getElementById('searchInput').value);
-            }
-        });
+    if (search) {
+        const s = search.toLowerCase();
+        list = list.filter(b =>
+            b.file.toLowerCase().includes(s) ||
+            b.tags.some(t => t.toLowerCase().includes(s))
+        );
+    }
 
-        // 搜索
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            const activeCategory = document.querySelector('.category-btn.active').dataset.category;
-            renderBlogs(activeCategory, e.target.value);
-        });
+    const blogList = document.getElementById("blogList");
+    const blogCount = document.getElementById("blogCount");
 
-        // 初始渲染
-        renderBlogs();
-    </script>
+    blogCount.textContent = `共 ${list.length} 篇文章`;
+
+    if (list.length === 0) {
+        blogList.innerHTML = `<div class="no-results">没有找到匹配的文章</div>`;
+        return;
+    }
+
+    blogList.innerHTML = list.map((blog, index) => {
+        const number = list.length - index;
+        const title = blog.file.replace(".md","");
+
+        return `
+        <a class="blog-item" href="post.html?post=${encodeURIComponent(blog.file)}">
+            <div class="blog-item-content">
+                <div class="blog-item-icon" style="background:${blog.color}">
+                    ${number}
+                </div>
+                <div class="blog-item-info">
+                    <h3>${title}</h3>
+                    <div class="blog-item-tags">
+                        ${blog.tags.map(t=>`<span>${t}</span>`).join("")}
+                    </div>
+                </div>
+            </div>
+        </a>`;
+    }).join("");
+}
+
+document.getElementById("categories").onclick = e => {
+    if (!e.target.classList.contains("category-btn")) return;
+    document.querySelectorAll(".category-btn").forEach(b=>b.classList.remove("active"));
+    e.target.classList.add("active");
+    renderBlogs(e.target.dataset.category, searchInput.value);
+};
+
+searchInput.oninput = e => {
+    const cat = document.querySelector(".category-btn.active").dataset.category;
+    renderBlogs(cat, e.target.value);
+};
+
+renderBlogs();
+</script>
+
 </body>
 </html>
