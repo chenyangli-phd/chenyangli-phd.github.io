@@ -2,100 +2,105 @@
 
 2025年10月1日，探访苏格兰著名的海滨小镇圣安德鲁斯，这里是高尔夫运动的发源地。
 
----
+![LEE03012](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03012.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03012.JPG)
+![76C81D59-495E-4415-B3DA-F5808CCD84A3](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/76C81D59-495E-4415-B3DA-F5808CCD84A3.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03016.JPG)
+![LEE03016](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03016.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03020.JPG)
+![LEE03020](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03020.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03025.JPG)
+![LEE03025](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03025.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03026.JPG)
+![LEE03026](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03026.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03028.JPG)
+![LEE03028](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03028.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03029.JPG)
+![LEE03029](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03029.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03032.JPG)
+![LEE03032](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03032.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03036.JPG)
+![LEE03036](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03036.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03037.JPG)
+![LEE03037](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03037.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03038.JPG)
+![LEE03038](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03038.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03053.JPG)
+![LEE03053](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03053.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03061.JPG)
+![LEE03061](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03061.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03067.JPG)
+![LEE03067](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03067.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03076.JPG)
+![LEE03076](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03076.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03080.JPG)
+![LEE03080](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03080.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03081.JPG)
+![LEE03081](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03081.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03084.JPG)
+![LEE03084](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03084.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03086.JPG)
+![LEE03086](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03086.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03095.JPG)
+![LEE03095](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03095.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03100.JPG)
+![LEE03100](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03100.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03103.JPG)
+![LEE03103](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03103.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03104.JPG)
+![LEE03104](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03104.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03106.JPG)
+![LEE03106](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03106.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03107.JPG)
+![LEE03107](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03107.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03113.JPG)
+![LEE03113](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03113.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03118.JPG)
+![LEE03118](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03118.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03121.JPG)
+![LEE03121](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03121.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03125.JPG)
+![LEE03125](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03125.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03126.JPG)
+![LEE03126](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03126.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03128.JPG)
+![LEE03128](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03128.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03129.JPG)
+![LEE03129](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03129.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03135.JPG)
+![LEE03135](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03135.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03139.JPG)
+![LEE03139](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03139.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03142.JPG)
+![LEE03142](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03142.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03146.JPG)
+![LEE03146](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03146.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03147.JPG)
+![LEE03147](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03147.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03149.JPG)
+![LEE03149](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03149.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03150.JPG)
+![LEE03150](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03150.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03151.JPG)
+![LEE03151](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03151.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03152.JPG)
+![LEE03152](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03152.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03155.JPG)
+![LEE03155](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03155.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03156.JPG)
+![LEE03156](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03156.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03161.JPG)
+![LEE03161](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03161.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03166.JPG)
+![LEE03166](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03166.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03168.JPG)
+![LEE03168](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03168.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03173.JPG)
+![LEE03173](/Users/lee/Documents/chenyangli-phd.github.io/assets/photography/20251001%20%E5%9C%A3%E5%AE%89%E5%BE%B7%E9%B2%81%E6%96%AF%20St%20Andrews/LEE03173.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03175.JPG)
+![LEE03175](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03175.jpg)
+
+
+
+
+
