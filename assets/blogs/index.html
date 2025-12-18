@@ -146,22 +146,6 @@
             gap: 12px;
         }
         
-        /* 修改编号样式，去掉# */
-        .blog-item-number {
-            font-family: 'Sora', monospace;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--accent-primary);
-            background: rgba(100, 255, 218, 0.1);
-            padding: 4px 10px;
-            border-radius: 8px;
-            border: 1px solid rgba(100, 255, 218, 0.3);
-            min-width: 45px;
-            text-align: center;
-            flex-shrink: 0;
-            letter-spacing: 0.5px;
-        }
-        
         .blog-item-icon {
             width: 45px;
             height: 45px;
@@ -262,12 +246,6 @@
                 padding: 16px;
             }
             
-            .blog-item-number {
-                font-size: 0.8rem;
-                padding: 3px 8px;
-                min-width: 40px;
-            }
-            
             .blog-item-icon {
                 width: 40px;
                 height: 40px;
@@ -284,11 +262,6 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 12px;
-            }
-            
-            .blog-item-number {
-                align-self: flex-start;
-                margin-top: 4px;
             }
             
             .blog-item-icon {
@@ -414,36 +387,16 @@
             { file: "道客巴巴文库下载方法.md", tags: ["工具", "资源"], icon: "fas fa-file-download", color: "#ff5722" }
         ];
 
-        // 为每篇文章添加固定编号（最新文章获得最大的编号）
-        function addBlogNumbers() {
-            const totalBlogs = blogs.length;
-            const numberedBlogs = [...blogs];
-            
-            // 为每篇文章添加固定编号
-            // 最新的文章（最后一条）获得最大的编号（totalBlogs），最老的文章（第一条）获得编号01
-            numberedBlogs.forEach((blog, index) => {
-                // 计算编号：最新的文章（在数组最后）-> 最大编号，最老的文章（在数组开头）-> 01
-                const number = (totalBlogs - index).toString().padStart(2, '0');
-                blog.fixedNumber = number;
-                // 保存原始索引用于验证
-                blog.originalIndex = index;
-            });
-            
-            // 现在数组中的顺序是：最老的文章（编号01）在开头，最新的文章（编号totalBlogs）在最后
-            // 我们需要反转数组，让最新的文章在顶部
-            return numberedBlogs.reverse();
-        }
-
-        // 获取带编号的博客列表（已经反转，最新文章在顶部）
-        const numberedBlogs = addBlogNumbers();
+        // 反转数组，让最新的文章在顶部
+        const sortedBlogs = [...blogs].reverse();
 
         // 渲染博客列表
         function renderBlogs(filter = 'all', search = '') {
             const blogList = document.getElementById('blogList');
             const blogCount = document.getElementById('blogCount');
             
-            // 使用带编号的博客列表（已反转，最新文章在顶部）
-            let filteredBlogs = numberedBlogs;
+            // 使用已排序的博客列表（最新文章在顶部）
+            let filteredBlogs = sortedBlogs;
             
             // 分类筛选
             if (filter !== 'all') {
@@ -461,10 +414,6 @@
                 );
             }
             
-            // 在筛选后保持编号从大到小的顺序
-            // 由于numberedBlogs已经是最新在顶部，筛选后我们仍然保持这个顺序
-            // 不需要再次排序
-            
             blogCount.textContent = `共 ${filteredBlogs.length} 篇文章`;
             
             if (filteredBlogs.length === 0) {
@@ -477,10 +426,6 @@
                 return `
                     <a href="post.html?post=${encodeURIComponent(blog.file)}" class="blog-item">
                         <div class="blog-item-content">
-                            <!-- 使用固定编号，去掉#号 -->
-                            <div class="blog-item-number">
-                                ${blog.fixedNumber}
-                            </div>
                             <div class="blog-item-icon" style="background: ${blog.color};">
                                 <i class="${blog.icon}"></i>
                             </div>
@@ -513,19 +458,6 @@
 
         // 初始渲染
         renderBlogs();
-        
-        // 验证：显示排序信息
-        console.log("排序验证:");
-        console.log("第一篇文章（最新，在顶部）:", numberedBlogs[0].file, "编号:", numberedBlogs[0].fixedNumber, "原始索引:", numberedBlogs[0].originalIndex);
-        console.log("最后一篇文章（最老，在底部）:", numberedBlogs[numberedBlogs.length-1].file, "编号:", numberedBlogs[numberedBlogs.length-1].fixedNumber, "原始索引:", numberedBlogs[numberedBlogs.length-1].originalIndex);
-        console.log("总文章数:", numberedBlogs.length);
-        
-        // 验证编号是否正确
-        console.log("编号范围验证:");
-        const numbers = numberedBlogs.map(b => parseInt(b.fixedNumber));
-        console.log("最大编号:", Math.max(...numbers));
-        console.log("最小编号:", Math.min(...numbers));
-        console.log("编号是否从大到小:", numbers.every((n, i, arr) => i === 0 || n <= arr[i-1]));
     </script>
 </body>
 </html>
