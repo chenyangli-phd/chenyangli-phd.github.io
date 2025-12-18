@@ -324,18 +324,27 @@ function renderBlogs(filter="all", search="") {
         );
     }
 
+    // 置顶指定文章
+    const topFile = "公众号内容更新的一个转折点｜附内容合集.md";
+    const topIndex = list.findIndex(b => b.file === topFile);
+    let displayList = list;
+    if (topIndex > 0) {
+        // 如果在列表中且不是第一个，则置顶
+        displayList = [list[topIndex], ...list.slice(0, topIndex), ...list.slice(topIndex + 1)];
+    }
+
     const blogList = document.getElementById("blogList");
     const blogCount = document.getElementById("blogCount");
 
-    blogCount.textContent = `共 ${list.length} 篇文章`;
+    blogCount.textContent = `共 ${displayList.length} 篇文章`;
 
-    if (list.length === 0) {
+    if (displayList.length === 0) {
         blogList.innerHTML = `<div class="no-results">没有找到匹配的文章</div>`;
         return;
     }
 
-    blogList.innerHTML = list.map((blog, index) => {
-        const number = list.length - index;
+    blogList.innerHTML = displayList.map((blog, index) => {
+        const number = displayList.length - index;
         const title = blog.file.replace(".md","");
 
         return `
