@@ -338,6 +338,7 @@
     <script>
         // 博客文章数据 - 根据文件名自动生成
         const blogs = [
+            { file: "公众号内容合集｜不喝水就犯困.md", tags: ["生活", "感悟"], icon: "fas fa-calendar-check", color: "#f093fb" },
             { file: "2022年计划表｜Notion治愈模版分享.md", tags: ["Notion", "效率"], icon: "fas fa-calendar-check", color: "#f093fb" },
             { file: "Ai配音专家 免费配置教程（适用于mac和windows系统）.md", tags: ["工具", "教程"], icon: "fas fa-microphone", color: "#667eea" },
             { file: "CAJ转PDF的一种快捷方法_2025-11-29.md", tags: ["工具", "科研"], icon: "fas fa-file-pdf", color: "#e74c3c" },
@@ -413,27 +414,27 @@
             { file: "道客巴巴文库下载方法.md", tags: ["工具", "资源"], icon: "fas fa-file-download", color: "#ff5722" }
         ];
 
-        // 为每篇文章添加固定编号（顺序编号）
+        // 为每篇文章添加固定编号（最新文章获得最大的编号）
         function addBlogNumbers() {
-            // 保持原数组顺序不变（最新的文章在最后）
-            // 为每篇文章添加固定编号，从73开始递减到01
             const totalBlogs = blogs.length;
             const numberedBlogs = [...blogs];
             
             // 为每篇文章添加固定编号
-            // 最新的文章（最后一条）获得最大的编号73，最老的文章（第一条）获得最小的编号01
+            // 最新的文章（最后一条）获得最大的编号（totalBlogs），最老的文章（第一条）获得编号01
             numberedBlogs.forEach((blog, index) => {
-                // 计算编号：最新的文章（index=73）-> 73，最老的文章（index=0）-> 1
-                blog.number = (totalBlogs - index).toString().padStart(2, '0');
-                // 保存固定编号
-                blog.fixedNumber = blog.number;
+                // 计算编号：最新的文章（在数组最后）-> 最大编号，最老的文章（在数组开头）-> 01
+                const number = (totalBlogs - index).toString().padStart(2, '0');
+                blog.fixedNumber = number;
+                // 保存原始索引用于验证
+                blog.originalIndex = index;
             });
             
-            // 为了显示顺序，需要反转数组，让最新的文章（编号73）在最前面
+            // 现在数组中的顺序是：最老的文章（编号01）在开头，最新的文章（编号totalBlogs）在最后
+            // 我们需要反转数组，让最新的文章在顶部
             return numberedBlogs.reverse();
         }
 
-        // 获取带编号的博客列表
+        // 获取带编号的博客列表（已经反转，最新文章在顶部）
         const numberedBlogs = addBlogNumbers();
 
         // 渲染博客列表
@@ -441,7 +442,7 @@
             const blogList = document.getElementById('blogList');
             const blogCount = document.getElementById('blogCount');
             
-            // 使用带编号的博客列表
+            // 使用带编号的博客列表（已反转，最新文章在顶部）
             let filteredBlogs = numberedBlogs;
             
             // 分类筛选
@@ -459,6 +460,10 @@
                     blog.tags.some(tag => tag.toLowerCase().includes(searchLower))
                 );
             }
+            
+            // 在筛选后保持编号从大到小的顺序
+            // 由于numberedBlogs已经是最新在顶部，筛选后我们仍然保持这个顺序
+            // 不需要再次排序
             
             blogCount.textContent = `共 ${filteredBlogs.length} 篇文章`;
             
@@ -510,10 +515,17 @@
         renderBlogs();
         
         // 验证：显示排序信息
-        console.log("新版排序验证:");
-        console.log("第一篇文章（最新，编号73）:", numberedBlogs[0].file, "编号:", numberedBlogs[0].fixedNumber);
-        console.log("最后一篇文章（最老，编号01）:", numberedBlogs[numberedBlogs.length-1].file, "编号:", numberedBlogs[numberedBlogs.length-1].fixedNumber);
+        console.log("排序验证:");
+        console.log("第一篇文章（最新，在顶部）:", numberedBlogs[0].file, "编号:", numberedBlogs[0].fixedNumber, "原始索引:", numberedBlogs[0].originalIndex);
+        console.log("最后一篇文章（最老，在底部）:", numberedBlogs[numberedBlogs.length-1].file, "编号:", numberedBlogs[numberedBlogs.length-1].fixedNumber, "原始索引:", numberedBlogs[numberedBlogs.length-1].originalIndex);
         console.log("总文章数:", numberedBlogs.length);
+        
+        // 验证编号是否正确
+        console.log("编号范围验证:");
+        const numbers = numberedBlogs.map(b => parseInt(b.fixedNumber));
+        console.log("最大编号:", Math.max(...numbers));
+        console.log("最小编号:", Math.min(...numbers));
+        console.log("编号是否从大到小:", numbers.every((n, i, arr) => i === 0 || n <= arr[i-1]));
     </script>
 </body>
 </html>
