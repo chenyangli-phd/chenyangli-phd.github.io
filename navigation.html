@@ -734,7 +734,7 @@
     window.mapmyvisitors = window.mapmyvisitors || function() { (window.mapmyvisitors.q = window.mapmyvisitors.q || []).push(arguments) };
     mapmyvisitors('trackPageView', '7Zd1y8OLRnC4AfA6L5-y3OzevUT5UBDFjys4SLMz_sI');
 </script>
-<body>
+<body class="dark-mode">
     <!-- 背景装饰动画 -->
     <div class="bg-decoration">
         <div class="floating-dot" style="--delay: 0s; --duration: 15s; --size: 60px; left: 10%; top: 20%;"></div>
@@ -961,8 +961,9 @@
             updateLinkCount();
             
             const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
+            // 默认使用暗色模式，如果用户之前选择了亮色模式，则移除暗色模式类
+            if (savedTheme === 'light') {
+                document.body.classList.remove('dark-mode');
             }
             
             document.getElementById('searchInput').addEventListener('keypress', function(e) {
