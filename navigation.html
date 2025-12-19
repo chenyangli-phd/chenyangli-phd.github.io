@@ -40,22 +40,19 @@
         }
 
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, rgba(245, 247, 250, 0.7) 0%, rgba(195, 207, 226, 0.7) 100%),
+                        url('assets/pic/xinjiangxueshan.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: var(--text-color);
             min-height: 100vh;
             padding: 20px;
             transition: all 0.3s ease;
             position: relative;
             overflow-x: hidden;
-            animation: gradientShift 15s ease infinite;
-            background-size: 200% 200%;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
 
         body::before {
             content: '';
@@ -127,8 +124,11 @@
             --text-secondary: var(--ios-secondary-dark);
             --border-color: var(--ios-border-dark);
             --shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            background-size: 200% 200%;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.7) 0%, rgba(26, 26, 46, 0.7) 50%, rgba(22, 33, 62, 0.7) 100%),
+                        url('assets/pic/xinjiangxueshan.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         body.dark-mode::before {
@@ -211,11 +211,11 @@
         .theme-toggle {
             width: 52px;
             height: 32px;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -223,8 +223,8 @@
         }
 
         body.dark-mode .theme-toggle {
-            background: rgba(28, 28, 30, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(28, 28, 30, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .theme-toggle:hover {
@@ -296,20 +296,20 @@
 
         /* 搜索区域 */
         .search-section {
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             padding: 32px;
             border-radius: 24px;
             margin-bottom: 40px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
 
         body.dark-mode .search-section {
-            background: rgba(28, 28, 30, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(28, 28, 30, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .search-section:hover {
@@ -471,21 +471,21 @@
         }
 
         .category {
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             padding: 28px;
             border-radius: 24px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
         }
 
         body.dark-mode .category {
-            background: rgba(28, 28, 30, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(28, 28, 30, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .category::before {
