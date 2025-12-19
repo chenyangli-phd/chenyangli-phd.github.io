@@ -3,55 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>不喝水就犯困 - 聚合搜搜/导航页</title>
+    <title>不喝水就犯困 - 导航页</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* iOS风格色彩系统 */
-            --ios-bg-light: #f2f2f7;
+            --ios-bg-light: #f5f5f7;
             --ios-bg-dark: #000000;
-            --ios-card-light: rgba(255, 255, 255, 0.9);
-            --ios-card-dark: rgba(28, 28, 30, 0.9);
+            --ios-card-light: #ffffff;
+            --ios-card-dark: #1c1c1e;
             --ios-label-light: #000000;
             --ios-label-dark: #ffffff;
-            --ios-secondary-light: #8e8e93;
+            --ios-secondary-light: #86868b;
             --ios-secondary-dark: #98989d;
             --ios-blue: #007aff;
-            --ios-purple: #5856d6;
-            --ios-pink: #ff2d55;
-            --ios-green: #34c759;
+            --ios-purple: #5e5ce6;
+            --ios-pink: #ff375f;
             --ios-orange: #ff9500;
-            --ios-border-light: rgba(0, 0, 0, 0.1);
-            --ios-border-dark: rgba(255, 255, 255, 0.1);
-            --ios-glass-light: rgba(255, 255, 255, 0.7);
-            --ios-glass-dark: rgba(0, 0, 0, 0.7);
+            --ios-green: #34c759;
+            --ios-border-light: rgba(0, 0, 0, 0.08);
+            --ios-border-dark: rgba(255, 255, 255, 0.15);
             
-            /* 当前主题变量 */
             --bg-color: var(--ios-bg-light);
             --card-bg: var(--ios-card-light);
             --text-color: var(--ios-label-light);
             --text-secondary: var(--ios-secondary-light);
             --border-color: var(--ios-border-light);
-            --glass-bg: var(--ios-glass-light);
             --accent-color: var(--ios-blue);
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Microsoft YaHei', sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
+            background: var(--bg-color);
             color: var(--text-color);
             min-height: 100vh;
             padding: 20px;
-            position: relative;
-            overflow-x: hidden;
-            transition: background-color 0.5s ease, color 0.5s ease;
+            transition: all 0.3s ease;
         }
 
         body.dark-mode {
@@ -60,122 +53,93 @@
             --text-color: var(--ios-label-dark);
             --text-secondary: var(--ios-secondary-dark);
             --border-color: var(--ios-border-dark);
-            --glass-bg: var(--ios-glass-dark);
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
         }
 
-        /* iOS风格动态背景 */
-        .ios-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            overflow: hidden;
-        }
-
-        .ios-bg::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                45deg, 
-                rgba(120, 119, 198, 0.1) 0%, 
-                rgba(255, 255, 255, 0.05) 25%, 
-                rgba(120, 119, 198, 0.1) 50%, 
-                rgba(255, 255, 255, 0.05) 75%, 
-                rgba(120, 119, 198, 0.1) 100%
-            );
-            animation: bg-shift 20s linear infinite;
-        }
-
-        @keyframes bg-shift {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            100% { transform: translate(-50px, -50px) rotate(360deg); }
-        }
-
-        /* iOS风格气泡 */
-        .bubble {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            z-index: -1;
-        }
-
-        /* 主题切换按钮 */
-        .theme-toggle {
+        /* 顶部控制栏 */
+        .top-bar {
             position: fixed;
             top: 20px;
+            left: 20px;
             right: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             z-index: 100;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        .ios-toggle-btn {
-            width: 60px;
-            height: 32px;
-            background: #e9e9ea;
+        .time-display {
+            background: var(--card-bg);
+            padding: 12px 20px;
             border-radius: 16px;
-            border: none;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .time-display .time {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .time-display .date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .theme-toggle {
+            width: 52px;
+            height: 32px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
             position: relative;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
         }
 
-        .dark-mode .ios-toggle-btn {
-            background: #3a3a3c;
-        }
-
-        .ios-toggle-btn::after {
+        .theme-toggle::after {
             content: '';
             position: absolute;
-            width: 28px;
-            height: 28px;
-            background: white;
-            border-radius: 14px;
+            width: 26px;
+            height: 26px;
+            background: var(--accent-color);
+            border-radius: 13px;
             top: 2px;
             left: 2px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .dark-mode .ios-toggle-btn::after {
-            transform: translateX(28px);
-            background: #f2f2f7;
+        .dark-mode .theme-toggle::after {
+            transform: translateX(20px);
+            background: var(--ios-purple);
         }
 
         /* 容器 */
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding-top: 20px;
+            padding-top: 100px;
         }
 
-        /* 头部区域 */
+        /* 头部 */
         .header {
             text-align: center;
-            margin-bottom: 40px;
-            padding-top: 30px;
+            margin-bottom: 50px;
         }
 
         .header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            font-weight: 800;
-            background: linear-gradient(90deg, var(--ios-blue), var(--ios-purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -0.5px;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
         }
 
         .header .subtitle {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: var(--text-secondary);
             font-weight: 400;
         }
@@ -183,375 +147,283 @@
         /* 搜索区域 */
         .search-section {
             background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            padding: 30px;
-            border-radius: 24px;
+            padding: 32px;
+            border-radius: 20px;
             margin-bottom: 40px;
             box-shadow: var(--shadow);
             border: 1px solid var(--border-color);
-            margin-top: 20px;
         }
 
         .search-tabs {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 25px;
+            gap: 8px;
+            margin-bottom: 24px;
             flex-wrap: wrap;
         }
 
         .search-tab {
-            padding: 12px 24px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 20px;
+            border-radius: 12px;
             background: rgba(120, 120, 128, 0.12);
             color: var(--text-color);
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
             font-weight: 500;
         }
 
         .search-tab:hover {
-            background: rgba(120, 120, 128, 0.2);
-            transform: translateY(-2px);
+            background: rgba(120, 120, 128, 0.18);
         }
 
         .search-tab.active {
             background: var(--accent-color);
             color: white;
-            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
         }
 
         .search-box {
             display: flex;
-            gap: 15px;
-            max-width: 800px;
+            gap: 12px;
+            max-width: 700px;
             margin: 0 auto;
         }
 
-        .ios-search-input {
+        .search-input {
             flex: 1;
-            padding: 20px 24px;
+            padding: 16px 20px;
             border: 1px solid var(--border-color);
-            border-radius: 18px;
-            font-size: 1.1rem;
+            border-radius: 14px;
+            font-size: 1rem;
             background: rgba(120, 120, 128, 0.08);
             color: var(--text-color);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            transition: all 0.2s ease;
         }
 
-        .ios-search-input:focus {
+        .search-input:focus {
             outline: none;
             border-color: var(--accent-color);
             background: rgba(120, 120, 128, 0.12);
-            box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
         }
 
-        .ios-search-input::placeholder {
-            color: var(--text-secondary);
-        }
-
-        .ios-search-btn {
-            padding: 0 35px;
+        .search-btn {
+            padding: 0 32px;
             border: none;
-            border-radius: 18px;
+            border-radius: 14px;
             background: var(--accent-color);
             color: white;
             cursor: pointer;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.2);
+            transition: all 0.2s ease;
         }
 
-        .ios-search-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3);
+        .search-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
         }
 
-        /* 分类区域 */
+        .search-btn:active {
+            transform: translateY(0);
+        }
+
+        /* 分类容器 */
         .category-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
         }
 
         .category {
             background: var(--card-bg);
-            backdrop-filter: blur(20px);
             padding: 28px;
-            border-radius: 24px;
+            border-radius: 20px;
             box-shadow: var(--shadow);
             border: 1px solid var(--border-color);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
         }
 
         .category:hover {
-            transform: translateY(-8px);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .dark-mode .category:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
         }
 
         .category-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 25px;
-            padding-bottom: 20px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
             border-bottom: 1px solid var(--border-color);
         }
 
         .category h2 {
-            color: var(--text-color);
-            font-size: 1.8rem;
-            font-weight: 700;
+            font-size: 1.4rem;
+            font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
-        .edit-category {
-            background: rgba(120, 120, 128, 0.12);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            color: var(--text-color);
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .category-icon {
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 8px;
+            font-size: 1.1rem;
         }
 
-        .edit-category:hover {
-            background: rgba(120, 120, 128, 0.2);
-            transform: rotate(90deg);
-        }
-
+        /* iOS风格链接卡片 */
         .links {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 16px;
         }
 
-        .ios-link-card {
+        .link-card {
             background: rgba(120, 120, 128, 0.08);
-            padding: 22px;
-            border-radius: 18px;
+            padding: 20px;
+            border-radius: 16px;
             text-decoration: none;
             color: var(--text-color);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid var(--border-color);
-            position: relative;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
-        .ios-link-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0, 122, 255, 0.1) 0%, rgba(88, 86, 214, 0.1) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 0;
-        }
-
-        .ios-link-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            border-color: rgba(0, 122, 255, 0.3);
-        }
-
-        .ios-link-card:hover::before {
-            opacity: 1;
-        }
-
-        .link-content {
-            position: relative;
-            z-index: 1;
+        .link-card:hover {
+            background: rgba(120, 120, 128, 0.14);
+            transform: translateY(-3px);
         }
 
         .link-icon {
-            font-size: 2.2rem;
-            margin-bottom: 16px;
-            display: inline-flex;
+            width: 56px;
+            height: 56px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
-            border-radius: 16px;
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            color: var(--ios-blue);
+            border-radius: 14px;
+            margin-bottom: 12px;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
-        .dark-mode .link-icon {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .ios-link-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .ios-link-card p {
+        .link-card h3 {
             font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .link-card p {
+            font-size: 0.8rem;
             color: var(--text-secondary);
-            line-height: 1.4;
+            line-height: 1.3;
         }
 
         /* 页脚 */
         .footer {
             text-align: center;
-            padding: 30px 0;
+            padding: 32px 0;
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             border-top: 1px solid var(--border-color);
-            margin-top: 30px;
+            margin-top: 40px;
         }
 
         .footer a {
             color: var(--accent-color);
             text-decoration: none;
-            font-weight: 500;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
         }
 
         .stats {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 15px;
+            gap: 24px;
+            margin-top: 12px;
+            flex-wrap: wrap;
         }
 
         .stat-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
-        /* 响应式设计 */
-        @media (max-width: 1200px) {
-            .category-container {
-                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            }
-        }
-
+        /* 响应式 */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.8rem;
+            .top-bar {
+                flex-direction: column;
+                gap: 12px;
             }
-            
+
+            .container {
+                padding-top: 140px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
             .search-box {
                 flex-direction: column;
             }
-            
-            .ios-search-btn {
-                justify-content: center;
-                padding: 18px;
-            }
-            
+
             .category-container {
                 grid-template-columns: 1fr;
             }
-            
+
             .links {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
             }
         }
 
-        @media (max-width: 480px) {
-            .header h1 {
-                font-size: 2.3rem;
-            }
-            
-            .search-tabs {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .search-tab {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        /* 动画效果 */
+        /* 动画 */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .fade-in {
-            animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        /* 滚动条样式 */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(120, 120, 128, 0.08);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgba(120, 120, 128, 0.2);
-            border-radius: 4px;
-        }
-
-        .dark-mode ::-webkit-scrollbar-thumb {
-            background: rgba(120, 120, 128, 0.4);
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(120, 120, 128, 0.3);
-        }
-
-        .dark-mode ::-webkit-scrollbar-thumb:hover {
-            background: rgba(120, 120, 128, 0.6);
+            animation: fadeIn 0.5s ease forwards;
         }
     </style>
 </head>
 <body>
-    <!-- iOS风格动态背景 -->
-    <div class="ios-bg"></div>
-    
-    <!-- 背景气泡 -->
-    <div id="bubbles"></div>
-    
-    <!-- 主题切换 -->
-    <div class="theme-toggle">
-        <button class="ios-toggle-btn" id="themeToggle"></button>
+    <!-- 顶部控制栏 -->
+    <div class="top-bar">
+        <div class="time-display">
+            <div class="time" id="timeDisplay">00:00:00</div>
+            <div class="date" id="dateDisplay">加载中...</div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="切换主题"></button>
     </div>
 
     <div class="container">
-        <!-- 头部区域 -->
+        <!-- 头部 -->
         <div class="header fade-in">
-            <h1><i class="fas fa-water" style="margin-right: 15px;"></i>不喝水就犯困</h1>
-            <p class="subtitle">个性化起始页 · 高效工作与生活</p>
+            <h1>💧 不喝水就犯困</h1>
+            <p class="subtitle">个性化导航 · 高效工作与生活</p>
         </div>
 
         <!-- 搜索区域 -->
-        <div class="search-section fade-in">
+        <div class="search-section fade-in" style="animation-delay: 0.1s;">
             <div class="search-tabs">
                 <button class="search-tab active" onclick="switchSearch('google')">
                     <i class="fab fa-google"></i> Google
@@ -560,7 +432,7 @@
                     <i class="fab fa-microsoft"></i> Bing
                 </button>
                 <button class="search-tab" onclick="switchSearch('baidu')">
-                    <i class="fab fa-baidu"></i> 百度
+                    百度
                 </button>
                 <button class="search-tab" onclick="switchSearch('github')">
                     <i class="fab fa-github"></i> GitHub
@@ -570,8 +442,8 @@
                 </button>
             </div>
             <div class="search-box">
-                <input type="text" id="searchInput" class="ios-search-input" placeholder="输入关键词搜索... (支持直接回车搜索)">
-                <button class="ios-search-btn" onclick="doSearch()">
+                <input type="text" id="searchInput" class="search-input" placeholder="输入关键词搜索...">
+                <button class="search-btn" onclick="doSearch()">
                     <i class="fas fa-search"></i> 搜索
                 </button>
             </div>
@@ -579,300 +451,212 @@
 
         <!-- 分类区域 -->
         <div class="category-container">
-            
-    <!-- 常用AI网站 -->
-            <div class="category fade-in" style="animation-delay: 0.3s;">
-                <div class="category-header">
-                    <h2><i class="fas fa-robot" style="color: var(--ios-orange);"></i> 常用AI网站</h2>
-                    <button class="edit-category" onclick="editCategory('AI网站')">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                </div>
-                <div class="links">
-                    <a href="https://chatgpt.com" class="ios-link-card" target="_blank">
-                        <div class="link-content">
-                            <div class="link-icon"><i class="fas fa-comment-dots" style="color: #10a37f;"></i></div>
-                            <h3>ChatGPT</h3>
-                            <p>OpenAI对话AI</p>
-                        </div>
-                    </a>
-                    <a href="https://chat.deepseek.com" class="ios-link-card" target="_blank">
-                        <div class="link-content">
-                            <div class="link-icon"><i class="fas fa-brain" style="color: #6c5ce7;"></i></div>
-                            <h3>DeepSeek</h3>
-                            <p>国产AI助手</p>
-                        </div>
-                    </a>
-                    <a href="https://grok.com" class="ios-link-card" target="_blank">
-                        <div class="link-content">
-                            <div class="link-icon"><i class="fas fa-bolt" style="color: #bf2fbf;"></i></div>
-                            <h3>Grok</h3>
-                            <p>xAI的AI助手</p>
-                        </div>
-                    </a>
-                    <a href="https://gemini.google.com/app" class="ios-link-card" target="_blank">
-                        <div class="link-content">
-                            <div class="link-icon"><i class="fas fa-gem" style="color: #4285f4;"></i></div>
-                            <h3>Gemini</h3>
-                            <p>Google AI助手</p>
-                        </div>
-                    </a>
-                    <a href="https://www.kimi.com" class="ios-link-card" target="_blank">
-                        <div class="link-content">
-                            <div class="link-icon"><i class="fas fa-cloud" style="color: #1e90ff;"></i></div>
-                            <h3>Kimi</h3>
-                            <p>月之暗面AI助手</p>
-                        </div>
-                    </a>
-                    <a href="https://claude.ai/login" class="ios-link-card" target="_blank">
-                        <div class="link-content">
-                            <div class="link-icon"><i class="fas fa-gem" style="color: #4285f4;"></i></div>
-                            <h3>claude</h3>
-                            <p>编程 AI助手</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <!-- 干活 -->
+            <!-- 常用AI网站 -->
             <div class="category fade-in" style="animation-delay: 0.2s;">
                 <div class="category-header">
-                    <h2><i class="fas fa-code" style="color: var(--ios-green);"></i> 干活</h2>
-                    <button class="edit-category" onclick="editCategory('干活')">
-                        <i class="fas fa-edit"></i>
-                    </button>
+                    <h2>
+                        <div class="category-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <i class="fas fa-robot" style="color: white;"></i>
+                        </div>
+                        常用AI网站
+                    </h2>
                 </div>
                 <div class="links">
-                    <a href="https://github.com" class="ios-link-card" target="_blank">
-                        <div class="link-content">
-                            <div class="link-icon"><i class="fab fa-github" style="color: #333;"></i></div>
-                            <h3>GitHub</h3>
-                            <p>代码托管与协作平台</p>
+                    <a href="https://chatgpt.com" class="link-card" target="_blank">
+                        <div class="link-icon" style="background: linear-gradient(135deg, #10a37f 0%, #0d8f6f 100%);">
+                            <i class="fas fa-comment-dots" style="color: white;"></i>
                         </div>
+                        <h3>ChatGPT</h3>
+                        <p>OpenAI对话AI</p>
                     </a>
-                    <a href="https://www.shejidaren.com/examples/tools/case-converter.html" class="ios-link-card" target="_blank">
-                        <div class="link-content">
-                            <div class="link-icon"><i class="fas fa-font" style="color: var(--ios-purple);"></i></div>
-                            <h3>大小写转换</h3>
-                            <p>保存文献命名</p>
+                    <a href="https://chat.deepseek.com" class="link-card" target="_blank">
+                        <div class="link-icon" style="background: linear-gradient(135deg, #6c5ce7 0%, #5f4fd1 100%);">
+                            <i class="fas fa-brain" style="color: white;"></i>
                         </div>
+                        <h3>DeepSeek</h3>
+                        <p>国产AI助手</p>
                     </a>
-                    <a href="https://scholar.google.com" class="ios-link-card" target="_blank">
-                        <div class="link-content">
-                            <div class="link-icon"><i class="fas fa-graduation-cap" style="color: var(--ios-blue);"></i></div>
-                            <h3>Google Scholar</h3>
-                            <p>学术文献搜索</p>
+                    <a href="https://grok.com" class="link-card" target="_blank">
+                        <div class="link-icon" style="background: linear-gradient(135deg, #bf2fbf 0%, #a02ba0 100%);">
+                            <i class="fas fa-bolt" style="color: white;"></i>
                         </div>
+                        <h3>Grok</h3>
+                        <p>xAI的AI助手</p>
                     </a>
-                    <a href="https://mathscinet.ams.org/mathscinet/publications-search" class="ios-link-card" target="_blank">
-                        <div class="link-content">
-                            <div class="link-icon"><i class="fas fa-square-root-alt" style="color: #d63384;"></i></div>
-                            <h3>MathSciNet</h3>
-                            <p>数学文献数据库</p>
+                    <a href="https://gemini.google.com/app" class="link-card" target="_blank">
+                        <div class="link-icon" style="background: linear-gradient(135deg, #4285f4 0%, #357ae8 100%);">
+                            <i class="fas fa-gem" style="color: white;"></i>
                         </div>
+                        <h3>Gemini</h3>
+                        <p>Google AI</p>
                     </a>
-                    <a href="https://www.researchgate.net" class="ios-link-card" target="_blank">
-                        <div class="link-content">
-                            <div class="link-icon"><i class="fas fa-flask" style="color: #00d084;"></i></div>
-                            <h3>ResearchGate</h3>
-                            <p>科研社交网络</p>
+                    <a href="https://www.kimi.com" class="link-card" target="_blank">
+                        <div class="link-icon" style="background: linear-gradient(135deg, #1e90ff 0%, #1873cc 100%);">
+                            <i class="fas fa-moon" style="color: white;"></i>
                         </div>
+                        <h3>Kimi</h3>
+                        <p>月之暗面AI</p>
+                    </a>
+                    <a href="https://claude.ai/login" class="link-card" target="_blank">
+                        <div class="link-icon" style="background: linear-gradient(135deg, #cc785c 0%, #b6614a 100%);">
+                            <i class="fas fa-code" style="color: white;"></i>
+                        </div>
+                        <h3>Claude</h3>
+                        <p>编程AI助手</p>
                     </a>
                 </div>
             </div>
-<!-- 划水 -->
-            <div class="category fade-in" style="animation-delay: 0.1s;">
+
+            <!-- 干活 -->
+            <div class="category fade-in" style="animation-delay: 0.3s;">
                 <div class="category-header">
-                    <h2><i class="fas fa-film" style="color: var(--ios-pink);"></i> 划水</h2>
-                    <button class="edit-category" onclick="editCategory('划水')">
-                        <i class="fas fa-edit"></i>
-                    </button>
+                    <h2>
+                        <div class="category-icon" style="background: linear-gradient(135deg, #34c759 0%, #2eb34a 100%);">
+                            <i class="fas fa-briefcase" style="color: white;"></i>
+                        </div>
+                        干活
+                    </h2>
                 </div>
                 <div class="links">
-                    <a href="https://www.youtube.com" class="ios-link-card" target="_blank">
-                        <div class="link-content">
-                            <div class="link-icon"><i class="fab fa-youtube" style="color: #ff0000;"></i></div>
-                            <h3>YouTube</h3>
-                            <p>全球最大视频分享平台</p>
+                    <a href="https://github.com" class="link-card" target="_blank">
+                        <div class="link-icon" style="background: linear-gradient(135deg, #333 0%, #1a1a1a 100%);">
+                            <i class="fab fa-github" style="color: white;"></i>
                         </div>
+                        <h3>GitHub</h3>
+                        <p>代码托管平台</p>
                     </a>
-                    <a href="https://www.bilibili.com" class="ios-link-card" target="_blank">
-                        <div class="link-content">
-                            <div class="link-icon"><i class="fas fa-play-circle" style="color: #fb7299;"></i></div>
-                            <h3>哔哩哔哩</h3>
-                            <p>中国年轻人文化社区</p>
+                    <a href="https://www.shejidaren.com/examples/tools/case-converter.html" class="link-card" target="_blank">
+                        <div class="link-icon" style="background: linear-gradient(135deg, #5e5ce6 0%, #4f4ad1 100%);">
+                            <i class="fas fa-font" style="color: white;"></i>
                         </div>
+                        <h3>大小写转换</h3>
+                        <p>文献命名工具</p>
                     </a>
-                    <a href="https://www.zhihu.com" class="ios-link-card" target="_blank">
-                        <div class="link-content">
-                            <div class="link-icon"><i class="fas fa-question-circle" style="color: #0084ff;"></i></div>
-                            <h3>知乎</h3>
-                            <p>中文问答社区</p>
+                    <a href="https://scholar.google.com" class="link-card" target="_blank">
+                        <div class="link-icon" style="background: linear-gradient(135deg, #4285f4 0%, #357ae8 100%);">
+                            <i class="fas fa-graduation-cap" style="color: white;"></i>
                         </div>
+                        <h3>Google Scholar</h3>
+                        <p>学术文献搜索</p>
                     </a>
-                    <a href="https://www.xiaohongshu.com/explore" class="ios-link-card" target="_blank">
-                        <div class="link-content">
-                            <div class="link-icon"><i class="fas fa-book" style="color: #ff2442;"></i></div>
-                            <h3>小红书</h3>
-                            <p>生活方式分享社区</p>
+                    <a href="https://mathscinet.ams.org/mathscinet/publications-search" class="link-card" target="_blank">
+                        <div class="link-icon" style="background: linear-gradient(135deg, #d63384 0%, #c22770 100%);">
+                            <i class="fas fa-square-root-alt" style="color: white;"></i>
                         </div>
+                        <h3>MathSciNet</h3>
+                        <p>数学文献库</p>
                     </a>
-                    <a href="https://www.pinterest.com" class="ios-link-card" target="_blank">
-                        <div class="link-content">
-                            <div class="link-icon"><i class="fab fa-pinterest" style="color: #e60023;"></i></div>
-                            <h3>Pinterest</h3>
-                            <p>图片分享平台</p>
+                    <a href="https://www.researchgate.net" class="link-card" target="_blank">
+                        <div class="link-icon" style="background: linear-gradient(135deg, #00d084 0%, #00b872 100%);">
+                            <i class="fas fa-flask" style="color: white;"></i>
                         </div>
+                        <h3>ResearchGate</h3>
+                        <p>科研社交网络</p>
                     </a>
                 </div>
             </div>
-        
+
+            <!-- 划水 -->
+            <div class="category fade-in" style="animation-delay: 0.4s;">
+                <div class="category-header">
+                    <h2>
+                        <div class="category-icon" style="background: linear-gradient(135deg, #ff375f 0%, #e6304f 100%);">
+                            <i class="fas fa-coffee" style="color: white;"></i>
+                        </div>
+                        划水
+                    </h2>
+                </div>
+                <div class="links">
+                    <a href="https://www.youtube.com" class="link-card" target="_blank">
+                        <div class="link-icon" style="background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);">
+                            <i class="fab fa-youtube" style="color: white;"></i>
+                        </div>
+                        <h3>YouTube</h3>
+                        <p>视频分享平台</p>
+                    </a>
+                    <a href="https://www.bilibili.com" class="link-card" target="_blank">
+                        <div class="link-icon" style="background: linear-gradient(135deg, #fb7299 0%, #f25d8a 100%);">
+                            <i class="fas fa-tv" style="color: white;"></i>
+                        </div>
+                        <h3>哔哩哔哩</h3>
+                        <p>年轻人社区</p>
+                    </a>
+                    <a href="https://www.zhihu.com" class="link-card" target="_blank">
+                        <div class="link-icon" style="background: linear-gradient(135deg, #0084ff 0%, #0070d9 100%);">
+                            <i class="fas fa-lightbulb" style="color: white;"></i>
+                        </div>
+                        <h3>知乎</h3>
+                        <p>问答社区</p>
+                    </a>
+                    <a href="https://www.xiaohongshu.com/explore" class="link-card" target="_blank">
+                        <div class="link-icon" style="background: linear-gradient(135deg, #ff2442 0%, #e61e39 100%);">
+                            <i class="fas fa-book-open" style="color: white;"></i>
+                        </div>
+                        <h3>小红书</h3>
+                        <p>生活分享社区</p>
+                    </a>
+                    <a href="https://www.pinterest.com" class="link-card" target="_blank">
+                        <div class="link-icon" style="background: linear-gradient(135deg, #e60023 0%, #c9001f 100%);">
+                            <i class="fab fa-pinterest" style="color: white;"></i>
+                        </div>
+                        <h3>Pinterest</h3>
+                        <p>图片分享</p>
+                    </a>
+                </div>
+            </div>
         </div>
 
         <!-- 页脚 -->
         <div class="footer fade-in" style="animation-delay: 0.5s;">
-            <p>© 2025 不喝水就犯困的导航 | 个性化起始页 | 个人主页：<a href="https://chenyangli-phd.github.io" target="_blank">不喝水就犯困</a></p>
+            <p>© 2025 不喝水就犯困的导航 | <a href="https://chenyangli-phd.github.io" target="_blank">个人主页</a></p>
             <div class="stats">
                 <div class="stat-item">
                     <i class="fas fa-link"></i>
-                    <span>已保存 <span id="linkCount">15</span> 个链接</span>
+                    <span>已保存 <span id="linkCount">16</span> 个链接</span>
                 </div>
                 <div class="stat-item">
-                    <i class="fas fa-sync-alt"></i>
-                    <span>最后更新：<span id="lastUpdate">2025年12月19日</span></span>
+                    <i class="fas fa-calendar"></i>
+                    <span>更新于 <span id="lastUpdate">2025-12-19</span></span>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // 全局变量
         let currentEngine = 'google';
-        let isDarkMode = false;
 
-        // 初始化函数
         function init() {
             updateTime();
             setInterval(updateTime, 1000);
-            createBubbles();
             updateLinkCount();
             
-            // 检查本地存储的主题偏好
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.body.classList.add('dark-mode');
-                isDarkMode = true;
             }
             
-            // 搜索框回车支持
             document.getElementById('searchInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    doSearch();
-                }
+                if (e.key === 'Enter') doSearch();
             });
             
-            // 主题切换事件
             document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-            
-            // 初始动画延迟
-            document.querySelectorAll('.fade-in').forEach((element, index) => {
-                element.style.animationDelay = `${index * 0.1}s`;
-            });
         }
 
-        // 更新时间
         function updateTime() {
             const now = new Date();
-            const timeStr = now.toLocaleTimeString('zh-CN', { hour12: false });
-            const dateStr = now.toLocaleDateString('zh-CN', {
-                year: 'numeric',
+            document.getElementById('timeDisplay').textContent = now.toLocaleTimeString('zh-CN', { hour12: false });
+            document.getElementById('dateDisplay').textContent = now.toLocaleDateString('zh-CN', {
                 month: 'long',
                 day: 'numeric',
                 weekday: 'long'
             });
-            
-            // 如果没有时间显示区域，创建一个
-            let timeDisplay = document.getElementById('timeDisplay');
-            if (!timeDisplay) {
-                timeDisplay = document.createElement('div');
-                timeDisplay.id = 'timeDisplay';
-                timeDisplay.style.cssText = `
-                    position: fixed;
-                    top: 20px;
-                    left: 20px;
-                    background: var(--card-bg);
-                    backdrop-filter: blur(20px);
-                    padding: 15px 20px;
-                    border-radius: 18px;
-                    box-shadow: var(--shadow);
-                    border: 1px solid var(--border-color);
-                    z-index: 99;
-                    font-weight: 500;
-                    font-size: 1.1rem;
-                `;
-                document.body.appendChild(timeDisplay);
-            }
-            
-            timeDisplay.innerHTML = `
-                <div style="font-size: 1.4rem; font-weight: 700; margin-bottom: 5px;">${timeStr}</div>
-                <div style="font-size: 0.9rem; color: var(--text-secondary);">${dateStr}</div>
-            `;
         }
 
-        // 创建背景气泡
-        function createBubbles() {
-            const bubblesContainer = document.getElementById('bubbles');
-            const bubbleCount = 15;
-            
-            for (let i = 0; i < bubbleCount; i++) {
-                const bubble = document.createElement('div');
-                bubble.className = 'bubble';
-                
-                // 随机大小和位置
-                const size = Math.random() * 120 + 30;
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100;
-                const opacity = Math.random() * 0.1 + 0.05;
-                
-                bubble.style.width = `${size}px`;
-                bubble.style.height = `${size}px`;
-                bubble.style.left = `${posX}%`;
-                bubble.style.top = `${posY}%`;
-                bubble.style.opacity = opacity;
-                
-                // 添加浮动动画
-                const duration = Math.random() * 30 + 20;
-                const delay = Math.random() * 5;
-                bubble.style.animation = `float ${duration}s ease-in-out ${delay}s infinite alternate`;
-                
-                // 添加浮动动画关键帧
-                if (!document.querySelector('#floatAnimation')) {
-                    const style = document.createElement('style');
-                    style.id = 'floatAnimation';
-                    style.textContent = `
-                        @keyframes float {
-                            0% { transform: translate(0, 0) rotate(0deg); }
-                            33% { transform: translate(${Math.random() * 30 - 15}px, ${Math.random() * 30 - 15}px) rotate(${Math.random() * 10 - 5}deg); }
-                            66% { transform: translate(${Math.random() * 30 - 15}px, ${Math.random() * 30 - 15}px) rotate(${Math.random() * 10 - 5}deg); }
-                            100% { transform: translate(0, 0) rotate(0deg); }
-                        }
-                    `;
-                    document.head.appendChild(style);
-                }
-                
-                bubblesContainer.appendChild(bubble);
-            }
-        }
-
-        // 搜索功能
         function switchSearch(engine) {
             currentEngine = engine;
-            document.querySelectorAll('.search-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
+            document.querySelectorAll('.search-tab').forEach(tab => tab.classList.remove('active'));
             event.target.classList.add('active');
             
-            // 更新搜索框提示
-            const searchInput = document.getElementById('searchInput');
             const placeholders = {
                 google: '在Google中搜索...',
                 bing: '在Bing中搜索...',
@@ -880,7 +664,7 @@
                 github: '在GitHub中搜索...',
                 youtube: '在YouTube中搜索...'
             };
-            searchInput.placeholder = placeholders[engine] || '输入关键词搜索...';
+            document.getElementById('searchInput').placeholder = placeholders[engine];
         }
 
         function doSearch() {
@@ -895,92 +679,18 @@
                 youtube: `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`
             };
 
-            window.open(engines[currentEngine] || engines.google, '_blank');
+            window.open(engines[currentEngine], '_blank');
         }
 
-        // 主题切换
         function toggleTheme() {
-            isDarkMode = !isDarkMode;
             document.body.classList.toggle('dark-mode');
-            
-            // 保存主题偏好
-            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-        }
-
-        // 其他功能
-        function editCategory(category) {
-            // iOS风格弹窗
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.5);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 1000;
-                backdrop-filter: blur(10px);
-            `;
-            
-            modal.innerHTML = `
-                <div style="background: var(--card-bg); backdrop-filter: blur(20px); border-radius: 20px; padding: 30px; max-width: 400px; width: 90%; border: 1px solid var(--border-color); box-shadow: var(--shadow);">
-                    <h2 style="margin-bottom: 20px; font-size: 1.6rem;">编辑 ${category} 分类</h2>
-                    <p style="margin-bottom: 25px; color: var(--text-secondary);">此功能正在开发中，即将推出...</p>
-                    <div style="display: flex; justify-content: flex-end; gap: 15px;">
-                        <button onclick="this.closest('div').parentElement.remove()" style="padding: 12px 24px; border-radius: 12px; border: 1px solid var(--border-color); background: transparent; color: var(--text-color); cursor: pointer;">取消</button>
-                        <button onclick="this.closest('div').parentElement.remove(); showNotification('编辑功能即将推出')" style="padding: 12px 24px; border-radius: 12px; border: none; background: var(--accent-color); color: white; cursor: pointer;">确定</button>
-                    </div>
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
-        }
-
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-                background: var(--card-bg);
-                backdrop-filter: blur(20px);
-                padding: 15px 25px;
-                border-radius: 14px;
-                box-shadow: var(--shadow);
-                border: 1px solid var(--border-color);
-                z-index: 1001;
-                font-weight: 500;
-                transition: all 0.3s ease;
-            `;
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                notification.style.transform = 'translateX(-50%) translateY(-20px)';
-                setTimeout(() => notification.remove(), 300);
-            }, 3000);
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
         }
 
         function updateLinkCount() {
-            const links = document.querySelectorAll('.ios-link-card');
-            document.getElementById('linkCount').textContent = links.length;
-            
-            // 更新最后更新时间
-            const now = new Date();
-            const lastUpdate = now.toLocaleDateString('zh-CN', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-            document.getElementById('lastUpdate').textContent = lastUpdate;
+            document.getElementById('linkCount').textContent = document.querySelectorAll('.link-card').length;
         }
 
-        // 页面加载完成后初始化
         window.onload = init;
     </script>
 </body>
