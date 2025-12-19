@@ -33,8 +33,12 @@
 | 页面 | 链接 |
 |------|------|
 | 🏠 主页 | [https://chenyangli-phd.github.io](https://chenyangli-phd.github.io) |
+| 📄 出版物 | [publication.html](https://chenyangli-phd.github.io/publication.html) |
+| 📚 教学 | [teaching.html](https://chenyangli-phd.github.io/teaching.html) |
 | 📝 博客列表 | [/assets/blogs/index.html](https://chenyangli-phd.github.io/assets/blogs/index.html) |
+| 🎬 视频 | [video.html](https://chenyangli-phd.github.io/video.html) |
 | 📷 摄影作品 | [/assets/photography-blog/index.html](https://chenyangli-phd.github.io/assets/photography-blog/index.html) |
+| 🧭 导航页 | [navigation.html](https://chenyangli-phd.github.io/navigation.html) |
 
 ---
 
@@ -42,9 +46,11 @@
 
 ### 🎨 界面设计
 - **响应式布局** - 完美适配桌面端、平板和移动设备
-- **玻璃拟态设计 (Glassmorphism)** - 现代化的毛玻璃卡片效果
+- **玻璃拟态设计 (Glassmorphism)** - 现代化的毛玻璃卡片效果（部分页面）
 - **深色/浅色主题** - 支持一键切换，状态自动保存到 localStorage
 - **渐变色彩** - 紫色、粉色、绿色、黄色的渐变点缀
+- **背景图片** - 导航页使用新疆雪山背景图，营造沉浸式体验
+- **透明卡片设计** - 导航页采用透明卡片，背景图清晰可见
 
 ### ⚡ 交互动效
 - **滚动进度条** - 页面顶部显示阅读进度
@@ -64,11 +70,30 @@
 - **分类筛选** - 按类别筛选文章
 - **搜索功能** - 关键词搜索文章
 - **70+ 篇文章** - 涵盖技术教程、工具推荐、生活感悟
+- **美化样式** - 优化的代码块、引用块、表格、链接等样式
+- **阅读体验** - 改进的排版、间距和动画效果
 
 ### 📷 摄影作品集
 - 相册式展示
 - 按地点/时间分类
 - 支持图片预览
+
+### 🧭 导航页 (navigation.html)
+- **多搜索引擎** - 支持 Google、Bing、Google Scholar 搜索，一键切换
+- **分类导航** - 三大分类：
+  - 🤖 **AI助手** - ChatGPT、DeepSeek、Grok、Gemini、Kimi、Claude
+  - 🔬 **科研** - GitHub、Google Scholar、MathSciNet、ResearchGate、大小写转换工具
+  - ☕ **摸鱼** - YouTube、哔哩哔哩、知乎、小红书、Pinterest
+- **快速访问** - 16+ 个常用网站快速链接，图标化展示
+- **背景动画** - 动态渐变背景、浮动装饰元素和光晕效果
+- **默认夜间模式** - 页面默认以暗色主题显示，支持一键切换
+- **透明卡片设计** - 使用新疆雪山背景图，透明卡片让背景清晰可见
+- **实时时间显示** - 顶部显示当前时间和日期（已移除）
+
+### 📊 访客统计
+- **MapMyVisitors 集成** - 3D 地球展示访客分布
+- **全站统计** - 统计所有页面的访问数据（主页、Publication、Teaching、Blog、Video、Photography、导航页）
+- **实时数据** - 显示全球访客来源和访问量
 
 ---
 
@@ -77,8 +102,12 @@
 ### 整体结构
 
 ```
-chenyangli1004/
+chenyangli-phd.github.io/
 ├── 📄 index.html                    # 主页面入口
+├── 📄 publication.html              # 出版物页面
+├── 📄 teaching.html                 # 教学页面
+├── 📄 video.html                    # 视频页面
+├── 📄 navigation.html               # 导航页（快速访问常用网站）
 ├── 📄 README.md                     # 项目说明文档
 │
 ├── 📁 css/                          # 样式文件目录
@@ -101,16 +130,21 @@ chenyangli1004/
 │       ├── 📄 wakatime.css          # WakaTime 统计样式
 │       ├── 📄 featured-projects.css # 精选项目样式
 │       ├── 📄 interactive-skills.css# 交互式技能展示
-│       └── 📄 theme.css             # 主题切换相关样式
+│       ├── 📄 theme.css             # 主题切换相关样式
+│       ├── 📄 share.css             # 分享功能样式
+│       ├── 📄 visitor-stats.css     # 访客统计样式
+│       ├── 📄 i18n.css              # 国际化样式
+│       └── 📄 sidebar.css           # 侧边栏样式
 │
 ├── 📁 js/                           # JavaScript 文件目录
 │   ├── 📄 scripts.js                # 主脚本（所有交互逻辑）
-│   └── 📄 playlist.js               # 音乐播放列表数据
+│   ├── 📄 playlist.js               # 音乐播放列表数据
+│   └── 📄 i18n.js                   # 国际化脚本
 │
 └── 📁 assets/                       # 静态资源目录
     ├── 📁 blogs/                    # 博客文章
     │   ├── 📄 index.html            # 博客列表页
-    │   ├── 📄 post.html             # 博客详情页模板
+    │   ├── 📄 post.html             # 博客详情页模板（美化样式）
     │   └── 📄 *.md                  # Markdown 格式的博客文章 (70+)
     │
     ├── 📁 photography/              # 摄影作品原图
@@ -123,9 +157,8 @@ chenyangli1004/
     │   ├── 📄 index.html            # 摄影作品列表页
     │   └── 📄 post.html             # 摄影详情页模板
     │
-    ├── 📁 covers/                   # 音乐封面图片
     ├── 📁 music/                    # 音乐文件 (MP3)
-    ├── 📁 pic/                      # 网站图片资源
+    ├── 📁 pic/                      # 网站图片资源（包含背景图）
     └── 📁 resume/                   # 简历文件 (PDF)
 ```
 
@@ -176,6 +209,9 @@ chenyangli1004/
 |------|------|-----|
 | **Google Fonts - Sora** | 主字体 | fonts.googleapis.com |
 | **Font Awesome 6.5.1** | 图标库 | cdnjs.cloudflare.com |
+| **Marked.js** | Markdown 解析器 | cdn.jsdelivr.net |
+| **Google Analytics** | 网站分析 | googletagmanager.com |
+| **MapMyVisitors** | 访客统计 | mapmyvisitors.com |
 
 ### 设计特性
 
@@ -198,12 +234,25 @@ chenyangli1004/
 |------|-----|------|
 | **Hero** | `#hero` | 首屏展示区，包含个人卡片、简介、社交链接 |
 | **About Me** | `#about` | 研究方向介绍、个人信息、简历下载 |
-| **Skills** | `#skills` | 技术栈展示（FreeFem++、Matlab、FEniCS、Python 等） |
+| **Technical Stack** | `#skills` | 技术栈展示（FreeFem++、Matlab、FEniCS、Python 等） |
 | **Education** | `#experience` | 教育背景时间线（博士、硕士、本科） |
 | **Experiences** | `#experiences` | 访学与学术经历 |
+| **Projects** | `#projects` | 研究项目列表 |
+| **Honors and Awards** | `#awards` | 荣誉和奖项展示 |
+| **Publications** | `#publications` | 已发表论文（当前隐藏） |
 | **Blog** | `#blog` | 精选博客文章展示 |
 | **Photography** | `#photography` | 精选摄影作品展示 |
+| **Visitor Statistics** | `#visitor-stats` | 访客统计（3D 地球展示） |
 | **Footer** | - | 页脚信息、快速链接、版权声明 |
+
+### 📄 其他页面
+
+| 页面 | 描述 |
+|------|------|
+| **Publication** | 详细的出版物列表页面 |
+| **Teaching** | 教学相关内容和课程信息 |
+| **Video** | 视频内容展示 |
+| **Navigation** | 个性化导航页，包含常用网站快速访问 |
 
 ### 📝 博客系统
 
@@ -375,6 +424,10 @@ body.light-mode {
 | 日期 | 更新内容 |
 |------|----------|
 | 2025.12 | 添加格拉斯哥摄影作品 |
+| 2025.12 | 新增导航页（navigation.html），包含多搜索引擎和快速访问链接 |
+| 2025.12 | 美化博客文章页面样式（代码块、引用块、表格、链接等） |
+| 2025.12 | 添加全站访客统计功能（MapMyVisitors） |
+| 2025.12 | 导航页默认夜间模式，添加背景图片和动画效果 |
 | 2025.11 | 添加 Loch Brandy 摄影作品 |
 | 2025.10 | 添加爱丁堡、圣安德鲁斯摄影作品 |
 | 2025.10.14 | 网站最近一次大更新 |
