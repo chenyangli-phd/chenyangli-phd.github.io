@@ -3,43 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>不喝水就犯困- 个性化起始页</title>
+    <title>不喝水就犯困 - 聚合搜搜/导航页</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            /* iOS风格色彩系统 */
+            --ios-bg-light: #f2f2f7;
+            --ios-bg-dark: #000000;
+            --ios-card-light: rgba(255, 255, 255, 0.9);
+            --ios-card-dark: rgba(28, 28, 30, 0.9);
+            --ios-label-light: #000000;
+            --ios-label-dark: #ffffff;
+            --ios-secondary-light: #8e8e93;
+            --ios-secondary-dark: #98989d;
+            --ios-blue: #007aff;
+            --ios-purple: #5856d6;
+            --ios-pink: #ff2d55;
+            --ios-green: #34c759;
+            --ios-orange: #ff9500;
+            --ios-border-light: rgba(0, 0, 0, 0.1);
+            --ios-border-dark: rgba(255, 255, 255, 0.1);
+            --ios-glass-light: rgba(255, 255, 255, 0.7);
+            --ios-glass-dark: rgba(0, 0, 0, 0.7);
+            
+            /* 当前主题变量 */
+            --bg-color: var(--ios-bg-light);
+            --card-bg: var(--ios-card-light);
+            --text-color: var(--ios-label-light);
+            --text-secondary: var(--ios-secondary-light);
+            --border-color: var(--ios-border-light);
+            --glass-bg: var(--ios-glass-light);
+            --accent-color: var(--ios-blue);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-        }
-
-        :root {
-            --primary-color: #6c5ce7;
-            --secondary-color: #a29bfe;
-            --accent-color: #fd79a8;
-            --dark-bg: #0f0f23;
-            --card-bg: rgba(25, 25, 35, 0.85);
-            --text-color: #e0e0e0;
-            --text-secondary: #b0b0c0;
-            --transition-speed: 0.3s;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            background-color: var(--bg-color);
             color: var(--text-color);
             min-height: 100vh;
             padding: 20px;
             position: relative;
             overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
 
-        /* 动态背景粒子 */
-        #particles-js {
+        body.dark-mode {
+            --bg-color: var(--ios-bg-dark);
+            --card-bg: var(--ios-card-dark);
+            --text-color: var(--ios-label-dark);
+            --text-secondary: var(--ios-secondary-dark);
+            --border-color: var(--ios-border-dark);
+            --glass-bg: var(--ios-glass-dark);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* iOS风格动态背景 */
+        .ios-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .ios-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg, 
+                rgba(120, 119, 198, 0.1) 0%, 
+                rgba(255, 255, 255, 0.05) 25%, 
+                rgba(120, 119, 198, 0.1) 50%, 
+                rgba(255, 255, 255, 0.05) 75%, 
+                rgba(120, 119, 198, 0.1) 100%
+            );
+            animation: bg-shift 20s linear infinite;
+        }
+
+        @keyframes bg-shift {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-50px, -50px) rotate(360deg); }
+        }
+
+        /* iOS风格气泡 */
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
             z-index: -1;
         }
 
@@ -51,148 +115,115 @@
             z-index: 100;
         }
 
-        .theme-btn {
-            background: var(--primary-color);
+        .ios-toggle-btn {
+            width: 60px;
+            height: 32px;
+            background: #e9e9ea;
+            border-radius: 16px;
             border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            color: white;
-            font-size: 1.2rem;
+            position: relative;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
-            transition: all var(--transition-speed);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .theme-btn:hover {
-            transform: rotate(30deg);
-            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.6);
+        .dark-mode .ios-toggle-btn {
+            background: #3a3a3c;
         }
 
+        .ios-toggle-btn::after {
+            content: '';
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            background: white;
+            border-radius: 14px;
+            top: 2px;
+            left: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .dark-mode .ios-toggle-btn::after {
+            transform: translateX(28px);
+            background: #f2f2f7;
+        }
+
+        /* 容器 */
         .container {
             max-width: 1400px;
             margin: 0 auto;
+            padding-top: 20px;
         }
 
         /* 头部区域 */
         .header {
             text-align: center;
             margin-bottom: 40px;
-            padding-top: 40px;
+            padding-top: 30px;
         }
 
         .header h1 {
-            font-size: 3.2rem;
-            margin-bottom: 15px;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--ios-blue), var(--ios-purple));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 0 20px rgba(108, 92, 231, 0.3);
-            letter-spacing: 1px;
+            letter-spacing: -0.5px;
         }
 
         .header .subtitle {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--text-secondary);
-            margin-bottom: 30px;
-        }
-
-        /* 时间天气部件 */
-        .info-widgets {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .widget {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            padding: 20px 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            min-width: 200px;
-            text-align: center;
-            transition: transform var(--transition-speed);
-        }
-
-        .widget:hover {
-            transform: translateY(-5px);
-        }
-
-        .widget h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: var(--secondary-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .time {
-            font-size: 2.5rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-        }
-
-        .date {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-        }
-
-        .weather-info {
-            font-size: 1.8rem;
-            font-weight: 300;
+            font-weight: 400;
         }
 
         /* 搜索区域 */
         .search-section {
             background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 20px;
-            margin-bottom: 50px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 30px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            margin-top: 20px;
         }
 
         .search-tabs {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             margin-bottom: 25px;
             flex-wrap: wrap;
         }
 
         .search-tab {
-            padding: 12px 25px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 50px;
-            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            background: rgba(120, 120, 128, 0.12);
             color: var(--text-color);
             cursor: pointer;
-            transition: all var(--transition-speed);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-size: 1rem;
             display: flex;
             align-items: center;
             gap: 8px;
+            font-weight: 500;
         }
 
         .search-tab:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(120, 120, 128, 0.2);
             transform: translateY(-2px);
         }
 
         .search-tab.active {
-            background: var(--primary-color);
-            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+            background: var(--accent-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
         }
 
         .search-box {
@@ -202,45 +233,48 @@
             margin: 0 auto;
         }
 
-        .search-box input {
+        .ios-search-input {
             flex: 1;
-            padding: 20px 25px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
+            padding: 20px 24px;
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
             font-size: 1.1rem;
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(120, 120, 128, 0.08);
             color: var(--text-color);
-            transition: all var(--transition-speed);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
-        .search-box input:focus {
+        .ios-search-input:focus {
             outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+            border-color: var(--accent-color);
+            background: rgba(120, 120, 128, 0.12);
+            box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
         }
 
-        .search-box input::placeholder {
-            color: rgba(255, 255, 255, 0.4);
+        .ios-search-input::placeholder {
+            color: var(--text-secondary);
         }
 
-        .search-box button {
+        .ios-search-btn {
             padding: 0 35px;
             border: none;
-            border-radius: 15px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 18px;
+            background: var(--accent-color);
             color: white;
             cursor: pointer;
             font-size: 1.1rem;
             font-weight: 600;
-            transition: all var(--transition-speed);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             gap: 10px;
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.2);
         }
 
-        .search-box button:hover {
+        .ios-search-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(108, 92, 231, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3);
         }
 
         /* 分类区域 */
@@ -253,16 +287,16 @@
 
         .category {
             background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform var(--transition-speed);
+            backdrop-filter: blur(20px);
+            padding: 28px;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .category:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
         }
 
         .category-header {
@@ -270,178 +304,114 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .category h2 {
-            color: var(--secondary-color);
-            font-size: 1.6rem;
+            color: var(--text-color);
+            font-size: 1.8rem;
+            font-weight: 700;
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
         .edit-category {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(120, 120, 128, 0.12);
             border: none;
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             color: var(--text-color);
             cursor: pointer;
-            transition: all var(--transition-speed);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .edit-category:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(120, 120, 128, 0.2);
             transform: rotate(90deg);
         }
 
         .links {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 15px;
+            gap: 18px;
         }
 
-        .link-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 12px;
+        .ios-link-card {
+            background: rgba(120, 120, 128, 0.08);
+            padding: 22px;
+            border-radius: 18px;
             text-decoration: none;
             color: var(--text-color);
-            transition: all var(--transition-speed);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border-color);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
-        .link-card::before {
+        .ios-link-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-            transform: scaleX(0);
-            transition: transform var(--transition-speed);
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.1) 0%, rgba(88, 86, 214, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
         }
 
-        .link-card:hover {
-            background: rgba(255, 255, 255, 0.1);
+        .ios-link-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 122, 255, 0.3);
         }
 
-        .link-card:hover::before {
-            transform: scaleX(1);
+        .ios-link-card:hover::before {
+            opacity: 1;
+        }
+
+        .link-content {
+            position: relative;
+            z-index: 1;
         }
 
         .link-icon {
-            font-size: 1.8rem;
-            margin-bottom: 12px;
-            color: var(--secondary-color);
+            font-size: 2.2rem;
+            margin-bottom: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            color: var(--ios-blue);
         }
 
-        .link-card h3 {
-            font-size: 1.1rem;
+        .dark-mode .link-icon {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .ios-link-card h3 {
+            font-size: 1.2rem;
             margin-bottom: 8px;
             font-weight: 600;
         }
 
-        .link-card p {
-            font-size: 0.9rem;
+        .ios-link-card p {
+            font-size: 0.95rem;
             color: var(--text-secondary);
             line-height: 1.4;
-        }
-
-        /* 背景控制 */
-        .bg-controls {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .bg-controls h3 {
-            margin-bottom: 20px;
-            color: var(--secondary-color);
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .bg-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .bg-preset {
-            display: flex;
-            gap: 15px;
-        }
-
-        .bg-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.08);
-            color: var(--text-color);
-            cursor: pointer;
-            transition: all var(--transition-speed);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .bg-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-        }
-
-        .bg-btn.active {
-            background: var(--primary-color);
-        }
-
-        .bg-input-group {
-            display: flex;
-            flex: 1;
-            min-width: 300px;
-            gap: 10px;
-        }
-
-        .bg-input-group input {
-            flex: 1;
-            padding: 15px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            font-size: 1rem;
-            background: rgba(255, 255, 255, 0.07);
-            color: var(--text-color);
-        }
-
-        .bg-input-group button {
-            padding: 15px 25px;
-            border: none;
-            border-radius: 10px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all var(--transition-speed);
-        }
-
-        .bg-input-group button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
         }
 
         /* 页脚 */
@@ -449,37 +419,51 @@
             text-align: center;
             padding: 30px 0;
             color: var(--text-secondary);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.95rem;
+            border-top: 1px solid var(--border-color);
             margin-top: 30px;
         }
 
         .footer a {
-            color: var(--secondary-color);
+            color: var(--accent-color);
             text-decoration: none;
+            font-weight: 500;
         }
 
         .footer a:hover {
             text-decoration: underline;
         }
 
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         /* 响应式设计 */
         @media (max-width: 1200px) {
             .category-container {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             }
         }
 
         @media (max-width: 768px) {
             .header h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
             .search-box {
                 flex-direction: column;
             }
             
-            .search-box button {
+            .ios-search-btn {
                 justify-content: center;
                 padding: 18px;
             }
@@ -491,68 +475,80 @@
             .links {
                 grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             }
-            
-            .bg-options {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .bg-input-group {
-                min-width: 100%;
-            }
         }
 
         @media (max-width: 480px) {
             .header h1 {
-                font-size: 2rem;
-            }
-            
-            .info-widgets {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .widget {
-                width: 100%;
+                font-size: 2.3rem;
             }
             
             .search-tabs {
                 flex-direction: column;
+                align-items: center;
             }
             
             .search-tab {
+                width: 100%;
                 justify-content: center;
             }
         }
 
         /* 动画效果 */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .fade-in {
-            animation: fadeIn 0.5s ease forwards;
+            animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(120, 120, 128, 0.08);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(120, 120, 128, 0.2);
+            border-radius: 4px;
+        }
+
+        .dark-mode ::-webkit-scrollbar-thumb {
+            background: rgba(120, 120, 128, 0.4);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(120, 120, 128, 0.3);
+        }
+
+        .dark-mode ::-webkit-scrollbar-thumb:hover {
+            background: rgba(120, 120, 128, 0.6);
         }
     </style>
 </head>
 <body>
-    <!-- 粒子背景 -->
-    <div id="particles-js"></div>
+    <!-- iOS风格动态背景 -->
+    <div class="ios-bg"></div>
+    
+    <!-- 背景气泡 -->
+    <div id="bubbles"></div>
     
     <!-- 主题切换 -->
     <div class="theme-toggle">
-        <button class="theme-btn" id="themeToggle">
-            <i class="fas fa-moon"></i>
-        </button>
+        <button class="ios-toggle-btn" id="themeToggle"></button>
     </div>
 
     <div class="container">
         <!-- 头部区域 -->
         <div class="header fade-in">
-            <h1><i class="fas fa-rocket"></i> 不喝水就犯困</h1>
+            <h1><i class="fas fa-water" style="margin-right: 15px;"></i>不喝水就犯困</h1>
+            <p class="subtitle">个性化起始页 · 高效工作与生活</p>
         </div>
-
 
         <!-- 搜索区域 -->
         <div class="search-section fade-in">
@@ -574,159 +570,212 @@
                 </button>
             </div>
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="输入关键词搜索... (支持直接回车搜索)">
-                <button onclick="doSearch()">
+                <input type="text" id="searchInput" class="ios-search-input" placeholder="输入关键词搜索... (支持直接回车搜索)">
+                <button class="ios-search-btn" onclick="doSearch()">
                     <i class="fas fa-search"></i> 搜索
                 </button>
             </div>
         </div>
 
-   
         <!-- 分类区域 -->
         <div class="category-container">
-            <!-- 娱乐影音 -->
-            <div class="category fade-in">
+            <!-- 划水 -->
+            <div class="category fade-in" style="animation-delay: 0.1s;">
                 <div class="category-header">
-                    <h2><i class="fas fa-film"></i>划水</h2>
-                    <button class="edit-category" onclick="editCategory('entertainment')">
+                    <h2><i class="fas fa-film" style="color: var(--ios-pink);"></i> 划水</h2>
+                    <button class="edit-category" onclick="editCategory('划水')">
                         <i class="fas fa-edit"></i>
                     </button>
                 </div>
                 <div class="links">
-                    <a href="https://www.youtube.com" class="link-card" target="_blank">
-                        <div class="link-icon"><i class="fab fa-youtube"></i></div>
-                        <h3>YouTube</h3>
-                        <p>全球最大视频分享平台</p>
+                    <a href="https://www.youtube.com" class="ios-link-card" target="_blank">
+                        <div class="link-content">
+                            <div class="link-icon"><i class="fab fa-youtube" style="color: #ff0000;"></i></div>
+                            <h3>YouTube</h3>
+                            <p>全球最大视频分享平台</p>
+                        </div>
                     </a>
-                    <a href="https://www.bilibili.com" class="link-card" target="_blank">
-                        <div class="link-icon"><i class="fas fa-play-circle"></i></div>
-                        <h3>哔哩哔哩</h3>
-                        <p>中国年轻人文化社区</p>
+                    <a href="https://www.bilibili.com" class="ios-link-card" target="_blank">
+                        <div class="link-content">
+                            <div class="link-icon"><i class="fas fa-play-circle" style="color: #fb7299;"></i></div>
+                            <h3>哔哩哔哩</h3>
+                            <p>中国年轻人文化社区</p>
+                        </div>
                     </a>
-                        <a href="https://www.zhihu.com" class="link-card" target="_blank">
-                        <div class="link-icon"><i class="fas fa-question-circle"></i></div>
-                        <h3>知乎</h3>
-                        <p>中文问答社区</p>
+                    <a href="https://www.zhihu.com" class="ios-link-card" target="_blank">
+                        <div class="link-content">
+                            <div class="link-icon"><i class="fas fa-question-circle" style="color: #0084ff;"></i></div>
+                            <h3>知乎</h3>
+                            <p>中文问答社区</p>
+                        </div>
                     </a>
-                         <a href="https://www.xiaohongshu.com/explore" class="link-card" target="_blank">
-                        <div class="link-icon"><i class="fab fa-linkedin"></i></div>
-                        <h3>小红书</h3>
-                        <p>生活方式分享社区</p>
+                    <a href="https://www.xiaohongshu.com/explore" class="ios-link-card" target="_blank">
+                        <div class="link-content">
+                            <div class="link-icon"><i class="fas fa-book" style="color: #ff2442;"></i></div>
+                            <h3>小红书</h3>
+                            <p>生活方式分享社区</p>
+                        </div>
                     </a>
-                         <a href="https://www.pinterest.com" class="link-card" target="_blank">
-                        <div class="link-icon"><i class="fab fa-pinterest"></i></div>
-                        <h3>Pinterest</h3>
-                        <p>图片分享平台</p>
+                    <a href="https://www.pinterest.com" class="ios-link-card" target="_blank">
+                        <div class="link-content">
+                            <div class="link-icon"><i class="fab fa-pinterest" style="color: #e60023;"></i></div>
+                            <h3>Pinterest</h3>
+                            <p>图片分享平台</p>
+                        </div>
                     </a>
                 </div>
             </div>
 
-            <!-- 开发工具 -->
-            <div class="category fade-in">
+            <!-- 干活 -->
+            <div class="category fade-in" style="animation-delay: 0.2s;">
                 <div class="category-header">
-                    <h2><i class="fas fa-code"></i> 干活</h2>
-                    <button class="edit-category" onclick="editCategory('development')">
+                    <h2><i class="fas fa-code" style="color: var(--ios-green);"></i> 干活</h2>
+                    <button class="edit-category" onclick="editCategory('干活')">
                         <i class="fas fa-edit"></i>
                     </button>
                 </div>
                 <div class="links">
-                    <a href="https://github.com" class="link-card" target="_blank">
-                        <div class="link-icon"><i class="fab fa-github"></i></div>
-                        <h3>GitHub</h3>
-                        <p>代码托管与协作平台</p>
+                    <a href="https://github.com" class="ios-link-card" target="_blank">
+                        <div class="link-content">
+                            <div class="link-icon"><i class="fab fa-github" style="color: #333;"></i></div>
+                            <h3>GitHub</h3>
+                            <p>代码托管与协作平台</p>
+                        </div>
                     </a>
-                    <a href=" https://www.xiaohongshu.com/explore" class="link-card" target="_blank">
-                        <div class="link-icon"><i class="fab fa-facebook"></i></div>
-                        <h3>大小写转换</h3>
-                        <p>保存文献命名</p>
+                    <a href="https://www.shejidaren.com/examples/tools/case-converter.html" class="ios-link-card" target="_blank">
+                        <div class="link-content">
+                            <div class="link-icon"><i class="fas fa-font" style="color: var(--ios-purple);"></i></div>
+                            <h3>大小写转换</h3>
+                            <p>保存文献命名</p>
+                        </div>
                     </a>
-                        <a href="https://scholar.google.com" class="link-card" target="_blank">
-                        <div class="link-icon"><i class="fab fa-facebook"></i></div>
-                        <h3>scholar</h3>
-                        <p></p>
+                    <a href="https://scholar.google.com" class="ios-link-card" target="_blank">
+                        <div class="link-content">
+                            <div class="link-icon"><i class="fas fa-graduation-cap" style="color: var(--ios-blue);"></i></div>
+                            <h3>Google Scholar</h3>
+                            <p>学术文献搜索</p>
+                        </div>
                     </a>
-                        <a href="https://mathscinet.ams.org/mathscinet/publications-search" class="link-card" target="_blank">
-                        <div class="link-icon"><i class="fab fa-facebook"></i></div>
-                        <h3>MathSciNet</h3>
-                        <p></p>
+                    <a href="https://mathscinet.ams.org/mathscinet/publications-search" class="ios-link-card" target="_blank">
+                        <div class="link-content">
+                            <div class="link-icon"><i class="fas fa-square-root-alt" style="color: #d63384;"></i></div>
+                            <h3>MathSciNet</h3>
+                            <p>数学文献数据库</p>
+                        </div>
                     </a>
-                        <a href=" https://www.researchgate.net" class="link-card" target="_blank">
-                        <div class="link-icon"><i class="fab fa-facebook"></i></div>
-                        <h3>researchgate</h3>
-                        <p></p>
+                    <a href="https://www.researchgate.net" class="ios-link-card" target="_blank">
+                        <div class="link-content">
+                            <div class="link-icon"><i class="fas fa-flask" style="color: #00d084;"></i></div>
+                            <h3>ResearchGate</h3>
+                            <p>科研社交网络</p>
+                        </div>
                     </a>
                 </div>
             </div>
 
-
-            <!-- 社交媒体 -->
-            <div class="category fade-in">
+            <!-- 常用AI网站 -->
+            <div class="category fade-in" style="animation-delay: 0.3s;">
                 <div class="category-header">
-                    <h2><i class="fas fa-users"></i> 常用AI网站</h2>
-                    <button class="edit-category" onclick="editCategory('social')">
+                    <h2><i class="fas fa-robot" style="color: var(--ios-orange);"></i> 常用AI网站</h2>
+                    <button class="edit-category" onclick="editCategory('AI网站')">
                         <i class="fas fa-edit"></i>
                     </button>
                 </div>
                 <div class="links">
-                    <a href="https://chatgpt.com" class="link-card" target="_blank">
-                        <div class="link-icon"><i class="fab fa-twitter"></i></div>
-                        <h3>chatgpt</h3>
-                        <p></p>
+                    <a href="https://chatgpt.com" class="ios-link-card" target="_blank">
+                        <div class="link-content">
+                            <div class="link-icon"><i class="fas fa-comment-dots" style="color: #10a37f;"></i></div>
+                            <h3>ChatGPT</h3>
+                            <p>OpenAI对话AI</p>
+                        </div>
                     </a>
-                    <a href="https://chat.deepseek.com" class="link-card" target="_blank">
-                        <div class="link-icon"><i class="fab fa-facebook"></i></div>
-                        <h3>deepseek</h3>
-                        <p></p>
+                    <a href="https://chat.deepseek.com" class="ios-link-card" target="_blank">
+                        <div class="link-content">
+                            <div class="link-icon"><i class="fas fa-brain" style="color: #6c5ce7;"></i></div>
+                            <h3>DeepSeek</h3>
+                            <p>国产AI助手</p>
+                        </div>
                     </a>
-                    <a href="https://grok.com" class="link-card" target="_blank">
-                        <div class="link-icon"><i class="fab fa-instagram"></i></div>
-                        <h3>gorl</h3>
-                        <p></p>
+                    <a href="https://grok.com" class="ios-link-card" target="_blank">
+                        <div class="link-content">
+                            <div class="link-icon"><i class="fas fa-bolt" style="color: #bf2fbf;"></i></div>
+                            <h3>Grok</h3>
+                            <p>xAI的AI助手</p>
+                        </div>
                     </a>
-                    <a href="https://gemini.google.com/app" class="link-card" target="_blank">
-                        <div class="link-icon"><i class="fab fa-reddit"></i></div>
-                        <h3>gemini</h3>
-                        <p></p>
+                    <a href="https://gemini.google.com/app" class="ios-link-card" target="_blank">
+                        <div class="link-content">
+                            <div class="link-icon"><i class="fas fa-gem" style="color: #4285f4;"></i></div>
+                            <h3>Gemini</h3>
+                            <p>Google AI助手</p>
+                        </div>
                     </a>
-                    <a href="https://www.kimi.com" class="link-card" target="_blank">
-                        <div class="link-icon"><i class="fab fa-linkedin"></i></div>
-                        <h3>kimi</h3>
-                        <p></p>
+                    <a href="https://www.kimi.com" class="ios-link-card" target="_blank">
+                        <div class="link-content">
+                            <div class="link-icon"><i class="fas fa-cloud" style="color: #1e90ff;"></i></div>
+                            <h3>Kimi</h3>
+                            <p>月之暗面AI助手</p>
+                        </div>
                     </a>
-                   
                 </div>
             </div>
-
         </div>
 
         <!-- 页脚 -->
-        <div class="footer fade-in">
-            <p>© 2025 不喝水就犯困的导航 | 个性化起始页 | 个人主页：<a href="chenyangli-phd.github.io" target="_blank">不喝水就犯困</a></p>
-            <p>已保存 <span id="linkCount">36</span> 个链接 | 最后更新：<span id="lastUpdate">2023年10月15日</span></p>
+        <div class="footer fade-in" style="animation-delay: 0.5s;">
+            <p>© 2025 不喝水就犯困的导航 | iOS风格个性化起始页 | 个人主页：<a href="https://chenyangli-phd.github.io" target="_blank">不喝水就犯困</a></p>
+            <div class="stats">
+                <div class="stat-item">
+                    <i class="fas fa-link"></i>
+                    <span>已保存 <span id="linkCount">15</span> 个链接</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>最后更新：<span id="lastUpdate">2025年12月19日</span></span>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- 粒子效果库 -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
     <script>
         // 全局变量
         let currentEngine = 'google';
-        let isDarkTheme = true;
+        let isDarkMode = false;
 
         // 初始化函数
         function init() {
             updateTime();
             setInterval(updateTime, 1000);
-            initParticles();
-            loadSavedBg();
+            createBubbles();
             updateLinkCount();
+            
+            // 检查本地存储的主题偏好
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                isDarkMode = true;
+            }
+            
+            // 搜索框回车支持
+            document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    doSearch();
+                }
+            });
+            
+            // 主题切换事件
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            
+            // 初始动画延迟
+            document.querySelectorAll('.fade-in').forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.1}s`;
+            });
         }
 
         // 更新时间
         function updateTime() {
             const now = new Date();
-            const timeStr = now.toLocaleTimeString('zh-CN');
+            const timeStr = now.toLocaleTimeString('zh-CN', { hour12: false });
             const dateStr = now.toLocaleDateString('zh-CN', {
                 year: 'numeric',
                 month: 'long',
@@ -734,51 +783,76 @@
                 weekday: 'long'
             });
             
-            document.getElementById('currentTime').textContent = timeStr;
-            document.getElementById('currentDate').textContent = dateStr;
+            // 如果没有时间显示区域，创建一个
+            let timeDisplay = document.getElementById('timeDisplay');
+            if (!timeDisplay) {
+                timeDisplay = document.createElement('div');
+                timeDisplay.id = 'timeDisplay';
+                timeDisplay.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    left: 20px;
+                    background: var(--card-bg);
+                    backdrop-filter: blur(20px);
+                    padding: 15px 20px;
+                    border-radius: 18px;
+                    box-shadow: var(--shadow);
+                    border: 1px solid var(--border-color);
+                    z-index: 99;
+                    font-weight: 500;
+                    font-size: 1.1rem;
+                `;
+                document.body.appendChild(timeDisplay);
+            }
             
-            // 模拟温度变化（实际应用中应该调用天气API）
-            const hour = now.getHours();
-            let temp = 20 + Math.sin(hour * Math.PI / 12) * 8;
-            document.getElementById('temperature').textContent = `${Math.round(temp)}°C`;
+            timeDisplay.innerHTML = `
+                <div style="font-size: 1.4rem; font-weight: 700; margin-bottom: 5px;">${timeStr}</div>
+                <div style="font-size: 0.9rem; color: var(--text-secondary);">${dateStr}</div>
+            `;
         }
 
-        // 初始化粒子背景
-        function initParticles() {
-            if (typeof particlesJS !== 'undefined') {
-                particlesJS('particles-js', {
-                    particles: {
-                        number: { value: 80, density: { enable: true, value_area: 800 } },
-                        color: { value: "#6c5ce7" },
-                        shape: { type: "circle" },
-                        opacity: { value: 0.5, random: true },
-                        size: { value: 3, random: true },
-                        line_linked: {
-                            enable: true,
-                            distance: 150,
-                            color: "#a29bfe",
-                            opacity: 0.2,
-                            width: 1
-                        },
-                        move: {
-                            enable: true,
-                            speed: 2,
-                            direction: "none",
-                            random: true,
-                            straight: false,
-                            out_mode: "out",
-                            bounce: false
+        // 创建背景气泡
+        function createBubbles() {
+            const bubblesContainer = document.getElementById('bubbles');
+            const bubbleCount = 15;
+            
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                
+                // 随机大小和位置
+                const size = Math.random() * 120 + 30;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const opacity = Math.random() * 0.1 + 0.05;
+                
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${posX}%`;
+                bubble.style.top = `${posY}%`;
+                bubble.style.opacity = opacity;
+                
+                // 添加浮动动画
+                const duration = Math.random() * 30 + 20;
+                const delay = Math.random() * 5;
+                bubble.style.animation = `float ${duration}s ease-in-out ${delay}s infinite alternate`;
+                
+                // 添加浮动动画关键帧
+                if (!document.querySelector('#floatAnimation')) {
+                    const style = document.createElement('style');
+                    style.id = 'floatAnimation';
+                    style.textContent = `
+                        @keyframes float {
+                            0% { transform: translate(0, 0) rotate(0deg); }
+                            33% { transform: translate(${Math.random() * 30 - 15}px, ${Math.random() * 30 - 15}px) rotate(${Math.random() * 10 - 5}deg); }
+                            66% { transform: translate(${Math.random() * 30 - 15}px, ${Math.random() * 30 - 15}px) rotate(${Math.random() * 10 - 5}deg); }
+                            100% { transform: translate(0, 0) rotate(0deg); }
                         }
-                    },
-                    interactivity: {
-                        detect_on: "canvas",
-                        events: {
-                            onhover: { enable: true, mode: "repulse" },
-                            onclick: { enable: true, mode: "push" }
-                        }
-                    },
-                    retina_detect: true
-                });
+                    `;
+                    document.head.appendChild(style);
+                }
+                
+                bubblesContainer.appendChild(bubble);
             }
         }
 
@@ -817,164 +891,76 @@
             window.open(engines[currentEngine] || engines.google, '_blank');
         }
 
-        // 搜索框回车支持
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                doSearch();
-            }
-        });
-
-        // 背景控制功能
-        function setBgPreset(preset) {
-            const body = document.body;
-            const buttons = document.querySelectorAll('.bg-preset .bg-btn');
-            
-            // 移除所有按钮的active类
-            buttons.forEach(btn => btn.classList.remove('active'));
-            // 给当前按钮添加active类
-            event.target.classList.add('active');
-            
-            const backgrounds = {
-                default: 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%)',
-                gradient1: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
-                gradient2: 'linear-gradient(135deg, #2d0b5f 0%, #1a0b3e 50%, #0d0221 100%)',
-                gradient3: 'linear-gradient(135deg, #0c2461 0%, #1e3799 50%, #4a69bd 100%)'
-            };
-            
-            body.style.backgroundImage = backgrounds[preset] || backgrounds.default;
-            body.style.backgroundSize = 'cover';
-            body.style.backgroundPosition = 'center';
-            body.style.backgroundAttachment = 'fixed';
-            
-            // 保存到本地存储
-            localStorage.setItem('bgPreset', preset);
-            localStorage.removeItem('bgImage'); // 清除自定义背景
-        }
-
-        function setCustomBg() {
-            const url = document.getElementById('bgUrl').value.trim();
-            if (!url) return;
-
-            const body = document.body;
-            body.style.backgroundImage = `url(${url})`;
-            body.style.backgroundSize = 'cover';
-            body.style.backgroundPosition = 'center';
-            body.style.backgroundAttachment = 'fixed';
-            
-            // 保存到本地存储
-            localStorage.setItem('bgImage', url);
-            localStorage.removeItem('bgPreset'); // 清除预设背景
-            
-            // 更新按钮状态
-            document.querySelectorAll('.bg-preset .bg-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-        }
-
-        function resetBg() {
-            const body = document.body;
-            body.style.backgroundImage = '';
-            body.style.background = 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%)';
-            
-            // 重置按钮状态
-            document.querySelectorAll('.bg-preset .bg-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.querySelector('.bg-preset .bg-btn:first-child').classList.add('active');
-            
-            // 清除本地存储
-            localStorage.removeItem('bgImage');
-            localStorage.removeItem('bgPreset');
-            document.getElementById('bgUrl').value = '';
-        }
-
-        function loadSavedBg() {
-            const savedImage = localStorage.getItem('bgImage');
-            const savedPreset = localStorage.getItem('bgPreset');
-            
-            if (savedImage) {
-                document.body.style.backgroundImage = `url(${savedImage})`;
-                document.body.style.backgroundSize = 'cover';
-                document.body.style.backgroundPosition = 'center';
-                document.body.style.backgroundAttachment = 'fixed';
-                document.getElementById('bgUrl').value = savedImage;
-            } else if (savedPreset) {
-                setBgPreset(savedPreset);
-                // 设置对应的按钮为active
-                document.querySelectorAll('.bg-preset .bg-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.textContent.includes(
-                        savedPreset === 'default' ? '默认' : 
-                        savedPreset === 'gradient1' ? '渐变1' :
-                        savedPreset === 'gradient2' ? '渐变2' : '渐变3'
-                    )) {
-                        btn.classList.add('active');
-                    }
-                });
-            }
-        }
-
         // 主题切换
-        document.getElementById('themeToggle').addEventListener('click', function() {
-            const themeBtn = document.getElementById('themeToggle');
-            const icon = themeBtn.querySelector('i');
-            
-            if (isDarkTheme) {
-                // 切换到浅色主题
-                document.documentElement.style.setProperty('--dark-bg', '#f0f2f5');
-                document.documentElement.style.setProperty('--card-bg', 'rgba(255, 255, 255, 0.9)');
-                document.documentElement.style.setProperty('--text-color', '#333');
-                document.documentElement.style.setProperty('--text-secondary', '#666');
-                icon.className = 'fas fa-sun';
-                document.body.style.background = 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)';
-                isDarkTheme = false;
-            } else {
-                // 切换到深色主题
-                document.documentElement.style.setProperty('--dark-bg', '#0f0f23');
-                document.documentElement.style.setProperty('--card-bg', 'rgba(25, 25, 35, 0.85)');
-                document.documentElement.style.setProperty('--text-color', '#e0e0e0');
-                document.documentElement.style.setProperty('--text-secondary', '#b0b0c0');
-                icon.className = 'fas fa-moon';
-                document.body.style.background = 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%)';
-                isDarkTheme = true;
-            }
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode');
             
             // 保存主题偏好
-            localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
-        });
-
-        // 加载保存的主题
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            // 如果保存的是浅色主题，切换一次
-            document.getElementById('themeToggle').click();
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
         }
 
         // 其他功能
         function editCategory(category) {
-            alert(`编辑 ${category} 分类功能正在开发中...`);
-            // 实际应用中，这里可以打开一个模态框来编辑分类中的链接
+            // iOS风格弹窗
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1000;
+                backdrop-filter: blur(10px);
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: var(--card-bg); backdrop-filter: blur(20px); border-radius: 20px; padding: 30px; max-width: 400px; width: 90%; border: 1px solid var(--border-color); box-shadow: var(--shadow);">
+                    <h2 style="margin-bottom: 20px; font-size: 1.6rem;">编辑 ${category} 分类</h2>
+                    <p style="margin-bottom: 25px; color: var(--text-secondary);">此功能正在开发中，即将推出...</p>
+                    <div style="display: flex; justify-content: flex-end; gap: 15px;">
+                        <button onclick="this.closest('div').parentElement.remove()" style="padding: 12px 24px; border-radius: 12px; border: 1px solid var(--border-color); background: transparent; color: var(--text-color); cursor: pointer;">取消</button>
+                        <button onclick="this.closest('div').parentElement.remove(); showNotification('编辑功能即将推出')" style="padding: 12px 24px; border-radius: 12px; border: none; background: var(--accent-color); color: white; cursor: pointer;">确定</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
         }
 
-        function addNewLink() {
-            const url = prompt('请输入要添加的网站URL：');
-            if (url) {
-                const title = prompt('请输入网站名称：');
-                if (title) {
-                    const category = prompt('请选择分类 (1.娱乐影音 2.开发工具 3.购物平台 4.社交媒体 5.新闻资讯 6.学习资源)：');
-                    alert(`链接 "${title}" 已添加到分类 ${category}`);
-                    updateLinkCount();
-                }
-            }
-        }
-
-        function clearSearch() {
-            document.getElementById('searchInput').value = '';
-            document.getElementById('searchInput').focus();
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--card-bg);
+                backdrop-filter: blur(20px);
+                padding: 15px 25px;
+                border-radius: 14px;
+                box-shadow: var(--shadow);
+                border: 1px solid var(--border-color);
+                z-index: 1001;
+                font-weight: 500;
+                transition: all 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(-50%) translateY(-20px)';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
         }
 
         function updateLinkCount() {
-            const links = document.querySelectorAll('.link-card');
+            const links = document.querySelectorAll('.ios-link-card');
             document.getElementById('linkCount').textContent = links.length;
             
             // 更新最后更新时间
