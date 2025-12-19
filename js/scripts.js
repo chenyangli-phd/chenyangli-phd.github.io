@@ -394,7 +394,6 @@ function toggleShareMenu() {
         floatingShare.classList.toggle('active');
     }
 }
-
 function shareToWechat() {
     const modal = document.getElementById('wechat-modal');
     if (modal) modal.classList.add('show');
