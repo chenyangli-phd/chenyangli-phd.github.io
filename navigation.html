@@ -961,9 +961,15 @@
             updateLinkCount();
             
             const savedTheme = localStorage.getItem('theme');
-            // 默认使用暗色模式，如果用户之前选择了亮色模式，则移除暗色模式类
+            // 默认使用暗色模式，只有在用户明确选择亮色模式时才使用亮色模式
             if (savedTheme === 'light') {
                 document.body.classList.remove('dark-mode');
+            } else {
+                // 如果没有保存的主题或主题不是 'light'，确保使用暗色模式
+                document.body.classList.add('dark-mode');
+                if (!savedTheme) {
+                    localStorage.setItem('theme', 'dark');
+                }
             }
             
             document.getElementById('searchInput').addEventListener('keypress', function(e) {
