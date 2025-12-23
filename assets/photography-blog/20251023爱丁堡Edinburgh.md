@@ -1,4 +1,4 @@
-# 20251023爱丁堡Edinburgh
+# 20251023 爱丁堡 Edinburgh
 
 
 
@@ -173,3 +173,9 @@
 ![LEE03446](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03446.jpg)
 
 ![LEE03450](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03450.jpg)
+
+## 推荐阅读
+
+[公众号内容的一个转折点｜附内容合集](https://mp.weixin.qq.com/s/sJJsCHqo7hllLIDQl-LV3g)
+
+[20251203格拉斯哥Glasgow](https://mp.weixin.qq.com/s/2mwfsthV1RLSHWN_oylOhQ)
