@@ -1,101 +1,124 @@
-# 20251001 圣安德鲁斯 St Andrews
+# 📷 20251001 圣安德鲁斯 St Andrews  
+## 风、海、石头与时间 —— 圣安德鲁斯摄影笔记
 
-2025年10月1日，探访苏格兰著名的海滨小镇圣安德鲁斯，这里是高尔夫运动的发源地。
+> 在苏格兰的东海岸，有一座城市，  
+> 风从北海吹来，石头记录时间，  
+> 而摄影，只是悄悄站在一旁。
 
 ---
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03012.JPG)
+## St Andrews｜北海岸线上的古老大学城
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03016.JPG)
+**St Andrews（圣安德鲁斯）** 位于苏格兰 Fife 地区，是一座同时承载着  
+**中世纪宗教历史、英国最古老大学、以及世界高尔夫起源地** 的海岸小城。
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03020.JPG)
+这里的摄影魅力，不在宏大，而在 **时间的密度**。
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03025.JPG)
+📍 *Location: St Andrews, Fife, Scotland*
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03026.JPG)
+![LEE03020](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03020.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03028.JPG)
+![LEE03016](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03016.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03029.JPG)
+![LEE03012](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03012.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03032.JPG)
+![LEE03025](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03025.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03036.JPG)
+![LEE03026](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03026.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03037.JPG)
+![LEE03028](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03028.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03038.JPG)
+![LEE03029](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03029.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03053.JPG)
+![LEE03032](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03032.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03061.JPG)
+![LEE03036](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03036.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03067.JPG)
+---
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03076.JPG)
+## 海岸线｜北海的风与开放的天空
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03080.JPG)
+St Andrews 的海岸线几乎没有遮挡。  
+天空在画面中往往占据主导地位，云层变化迅速，风是这里最重要的“运动元素”。
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03081.JPG)
+![LEE03037](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03037.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03084.JPG)
+![LEE03038](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03038.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03086.JPG)
+![LEE03053](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03053.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03095.JPG)
+![LEE03061](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03061.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03100.JPG)
+![LEE03067](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03067.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03103.JPG)
+![LEE03076](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03076.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03104.JPG)
+![LEE03080](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03080.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03106.JPG)
+![LEE03084](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03084.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03107.JPG)
+![LEE03081](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03081.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03113.JPG)
+![LEE03086](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03086.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03118.JPG)
+![LEE03100](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03100.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03121.JPG)
+![LEE03095](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03095.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03125.JPG)
+![LEE03104](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03104.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03126.JPG)
+![](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03104.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03128.JPG)
+![LEE03106](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03106.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03129.JPG)
+![LEE03107](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03107.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03135.JPG)
+![LEE03113](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03113.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03139.JPG)
+![LEE03118](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03118.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03142.JPG)
+![LEE03121](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03121.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03146.JPG)
+![LEE03125](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03125.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03147.JPG)
+![LEE03085](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03085.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03149.JPG)
+![LEE03139](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03139.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03150.JPG)
+---
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03151.JPG)
+## St Andrews Cathedral｜废墟与时间
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03152.JPG)
+**圣安德鲁斯大教堂遗址** 是这座城市最具历史重量的地方之一。  
+断裂的石墙与残存的拱门，让时间在画面中变得可见。
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03155.JPG)
+![LEE03128](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03128.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03156.JPG)
+![LEE03146](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03146.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03161.JPG)
+![LEE03147](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03147.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03166.JPG)
+![](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03147.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03168.JPG)
+![LEE03150](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03150.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03173.JPG)
+![LEE03151](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03151.jpg)
 
-![](../photography/20251001%20圣安德鲁斯%20St%20Andrews/LEE03175.JPG)
+![LEE03152](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03152.jpg)
+
+![LEE03155](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03155.jpg)
+
+![LEE03156](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03156.jpg)
+
+![LEE03161](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03161.jpg)
+
+![LEE03166](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03166.jpg)
+
+![LEE03168](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03168.jpg)
+
+![LEE03173](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/LEE03173.jpg)
+
+
+
+📍 *St Andrews, Scotland*  
+📷 *Photography Notes*
