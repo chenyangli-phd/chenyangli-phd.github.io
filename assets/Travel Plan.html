@@ -1,0 +1,700 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic&subset=latin-ext' rel='stylesheet' type='text/css' /><link href='https://fonts.googleapis.com/css?family=Lato:900,300&subset=latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+.mac-os-11 { --title-bar-height: 28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5 { white-space: pre-wrap; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.428571; overflow-x: hidden; background: inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-size-adjust: inherit; font-kerning: inherit; font-variant-alternates: inherit; font-variant-ligatures: inherit; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-position: inherit; font-variant-emoji: inherit; font-feature-settings: inherit; font-optical-sizing: inherit; font-variation-settings: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; position: relative; }
+#write svg h1, #write svg h2, #write svg h3, #write svg h4, #write svg h5, #write svg h6, #write svg p { position: static; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+thead, tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right-width: 0px; border-right-style: none; border-right-color: currentcolor; background-color: inherit; }
+.CodeMirror-linenumber { -webkit-user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+svg { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; border-color: transparent !important; padding-top: 0px !important; padding-bottom: 0px !important; }
+  .typora-export * { print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  #write > p:nth-child(1) { margin-top: 0px; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+  figure { overflow-x: visible; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: medium; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.reversefootnote { font-family: ui-monospace, sans-serif; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: medium !important; border-style: none !important; border-color: currentcolor !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom-width: 0px; border-bottom-style: none; border-bottom-color: currentcolor; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: medium; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.mermaid-svg { margin: auto; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; overflow-wrap: anywhere; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.428571rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left-width: 28px; border-left-style: solid; border-left-color: transparent; border-right-width: 28px; border-right-style: solid; border-right-color: transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right-width: 8px; border-right-style: solid; border-right-color: transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+mjx-container { break-inside: avoid; }
+.md-alert.md-alert-note { border-left-color: rgb(9, 105, 218); }
+.md-alert.md-alert-important { border-left-color: rgb(130, 80, 223); }
+.md-alert.md-alert-warning { border-left-color: rgb(154, 103, 0); }
+.md-alert.md-alert-tip { border-left-color: rgb(31, 136, 61); }
+.md-alert.md-alert-caution { border-left-color: rgb(207, 34, 46); }
+.md-alert { padding: 0px 1em; margin-bottom: 16px; color: inherit; border-left-width: 0.25em; border-left-style: solid; border-left-color: rgb(0, 0, 0); }
+.md-alert-text-note { color: rgb(9, 105, 218); }
+.md-alert-text-important { color: rgb(130, 80, 223); }
+.md-alert-text-warning { color: rgb(154, 103, 0); }
+.md-alert-text-tip { color: rgb(31, 136, 61); }
+.md-alert-text-caution { color: rgb(207, 34, 46); }
+.md-alert-text { font-size: 0.9rem; font-weight: 700; }
+.md-alert-text svg { fill: currentcolor; position: relative; top: 0.125em; margin-right: 1ch; overflow: visible; }
+.md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
+
+
+@include-when-export url(https://fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic&subset=latin-ext);
+@include-when-export url(https://fonts.googleapis.com/css?family=Lato:900,300&subset=latin-ext);
+
+:root {
+	--control-text-color: #777;
+}
+
+/**
+ * forked from pixyll.com
+ * MIT license
+ */
+
+h1,
+.h1,
+.f1 {
+	font-size: 2rem;
+	line-height: 2.5rem;
+}
+h2,
+.h2,
+.f2 {
+	font-size: 1.5rem;
+	line-height: 2rem;
+}
+h3,
+.h3,
+.f3 {
+	font-size: 1.25rem;
+	line-height: 1.5rem;
+}
+p,
+.p,
+.f4,
+h4,
+h5,
+h6,
+dl,
+ol,
+ul,
+pre[cid],
+div[cid],
+#typora-source {
+	font-size: 1.125rem;
+	line-height: 1.5rem;
+}
+
+h4 {
+	font-size: 1.13rem;
+}
+/*
+ Pixyll
+ A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff.
+ Best served with BASSCSS (http://jxnblk.github.io/basscss)
+ Crafted with <3 by John Otander (@4lpine) - ©2015 John Otander MIT License http://opensource.org/licenses/MIT
+
+*/
+
+body {
+	font-family: "Merriweather", "PT Serif", Georgia, "Times New Roman", "STSong", 'Segoe UI Emoji', Serif;
+	line-height: 1.5rem;
+	font-weight: 400;
+}
+
+#write {
+	max-width: 914px;
+	color: #333;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1100px;
+	}
+}
+
+@media only screen and (min-width: 1700px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+img {
+	width: auto;
+	max-width: 100%;
+}
+body {
+	font-size: 1.5rem;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.ty-table-edit {
+	background: #ededed;
+}
+
+table {
+	width: 100%;
+	font-size: 1.125rem;
+}
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td,
+table > tfoot > tr > th,
+table > tfoot > tr > td {
+	padding: 12px;
+	line-height: 1.2;
+	vertical-align: top;
+	border-top: 1px solid #333;
+}
+table > thead > tr > th {
+	vertical-align: bottom;
+	border-bottom: 2px solid #333;
+}
+table > caption + thead > tr:first-child > th,
+table > caption + thead > tr:first-child > td,
+table > colgroup + thead > tr:first-child > th,
+table > colgroup + thead > tr:first-child > td,
+table > thead:first-child > tr:first-child > th,
+table > thead:first-child > tr:first-child > td {
+	border-top: 0;
+}
+table > tbody + tbody {
+	border-top: 2px solid #333;
+}
+p {
+	font-weight: 300;
+	line-height: 1.5;
+}
+abbr {
+	border-bottom: 1px black dotted;
+	cursor: help;
+}
+pre,
+code {
+	font-family: Menlo, Monaco, "Courier New", monospace;
+}
+
+code,
+.md-fences  {
+	color: #7a7a7a;
+}
+
+.md-fences {
+	padding: 1.125em;
+	margin-bottom: 0.88em;
+	font-size: 1rem;
+	border: 1px solid #7a7a7a;
+	padding-bottom: 0.5rem;
+	padding-top: 0.5rem;
+}
+
+blockquote {
+	padding: 1.33em;
+	font-style: italic;
+	border-left: 5px solid #7a7a7a;
+	color: #555;
+}
+blockquote em {
+	color: #000;
+}
+blockquote footer {
+	font-size: .85rem;
+	font-style: normal;
+	background-color: #fff;
+	color: #7a7a7a;
+	border-color: transparent;
+}
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+	font-family: "Lato", 'Helvetica Neue', Helvetica, sans-serif;
+	font-weight: bold;
+	line-height: 1.2;
+	margin: 1em 0 0.5em;
+}
+@media screen and (min-width: 48em) {
+	.h1,
+	h1 {
+		font-size: 3.250rem;
+	}
+	.h2,
+	h2 {
+		font-size: 2.298rem;
+	}
+	.h3,
+	h3 {
+		font-size: 1.625rem;
+	}
+	.h4,
+	h4 {
+		font-size: 1.3rem;
+	}
+	#write>h4.md-focus:before,
+	#write>h5.md-focus:before,
+	#write>h6.md-focus:before{
+		top: 1px;
+	}
+	.p,
+	p,
+	li {
+		font-size: 1.25rem;
+		line-height: 1.8;
+	}
+	table {
+		font-size: 1.25rem;
+	}
+}
+@media (max-width: 48em) {
+	blockquote {
+		margin-left: 1rem;
+		margin-right: 0;
+		padding: 0.5em;
+	}
+	.h1,
+	h1 {
+		font-size: 2.827rem;
+	}
+	.h2,
+	h2 {
+		font-size: 1.999rem;
+	}
+	.h3,
+	h3 {
+		font-size: 1.413rem;
+	}
+	.h4,
+	h4 {
+		font-size: 1.3rem;
+	}
+}
+@media screen and (min-width: 64em) {
+	.h1,
+	h1 {
+		font-size: 4.498rem;
+	}
+	.h2,
+	h2 {
+		font-size: 2.29rem;
+	}
+	.h3,
+	h3 {
+		font-size: 1.9rem;
+	}
+	.h4,
+	h4 {
+		font-size: 1.591rem;
+	}
+	#write>h4.md-focus:before{
+		top:4px;
+	}
+}
+a {
+	color: #463F5C;
+	text-decoration: underline;
+}
+
+#write {
+	padding-top: 2rem;
+}
+
+#write pre.md-meta-block {
+	min-height: 35px;
+	padding: 0.5em 1em;
+	white-space: pre;
+	border: 0px;
+
+	border-left: 30px #f8f8f8 solid;
+	border-right: 30px #f8f8f8 solid;
+	width: 100vw;
+	max-width: calc(100% + 60px);
+
+	margin-left: -30px;
+	margin-bottom: 2em;
+	margin-top: -2010px;
+	padding-top: 2000px;
+	padding-bottom: 10px;
+	line-height: 1.5em;
+	color: #7a7a7a;
+	background-color: #fafafa;
+	font-family: 'Lato', 'Helvetica Neue', Helvetica, sans-serif;
+	font-weight: 300;
+	clear: both;
+	padding-left: 0;
+	font-size:1.125rem;
+}
+.md-image>.md-meta {
+	color: #463F5C
+}
+.footnotes {
+	font-size:1.1rem;
+}
+.md-tag {
+	font-family: 'Lato', 'Helvetica Neue', Helvetica, sans-serif;
+}
+.code-tooltip {
+	background: white;
+}
+.code-tooltip-content {
+	font-size: 1.1rem;
+}
+
+.task-list{
+	padding-left: 0;
+}
+
+.md-task-list-item {
+	padding-left:34px;
+}
+
+.md-task-list-item > input{
+	width: 1.25rem;
+	height: 1.25rem;
+	display: block;
+	-webkit-appearance: initial;
+	top: -0.2rem;
+	margin-left: -1.6em;
+	margin-top: calc(1rem - 7px);
+	border: none;
+}
+
+.md-task-list-item > input:focus{
+	outline: none;
+	box-shadow: none;
+}
+
+.md-task-list-item > input:before{
+	border: 1px solid #555;
+	border-radius: 1.5rem;
+	width: 1.5rem;
+	height: 1.5rem;
+	background: #fff;
+	content: ' ';
+	transition: background-color 200ms ease-in-out;
+	display: block;
+}
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before{
+	background: #333;
+	border-width: 2px;
+	display:inline-block;
+	transition: background-color 200ms ease-in-out;
+}
+
+.md-task-list-item > input:checked:after,
+.md-task-list-item > input[checked]:after {
+	opacity: 1;
+}
+
+.md-task-list-item > input:after {
+	opacity: 1;
+	-webkit-transition: opacity 0.05s ease-in-out;
+	-moz-transition: opacity 0.05s ease-in-out;
+	transition: opacity 0.05s ease-in-out;
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	position: absolute;
+	top: 0.4375rem;
+	left: 0.28125rem;
+	width: 0.9375rem;
+	height: 0.5rem;
+	border: 3px solid #fff;
+	border-top: 0;
+	border-right: 0;
+	content: ' ';
+	opacity: 0;
+}
+
+.md-tag {
+	color:inherit;
+}
+
+.md-toc:focus .md-toc-content{
+	margin-top: 19px;
+}
+
+#typora-sidebar {
+	font-size:1rem !important;
+}
+
+.html-for-mac #typora-sidebar {
+	background-color:white;
+}
+
+.outline-content li, .outline-content ul {
+	font-size:1rem !important;
+}
+
+.outline-title {
+	line-height: inherit;
+	margin-top: 10px;
+}
+
+.outline-expander {
+	width: 18px;
+}
+
+.outline-expander:before {
+ 	content: "+";
+	font-family: inherit;
+	color: rgb(108, 108, 108); 
+  font-size: 1.5rem;
+ 	top: -0.1rem;
+}
+
+.outline-expander:hover:before {
+	content: "+";
+}
+
+.outline-item-open>.outline-item>.outline-expander:before{
+	content: "-";
+}
+
+/** source code mode */
+#typora-source {
+	font-family: Courier, monospace;
+    color: #6A6A6A;
+}
+
+.os-windows #typora-source {
+	font-family: inherit;
+}
+
+.cm-s-typora-default .cm-header, 
+.cm-s-typora-default .cm-property,
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor {
+	color: #428bca;
+}
+
+.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number {
+	color: #777777;
+}
+
+.md-diagram-panel {
+	margin-top: 24px;
+	margin-left: -1.2em;
+}
+
+.md-mathjax-midline {
+	background: #fafafa;
+}
+
+.enable-diagrams pre.md-fences[lang="sequence"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="flow"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="mermaid"] .code-tooltip {
+    bottom: -3.4em;
+}
+
+.dropdown-menu .divider {
+	border-color: #e5e5e5;
+}
+
+li {
+	margin: 0.5rem 0;
+}
+
+li > *:last-child {
+	margin-bottom: 0;
+}
+
+ @media print { @page {margin: 0 0 0 0;} body.typora-export {padding-left: 0; padding-right: 0;} #write {padding:0;}}
+</style><title>Travel Plan</title>
+</head>
+<body class='typora-export'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='🇳🇱-荷兰--阿姆斯特丹--海牙'><span>🇳🇱 荷兰 · 阿姆斯特丹 &amp; 海牙 </span></h1><p><img src="/Users/lee/Library/Application%20Support/typora-user-images/image-20260214214958320.png" referrerpolicy="no-referrer" alt="image-20260214214958320"></p><h3 id='🏛️-重点博物馆-museums--tickets'><span>🏛️ 重点博物馆 (Museums &amp; Tickets)</span></h3><figure class='table-figure'><table><thead><tr><th><strong><span>景点名称</span></strong></th><th><strong><span>预计票价</span></strong></th><th><strong><span>核心亮点 / 必看建议</span></strong></th></tr></thead><tbody><tr><td><strong><span>梵高博物馆</span></strong></td><td><span>€24.0</span></td><td><strong><span>必须提前预约</span></strong><span>，建议提前1个月抢票。</span></td></tr><tr><td><strong><span>荷兰国立博物馆</span></strong></td><td><span>€25.0</span></td><td><span>必看伦勃朗《夜巡》及维米尔《小街》。</span></td></tr><tr><td><strong><span>莫瑞泰斯美术馆</span></strong></td><td><span>€20.0</span></td><td><strong><span>位于海牙</span></strong><span>，看《戴珍珠耳环的少女》。</span></td></tr><tr><td><strong><span>阿姆斯特丹王宫</span></strong></td><td><span>€13.5</span></td><td><span>荷兰黄金时代的“世界第八大奇迹”。</span></td></tr></tbody></table></figure><h3 id='🎫-城市通卡建议-i-amsterdam-city-card'><span>🎫 城市通卡建议 (I amsterdam City Card)</span></h3><ul><li><p><strong><span>适用人群：</span></strong><span> 24h (</span><strong><span>€67</span></strong><span>) / 48h (</span><strong><span>€94</span></strong><span>)。</span></p></li><li><p><strong><span>包含：</span></strong><span> 70+ 博物馆（</span><strong><span>不含</span></strong><span>梵高博物馆，需另购）、GVB 全市交通、运河游船。</span></p></li><li><p><strong><span>注意：</span></strong><span> 你的行程包含海牙和风车村，由于 </span><strong><span>City Card 不包含前往海牙的火车</span></strong><span>，建议根据具体的进入场馆数量核算成本。</span></p></li></ul><hr /><h3 id='🖊️-行程安排-itinerary'><span>🖊️ 行程安排 (Itinerary)</span></h3><p><strong><span>📅 Feb 19: 艺术精粹与童话小镇</span></strong></p><ul><li><p><strong><span>上午：</span></strong><span> </span><strong><span>09:30 梵高博物馆</span></strong><span>（已预约）。参观约 2 小时。</span></p><p><span>		</span><span>步行前往 </span><strong><span>荷兰国立博物馆 (Rijksmuseum)</span></strong><span>。</span></p><ul><li><p><em><span>💡 风险提示：</span></em><span> 国立博物馆虽不像梵高那样容易售罄，但旺季仍建议提前预约时段，否则现场可能需要排长队或无法入场</span></p></li></ul></li><li><p><strong><span>中午：</span></strong><span> 步行至附近的 </span><strong><span>Museumplein (博物馆广场)</span></strong><span> 附近用餐。</span></p></li><li><p><strong><span>下午：</span></strong><span> 从中央车站出发前往 </span><strong><span>Zaandam (乐高小镇)</span></strong><span> 拍照，随后前往 </span><strong><span>Zaanse Schans (风车村)</span></strong><span>。</span></p></li><li><p><strong><span>晚餐：</span></strong><span> 返回阿姆斯特丹市中心用餐（推荐尝试著名的荷兰薯条或海鲜）。</span></p></li></ul><p><strong><span>📅 Feb 20: 海牙半日游与市区漫步</span></strong></p><ul><li><p><strong><span>上午：</span></strong><span> 从 Amsterdam Centraal 搭乘火车前往海牙（Den Haag）。</span></p></li><li><p><strong><span>10:15：</span></strong><span> </span><strong><span>莫瑞泰斯美术馆</span></strong><span>（已预约）看珍珠少女。</span></p></li><li><p><strong><span>中午：</span></strong><span> 在海牙市中心或附近的 Binnenhof (国会议事堂) 周边午餐。</span></p></li><li><p><strong><span>下午：</span></strong><span> 返回阿姆斯特丹。在 </span><strong><span>Dam Square (水坝广场)</span></strong><span> 或 </span><strong><span>Red Light District (红灯区)</span></strong><span> 散步。</span></p></li><li><p><strong><span>傍晚：</span></strong><span> 启程前往机场（Schiphol Airport）。</span></p></li></ul><hr /><h3 id='💳-交通与支付-transit-tips'><span>💳 交通与支付 (Transit Tips)</span></h3><ul><li><p><strong><span>Apple Pay (OVpay):</span></strong><span> 荷兰全境（含火车、地铁、电车、公交）均支持 Apple Pay。</span></p></li><li><p><strong><span>操作要点：</span></strong><span> </span><strong><span>“Tap in &amp; Tap out”</span></strong><span> —— 必须在上下车/进出站时各刷一次。</span></p></li><li><p><strong><span>设备一致：</span></strong><span> 进站用 iPhone，出站必须用</span><strong><span>同一部</span></strong><span> iPhone（不能换 Apple Watch）。</span></p></li><li><p><strong><span>性价比：</span></strong><span> 前往海牙和风车村的行程涉及火车，直接刷 Apple Pay 非常方便，无需购买实体纸质票（可省去 €1 工本费）。</span></p></li></ul><hr /><h1 id='🇩🇰-丹麦--哥本哈根-copenhagen'><span>🇩🇰 丹麦 · 哥本哈根 (Copenhagen)</span></h1><p><img src="https://cdn.jsdelivr.net/gh/chenyangli-phd/image/image-20260214215130646.png" referrerpolicy="no-referrer" alt="image-20260214215130646"></p><h3 id='🗺️-游览路线推荐两日游'><span>🗺️ 游览路线推荐：两日游</span></h3><p><span>根据地图标注的 300m-800m 步程，建议按照以下顺序游览，不走回头路。</span></p><hr /><h2 id='day-1-皇室经典与海港风情北线'><strong><span>Day 1: 皇室经典与海港风情（北线）</span></strong></h2><p><em><span>这条线涵盖了哥本哈根最标志性的明信片级景点。</span></em></p><ol start='' ><li><p><strong><span>小美人鱼雕像 (The Little Mermaid / Den Lille Havfrue)</span></strong></p><ul><li><p><em><span>建议：</span></em><span> 8:30 AM 前到达避开人流。</span></p></li></ul></li><li><p><span>步行 400m ➔ </span><strong><span>卡斯特雷特 (Kastellet)</span></strong></p><ul><li><p><em><span>看点：</span></em><span> 星形要塞建筑。</span></p></li></ul></li><li><p><span>步行 400m ➔ </span><strong><span>吉菲昂喷泉 (Gefion Fountain / Gefionspringvandet)</span></strong></p><ul><li><p><em><span>看点：</span></em><span> 宏伟的北欧神话群雕。</span></p></li></ul></li><li><p><span>步行 700m ➔ </span><strong><span>阿美琳堡宫 (Amalienborg Palace)</span></strong><span> （125 DKK  哥本哈根卡免费）</span></p><ul><li><p><em><span>核心：</span></em><span> </span><strong><span>12:00 准时看卫兵换岗仪式</span></strong><span>。</span></p></li></ul></li><li><p><span>紧邻 ➔ </span><strong><span>腓特烈教堂 (Marmorkirken)</span></strong></p><ul><li><p><em><span>核心：</span></em><span> 壮观的大理石圆顶。</span></p></li></ul></li><li><p><span>步行 500m ➔ </span><strong><span>新港 (Nyhavn)</span></strong></p><ul><li><p><em><span>核心：</span></em><span> 在彩色房子前喝杯啤酒，或参加 1 小时的 </span><strong><span>运河游船 (Canal Tours)</span></strong><span>。</span></p></li></ul></li><li><p><span>步行 800m ➔ </span><strong><span>克里斯蒂坎自由城 (Freetown Christiania)</span></strong></p><ul><li><p><em><span>注意：</span></em><span> 自治社区，充满涂鸦和波希米亚气息。</span></p></li></ul></li></ol><hr /><h2 id='day-2-艺术殿堂与城市之巅南线'><strong><span>Day 2: 艺术殿堂与城市之巅（南线）</span></strong></h2><p><em><span>这条线侧重于博物馆、俯瞰城市全景及夜间娱乐。</span></em></p><ol start='' ><li><p><strong><span>丹麦国家美术馆 (Statens Museum for Kunst / SMK)</span></strong></p><ul><li><p><em><span>看点：</span></em><span> 丹麦最大的艺术藏馆。</span></p></li></ul></li><li><p><span>步行 300m ➔ </span><strong><span>罗森堡城堡 (Rosenborg Castle / Rosenborg Slot)</span></strong><span> 150 DKK </span></p><ul><li><p><em><span>核心：</span></em><span> 参观地下室珍藏的皇室王冠。</span></p></li></ul></li><li><p><span>步行 500m ➔ </span><strong><span>圆塔 (The Round Tower / Rundetårn)</span></strong></p><ul><li><p><em><span>核心：</span></em><span> 沿着螺旋斜坡登顶，俯瞰老城橙色屋顶。</span></p></li></ul></li><li><p><span>步行 700m ➔ </span><strong><span>克里斯蒂安堡宫 (Christiansborg Palace)</span></strong><span>（门票175 DKK ）</span></p><ul><li><p><em><span>看点：</span></em><span> 丹麦议会所在地，其塔楼是全市最高点（免费登塔）。</span></p></li></ul></li><li><p><span>步行 800m ➔ </span><strong><span>丹麦皇家图书馆 (The Royal Library / Black Diamond)</span></strong></p><ul><li><p><em><span>别称：</span></em><span> “黑钻石”，现代建筑的极致之美。</span></p></li></ul></li><li><p><span>步行 400m ➔ </span><strong><span>丹麦国立博物馆 (National Museum of Denmark)</span></strong></p><ul><li><p><em><span>看点：</span></em><span> 维京海盗历史展厅。</span></p></li></ul></li><li><p><span>步行 400m ➔ </span><strong><span>嘉士伯艺术博物馆 (Ny Carlsberg Glyptotek)</span></strong></p><ul><li><p><em><span>看点：</span></em><span> 精美的雕塑和充满热带风情的室内花园。</span></p></li></ul></li><li><p><span>步行 800m ➔ </span><strong><span>趣伏里公园 (Tivoli Gardens)</span></strong></p><ul><li><p><em><span>结尾：</span></em><span> 紧邻 </span><strong><span>市政厅广场 (City Hall Square)</span></strong><span> 和 </span><strong><span>安徒生雕像 (Hans Christian Andersen Statue)</span></strong><span>，在游乐园的灯光中结束一天。</span></p></li></ul></li></ol><hr /><h3 id='💳-哥本哈根卡-copenhagen-card'><span>💳 哥本哈根卡 (Copenhagen Card)</span></h3><ul><li><p><strong><span>Discover 版:</span></strong><span> 涵盖 80+ 景点及整个大区交通（含往返机场、周边小镇）。</span></p></li><li><p><strong><span>官网:</span></strong><span> </span><a href='https://copenhagencard.com/view/whats-included'><span>copenhagencard.com</span></a></p></li></ul><h3 id='💡-哥本哈根旅行-tip'><span>💡 哥本哈根旅行 Tip：</span></h3><ul><li><p><strong><span>交通方案：</span></strong><span> 景点间步行距离非常友好。如果你不想走路，可以下载 </span><strong><span>Donkey Republic</span></strong><span> APP 租用小蓝车，哥本哈根是全世界骑行体验最棒的城市。</span></p></li><li><p><strong><span>美食推荐：</span></strong><span> 图中“国王新广场”附近有很多高分餐厅，或者去 </span><strong><span>Torvehallerne</span></strong><span> 美食市场吃一次正宗的 </span><strong><span>开面三明治 (Smørrebrød)</span></strong><span>。</span></p></li></ul><hr /><p>&nbsp;</p><h1 id='🇸🇪-瑞典--斯堪尼亚-skåne-三城全攻略'><span>🇸🇪 瑞典 · 斯堪尼亚 (Skåne) 三城全攻略</span></h1><p><span>瑞典南部的斯科纳省（Skåne）兼具中世纪的古朴、学术的严谨与海滨的浪漫。通过厄勒海峡大桥，这里与丹麦哥本哈根构成了完美的跨国生活圈。</span></p><hr /><h2 id='📍-马尔默-malmö--------现代与古典的交响'><span>📍 马尔默 (Malmö) —— 现代与古典的交响</span></h2><p><img src="/Users/lee/Library/Application%20Support/typora-user-images/image-20260215175021027.png" referrerpolicy="no-referrer" alt="image-20260215175021027"></p><p><span>马尔默是瑞典第三大城市，也是一座极其多元的国际化都市。</span></p><ul><li><p><strong><span>马尔默中央车站 (Malmö C)</span></strong></p><ul><li><p><strong><span>定位</span></strong><span>：整座城市的门户。</span></p></li><li><p><strong><span>亮点</span></strong><span>：古老的站房与极具科幻感的地下站台完美融合，是开启旅程的第一站。</span></p></li></ul></li><li><p><strong><span>圣彼得大教堂 (St. Petri Kyrka)</span></strong></p><ul><li><p><strong><span>亮点</span></strong><span>：马尔默最古老的建筑，典型的波罗的海红砖哥特式风格，内部庄严肃穆。</span></p></li></ul></li><li><p><strong><span>马尔默现代美术馆 (Moderna Museet)</span></strong></p><ul><li><p><strong><span>亮点</span></strong><span>：标志性的亮橙色外墙极具视觉冲击力，馆内收藏着顶尖的当代艺术作品。</span></p></li></ul></li><li><p><strong><span>恶心食物博物馆 (Disgusting Food Museum)</span></strong></p><ul><li><p><strong><span>亮点</span></strong><span>：猎奇者的天堂。从瑞典鲱鱼罐头到世界各地的“暗黑料理”，在这里不仅可以看，甚至可以闻和尝。</span></p></li></ul></li><li><p><strong><span>马尔默市立图书馆 (Malmö stadsbibliotek)</span></strong></p><ul><li><p><strong><span>亮点</span></strong><span>：被誉为“光之日历”，巨大的落地玻璃窗将室外公园的绿意引入室内，是北欧最美的图书馆之一。</span></p></li></ul></li><li><p><strong><span>马尔默城堡 &amp; 城堡花园 (Malmöhus Slott)</span></strong></p><ul><li><p><strong><span>亮点</span></strong><span>：北欧现存最古老的文艺复兴城堡，护城河环绕，内部展出了自然历史与艺术珍品。</span></p></li></ul></li><li><p><strong><span>旋转大楼 (Turning Torso)</span></strong></p><ul><li><p><strong><span>亮点</span></strong><span>：瑞典地标性建筑，不仅是北欧最高楼，其 90 度扭转的设计更是建筑学上的杰作。</span></p></li></ul></li></ul><hr /><h2 id='🎓-隆德-lund--------千年学术风情'><span>🎓 隆德 (Lund) —— 千年学术风情</span></h2><p><img src="https://cdn.jsdelivr.net/gh/chenyangli-phd/image/image-20260215181006654.png" referrerpolicy="no-referrer" alt="image-20260215181006654"></p><p><span>仅需 10 分钟火车车程，即可从马尔默穿越回宁静的中世纪学术小镇。</span></p><ul><li><p><strong><span>隆德大教堂 (Lund Cathedral)</span></strong></p><ul><li><p><strong><span>亮点</span></strong><span>：瑞典最壮观的罗曼式教堂。千万不要错过内部那座 </span><strong><span>14 世纪天文钟</span></strong><span>，每日 12:00 和 15:00（周日 13:00/15:00）会有机械小人演出。</span></p></li></ul></li><li><p><strong><span>隆德大学 (Lund University)</span></strong></p><ul><li><p><strong><span>亮点</span></strong><span>：漫步于被常春藤覆盖的古老校区。大学主楼 (Universitetshuset) 及其周边的喷泉广场是拍照的最佳取景地。</span></p></li></ul></li></ul><hr /><h2 id='⚓-赫尔辛堡-helsingborg--------蔚蓝的海港脉动'><span>⚓ 赫尔辛堡 (Helsingborg) —— 蔚蓝的海港脉动</span></h2><p><img src="https://cdn.jsdelivr.net/gh/chenyangli-phd/image/image-20260215181106643.png" referrerpolicy="no-referrer" alt="image-20260215181106643"></p><p><span>这里是瑞典距离丹麦最近的地方，空气中弥漫着清新的海盐味。</span></p><ul><li><p><strong><span>索菲罗城堡 (Sofiero Palace)</span></strong></p><ul><li><p><strong><span>亮点</span></strong><span>：昔日的皇室夏宫。5-6 月间，数以万计的杜鹃花竞相开放，构成了一幅宏大的花园画卷。</span></p></li></ul></li><li><p><strong><span>卡尔南塔楼 (Kärnan)</span></strong></p><ul><li><p><strong><span>亮点</span></strong><span>：中世纪堡垒遗迹。攀登至塔顶可俯瞰厄勒海峡，肉眼即可看见对岸丹麦的克隆堡。</span></p></li></ul></li><li><p><strong><span>北港区 (Norra Hamnen)</span></strong></p><ul><li><p><strong><span>亮点</span></strong><span>：现代化的游艇码头。在这里你可以找一家海边餐厅，像瑞典人一样享受一杯冰咖啡或海鲜午餐。</span></p></li></ul></li><li><p><strong><span>敦克尔文化中心 (Dunkers Kulturhus)</span></strong></p><ul><li><p><strong><span>亮点</span></strong><span>：海滨的白色艺术明珠，融合了本地历史与前卫艺术展览。</span></p></li></ul></li><li><p><strong><span>维京海滩 (Vikingstrand)</span></strong></p><ul><li><p><strong><span>亮点</span></strong><span>：开阔的细沙海滩，是捕捉落日残霞、享受海滨步道的绝佳去处。</span></p></li></ul></li></ul><hr /><h2 id='🚄-交通与贴士-tips'><span>🚄 交通与贴士 (Tips)</span></h2><ul><li><p><strong><span>必备工具</span></strong><span>：下载 </span><strong><span>[Skånetrafiken]</span></strong><span> App，这是在瑞典南部购票的唯一官方渠道。</span></p></li><li><p><strong><span>24 小时通票</span></strong><span>：如果你计划在一天内穿梭这三座城市，直接购买 </span><strong><span>24-hour ticket</span></strong><span> 最为划算（约 240 SEK），涵盖所有区域的火车和公交。</span></p></li><li><p><strong><span>跨国注意</span></strong><span>：如果你是从哥本哈根出发，记得随身携带</span><strong><span>护照</span></strong><span>，过桥进入瑞典境内时可能会有随机抽检。</span></p></li></ul></div></div>
+</body>
+</html>
