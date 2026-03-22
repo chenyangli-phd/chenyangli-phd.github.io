@@ -8,6 +8,8 @@
 
 是一座安静却极具气质的阿尔卑斯湖畔城市。
 
+![image-20260322223359893](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/image-20260322223359893.png)
+
 ------
 
 ## 📍城市位置
