@@ -10,6 +10,8 @@
 其中：
 Interlaken 位于图恩湖（Lake Thun）与布里恩茨湖（Lake Brienz）之间，是少女峰地区门户城市；Grindelwald 是典型阿尔卑斯山谷小镇，也是登山与滑雪的重要基地。
 
+![image-20260322223229415](https://cdn.jsdelivr.net/gh/chenyangli-phd/image/image-20260322223229415.png)
+
 ---
 
 ## 二、阿尔卑斯入口：Interlaken
