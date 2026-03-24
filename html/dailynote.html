@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chenyang Li · Research Diary</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+--primary: #0f172a;
+--accent: #3b82f6;
+--soft: #e2e8f0;
+--bg: #f8fafc;
+--card: white;
+--text: #334155;
+--light: #64748b;
+}
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:'Inter',sans-serif;
+background:var(--bg);
+color:var(--text);
+}
+
+header{
+background:linear-gradient(120deg,#0f172a,#1e3a8a);
+color:white;
+padding:100px 20px;
+text-align:center;
+animation:fadeHeader 1.2s ease;
+}
+
+header h1{
+margin:0;
+font-size:2.7rem;
+}
+
+header p{
+opacity:.9;
+}
+
+nav{
+position:sticky;
+top:0;
+background:white;
+backdrop-filter:blur(10px);
+display:flex;
+justify-content:center;
+gap:35px;
+padding:15px;
+border-bottom:1px solid var(--soft);
+z-index:10;
+}
+
+nav a{
+text-decoration:none;
+color:var(--text);
+font-weight:500;
+transition:.25s;
+}
+
+nav a:hover{
+color:var(--accent);
+transform:translateY(-1px);
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:40px 20px;
+}
+
+.card{
+background:var(--card);
+padding:35px;
+border-radius:14px;
+margin-bottom:30px;
+border:1px solid var(--soft);
+box-shadow:0 6px 20px rgba(0,0,0,.04);
+animation:fadeUp .6s ease;
+}
+
+h2{
+border-left:5px solid var(--accent);
+padding-left:15px;
+}
+
+input,textarea{
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:6px;
+border:1px solid var(--soft);
+font-size:14px;
+}
+
+textarea{
+height:140px;
+resize:vertical;
+}
+
+input:focus,textarea:focus{
+outline:none;
+border-color:var(--accent);
+}
+
+button{
+margin-top:18px;
+background:var(--primary);
+color:white;
+padding:11px 25px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+transition:.25s;
+}
+
+button:hover{
+background:var(--accent);
+transform:translateY(-2px);
+}
+
+.entry{
+padding:25px 0;
+border-bottom:1px solid #f1f5f9;
+animation:fadeUp .5s ease;
+}
+
+.entry:last-child{
+border:none;
+}
+
+.entry h3{
+margin-bottom:8px;
+}
+
+.date{
+font-size:12px;
+color:var(--light);
+}
+
+.entry img{
+max-width:100%;
+margin-top:12px;
+border-radius:10px;
+}
+
+.entry iframe{
+width:100%;
+height:500px;
+margin-top:12px;
+border-radius:10px;
+}
+
+.deleteBtn{
+margin-top:10px;
+background:#ef4444;
+}
+
+.deleteBtn:hover{
+background:#dc2626;
+}
+
+.searchBox{
+margin-bottom:20px;
+}
+
+footer{
+text-align:center;
+padding:50px;
+font-size:13px;
+color:var(--light);
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+}
+
+@keyframes fadeHeader{
+from{
+opacity:0;
+transform:translateY(-30px);
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Chenyang Li</h1>
+<p>Academic Repository · Research Thinking Space</p>
+</header>
+
+<nav>
+<a href="#write">New Entry</a>
+<a href="#timeline">Timeline</a>
+<a href="https://chenyangli-phd.github.io/" target="_blank">Portfolio</a>
+</nav>
+
+<div class="container">
+
+<div class="card" id="write">
+<h2>Write New Entry</h2>
+
+<input id="title" placeholder="Entry title">
+
+<textarea id="content" placeholder="Write research notes, ideas, derivations..."></textarea>
+
+<input type="file" id="file">
+
+<button onclick="saveEntry()">Publish</button>
+
+</div>
+
+<div class="card" id="timeline">
+<h2>Timeline</h2>
+
+<input class="searchBox" placeholder="Search notes..." onkeyup="searchEntry(this.value)">
+
+<div id="entries"></div>
+
+</div>
+
+</div>
+
+<footer>
+© <script>document.write(new Date().getFullYear())</script> Chenyang Li · Academic Memory System
+</footer>
+
+<script>
+
+function saveEntry(){
+
+let title=document.getElementById("title").value||"Untitled";
+
+let content=document.getElementById("content").value;
+
+let file=document.getElementById("file");
+
+if(!content && !file.files.length){
+alert("Please write something first.");
+return;
+}
+
+let reader=new FileReader();
+
+reader.onload=function(){
+
+let entry={
+
+id:Date.now(),
+
+title:title,
+
+content:content,
+
+file:file.files.length?reader.result:null,
+
+type:file.files.length?file.files[0].type:null,
+
+
+
+
+date:new Date().toLocaleString()
+
+};
+
+let entries=JSON.parse(localStorage.getItem("entries")||"[]");
+
+entries.unshift(entry);
+
+localStorage.setItem("entries",JSON.stringify(entries));
+
+
+
+renderEntries();
+
+
+
+document.getElementById("title").value="";
+
+
+document.getElementById("content").value="";
+
+
+document.getElementById("file").value="";
+
+};
+
+if(file.files.length)reader.readAsDataURL(file.files[0]);
+
+else reader.onload();
+
+}
+
+
+function renderEntries(){
+
+let entries=JSON.parse(localStorage.getItem("entries")||"[]");
+
+let html="";
+
+entries.forEach(e=>{
+
+html+=`
+
+<div class="entry">
+
+<div class="date">${e.date}</div>
+
+<h3>${e.title}</h3>
+
+<p>${e.content}</p>
+
+${renderFile(e)}
+
+<button class="deleteBtn" onclick="deleteEntry(${e.id})">Delete</button>
+
+</div>
+
+`;
+
+});
+
+
+
+if(!entries.length)
+
+html="<p style='text-align:center;color:#94a3b8'>Start writing your first idea.</p>";
+
+
+
+document.getElementById("entries").innerHTML=html;
+
+}
+
+
+function renderFile(e){
+
+if(!e.file)return "";
+
+if(e.type.includes("image"))return `<img src="${e.file}">`;
+
+if(e.type.includes("pdf"))return `<iframe src="${e.file}"></iframe>`;
+
+if(e.type.includes("video"))return `<video controls width="100%"><source src="${e.file}"></video>`;
+
+return "";
+
+}
+
+
+function deleteEntry(id){
+
+let entries=JSON.parse(localStorage.getItem("entries")||"[]");
+
+entries=entries.filter(e=>e.id!==id);
+
+localStorage.setItem("entries",JSON.stringify(entries));
+
+renderEntries();
+
+}
+
+
+function searchEntry(keyword){
+
+let entries=JSON.parse(localStorage.getItem("entries")||"[]");
+
+let filtered=entries.filter(e=>
+
+e.title.toLowerCase().includes(keyword.toLowerCase())
+
+|| e.content.toLowerCase().includes(keyword.toLowerCase())
+
+);
+
+
+
+let html="";
+
+filtered.forEach(e=>{
+
+html+=`
+
+<div class="entry">
+
+<div class="date">${e.date}</div>
+
+<h3>${e.title}</h3>
+
+<p>${e.content}</p>
+
+${renderFile(e)}
+
+</div>
+
+`;
+
+});
+
+
+
+document.getElementById("entries").innerHTML=html;
+
+}
+
+renderEntries();
+
+</script>
+
+</body>
+</html>
