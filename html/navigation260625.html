@@ -809,6 +809,18 @@
                     <div class="widget-label">日历</div>
                 </article>
 
+                     <!-- Countdown -->
+                <article class="widget widget-countdown">
+                    <div class="widget-inner">
+                        <div class="countdown-header" id="countTitle">
+                            <i class="fa-regular fa-clock"></i> 距离十点收工还有
+                        </div>
+                        <div class="countdown-time" id="countTime">--:--:--</div>
+                        <div class="countdown-foot" id="countFoot">⏳ 加油，学术孤儿</div>
+                    </div>
+                    <div class="widget-label">摆烂倒计时</div>
+                </article>
+
                 <!-- Anniversary -->
                 <article class="widget widget-anniversary">
                     <div class="widget-inner">
@@ -823,17 +835,6 @@
                     <div class="widget-label">破蛋日</div>
                 </article>
 
-                <!-- Countdown -->
-                <article class="widget widget-countdown">
-                    <div class="widget-inner">
-                        <div class="countdown-header" id="countTitle">
-                            <i class="fa-regular fa-clock"></i> 22:00 下班还有
-                        </div>
-                        <div class="countdown-time" id="countTime">--:--:--</div>
-                        <div class="countdown-foot" id="countFoot">⏳ 加油，打工人</div>
-                    </div>
-                    <div class="widget-label">收工倒计时</div>
-                </article>
 
             </div>
         </section>
@@ -1045,10 +1046,10 @@
             const s = Math.floor((diff % 60000) / 1000);
 
             const isTomorrow = now.getHours() >= 22;
-            const titleText = isTomorrow ? '明天 22:00 下班还有' : '22:00 下班还有';
+            const titleText = isTomorrow ? '明天 22:00 下班还有' : '距离十点收工还有';
             $('countTitle').innerHTML = `<i class="fa-regular fa-clock"></i> ${titleText}`;
             $('countTime').textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
-            $('countFoot').textContent = isTomorrow ? '🌙 今晚好好休息，明天再战' : '⏳ 加油，打工人';
+            $('countFoot').textContent = isTomorrow ? '🌙 今晚好好休息，明天再战' : '⏳ 加油，学术孤儿';
         }
 
         updateDateTime();
