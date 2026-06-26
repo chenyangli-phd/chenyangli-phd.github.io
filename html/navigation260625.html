@@ -117,11 +117,10 @@
             display: none;
         }
 
-        /* ===== 搜索栏（美化版） ===== */
+        /* ===== 搜索栏（新样式：左侧引擎名 + 下拉，右侧搜索文字） ===== */
         .search-wrap {
             width: min(680px, calc(100vw - 40px));
             margin: 0 auto 56px;
-            /* 进一步增大了间距 */
             position: relative;
             display: flex;
             align-items: center;
@@ -160,52 +159,75 @@
             transform: translateY(-1px);
         }
 
+        /* 左侧引擎切换按钮：显示图标 + 名称 + 下拉箭头 */
         .engine-button {
-            width: 52px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0 12px 0 16px;
             height: 48px;
             cursor: pointer;
-            font-size: 18px;
-            color: #8ab4ff;
+            font-size: 14px;
+            font-weight: 450;
+            color: #e8edf5;
             border-radius: 40px 0 0 40px;
-            display: grid;
-            place-items: center;
-            transition: color var(--transition), background var(--transition);
+            transition: background var(--transition), color var(--transition);
             flex-shrink: 0;
-            margin-left: 2px;
+            white-space: nowrap;
+            background: transparent;
         }
         .engine-button:hover {
-            color: #fff;
             background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+        }
+        .engine-button i:first-child {
+            font-size: 16px;
+            margin-right: 2px;
+        }
+        .engine-button .arrow {
+            font-size: 11px;
+            opacity: 0.6;
+            transition: transform 0.2s;
+        }
+        .engine-button:hover .arrow {
+            opacity: 1;
         }
 
         .search-input {
             flex: 1;
             height: 48px;
             color: #fff;
-            padding: 0 6px 0 0;
+            padding: 0 8px;
             font-size: 15px;
             background: transparent;
             min-width: 0;
             letter-spacing: 0.3px;
         }
         .search-input::placeholder {
-            color: rgba(255, 255, 255, 0.30);
+            color: rgba(255, 255, 255, 0.32);
             font-weight: 350;
             letter-spacing: 0.2px;
         }
 
+        /* 右侧搜索按钮：显示 "搜索" 文字 */
         .search-submit {
-            width: 56px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0 20px 0 16px;
             height: 48px;
             cursor: pointer;
-            color: rgba(255, 255, 255, 0.50);
+            color: rgba(255, 255, 255, 0.65);
             border-radius: 0 40px 40px 0;
-            font-size: 18px;
-            display: grid;
-            place-items: center;
+            font-size: 14px;
+            font-weight: 450;
             transition: color var(--transition), background var(--transition);
             flex-shrink: 0;
-            margin-right: 2px;
+            background: transparent;
+            white-space: nowrap;
+        }
+        .search-submit i {
+            font-size: 16px;
         }
         .search-submit:hover {
             color: #fff;
@@ -216,7 +238,7 @@
             position: absolute;
             top: 56px;
             left: 6px;
-            width: 168px;
+            width: 180px;
             padding: 6px;
             background: rgba(12, 18, 30, 0.97);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -334,10 +356,6 @@
         }
 
         /* ===== Calendar 卡片（居中） ===== */
-        .widget-calendar .widget-inner {
-            align-items: center;
-            text-align: center;
-        }
         .cal-month {
             font-size: 13px;
             font-weight: 500;
@@ -388,10 +406,6 @@
         }
 
         /* ===== Anniversary 卡片（居中） ===== */
-        .widget-anniversary .widget-inner {
-            align-items: center;
-            text-align: center;
-        }
         .anni-label {
             font-size: 12px;
             color: rgba(255, 255, 255, 0.78);
@@ -417,11 +431,6 @@
         }
 
         /* ===== Countdown 卡片 ===== */
-        .widget-countdown .widget-inner {
-            align-items: center;
-            text-align: center;
-            padding: 18px 20px 16px;
-        }
         .countdown-header {
             font-size: 13px;
             color: rgba(255, 255, 255, 0.78);
@@ -565,28 +574,13 @@
         }
 
         /* ===== 响应式 ===== */
-
         @media (max-width: 1024px) {
-            .page {
-                padding: 18px 20px 24px;
-            }
-            .widget-grid {
-                gap: 14px;
-            }
-            .app-zone {
-                gap: 16px;
-            }
-            .app-cluster {
-                gap: 10px 8px;
-            }
-            .app-icon .icon-box {
-                width: 46px;
-                height: 46px;
-                font-size: 19px;
-            }
-            .search-wrap {
-                margin-bottom: 48px;
-            }
+            .page { padding: 18px 20px 24px; }
+            .widget-grid { gap: 14px; }
+            .app-zone { gap: 16px; }
+            .app-cluster { gap: 10px 8px; }
+            .app-icon .icon-box { width: 46px; height: 46px; font-size: 19px; }
+            .search-wrap { margin-bottom: 48px; }
         }
 
         @media (max-width: 820px) {
@@ -594,86 +588,44 @@
                 grid-template-columns: repeat(6, 1fr);
                 gap: 12px;
             }
-            .widget-calendar {
-                grid-column: span 2;
-            }
-            .widget-anniversary {
-                grid-column: span 2;
-            }
-            .widget-countdown {
-                grid-column: span 2;
-            }
+            .widget-calendar { grid-column: span 2; }
+            .widget-anniversary { grid-column: span 2; }
+            .widget-countdown { grid-column: span 2; }
 
             .app-zone {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 14px;
             }
-            .app-cluster {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .countdown-time {
-                font-size: 34px;
-            }
-            .cal-day {
-                font-size: 44px;
-            }
-            .cal-week-row span {
-                width: 24px;
-                height: 24px;
-                font-size: 11px;
-            }
-            .anni-days {
-                font-size: 38px;
-            }
-            .search-wrap {
-                margin-bottom: 40px;
-            }
+            .app-cluster { grid-template-columns: repeat(3, 1fr); }
+            .countdown-time { font-size: 34px; }
+            .cal-day { font-size: 44px; }
+            .cal-week-row span { width: 24px; height: 24px; font-size: 11px; }
+            .anni-days { font-size: 38px; }
+            .search-wrap { margin-bottom: 40px; }
+            .engine-button { padding: 0 10px 0 14px; font-size: 13px; }
+            .search-submit { padding: 0 16px 0 12px; font-size: 13px; }
         }
 
         @media (max-width: 640px) {
-            .page {
-                padding: 14px 12px 20px;
-            }
-
+            .page { padding: 14px 12px 20px; }
             .widget-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 10px;
             }
-            .widget-calendar {
-                grid-column: span 1;
-            }
-            .widget-anniversary {
-                grid-column: span 1;
-            }
+            .widget-calendar { grid-column: span 1; }
+            .widget-anniversary { grid-column: span 1; }
             .widget-countdown {
                 grid-column: span 2;
                 min-height: 90px;
             }
-            .widget-countdown .widget-inner {
-                padding: 12px 16px;
-            }
-            .countdown-time {
-                font-size: 30px;
-                letter-spacing: 2px;
-            }
-            .countdown-header {
-                font-size: 12px;
-            }
-            .countdown-foot {
-                font-size: 10px;
-            }
+            .widget-countdown .widget-inner { padding: 12px 16px; }
+            .countdown-time { font-size: 30px; letter-spacing: 2px; }
+            .countdown-header { font-size: 12px; }
+            .countdown-foot { font-size: 10px; }
 
-            .cal-day {
-                font-size: 38px;
-            }
-            .anni-days {
-                font-size: 36px;
-            }
-            .cal-week-row span {
-                width: 22px;
-                height: 22px;
-                font-size: 10px;
-            }
+            .cal-day { font-size: 38px; }
+            .anni-days { font-size: 36px; }
+            .cal-week-row span { width: 22px; height: 22px; font-size: 10px; }
 
             .app-zone {
                 grid-template-columns: 1fr;
@@ -683,83 +635,49 @@
                 grid-template-columns: repeat(4, 1fr);
                 gap: 10px 8px;
             }
-            .app-icon .icon-box {
-                width: 44px;
-                height: 44px;
-                font-size: 18px;
-            }
-            .app-icon .label {
-                font-size: 10px;
-            }
-            .category-block {
-                padding: 12px 14px 14px;
-            }
+            .app-icon .icon-box { width: 44px; height: 44px; font-size: 18px; }
+            .app-icon .label { font-size: 10px; }
+            .category-block { padding: 12px 14px 14px; }
 
-            .clock {
-                font-size: 44px;
-            }
+            .clock { font-size: 44px; }
             .search-wrap {
                 width: calc(100vw - 28px);
                 margin-bottom: 32px;
             }
-            .search-input {
-                font-size: 14px;
-            }
-            .engine-button,
-            .search-submit {
-                width: 44px;
+            .search-input { font-size: 14px; }
+            .engine-button {
+                padding: 0 8px 0 12px;
+                font-size: 12px;
                 height: 42px;
-                font-size: 16px;
             }
+            .search-submit {
+                padding: 0 12px 0 10px;
+                font-size: 12px;
+                height: 42px;
+            }
+            .engine-button i:first-child { font-size: 14px; }
+            .search-submit i { font-size: 14px; }
         }
 
         @media (max-width: 440px) {
-            .widget-grid {
-                gap: 8px;
-            }
-            .widget-inner {
-                padding: 12px 14px 10px;
-            }
-            .cal-day {
-                font-size: 32px;
-            }
-            .anni-days {
-                font-size: 30px;
-            }
-            .widget-calendar {
-                grid-column: span 2;
-            }
-            .widget-anniversary {
-                grid-column: span 2;
-            }
+            .widget-grid { gap: 8px; }
+            .widget-inner { padding: 12px 14px 10px; }
+            .cal-day { font-size: 32px; }
+            .anni-days { font-size: 30px; }
+            .widget-calendar { grid-column: span 2; }
+            .widget-anniversary { grid-column: span 2; }
             .widget-countdown {
                 grid-column: span 2;
                 min-height: 80px;
             }
-            .countdown-time {
-                font-size: 26px;
-                letter-spacing: 1px;
-            }
-            .countdown-header {
-                font-size: 11px;
-            }
-            .app-cluster {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .app-icon .icon-box {
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
-                border-radius: 12px;
-            }
-            .cal-week-row span {
-                width: 20px;
-                height: 20px;
-                font-size: 9px;
-            }
-            .search-wrap {
-                margin-bottom: 28px;
-            }
+            .countdown-time { font-size: 26px; letter-spacing: 1px; }
+            .countdown-header { font-size: 11px; }
+            .app-cluster { grid-template-columns: repeat(3, 1fr); }
+            .app-icon .icon-box { width: 40px; height: 40px; font-size: 16px; border-radius: 12px; }
+            .cal-week-row span { width: 20px; height: 20px; font-size: 9px; }
+            .search-wrap { margin-bottom: 28px; }
+            .engine-button { padding: 0 6px 0 10px; font-size: 11px; }
+            .search-submit { padding: 0 10px 0 8px; font-size: 11px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -775,25 +693,27 @@
 <body>
     <main class="page" id="home">
 
-        <!-- ===== Hero：仅显示时钟，日期已隐藏 ===== -->
+        <!-- ===== Hero：仅显示时钟 ===== -->
         <section class="hero">
             <div class="clock" id="clock">--:--</div>
-            <!-- 日期行已通过 CSS 隐藏 (display: none) -->
             <div class="date-line" id="dateLine">加载中…</div>
         </section>
 
-        <!-- ===== 搜索栏（美化版） ===== -->
+        <!-- ===== 搜索栏（新样式） ===== -->
         <form class="search-wrap" id="searchForm">
             <button class="engine-button" type="button" id="engineButton" title="切换搜索引擎">
-                <i class="fa-brands fa-microsoft"></i>
+                <i class="fa-brands fa-microsoft"></i> Bing <i class="fa-solid fa-chevron-down arrow"></i>
             </button>
-            <input class="search-input" id="searchInput" autocomplete="off" placeholder="输入搜索内容" />
+            <input class="search-input" id="searchInput" autocomplete="off" placeholder="在Bing中搜索..." />
             <button class="search-submit" type="submit" aria-label="搜索">
-                <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-solid fa-magnifying-glass"></i> 搜索
             </button>
             <div class="engine-menu" id="engineMenu">
                 <button class="engine-option" type="button" data-engine="google" data-icon="fa-brands fa-google">
                     <i class="fa-brands fa-google"></i> Google
+                </button>
+                <button class="engine-option" type="button" data-engine="bing" data-icon="fa-brands fa-microsoft">
+                    <i class="fa-brands fa-microsoft"></i> Bing
                 </button>
                 <button class="engine-option" type="button" data-engine="scholar" data-icon="fa-solid fa-graduation-cap">
                     <i class="fa-solid fa-graduation-cap"></i> Scholar
@@ -960,12 +880,27 @@
         const pad = n => String(n).padStart(2, '0');
 
         // ============================================================
-        // 2. 搜索引擎
+        // 2. 搜索引擎配置（增加 placeholder）
         // ============================================================
         const engines = {
-            bing: { url: q => `https://www.bing.com/search?q=${encodeURIComponent(q)}`, icon: 'fa-brands fa-microsoft' },
-            google: { url: q => `https://www.google.com/search?q=${encodeURIComponent(q)}`, icon: 'fa-brands fa-google' },
-            scholar: { url: q => `https://scholar.google.com/scholar?q=${encodeURIComponent(q)}`, icon: 'fa-solid fa-graduation-cap' }
+            google: {
+                url: q => `https://www.google.com/search?q=${encodeURIComponent(q)}`,
+                icon: 'fa-brands fa-google',
+                placeholder: '在Google中搜索...',
+                label: 'Google'
+            },
+            bing: {
+                url: q => `https://www.bing.com/search?q=${encodeURIComponent(q)}`,
+                icon: 'fa-brands fa-microsoft',
+                placeholder: '在Bing中搜索...',
+                label: 'Bing'
+            },
+            scholar: {
+                url: q => `https://scholar.google.com/scholar?q=${encodeURIComponent(q)}`,
+                icon: 'fa-solid fa-graduation-cap',
+                placeholder: '在Google Scholar中搜索...',
+                label: 'Scholar'
+            }
         };
 
         let currentEngine = localStorage.getItem('dashboardEngine') || 'bing';
@@ -974,11 +909,20 @@
             if (!engines[name]) return;
             currentEngine = name;
             localStorage.setItem('dashboardEngine', name);
-            $('engineButton').innerHTML = `<i class="${engines[name].icon}"></i>`;
+
+            const eng = engines[name];
+            // 更新左侧按钮：图标 + 标签 + 下拉箭头
+            $('engineButton').innerHTML = `<i class="${eng.icon}"></i> ${eng.label} <i class="fa-solid fa-chevron-down arrow"></i>`;
+            // 更新占位符
+            $('searchInput').placeholder = eng.placeholder;
+
             $('engineMenu').classList.remove('open');
             $('searchInput').focus();
         }
 
+        // ============================================================
+        // 3. 事件绑定
+        // ============================================================
         $('engineButton').addEventListener('click', e => {
             e.stopPropagation();
             $('engineMenu').classList.toggle('open');
@@ -1001,10 +945,11 @@
             }
         });
 
-        setEngine('bing');
+        // 初始化引擎（从 localStorage 读取）
+        setEngine(currentEngine);
 
         // ============================================================
-        // 3. 日期 & 时钟 & 日历 & 纪念日 & 倒计时
+        // 4. 日期 & 时钟 & 日历 & 纪念日 & 倒计时
         // ============================================================
         function daysInYear(date) {
             const start = new Date(date.getFullYear(), 0, 0);
@@ -1024,11 +969,9 @@
             const week = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
             const weekShort = ['日', '一', '二', '三', '四', '五', '六'];
 
-            // 仅更新时钟（日期行已隐藏，无需更新）
             $('clock').textContent = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
-            // 虽然 dateLine 隐藏，但更新也无妨
             $('dateLine').textContent = `${now.getMonth() + 1}月${now.getDate()}日  ${week[now.getDay()]}`;
-            
+
             $('calMonth').textContent = `${now.getFullYear()}年${now.getMonth() + 1}月`;
             $('calDay').textContent = now.getDate();
             $('calMeta').textContent = `第${daysInYear(now)}天 · 第${weekNumber(now)}周`;
@@ -1064,7 +1007,7 @@
         setInterval(updateDateTime, 1000);
 
         // ============================================================
-        // 4. 键盘快捷键
+        // 5. 键盘快捷键
         // ============================================================
         document.addEventListener('keydown', e => {
             if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
@@ -1078,7 +1021,7 @@
             }
         });
 
-        console.log('🌙 不喝水就犯困 · 桌面导航 (卡片内容居中)');
+        console.log('🌙 不喝水就犯困 · 桌面导航 (搜索框样式更新)');
         console.log('📌 快捷键 Ctrl+K / Cmd+K 聚焦搜索');
     </script>
 </body>
