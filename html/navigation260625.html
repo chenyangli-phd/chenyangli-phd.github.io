@@ -939,7 +939,7 @@
 
         <!-- ===== 底部 ===== -->
         <div class="footer-quote">
-            <span>⚡ 没事儿别搞这些了，好好干活！</span>
+            <span>⚡ Learn By Teaching - Chenyang Li</span>
         </div>
 
     </main>
@@ -1046,10 +1046,10 @@
             const s = Math.floor((diff % 60000) / 1000);
 
             const isTomorrow = now.getHours() >= 22;
-            const titleText = isTomorrow ? '明天 22:00 下班还有' : '距离十点收工还有';
+            const titleText = isTomorrow ? '明天十点收工还有' : '距离十点收工还有';
             $('countTitle').innerHTML = `<i class="fa-regular fa-clock"></i> ${titleText}`;
             $('countTime').textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
-            $('countFoot').textContent = isTomorrow ? '🌙 今晚好好休息，明天再战' : '⏳ 加油，学术孤儿';
+            $('countFoot').textContent = isTomorrow ? '🌙 今晚好好玩手机，明天继续摆' : '⏳ 就不能不玩手机吗';
         }
 
         updateDateTime();
