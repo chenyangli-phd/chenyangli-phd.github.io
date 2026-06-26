@@ -122,6 +122,7 @@
             width: min(680px, calc(100vw - 40px));
             margin: 0 auto 56px;
             position: relative;
+            z-index: 20; /* 确保搜索栏及其下拉菜单在卡片上方 */
             display: flex;
             align-items: center;
             background: rgba(12, 20, 34, 0.72);
@@ -1021,7 +1022,7 @@
             }
         });
 
-        console.log('🌙 不喝水就犯困 · 桌面导航 (搜索框样式更新)');
+        console.log('🌙 不喝水就犯困 · 桌面导航 (修复下拉菜单被遮挡)');
         console.log('📌 快捷键 Ctrl+K / Cmd+K 聚焦搜索');
     </script>
 </body>
