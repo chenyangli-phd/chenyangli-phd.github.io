@@ -117,12 +117,12 @@
             display: none;
         }
 
-        /* ===== 搜索栏（新样式：左侧引擎名 + 下拉，右侧搜索文字） ===== */
+        /* ===== 搜索栏 ===== */
         .search-wrap {
             width: min(680px, calc(100vw - 40px));
             margin: 0 auto 56px;
             position: relative;
-            z-index: 20; /* 确保搜索栏及其下拉菜单在卡片上方 */
+            z-index: 20;
             display: flex;
             align-items: center;
             background: rgba(12, 20, 34, 0.72);
@@ -160,7 +160,6 @@
             transform: translateY(-1px);
         }
 
-        /* 左侧引擎切换按钮：显示图标 + 名称 + 下拉箭头 */
         .engine-button {
             display: flex;
             align-items: center;
@@ -210,7 +209,6 @@
             letter-spacing: 0.2px;
         }
 
-        /* 右侧搜索按钮：显示 "搜索" 文字 */
         .search-submit {
             display: flex;
             align-items: center;
@@ -298,7 +296,6 @@
             gap: 16px;
         }
 
-        /* ===== 卡片通用样式 ===== */
         .widget {
             position: relative;
             border-radius: var(--radius-lg);
@@ -341,7 +338,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* ===== 各卡片尺寸 & 颜色 ===== */
         .widget-calendar {
             grid-column: span 4;
             background: rgba(24, 30, 44, 0.88);
@@ -356,7 +352,6 @@
             min-height: 150px;
         }
 
-        /* ===== Calendar 卡片（居中） ===== */
         .cal-month {
             font-size: 13px;
             font-weight: 500;
@@ -406,7 +401,6 @@
             box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
         }
 
-        /* ===== Anniversary 卡片（居中） ===== */
         .anni-label {
             font-size: 12px;
             color: rgba(255, 255, 255, 0.78);
@@ -431,7 +425,6 @@
             margin-top: 4px;
         }
 
-        /* ===== Countdown 卡片 ===== */
         .countdown-header {
             font-size: 13px;
             color: rgba(255, 255, 255, 0.78);
@@ -558,7 +551,6 @@
             color: #fff;
         }
 
-        /* ===== 底部名言 ===== */
         .footer-quote {
             margin-top: 28px;
             text-align: center;
@@ -700,7 +692,7 @@
             <div class="date-line" id="dateLine">加载中…</div>
         </section>
 
-        <!-- ===== 搜索栏（新样式） ===== -->
+        <!-- ===== 搜索栏 ===== -->
         <form class="search-wrap" id="searchForm">
             <button class="engine-button" type="button" id="engineButton" title="切换搜索引擎">
                 <i class="fa-brands fa-microsoft"></i> Bing <i class="fa-solid fa-chevron-down arrow"></i>
@@ -718,6 +710,10 @@
                 </button>
                 <button class="engine-option" type="button" data-engine="scholar" data-icon="fa-solid fa-graduation-cap">
                     <i class="fa-solid fa-graduation-cap"></i> Scholar
+                </button>
+                <!-- Yandex 已添加 -->
+                <button class="engine-option" type="button" data-engine="yandex" data-icon="fa-brands fa-yandex">
+                    <i class="fa-brands fa-yandex"></i> Yandex
                 </button>
             </div>
         </form>
@@ -881,7 +877,7 @@
         const pad = n => String(n).padStart(2, '0');
 
         // ============================================================
-        // 2. 搜索引擎配置（增加 placeholder）
+        // 2. 搜索引擎配置（包含 Yandex）
         // ============================================================
         const engines = {
             google: {
@@ -901,6 +897,13 @@
                 icon: 'fa-solid fa-graduation-cap',
                 placeholder: '在Google Scholar中搜索...',
                 label: 'Scholar'
+            },
+            // Yandex 搜索引擎配置
+            yandex: {
+                url: q => `https://yandex.com/search/?text=${encodeURIComponent(q)}`,
+                icon: 'fa-brands fa-yandex',
+                placeholder: '在Yandex中搜索...',
+                label: 'Yandex'
             }
         };
 
@@ -912,9 +915,7 @@
             localStorage.setItem('dashboardEngine', name);
 
             const eng = engines[name];
-            // 更新左侧按钮：图标 + 标签 + 下拉箭头
             $('engineButton').innerHTML = `<i class="${eng.icon}"></i> ${eng.label} <i class="fa-solid fa-chevron-down arrow"></i>`;
-            // 更新占位符
             $('searchInput').placeholder = eng.placeholder;
 
             $('engineMenu').classList.remove('open');
@@ -946,7 +947,7 @@
             }
         });
 
-        // 初始化引擎（从 localStorage 读取）
+        // 初始化引擎
         setEngine(currentEngine);
 
         // ============================================================
@@ -988,7 +989,6 @@
             const base = new Date('1999-10-04T00:00:00');
             $('lifeDays').textContent = Math.floor((now - base) / 86400000);
 
-            // 收工倒计时
             const end = new Date(now);
             end.setHours(22, 0, 0, 0);
             if (now > end) end.setDate(end.getDate() + 1);
@@ -1022,7 +1022,7 @@
             }
         });
 
-        console.log('🌙 不喝水就犯困 · 桌面导航 (修复下拉菜单被遮挡)');
+        console.log('🌙 不喝水就犯困 · 桌面导航 (已添加 Yandex 搜索引擎)');
         console.log('📌 快捷键 Ctrl+K / Cmd+K 聚焦搜索');
     </script>
 </body>
