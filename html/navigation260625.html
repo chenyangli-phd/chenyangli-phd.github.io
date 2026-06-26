@@ -302,7 +302,8 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
+            text-align: center;
         }
 
         .widget-label {
@@ -332,7 +333,11 @@
             min-height: 150px;
         }
 
-        /* ===== Calendar 卡片 ===== */
+        /* ===== Calendar 卡片（居中） ===== */
+        .widget-calendar .widget-inner {
+            align-items: center;
+            text-align: center;
+        }
         .cal-month {
             font-size: 13px;
             font-weight: 500;
@@ -342,7 +347,7 @@
             padding: 2px 14px;
             border-radius: 30px;
             display: inline-block;
-            align-self: flex-start;
+            align-self: center;
             margin-bottom: 4px;
         }
         .cal-day {
@@ -362,7 +367,7 @@
             display: flex;
             gap: 4px;
             margin-top: 8px;
-            justify-content: flex-start;
+            justify-content: center;
             flex-wrap: wrap;
         }
         .cal-week-row span {
@@ -382,7 +387,11 @@
             box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
         }
 
-        /* ===== Anniversary 卡片 ===== */
+        /* ===== Anniversary 卡片（居中） ===== */
+        .widget-anniversary .widget-inner {
+            align-items: center;
+            text-align: center;
+        }
         .anni-label {
             font-size: 12px;
             color: rgba(255, 255, 255, 0.78);
@@ -809,7 +818,7 @@
                     <div class="widget-label">日历</div>
                 </article>
 
-                     <!-- Countdown -->
+                <!-- Countdown -->
                 <article class="widget widget-countdown">
                     <div class="widget-inner">
                         <div class="countdown-header" id="countTitle">
@@ -834,7 +843,6 @@
                     </div>
                     <div class="widget-label">破蛋日</div>
                 </article>
-
 
             </div>
         </section>
@@ -1070,7 +1078,7 @@
             }
         });
 
-        console.log('🌙 不喝水就犯困 · 桌面导航 (仅显示时间，间距再增大)');
+        console.log('🌙 不喝水就犯困 · 桌面导航 (卡片内容居中)');
         console.log('📌 快捷键 Ctrl+K / Cmd+K 聚焦搜索');
     </script>
 </body>
