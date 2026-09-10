@@ -12,138 +12,486 @@
 	--primary-purple: #8e44ad;
 	--accent-color: #9b59b6;
 	--accent-light: rgba(155, 89, 182, 0.15);
+	--accent-glow: rgba(155, 89, 182, 0.3);
 	--text-color: #e5e7eb;
 	--text-secondary: #9ca3af;
 	--bg-color: #0f172a;
-	--card-bg: rgba(30, 41, 59, 0.8);
-	--border-color: rgba(255,255,255,0.1);
+	--card-bg: rgba(30, 41, 59, 0.7);
+	--card-hover-bg: rgba(30, 41, 59, 0.95);
+	--border-color: rgba(255,255,255,0.08);
+	--border-hover: rgba(155, 89, 182, 0.5);
+	--link-color: #c084fc;
+	--link-hover: #d8b4fe;
+}
+
+* {
+	box-sizing: border-box;
 }
 
 body {
 	background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
 	font-family: 'Sora', sans-serif;
 	color: var(--text-color);
-	margin:0;
-	padding:4rem 1.5rem;
+	margin: 0;
+	padding: 4rem 1.5rem;
+	min-height: 100vh;
+	-webkit-font-smoothing: antialiased;
 }
 
-h1{
-	text-align:center;
-	font-size:2.5rem;
-	font-weight:700;
-	margin-bottom:3rem;
-	background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+/* ---- 页面标题 ---- */
+.page-header {
+	text-align: center;
+	margin-bottom: 4rem;
+}
+
+.page-header h1 {
+	font-size: 2.8rem;
+	font-weight: 800;
+	margin: 0 0 1rem;
+	background: linear-gradient(135deg, #8e44ad 0%, #c084fc 50%, #9b59b6 100%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	letter-spacing: -0.02em;
+	line-height: 1.2;
 }
 
-.section{
-	max-width:900px;
-	margin:0 auto 3rem auto;
+.page-header .subtitle {
+	font-size: 1rem;
+	color: var(--text-secondary);
+	font-weight: 400;
+	letter-spacing: 0.05em;
 }
 
-.section-title{
-	font-size:1.6rem;
-	font-weight:600;
-	margin-bottom:1.5rem;
-	color:#c084fc;
-	border-bottom:1px solid var(--border-color);
-	padding-bottom:0.5rem;
+/* ---- 分区 ---- */
+.section {
+	max-width: 960px;
+	margin: 0 auto 3.5rem auto;
 }
 
-.journal-item{
-	background:var(--card-bg);
-	border:1px solid var(--border-color);
-	padding:0.9rem 1.2rem;
-	border-radius:12px;
-	margin-bottom:10px;
-	font-size:0.98rem;
-	transition:all 0.3s ease;
+.section-title {
+	font-size: 1.5rem;
+	font-weight: 700;
+	margin-bottom: 1.5rem;
+	color: #c084fc;
+	border-bottom: 2px solid rgba(155, 89, 182, 0.3);
+	padding-bottom: 0.75rem;
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	letter-spacing: -0.01em;
 }
 
-.journal-item:hover{
-	background:var(--accent-light);
-	border-color:var(--accent-color);
-	transform:translateY(-2px);
+.section-title .badge {
+	font-size: 0.7rem;
+	font-weight: 600;
+	background: rgba(155, 89, 182, 0.2);
+	color: #d8b4fe;
+	padding: 0.25rem 0.7rem;
+	border-radius: 999px;
+	border: 1px solid rgba(155, 89, 182, 0.3);
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
 }
 
-.tag{
-	font-size:0.8rem;
-	color:#c084fc;
-	margin-left:6px;
+/* ---- 期刊卡片 ---- */
+.journal-list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
-footer{
-	text-align:center;
-	margin-top:4rem;
-	font-size:0.9rem;
-	color:var(--text-secondary);
+.journal-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	background: var(--card-bg);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	border: 1px solid var(--border-color);
+	padding: 1rem 1.4rem;
+	border-radius: 14px;
+	font-size: 0.98rem;
+	transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+	text-decoration: none;
+	color: var(--text-color);
+	position: relative;
+	overflow: hidden;
+}
+
+.journal-item::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 3px;
+	background: linear-gradient(180deg, #8e44ad, #c084fc);
+	opacity: 0;
+	transition: opacity 0.35s ease;
+}
+
+.journal-item:hover {
+	background: var(--card-hover-bg);
+	border-color: var(--border-hover);
+	transform: translateY(-2px);
+	box-shadow: 0 8px 30px rgba(155, 89, 182, 0.15), 0 0 0 1px rgba(155, 89, 182, 0.1);
+}
+
+.journal-item:hover::before {
+	opacity: 1;
+}
+
+.journal-item .journal-info {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	flex: 1;
+	min-width: 0;
+}
+
+.journal-item .journal-name {
+	font-weight: 500;
+	transition: color 0.3s ease;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.journal-item:hover .journal-name {
+	color: var(--link-hover);
+}
+
+.tag {
+	font-size: 0.75rem;
+	color: #c084fc;
+	font-weight: 500;
+	background: rgba(155, 89, 182, 0.15);
+	padding: 0.15rem 0.6rem;
+	border-radius: 6px;
+	border: 1px solid rgba(155, 89, 182, 0.2);
+	white-space: nowrap;
+	flex-shrink: 0;
+	letter-spacing: 0.02em;
+}
+
+.journal-item .arrow {
+	font-size: 1.1rem;
+	color: var(--text-secondary);
+	transition: all 0.35s ease;
+	flex-shrink: 0;
+	opacity: 0.5;
+}
+
+.journal-item:hover .arrow {
+	color: #c084fc;
+	transform: translateX(4px);
+	opacity: 1;
+}
+
+/* ---- 页脚 ---- */
+footer {
+	text-align: center;
+	margin-top: 5rem;
+	padding-top: 2rem;
+	font-size: 0.85rem;
+	color: var(--text-secondary);
+	border-top: 1px solid var(--border-color);
+	letter-spacing: 0.03em;
+}
+
+/* ---- 响应式 ---- */
+@media (max-width: 600px) {
+	body {
+		padding: 2.5rem 1rem;
+	}
+
+	.page-header h1 {
+		font-size: 1.8rem;
+	}
+
+	.section-title {
+		font-size: 1.2rem;
+	}
+
+	.journal-item {
+		padding: 0.85rem 1rem;
+		font-size: 0.9rem;
+		flex-wrap: wrap;
+	}
+
+	.journal-item .journal-name {
+		white-space: normal;
+	}
+
+	.tag {
+		font-size: 0.7rem;
+	}
 }
 </style>
 </head>
 
 <body>
 
-<h1>SCI Journals Of Numerical Analysis  </h1>
-
-<div class="section">
-<div class="section-title">T1 Journals</div>
-
-<div class="journal-item">Mathematics of Computation</div>
-<div class="journal-item">SIAM Journal on Numerical Analysis (SINUM)</div>
-<div class="journal-item">Numerische Mathematik</div>
-<div class="journal-item">SIAM Journal on Scientific Computing (SISC)</div>
-<div class="journal-item">Computer Methods in Applied Mechanics and Engineering</div>
-<div class="journal-item">Journal of Computational Physics</div>
-<div class="journal-item">Applied and Computational Mathematics</div>
-<div class="journal-item">Mathematical Models & Methods in Applied Sciences <span class="tag">数学会T1</span></div>
-
+<div class="page-header">
+	<h1>SCI Journals of Numerical Analysis</h1>
+	<p class="subtitle">A curated collection · 2026</p>
 </div>
 
+<!-- ==================== T1 ==================== -->
 <div class="section">
-<div class="section-title">T2 Journals</div>
+	<div class="section-title">T1 Journals <span class="badge">Top Tier</span></div>
+	<div class="journal-list">
 
-<div class="journal-item">IMA Journal of Numerical Analysis <span class="tag">数学会T2</span></div>
-<div class="journal-item">Applied Mathematics and Computation</div>
-<div class="journal-item">Journal of Scientific Computing</div>
-<div class="journal-item">Applied Numerical Mathematics</div>
-<div class="journal-item">Journal of Computational and Applied Mathematics</div>
-<div class="journal-item">Computers & Mathematics with Applications</div>
-<div class="journal-item">Applied Mathematics Letters</div>
-<div class="journal-item">Computer Physics Communications</div>
-<div class="journal-item">Physics of Fluids</div>
-<div class="journal-item">Nonlinear Science</div>
+		<a class="journal-item" href="https://www.ams.org/publications/journals/journalsframework/mcom" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Mathematics of Computation</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
 
+		<a class="journal-item" href="https://www.siam.org/journals/sinum.php" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">SIAM Journal on Numerical Analysis (SINUM)</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
 
+		<a class="journal-item" href="https://link.springer.com/journal/211" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Numerische Mathematik</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://www.siam.org/journals/sisc.php" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">SIAM Journal on Scientific Computing (SISC)</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://www.sciencedirect.com/journal/computer-methods-in-applied-mechanics-and-engineering" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Computer Methods in Applied Mechanics and Engineering</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://www.sciencedirect.com/journal/journal-of-computational-physics" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Journal of Computational Physics</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="http://acmij.az/view.php?lang=az&menu=0" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Applied and Computational Mathematics</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://www.worldscientific.com/worldscinet/m3as" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Mathematical Models &amp; Methods in Applied Sciences</span>
+				<span class="tag">数学会T1</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+	</div>
 </div>
 
+<!-- ==================== T2 ==================== -->
 <div class="section">
-<div class="section-title">T3 Journals</div>
+	<div class="section-title">T2 Journals <span class="badge">Core</span></div>
+	<div class="journal-list">
 
-<div class="journal-item">Communications in Computational Physics</div>
-<div class="journal-item">Journal of Numerical Mathematics</div>
-<div class="journal-item">Advances in Computational Mathematics</div>
-<div class="journal-item">ESAIM: Mathematical Modelling and Numerical Analysis</div>
-<div class="journal-item">Calcolo</div>
-<div class="journal-item">Studies in Applied Mathematics</div>
-<div class="journal-item">Nonlinear Analysis: Real World Applications</div>
+		<a class="journal-item" href="https://academic.oup.com/imajna" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">IMA Journal of Numerical Analysis</span>
+				<span class="tag">数学会T2</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
 
+		<a class="journal-item" href="https://www.sciencedirect.com/journal/applied-mathematics-and-computation" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Applied Mathematics and Computation</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://www.springer.com/10915" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Journal of Scientific Computing</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://www.sciencedirect.com/journal/applied-numerical-mathematics" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Applied Numerical Mathematics</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://www.sciencedirect.com/journal/journal-of-computational-and-applied-mathematics" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Journal of Computational and Applied Mathematics</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://www.sciencedirect.com/journal/computers-and-mathematics-with-applications" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Computers &amp; Mathematics with Applications</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://www.sciencedirect.com/journal/applied-mathematics-letters" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Applied Mathematics Letters</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://www.sciencedirect.com/journal/computer-physics-communications" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Computer Physics Communications</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://pubs.aip.org/aip/pof" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Physics of Fluids</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://www.sciencedirect.com/journal/nonlinear-science" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Nonlinear Science</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+	</div>
 </div>
 
+<!-- ==================== T3 ==================== -->
 <div class="section">
-<div class="section-title">T4 Journals</div>
+	<div class="section-title">T3 Journals <span class="badge">Established</span></div>
+	<div class="journal-list">
 
-<div class="journal-item">Journal of Computational Mathematics</div>
-<div class="journal-item">International Journal of Numerical Analysis and Modeling</div>
-<div class="journal-item">Numerical Methods for Partial Differential Equations</div>
-<div class="journal-item">Advances in Applied Mathematics and Mechanics</div>
-<div class="journal-item">Computational Methods in Applied Mathematics</div>
-<div class="journal-item">East Asian Journal on Applied Mathematics</div>
+		<a class="journal-item" href="https://www.global-sci.org/cicp" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Communications in Computational Physics</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
 
+		<a class="journal-item" href="https://www.degruyter.com/journal/key/jnma/html" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Journal of Numerical Mathematics</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://www.springer.com/10444" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Advances in Computational Mathematics</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://www.esaim-m2an.org" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">ESAIM: Mathematical Modelling and Numerical Analysis</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://link.springer.com/journal/10092" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Calcolo</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://onlinelibrary.wiley.com/journal/14679590" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Studies in Applied Mathematics</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://www.sciencedirect.com/journal/nonlinear-analysis-real-world-applications" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Nonlinear Analysis: Real World Applications</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+	</div>
+</div>
+
+<!-- ==================== T4 ==================== -->
+<div class="section">
+	<div class="section-title">T4 Journals <span class="badge">Emerging</span></div>
+	<div class="journal-list">
+
+		<a class="journal-item" href="https://www.global-sci.org/jcm/" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Journal of Computational Mathematics</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="http://www.math.ualberta.ca/ijnam/" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">International Journal of Numerical Analysis and Modeling</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://onlinelibrary.wiley.com/journal/10982426" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Numerical Methods for Partial Differential Equations</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://www.global-sci.org/aamm/" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Advances in Applied Mathematics and Mechanics</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://www.degruyter.com/journal/key/cmam/html" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">Computational Methods in Applied Mathematics</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+		<a class="journal-item" href="https://www.global-sci.org/eajam/" target="_blank" rel="noopener">
+			<div class="journal-info">
+				<span class="journal-name">East Asian Journal on Applied Mathematics</span>
+			</div>
+			<span class="arrow">↗</span>
+		</a>
+
+	</div>
 </div>
 
 <footer>
-© 2026 Chenyang Li • Numerical Analysis Journal Collection
+	© 2026 Chenyang Li · Numerical Analysis Journal Collection
 </footer>
 
 </body>
