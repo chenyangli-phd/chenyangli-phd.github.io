@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#081521" />
+    <meta name="description" content="Chenyang Li 的个人科研工作台：搜索、学术网站、AI 工具、日历与每日倒计时。" />
     <title>不喝水就犯困 · 桌面导航</title>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
@@ -643,23 +645,278 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+        /* ===== 2026 visual refinement · Academic workspace ===== */
+        :root {
+            --accent: #76ecd8;
+            --glass-border: rgba(185, 225, 231, .15);
+            --glass: rgba(13, 27, 40, .75);
+            --text: #edf7f9;
+            --text-muted: #aabecb;
+            --text-dim: #8193a6;
+            --shadow: 0 25px 60px rgba(0, 8, 18, .35);
+            --shadow-sm: 0 12px 32px rgba(0, 9, 20, .20);
+            --radius-lg: 28px;
+        }
+        html { scroll-padding-top: 30px; }
+        body {
+            overflow-x: hidden;
+            background:
+                radial-gradient(ellipse 62% 64% at 8% -12%, rgba(26, 151, 170, .28), transparent 82%),
+                radial-gradient(ellipse 58% 70% at 100% 5%, rgba(71, 90, 200, .23), transparent 82%),
+                radial-gradient(ellipse 55% 55% at 50% 110%, rgba(22, 137, 139, .16), transparent 85%),
+                linear-gradient(155deg, #081521 3%, #08111e 49%, #111b2d 100%);
+            background-attachment: fixed;
+            -webkit-font-smoothing: antialiased;
+        }
+        body::before {
+            background: radial-gradient(circle at 12% 43%, rgba(63, 201, 188, .12), transparent 36%),
+                        radial-gradient(circle at 92% 62%, rgba(129, 105, 236, .12), transparent 37%);
+            z-index: 0;
+        }
+        body::after {
+            background-image: linear-gradient(rgba(195, 229, 243, .15) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(195, 229, 243, .15) 1px, transparent 1px);
+            background-size: 56px 56px;
+            opacity: .085;
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,.8), transparent 75%);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.8), transparent 75%);
+            mix-blend-mode: normal;
+        }
+        body[data-appearance="twilight"] {
+            --accent: #ffca9a;
+            --glass-border: rgba(244, 197, 176, .17);
+            --text-muted: #c5b6c3;
+            background:
+                radial-gradient(ellipse 55% 65% at 4% 0%, rgba(192, 91, 122, .24), transparent 80%),
+                radial-gradient(ellipse 60% 62% at 97% 9%, rgba(108, 93, 198, .31), transparent 80%),
+                linear-gradient(155deg, #1c182b 0%, #131426 53%, #191628 100%);
+            background-attachment: fixed;
+        }
+        body[data-appearance="twilight"]::before {
+            background: radial-gradient(circle at 15% 48%, rgba(233, 127, 123, .12), transparent 36%),
+                        radial-gradient(circle at 90% 69%, rgba(144, 118, 237, .15), transparent 36%);
+        }
+        .page {
+            max-width: 1180px;
+            padding: 28px 30px 36px;
+            align-items: stretch;
+            gap: 0;
+        }
+        .dashboard-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            gap: 20px;
+            padding: 0 1px 14px;
+            border-bottom: 1px solid rgba(220, 239, 250, .09);
+        }
+        .brand { display: inline-flex; align-items: center; gap: 12px; min-width: 0; }
+        .brand-mark {
+            width: 43px; height: 43px; flex: 0 0 auto; display: grid; place-items: center;
+            border-radius: 14px; color: #0b2130; font-size: 17px; font-weight: 800;
+            letter-spacing: -.8px; background: linear-gradient(145deg, #c2fff2, #65cbbb);
+            box-shadow: 0 7px 22px rgba(77, 220, 199, .18);
+        }
+        .brand-copy { display: grid; gap: 4px; }
+        .brand-title { color: #f4fbff; font-size: 14px; font-weight: 700; letter-spacing: .1px; }
+        .brand-caption { color: var(--text-dim); letter-spacing: 1.8px; font-size: 9px; font-weight: 650; }
+        .top-actions { display: flex; align-items: center; gap: 12px; }
+        .focus-pill {
+            display: inline-flex; align-items: center; gap: 9px; padding: 10px 13px;
+            border-radius: 100px; color: var(--text-muted); font-size: 11px;
+            font-weight: 650; letter-spacing: 1px; border: 1px solid rgba(255,255,255,.08);
+            background: rgba(255,255,255,.035);
+        }
+        .focus-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+        .appearance-toggle {
+            display: inline-flex; align-items: center; gap: 9px; padding: 10px 14px;
+            border-radius: 13px; cursor: pointer; color: #f6fbff;
+            background: rgba(255,255,255,.075); border: 1px solid rgba(255,255,255,.11);
+            font-size: 12px; transition: background .2s, border-color .2s, transform .2s;
+        }
+        .appearance-toggle i { color: var(--accent); }
+        .appearance-toggle:hover { background: rgba(255,255,255,.12); border-color: var(--glass-border); transform: translateY(-1px); }
+        .hero { margin: 63px auto 27px; text-align: center; }
+        .hero-kicker {
+            display: inline-flex; align-items: center; gap: 12px;
+            color: var(--accent); letter-spacing: 3.2px; text-transform: uppercase;
+            font-weight: 700; font-size: 10px; margin-bottom: 15px;
+        }
+        .hero-kicker::before, .hero-kicker::after { content: ""; display: inline-block; width: 20px; height: 1px; background: var(--accent); opacity: .45; }
+        .clock {
+            font-weight: 680; font-size: clamp(76px, 11vw, 144px); line-height: 1.05;
+            font-variant-numeric: tabular-nums; font-feature-settings: "tnum";
+            letter-spacing: -.085em; padding-right: .085em;
+            background: linear-gradient(150deg, #fff 17%, #e4f6fc 52%, #8caabc 100%);
+            background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: none; filter: drop-shadow(0 16px 28px rgba(3, 15, 27, .2));
+        }
+        .hero-heading { font-size: clamp(18px, 2.4vw, 26px); font-weight: 650; letter-spacing: .09em; margin: 13px 0 9px; }
+        .hero-subtitle { color: var(--text-muted); font-size: 12px; letter-spacing: 1.5px; }
+        .date-line { display: block; color: var(--text-dim); font-size: 12px; letter-spacing: 1px; margin-top: 15px; }
+        .search-wrap {
+            width: min(760px, 100%); min-height: 65px; margin: 0 auto 53px;
+            padding: 5px; border-radius: 22px; z-index: 15;
+            background: rgba(20, 34, 48, .84); border: 1px solid rgba(210, 242, 244, .18);
+            box-shadow: 0 22px 60px rgba(0, 8, 24, .27), inset 0 1px rgba(255,255,255,.08);
+            backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+        }
+        .search-wrap::after { border-radius: 22px; }
+        .search-wrap:focus-within { border-color: rgba(118,236,216,.55); box-shadow: 0 20px 65px rgba(0, 8, 24, .35), 0 0 0 4px rgba(104,218,205,.08); }
+        .engine-button { height: 53px; padding: 0 19px 0 16px; border-radius: 16px; font-size: 13px; font-weight: 600; color: #c9dee3; border-right: 1px solid rgba(255,255,255,.11); }
+        .search-input { height: 53px; padding: 0 16px; font-size: 14px; color: #f6fdff; }
+        .search-input::placeholder { color: #8398a9; opacity: 1; }
+        .search-hint { flex: 0 0 auto; display: inline-flex; gap: 4px; align-items: center; margin-right: 10px; }
+        .search-hint kbd { padding: 4px 6px; min-width: 21px; border: 1px solid rgba(255,255,255,.15); border-radius: 5px; font-size: 10px; color: #91a5b4; font-family: inherit; background: rgba(255,255,255,.035); }
+        .search-submit { height: 51px; padding: 0 20px; border-radius: 15px; color: #07222a; background: linear-gradient(135deg, #b5fae8, #6dd9c6); font-weight: 750; box-shadow: 0 6px 20px rgba(34, 198, 173, .15); }
+        .search-submit:hover { background: linear-gradient(135deg, #d5fff5, #83e6d4); color: #07222a; }
+        body[data-appearance="twilight"] .search-submit { background: linear-gradient(135deg, #ffe3c3, #e6adbd); color: #2a1721; }
+        .engine-menu { top: 68px; left: 5px; background: #142333; border-radius: 18px; border-color: rgba(255,255,255,.15); }
+        .engine-option { padding: 11px 12px; }
+        .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin: 0 0 18px; }
+        .section-eyebrow { color: var(--accent); font-size: 10px; letter-spacing: 2px; font-weight: 750; margin-bottom: 7px; }
+        .section-heading h2 { font-size: 22px; letter-spacing: -.03em; font-weight: 720; }
+        .section-description { color: var(--text-dim); font-size: 12px; }
+        .workspace { width: 100%; }
+        .widget-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
+        .widget {
+            min-height: 255px; border-radius: 26px;
+            border: 1px solid rgba(198, 232, 244, .15);
+            background: rgba(13, 33, 46, .67); box-shadow: 0 14px 36px rgba(0, 8, 17, .19);
+            isolation: isolate; padding: 23px 25px 21px;
+        }
+        .widget::before {
+            content: ""; position: absolute; z-index: -1; width: 215px; height: 215px;
+            right: -58px; bottom: -120px; border-radius: 50%; pointer-events: none;
+            background: radial-gradient(circle, rgba(56, 220, 195, .16), transparent 68%);
+        }
+        .widget-countdown { background: linear-gradient(137deg, rgba(29, 33, 72, .82), rgba(35, 27, 57, .75)); }
+        .widget-countdown::before { background: radial-gradient(circle, rgba(172, 118, 238, .25), transparent 70%); }
+        .widget:hover { border-color: rgba(167,234,222,.36); box-shadow: 0 24px 48px rgba(0,10,18,.3); transform: translateY(-3px); }
+        .widget-top { display: flex; align-items: center; gap: 10px; color: #c8dce5; font-size: 11px; font-weight: 650; letter-spacing: 1.3px; }
+        .widget-top i { width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; background: rgba(113, 237, 214, .12); color: #8aebd8; font-size: 13px; }
+        .widget-countdown .widget-top i { background: rgba(199,163,255,.14); color: #d3b5ff; }
+        .widget-index { margin-left: auto; font-size: 10px; color: var(--text-dim); letter-spacing: 1px; }
+        .widget-inner { align-items: flex-start; text-align: left; padding: 12px 0 0; justify-content: space-between; }
+        .widget-label { display: none; }
+        .cal-month { align-self: flex-start; margin: 0 0 8px; padding: 0; background: none; color: #a1bbc7; font-size: 13px; letter-spacing: 1.5px; }
+        .cal-day { font-size: 66px; font-weight: 720; letter-spacing: -3px; margin: 0 0 3px; }
+        .cal-meta { margin-top: 0; font-size: 11px; color: var(--text-muted); }
+        .cal-week-row { justify-content: flex-start; gap: 6px; margin-top: 12px; }
+        .cal-week-row span { width: 25px; height: 25px; font-size: 11px; }
+        .cal-week-row span.active { color: #092c31; background: var(--accent); box-shadow: 0 5px 18px rgba(118,236,216,.18); }
+        .countdown-header { color: #d1c6e8; font-weight: 500; letter-spacing: .5px; margin: 3px 0 13px; }
+        .countdown-time { font-size: clamp(34px, 5vw, 59px); letter-spacing: -.02em; line-height: 1.1; font-weight: 760; }
+        .countdown-foot { color: #bcb3d1; font-size: 12px; margin-top: 13px; letter-spacing: .2px; }
+        .shortcuts-heading { margin-top: 42px; }
+        .app-zone { margin-top: 0; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .category-block {
+            border-radius: 26px; padding: 23px 24px 25px;
+            background: rgba(11, 24, 36, .70); border: 1px solid rgba(198, 232, 244, .12);
+            box-shadow: 0 16px 40px rgba(0, 9, 20, .13); backdrop-filter: blur(16px);
+        }
+        .category-block:hover { border-color: rgba(156, 227, 219, .26); }
+        .category-title { color: #eef9fb; font-size: 16px; font-weight: 700; letter-spacing: 0; margin-bottom: 18px; padding: 0 2px; }
+        .category-title i { font-size: 15px; color: var(--accent); opacity: 1; }
+        .category-meta { font-size: 10px; letter-spacing: 1.5px; font-weight: 650; margin-left: auto; color: var(--text-dim); }
+        .app-cluster { grid-template-columns: repeat(3, 1fr); gap: 11px; }
+        .app-icon { padding: 14px 7px 13px; border: 1px solid rgba(255,255,255,.055); border-radius: 16px; background: rgba(255,255,255,.035); }
+        .app-icon:hover { background: rgba(255,255,255,.085); border-color: rgba(255,255,255,.15); transform: translateY(-4px); }
+        .app-icon .icon-box { width: 51px; height: 51px; border-radius: 15px; font-size: 21px; border-color: rgba(255,255,255,.18); box-shadow: 0 10px 25px rgba(0,0,0,.17), inset 0 1px 1px rgba(255,255,255,.09); }
+        .app-icon .label { max-width: 100%; margin-top: 10px; color: #c3d2d9; font-size: 12px; }
+        .footer-quote { width: 100%; margin-top: 41px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.085); color: var(--text-dim); font-size: 11px; letter-spacing: 1px; }
+        .footer-quote span { opacity: 1; }
+        .footer-mini { display: block; margin-top: 8px; font-size: 10px; opacity: .65; }
+        :is(button, a, input):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+        @media (max-width: 850px) {
+            .page { padding: 20px 20px 32px; }
+            .hero { margin-top: 52px; }
+            .widget { min-height: 244px; padding: 21px 21px 18px; }
+            .app-zone, .widget-grid { gap: 13px; }
+            .category-block { padding: 20px 17px 22px; }
+            .countdown-time { font-size: clamp(30px, 4vw, 45px); }
+        }
+        @media (max-width: 640px) {
+            .page { padding: 17px 15px 27px; }
+            .dashboard-topbar { gap: 10px; }
+            .brand-title { font-size: 12px; }
+            .brand-caption { letter-spacing: 1px; font-size: 8px; }
+            .brand-mark { width: 38px; height: 38px; border-radius: 12px; font-size: 14px; }
+            .focus-pill { display: none; }
+            .appearance-toggle { padding: 11px; }
+            .appearance-toggle span { display: none; }
+            .hero { margin: 47px auto 24px; }
+            .clock { font-size: clamp(72px, 16vw, 104px); }
+            .hero-kicker { letter-spacing: 2px; }
+            .hero-heading { font-size: 19px; }
+            .search-wrap { width: 100%; margin-bottom: 35px; min-height: 58px; border-radius: 17px; }
+            .search-wrap::after { border-radius: 17px; }
+            .search-input, .engine-button { height: 48px; }
+            .engine-button { padding: 0 10px; font-size: 11px; }
+            .search-input { padding: 0 8px; font-size: 13px; }
+            .search-hint { display: none; }
+            .search-submit { height: 46px; padding: 0 13px; border-radius: 12px; font-size: 12px; }
+            .section-heading { margin-bottom: 14px; }
+            .section-heading h2 { font-size: 19px; }
+            .section-description { display: none; }
+            .widget-grid, .app-zone { grid-template-columns: 1fr; gap: 12px; }
+            .widget { min-height: 224px; padding: 20px 22px; }
+            .widget-inner { padding-top: 9px; }
+            .cal-day { font-size: 58px; }
+            .countdown-time { font-size: clamp(38px, 10vw, 57px); }
+            .shortcuts-heading { margin-top: 33px; }
+            .category-block { padding: 20px; }
+            .app-cluster { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+            .app-icon { padding: 12px 3px; }
+            .app-icon .label { font-size: 11px; }
+            .footer-quote { margin-top: 29px; padding-top: 20px; }
+        }
+        @media (max-width: 370px) {
+            .brand-caption { display: none; }
+            .engine-button { padding: 0 7px; }
+            .engine-button .arrow { display: none; }
+            .search-submit { font-size: 0; gap: 0; padding: 0 13px; }
+            .search-submit i { font-size: 15px; }
+            .app-icon .label { font-size: 10px; }
+        }
     </style>
 </head>
 <body>
     <main class="page" id="home">
+        <header class="dashboard-topbar">
+            <a class="brand" href="../index.html" aria-label="返回 Chenyang Li 个人主页">
+                <span class="brand-mark" aria-hidden="true">CL</span>
+                <span class="brand-copy">
+                    <span class="brand-title">Chenyang's Space</span>
+                    <span class="brand-caption">PERSONAL WORKSPACE</span>
+                </span>
+            </a>
+            <div class="top-actions">
+                <span class="focus-pill"><span class="focus-dot" aria-hidden="true"></span> FOCUS · CREATE · EXPLORE</span>
+                <button class="appearance-toggle" id="appearanceToggle" type="button" aria-label="切换页面氛围" aria-pressed="false" title="切换极光 / 暮色氛围">
+                    <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i><span>暮色模式</span>
+                </button>
+            </div>
+        </header>
 
         <!-- ===== Hero：仅显示时钟 ===== -->
-        <section class="hero">
+        <section class="hero" aria-label="现在时间与日期">
+            <p class="hero-kicker">The Daily Desk</p>
             <div class="clock" id="clock">--:--</div>
+            <h1 class="hero-heading">把热爱放进日常</h1>
+            <p class="hero-subtitle">RESEARCH · CREATE · EXPLORE</p>
             <div class="date-line" id="dateLine">加载中…</div>
         </section>
 
         <!-- ===== 搜索栏 ===== -->
         <form class="search-wrap" id="searchForm">
-            <button class="engine-button" type="button" id="engineButton" title="切换搜索引擎">
+            <button class="engine-button" type="button" id="engineButton" title="切换搜索引擎" aria-haspopup="true" aria-expanded="false" aria-controls="engineMenu">
                 <i class="fa-brands fa-microsoft"></i> Bing <i class="fa-solid fa-chevron-down arrow"></i>
             </button>
-            <input class="search-input" id="searchInput" autocomplete="off" placeholder="在Bing中搜索..." />
+            <input class="search-input" id="searchInput" type="search" aria-label="搜索内容" autocomplete="off" placeholder="在Bing中搜索..." />
+            <span class="search-hint" aria-hidden="true"><kbd>⌘</kbd><kbd>K</kbd></span>
             <button class="search-submit" type="submit" aria-label="搜索">
                 <i class="fa-solid fa-magnifying-glass"></i> 搜索
             </button>
@@ -681,11 +938,16 @@
         </form>
 
         <!-- ===== Widget 网格 ===== -->
-        <section class="workspace">
+        <section class="workspace" aria-label="每日概览">
+            <div class="section-heading">
+                <div><p class="section-eyebrow">01 / THE OVERVIEW</p><h2>今日概览</h2></div>
+                <p class="section-description">一眼看到今天的小目标与时间流动</p>
+            </div>
             <div class="widget-grid">
 
                 <!-- Calendar -->
                 <article class="widget widget-calendar">
+                    <div class="widget-top"><i class="fa-regular fa-calendar-days" aria-hidden="true"></i> 日历 <span class="widget-index">CALENDAR / 01</span></div>
                     <div class="widget-inner">
                         <div>
                             <div class="cal-month" id="calMonth">----年--月</div>
@@ -699,6 +961,7 @@
 
                 <!-- Countdown -->
                 <article class="widget widget-countdown">
+                    <div class="widget-top"><i class="fa-regular fa-hourglass-half" aria-hidden="true"></i> 下班倒计时 <span class="widget-index">TIMER / 02</span></div>
                     <div class="widget-inner">
                         <div class="countdown-header" id="countTitle">
                             <i class="fa-regular fa-clock"></i> 距离十点收工还有
@@ -713,11 +976,15 @@
         </section>
 
         <!-- ===== 应用快捷方式 ===== -->
-        <aside class="app-zone" id="apps">
+        <div class="section-heading shortcuts-heading">
+            <div><p class="section-eyebrow">02 / QUICK ACCESS</p><h2>常用入口</h2></div>
+            <p class="section-description">常用工具，在这里一步直达</p>
+        </div>
+        <aside class="app-zone" id="apps" aria-label="常用网站快捷入口">
 
             <!-- AI 助手 -->
             <div class="category-block">
-                <div class="category-title"><i class="fa-solid fa-robot"></i> AI</div>
+                <div class="category-title"><i class="fa-solid fa-robot" aria-hidden="true"></i> AI 助手 <span class="category-meta">06 LINKS</span></div>
                 <div class="app-cluster">
                     <a class="app-icon" href="https://chatgpt.com" target="_blank" rel="noopener">
                         <div class="icon-box" style="background:#10a37f"><i class="fa-solid fa-comment-dots"></i></div>
@@ -748,7 +1015,7 @@
 
             <!-- 科研办公 -->
             <div class="category-block">
-                <div class="category-title"><i class="fa-solid fa-graduation-cap"></i> 科研</div>
+                <div class="category-title"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> 学术与效率 <span class="category-meta">06 LINKS</span></div>
                 <div class="app-cluster">
                     <a class="app-icon" href="https://scholar.google.com" target="_blank" rel="noopener">
                         <div class="icon-box" style="background:#4285f4"><i class="fa-solid fa-graduation-cap"></i></div>
@@ -781,7 +1048,8 @@
 
         <!-- ===== 底部 ===== -->
         <div class="footer-quote">
-            <span>⚡ Learn By Teaching - Chenyang Li</span>
+            <span>STAY CURIOUS · MAKE SOMETHING MEANINGFUL</span>
+            <small class="footer-mini">Crafted for everyday focus · Chenyang Li</small>
         </div>
 
     </main>
@@ -824,9 +1092,10 @@
             }
         };
 
-        let currentEngine = localStorage.getItem('dashboardEngine') || 'bing';
+        const preferredEngine = localStorage.getItem('dashboardEngine');
+        let currentEngine = engines[preferredEngine] ? preferredEngine : 'bing';
 
-        function setEngine(name) {
+        function setEngine(name, focusInput = true) {
             if (!engines[name]) return;
             currentEngine = name;
             localStorage.setItem('dashboardEngine', name);
@@ -836,7 +1105,8 @@
             $('searchInput').placeholder = eng.placeholder;
 
             $('engineMenu').classList.remove('open');
-            $('searchInput').focus();
+            $('engineButton').setAttribute('aria-expanded', 'false');
+            if (focusInput) $('searchInput').focus();
         }
 
         // ============================================================
@@ -844,7 +1114,8 @@
         // ============================================================
         $('engineButton').addEventListener('click', e => {
             e.stopPropagation();
-            $('engineMenu').classList.toggle('open');
+            const isOpen = $('engineMenu').classList.toggle('open');
+            $('engineButton').setAttribute('aria-expanded', String(isOpen));
         });
 
         document.querySelectorAll('.engine-option').forEach(btn => {
@@ -852,7 +1123,10 @@
         });
 
         document.addEventListener('click', e => {
-            if (!e.target.closest('.search-wrap')) $('engineMenu').classList.remove('open');
+            if (!e.target.closest('.search-wrap')) {
+                $('engineMenu').classList.remove('open');
+                $('engineButton').setAttribute('aria-expanded', 'false');
+            }
         });
 
         $('searchForm').addEventListener('submit', e => {
@@ -865,7 +1139,7 @@
         });
 
         // 初始化引擎
-        setEngine(currentEngine);
+        setEngine(currentEngine, false);
 
         // ============================================================
         // 4. 日期 & 时钟 & 日历 & 纪念日 & 倒计时
@@ -889,7 +1163,7 @@
             const weekShort = ['日', '一', '二', '三', '四', '五', '六'];
 
             $('clock').textContent = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
-            $('dateLine').textContent = `${now.getMonth() + 1}月${now.getDate()}日  ${week[now.getDay()]}`;
+            $('dateLine').textContent = `${now.getFullYear()} 年 ${now.getMonth() + 1} 月 ${now.getDate()} 日 · ${week[now.getDay()]}`;
 
             $('calMonth').textContent = `${now.getFullYear()}年${now.getMonth() + 1}月`;
             $('calDay').textContent = now.getDate();
@@ -933,8 +1207,26 @@
             if (e.key === 'Escape') {
                 $('searchInput').blur();
                 $('engineMenu').classList.remove('open');
+                $('engineButton').setAttribute('aria-expanded', 'false');
             }
         });
+
+        /* Two restrained ambient palettes; keep all site links and search functionality intact. */
+        const appearanceToggle = $('appearanceToggle');
+        const savedAppearance = localStorage.getItem('dashboardAppearance');
+        if (savedAppearance === 'twilight') document.body.dataset.appearance = 'twilight';
+        function updateAppearanceButton() {
+            const twilight = document.body.dataset.appearance === 'twilight';
+            appearanceToggle.setAttribute('aria-pressed', String(twilight));
+            appearanceToggle.querySelector('span').textContent = twilight ? '极光模式' : '暮色模式';
+        }
+        appearanceToggle.addEventListener('click', () => {
+            const twilight = document.body.dataset.appearance === 'twilight';
+            document.body.dataset.appearance = twilight ? 'aurora' : 'twilight';
+            localStorage.setItem('dashboardAppearance', document.body.dataset.appearance);
+            updateAppearanceButton();
+        });
+        updateAppearanceButton();
 
         console.log('🌙 不喝水就犯困 · 桌面导航 (已添加 Yandex 搜索引擎)');
         console.log('📌 快捷键 Ctrl+K / Cmd+K 聚焦搜索');
