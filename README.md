@@ -33,12 +33,12 @@
 | 页面 | 链接 |
 |------|------|
 | 🏠 主页 | [https://chenyangli-phd.github.io](https://chenyangli-phd.github.io) |
-| 📄 出版物 | [publication.html](https://chenyangli-phd.github.io/publication.html) |
-| 📚 教学 | [teaching.html](https://chenyangli-phd.github.io/teaching.html) |
+| 📄 出版物 | [html/publication.html](https://chenyangli-phd.github.io/html/publication.html) |
+| 📚 教学 | [html/teaching.html](https://chenyangli-phd.github.io/html/teaching.html) |
 | 📝 博客列表 | [/assets/blogs/index.html](https://chenyangli-phd.github.io/assets/blogs/index.html) |
-| 🎬 视频 | [video.html](https://chenyangli-phd.github.io/video.html) |
+| 🎬 视频 | [html/video.html](https://chenyangli-phd.github.io/html/video.html) |
 | 📷 摄影作品 | [/assets/photography-blog/index.html](https://chenyangli-phd.github.io/assets/photography-blog/index.html) |
-| 🧭 导航页 | [navigation.html](https://chenyangli-phd.github.io/navigation.html) |
+| 🧭 导航页 | [html/navigation.html](https://chenyangli-phd.github.io/html/navigation.html) |
 
 ---
 
@@ -78,7 +78,7 @@
 - 按地点/时间分类
 - 支持图片预览
 
-### 🧭 导航页 (navigation.html)
+### 🧭 导航页 (html/navigation.html)
 - **多搜索引擎** - 支持 Google、Bing、Google Scholar 搜索，一键切换
 - **分类导航** - 三大分类：
   - 🤖 **AI助手** - ChatGPT、DeepSeek、Grok、Gemini、Kimi、Claude
@@ -103,11 +103,15 @@
 
 ```
 chenyangli-phd.github.io/
-├── 📄 index.html                    # 主页面入口
-├── 📄 publication.html              # 出版物页面
-├── 📄 teaching.html                 # 教学页面
-├── 📄 video.html                    # 视频页面
-├── 📄 navigation.html               # 导航页（快速访问常用网站）
+├── 📄 index.html                    # GitHub Pages 首页入口
+├── 📁 html/                         # 独立 HTML 页面目录
+│   ├── 📄 publication.html
+│   ├── 📄 teaching.html
+│   ├── 📄 video.html
+│   ├── 📄 navigation.html
+│   ├── 📄 navigation260625.html
+│   ├── 📄 journal.html
+│   └── 📄 dailynote.html
 ├── 📄 README.md                     # 项目说明文档
 │
 ├── 📁 css/                          # 样式文件目录
