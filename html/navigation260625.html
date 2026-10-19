@@ -1,943 +1,2056 @@
 <!DOCTYPE html>
+
 <html lang="zh-CN">
+
 <head>
+
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <meta name="color-scheme" content="dark" />
-    <title>不喝水就犯困 · 桌面导航</title>
+
+    <title>不喝水就犯困 · 个人工作台</title>
+    <meta name="theme-color" content="#090e18" />
+    <meta name="description" content="个人桌面导航：科研、AI、搜索与摸鱼，一页轻松抵达。" />
+
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
     <style>
+
         /* ===== 全局重置 & 变量 ===== */
+
         * {
+
             box-sizing: border-box;
+
             margin: 0;
+
             padding: 0;
+
         }
 
         :root {
+
             --glass: rgba(20, 26, 38, 0.76);
+
             --glass-light: rgba(255, 255, 255, 0.06);
+
             --glass-border: rgba(255, 255, 255, 0.10);
+
             --text: #f0f2f7;
+
             --text-muted: rgba(255, 255, 255, 0.65);
+
             --text-dim: rgba(255, 255, 255, 0.40);
+
             --shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
+
             --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.20);
+
             --radius: 16px;
+
             --radius-lg: 20px;
+
             --accent: #f4b81a;
+
             --transition: 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
         }
 
         html {
+
             scroll-behavior: smooth;
+
         }
 
         body {
+
             min-height: 100vh;
+
             font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+
             color: var(--text);
+
             background:
+
                 linear-gradient(135deg, rgba(5, 10, 18, 0.74) 0%, rgba(15, 26, 40, 0.60) 45%, rgba(2, 6, 12, 0.78) 100%),
+
                 url("../assets/pic/壁纸3.jpeg") center center / cover no-repeat fixed;
+
             background-attachment: fixed;
+
         }
 
         body::before {
+
             content: "";
+
             position: fixed;
+
             inset: 0;
+
             pointer-events: none;
+
             background: radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.30) 100%);
+
             z-index: 0;
+
         }
 
         body::after {
+
             content: "";
+
             position: fixed;
+
             inset: 0;
+
             pointer-events: none;
+
             opacity: 0.08;
+
             z-index: 0;
+
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.30'/%3E%3C/svg%3E");
+
             mix-blend-mode: soft-light;
+
         }
 
         a {
+
             color: inherit;
+
             text-decoration: none;
+
         }
+
         button,
+
         input {
+
             font: inherit;
+
             border: none;
+
             outline: none;
+
             background: none;
+
         }
 
         /* ===== 页面容器 ===== */
+
         .page {
+
             position: relative;
+
             z-index: 2;
+
             max-width: 1260px;
+
             margin: 0 auto;
+
             padding: 22px 28px 30px;
+
             display: flex;
+
             flex-direction: column;
+
             align-items: center;
+
             min-height: 100vh;
+
         }
 
         /* ===== Hero 区域：仅保留时钟，隐藏日期 ===== */
+
         .hero {
+
             text-align: center;
+
             margin-bottom: 20px;
+
             user-select: none;
+
         }
 
         .clock {
+
             font-size: clamp(52px, 5vw, 78px);
+
             font-weight: 280;
+
             line-height: 1.05;
+
             letter-spacing: -2px;
+
             text-shadow: 0 6px 32px rgba(0, 0, 0, 0.40);
+
             background: linear-gradient(135deg, #ffffff 40%, rgba(255, 255, 255, 0.65));
+
             -webkit-background-clip: text;
+
             -webkit-text-fill-color: transparent;
+
             background-clip: text;
+
         }
 
         /* 日期行隐藏，只显示时间 */
+
         .date-line {
+
             display: none;
+
         }
 
         /* ===== 搜索栏 ===== */
+
         .search-wrap {
+
             width: min(680px, calc(100vw - 40px));
+
             margin: 0 auto 56px;
+
             position: relative;
+
             z-index: 20;
+
             display: flex;
+
             align-items: center;
+
             background: rgba(12, 20, 34, 0.72);
+
             border: 1px solid rgba(255, 255, 255, 0.08);
+
             border-radius: 40px;
+
             box-shadow:
+
                 0 8px 32px rgba(0, 0, 0, 0.45),
+
                 inset 0 1px 0 rgba(255, 255, 255, 0.06),
+
                 0 0 0 0 rgba(244, 184, 26, 0);
+
             backdrop-filter: blur(24px);
+
             -webkit-backdrop-filter: blur(24px);
+
             transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+
             overflow: visible;
+
             padding: 2px;
+
         }
+
         .search-wrap::after {
+
             content: "";
+
             position: absolute;
+
             inset: -1px;
+
             border-radius: 42px;
+
             padding: 1px;
+
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 40%, transparent 60%, rgba(255, 255, 255, 0.06));
+
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+
             mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+
             -webkit-mask-composite: xor;
+
             mask-composite: exclude;
+
             pointer-events: none;
+
         }
+
         .search-wrap:focus-within {
+
             border-color: rgba(255, 255, 255, 0.18);
+
             box-shadow:
+
                 0 8px 40px rgba(0, 0, 0, 0.50),
+
                 inset 0 1px 0 rgba(255, 255, 255, 0.10),
+
                 0 0 0 4px rgba(244, 184, 26, 0.10);
+
             transform: translateY(-1px);
+
         }
 
         .engine-button {
+
             display: flex;
+
             align-items: center;
+
             gap: 6px;
+
             padding: 0 12px 0 16px;
+
             height: 48px;
+
             cursor: pointer;
+
             font-size: 14px;
+
             font-weight: 450;
+
             color: #e8edf5;
+
             border-radius: 40px 0 0 40px;
+
             transition: background var(--transition), color var(--transition);
+
             flex-shrink: 0;
+
             white-space: nowrap;
+
             background: transparent;
+
         }
+
         .engine-button:hover {
+
             background: rgba(255, 255, 255, 0.06);
+
             color: #fff;
+
         }
+
         .engine-button i:first-child {
+
             font-size: 16px;
+
             margin-right: 2px;
+
         }
+
         .engine-button .arrow {
+
             font-size: 11px;
+
             opacity: 0.6;
+
             transition: transform 0.2s;
+
         }
+
         .engine-button:hover .arrow {
+
             opacity: 1;
+
         }
 
         .search-input {
+
             flex: 1;
+
             height: 48px;
+
             color: #fff;
+
             padding: 0 8px;
+
             font-size: 15px;
+
             background: transparent;
+
             min-width: 0;
+
             letter-spacing: 0.3px;
+
         }
+
         .search-input::placeholder {
+
             color: rgba(255, 255, 255, 0.32);
+
             font-weight: 350;
+
             letter-spacing: 0.2px;
+
         }
 
         .search-submit {
+
             display: flex;
+
             align-items: center;
+
             gap: 6px;
+
             padding: 0 20px 0 16px;
+
             height: 48px;
+
             cursor: pointer;
+
             color: rgba(255, 255, 255, 0.65);
+
             border-radius: 0 40px 40px 0;
+
             font-size: 14px;
+
             font-weight: 450;
+
             transition: color var(--transition), background var(--transition);
+
             flex-shrink: 0;
+
             background: transparent;
+
             white-space: nowrap;
+
         }
+
         .search-submit i {
+
             font-size: 16px;
+
         }
+
         .search-submit:hover {
+
             color: #fff;
+
             background: rgba(255, 255, 255, 0.06);
+
         }
 
         .engine-menu {
+
             position: absolute;
+
             top: 56px;
+
             left: 6px;
+
             width: 180px;
+
             padding: 6px;
+
             background: rgba(12, 18, 30, 0.97);
+
             border: 1px solid rgba(255, 255, 255, 0.08);
+
             border-radius: 14px;
+
             box-shadow: 0 20px 48px rgba(0, 0, 0, 0.50);
+
             display: none;
+
             z-index: 999;
+
             backdrop-filter: blur(16px);
+
             -webkit-backdrop-filter: blur(16px);
+
         }
+
         .engine-menu.open {
+
             display: block;
+
             animation: menuSlide 0.18s ease-out;
+
         }
+
         @keyframes menuSlide {
+
             from {
+
                 opacity: 0;
+
                 transform: translateY(-6px) scale(0.96);
+
             }
+
             to {
+
                 opacity: 1;
+
                 transform: translateY(0) scale(1);
+
             }
+
         }
+
         .engine-option {
+
             width: 100%;
+
             padding: 9px 12px;
+
             border-radius: 10px;
+
             color: rgba(255, 255, 255, 0.78);
+
             text-align: left;
+
             cursor: pointer;
+
             font-size: 14px;
+
             display: flex;
+
             align-items: center;
+
             gap: 10px;
+
             transition: background var(--transition), color var(--transition);
+
         }
+
         .engine-option:hover {
+
             background: rgba(255, 255, 255, 0.09);
+
             color: #fff;
+
         }
+
         .engine-option i {
+
             width: 20px;
+
             text-align: center;
+
             font-size: 15px;
+
         }
 
         /* ===== Widget 网格 ===== */
+
         .workspace {
+
             width: 100%;
+
         }
 
         .widget-grid {
+
             display: grid;
+
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
             gap: 16px;
+
         }
 
         .widget {
+
             position: relative;
+
             border-radius: var(--radius-lg);
+
             border: 1px solid var(--glass-border);
+
             box-shadow: var(--shadow-sm);
+
             backdrop-filter: blur(16px);
+
             -webkit-backdrop-filter: blur(16px);
+
             transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+
             overflow: hidden;
+
             min-height: 150px;
+
             display: flex;
+
             flex-direction: column;
+
         }
 
         .widget:hover {
+
             transform: translateY(-3px);
+
             box-shadow: var(--shadow);
+
             border-color: rgba(255, 255, 255, 0.18);
+
         }
 
         .widget-inner {
+
             flex: 1;
+
             padding: 18px 20px 16px;
+
             display: flex;
+
             flex-direction: column;
+
             justify-content: center;
+
             align-items: center;
+
             text-align: center;
+
         }
 
         .widget-label {
+
             font-size: 11px;
+
             text-transform: uppercase;
+
             letter-spacing: 0.8px;
+
             color: var(--text-dim);
+
             font-weight: 500;
+
             margin-top: 6px;
+
             text-align: center;
+
             padding-top: 2px;
+
             border-top: 1px solid rgba(255, 255, 255, 0.05);
+
         }
 
         .widget-calendar {
+
             background: rgba(24, 30, 44, 0.88);
+
         }
+
         .widget-countdown {
+
             background: linear-gradient(145deg, rgba(50, 30, 100, 0.85), rgba(20, 15, 60, 0.90));
+
             min-height: 150px;
+
         }
 
         .cal-month {
+
             font-size: 13px;
+
             font-weight: 500;
+
             color: rgba(255, 255, 255, 0.70);
+
             letter-spacing: 0.5px;
+
             background: rgba(255, 255, 255, 0.08);
+
             padding: 2px 14px;
+
             border-radius: 30px;
+
             display: inline-block;
+
             align-self: center;
+
             margin-bottom: 4px;
+
         }
+
         .cal-day {
+
             font-size: 52px;
+
             font-weight: 550;
+
             line-height: 1;
+
             color: #fff;
+
             margin-top: 2px;
+
         }
+
         .cal-meta {
+
             font-size: 12px;
+
             color: rgba(255, 255, 255, 0.55);
+
             line-height: 1.5;
+
             margin-top: 2px;
+
         }
+
         .cal-week-row {
+
             display: flex;
+
             gap: 4px;
+
             margin-top: 8px;
+
             justify-content: center;
+
             flex-wrap: wrap;
+
         }
+
         .cal-week-row span {
+
             width: 28px;
+
             height: 28px;
+
             display: grid;
+
             place-items: center;
+
             border-radius: 50%;
+
             font-size: 12px;
+
             color: rgba(255, 255, 255, 0.45);
+
             transition: background 0.2s, color 0.2s;
+
         }
+
         .cal-week-row span.active {
+
             background: rgba(255, 255, 255, 0.20);
+
             color: #fff;
+
             font-weight: 600;
+
             box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+
         }
 
         .anni-label {
+
             font-size: 12px;
+
             color: rgba(255, 255, 255, 0.78);
+
             letter-spacing: 0.3px;
+
         }
+
         .anni-days {
+
             font-size: 44px;
+
             font-weight: 550;
+
             line-height: 1;
+
             margin-top: 2px;
+
             letter-spacing: -1px;
+
         }
+
         .anni-days .unit {
+
             font-size: 16px;
+
             font-weight: 400;
+
             margin-left: 4px;
+
             opacity: 0.7;
+
         }
+
         .anni-date {
+
             font-size: 12px;
+
             color: rgba(255, 255, 255, 0.65);
+
             margin-top: 4px;
+
         }
 
         .countdown-header {
+
             font-size: 13px;
+
             color: rgba(255, 255, 255, 0.78);
+
             display: flex;
+
             align-items: center;
+
             gap: 8px;
+
             letter-spacing: 0.4px;
+
             font-weight: 400;
+
             margin-bottom: 2px;
+
         }
+
         .countdown-header i {
+
             font-size: 14px;
+
             opacity: 0.8;
+
             color: #b8a5ff;
+
         }
+
         .countdown-time {
+
             font-size: 48px;
+
             font-weight: 600;
+
             letter-spacing: 4px;
+
             color: #fff;
+
             background: transparent;
+
             border: none;
+
             padding: 0;
+
             line-height: 1.2;
+
             font-variant-numeric: tabular-nums;
+
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.30);
+
         }
+
         .countdown-foot {
+
             font-size: 11px;
+
             color: rgba(255, 255, 255, 0.40);
+
             letter-spacing: 0.5px;
+
             margin-top: 4px;
+
         }
 
         /* ===== 应用区域 ===== */
+
         .app-zone {
+
             width: 100%;
+
             margin-top: 24px;
+
             display: grid;
+
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
             gap: 20px;
+
             align-items: start;
+
         }
 
         .category-block {
+
             background: rgba(12, 18, 28, 0.50);
+
             border-radius: var(--radius-lg);
+
             padding: 14px 16px 18px;
+
             border: 1px solid rgba(255, 255, 255, 0.05);
+
             backdrop-filter: blur(8px);
+
             -webkit-backdrop-filter: blur(8px);
+
             transition: border-color var(--transition);
+
         }
+
         .category-block:hover {
+
             border-color: rgba(255, 255, 255, 0.10);
+
         }
 
         .category-title {
+
             font-size: 13px;
+
             font-weight: 550;
+
             color: var(--text-muted);
+
             display: flex;
+
             align-items: center;
+
             gap: 8px;
+
             margin-bottom: 12px;
+
             padding-left: 2px;
+
             letter-spacing: 0.3px;
+
         }
+
         .category-title i {
+
             color: var(--accent);
+
             font-size: 14px;
+
             opacity: 0.85;
+
         }
 
         .app-cluster {
+
             display: grid;
+
             grid-template-columns: repeat(3, 1fr);
+
             gap: 12px 10px;
+
         }
 
         .app-icon {
+
             display: flex;
+
             flex-direction: column;
+
             align-items: center;
+
             text-align: center;
+
             transition: transform var(--transition), opacity var(--transition);
+
             cursor: pointer;
+
             min-width: 0;
+
         }
+
         .app-icon:hover {
+
             transform: translateY(-3px) scale(1.03);
+
         }
+
         .app-icon:active {
+
             transform: scale(0.95);
+
         }
 
         .app-icon .icon-box {
+
             width: 52px;
+
             height: 52px;
+
             border-radius: 14px;
+
             display: grid;
+
             place-items: center;
+
             font-size: 22px;
+
             box-shadow: var(--shadow-sm);
+
             border: 1px solid rgba(255, 255, 255, 0.10);
+
             transition: box-shadow var(--transition), transform var(--transition);
+
             flex-shrink: 0;
+
         }
+
         .app-icon:hover .icon-box {
+
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.30);
+
         }
 
         .app-icon .label {
+
             font-size: 11px;
+
             color: var(--text-muted);
+
             margin-top: 5px;
+
             white-space: nowrap;
+
             overflow: hidden;
+
             text-overflow: ellipsis;
+
             max-width: 100%;
+
             transition: color var(--transition);
+
         }
+
         .app-icon:hover .label {
+
             color: #fff;
+
         }
 
         .footer-quote {
+
             margin-top: 28px;
+
             text-align: center;
+
             font-size: 12.5px;
+
             color: var(--text-dim);
+
             letter-spacing: 0.5px;
+
             font-weight: 350;
+
             padding: 6px 0 2px;
+
             border-top: 1px solid rgba(255, 255, 255, 0.04);
+
             width: 100%;
+
         }
+
         .footer-quote span {
+
             opacity: 0.7;
+
         }
 
         /* ===== 响应式 ===== */
+
         @media (max-width: 1024px) {
+
             .page { padding: 18px 20px 24px; }
+
             .widget-grid { gap: 14px; }
+
             .app-zone { gap: 16px; }
+
             .app-cluster { gap: 10px 8px; }
+
             .app-icon .icon-box { width: 46px; height: 46px; font-size: 19px; }
+
             .search-wrap { margin-bottom: 48px; }
+
         }
 
         @media (max-width: 820px) {
+
             .widget-grid { gap: 12px; }
+
             .app-zone { gap: 14px; }
+
             .app-cluster { grid-template-columns: repeat(3, 1fr); }
+
             .countdown-time { font-size: 34px; }
+
             .cal-day { font-size: 44px; }
+
             .cal-week-row span { width: 24px; height: 24px; font-size: 11px; }
+
             .anni-days { font-size: 38px; }
+
             .search-wrap { margin-bottom: 40px; }
+
             .engine-button { padding: 0 10px 0 14px; font-size: 13px; }
+
             .search-submit { padding: 0 16px 0 12px; font-size: 13px; }
+
         }
 
         @media (max-width: 640px) {
+
             .page { padding: 14px 12px 20px; }
+
             .widget-grid { gap: 10px; }
+
             .widget-countdown .widget-inner { padding: 12px 16px; }
+
             .countdown-time { font-size: 30px; letter-spacing: 2px; }
+
             .countdown-header { font-size: 12px; }
+
             .countdown-foot { font-size: 10px; }
 
             .cal-day { font-size: 38px; }
+
             .anni-days { font-size: 36px; }
+
             .cal-week-row span { width: 22px; height: 22px; font-size: 10px; }
 
             .app-zone { gap: 12px; }
+
             .app-cluster {
+
                 grid-template-columns: repeat(4, 1fr);
+
                 gap: 10px 8px;
+
             }
+
             .app-icon .icon-box { width: 44px; height: 44px; font-size: 18px; }
+
             .app-icon .label { font-size: 10px; }
+
             .category-block { padding: 12px 14px 14px; }
 
             .clock { font-size: 44px; }
+
             .search-wrap {
+
                 width: calc(100vw - 28px);
+
                 margin-bottom: 32px;
+
             }
+
             .search-input { font-size: 14px; }
+
             .engine-button {
+
                 padding: 0 8px 0 12px;
+
                 font-size: 12px;
+
                 height: 42px;
+
             }
+
             .search-submit {
+
                 padding: 0 12px 0 10px;
+
                 font-size: 12px;
+
                 height: 42px;
+
             }
+
             .engine-button i:first-child { font-size: 14px; }
+
             .search-submit i { font-size: 14px; }
+
         }
 
         @media (max-width: 440px) {
+
             .widget-grid { gap: 8px; }
+
             .widget-inner { padding: 12px 14px 10px; }
+
             .cal-day { font-size: 32px; }
+
             .anni-days { font-size: 30px; }
+
             .countdown-time { font-size: 26px; letter-spacing: 1px; }
+
             .countdown-header { font-size: 11px; }
+
             .app-cluster { grid-template-columns: repeat(3, 1fr); }
+
             .app-icon .icon-box { width: 40px; height: 40px; font-size: 16px; border-radius: 12px; }
+
             .cal-week-row span { width: 20px; height: 20px; font-size: 9px; }
+
             .search-wrap { margin-bottom: 28px; }
+
             .engine-button { padding: 0 6px 0 10px; font-size: 11px; }
+
             .search-submit { padding: 0 10px 0 8px; font-size: 11px; }
+
         }
 
         @media (prefers-reduced-motion: reduce) {
+
             *,
+
             *::before,
+
             *::after {
+
                 animation-duration: 0.01ms !important;
+
                 transition-duration: 0.01ms !important;
+
             }
+
         }
+
+        /* ============================================================
+           视觉升级 · Soft glass / ample space / oversized leisure cards
+           保留原有组件和逻辑，集中增强样式，便于后续修改
+           ============================================================ */
+        :root {
+            --glass-border: rgba(255,255,255,.13);
+            --text-muted: rgba(234,241,252,.75);
+            --text-dim: rgba(232,240,250,.52);
+            --accent: #f5c76a;
+            --radius-lg: 23px;
+            --transition: .26s cubic-bezier(.2,.7,.2,1);
+        }
+        body {
+            background-color: #080e19;
+            background-image:
+                linear-gradient(135deg,rgba(4,10,21,.86) 0%,rgba(12,23,40,.73) 46%,rgba(3,9,18,.90) 100%),
+                radial-gradient(ellipse at 15% 8%,rgba(90,117,193,.36),transparent 55%),
+                url("../assets/pic/壁纸3.jpeg");
+            background-size: cover,cover,cover;
+            background-position: center,center,center;
+            background-attachment: fixed,fixed,fixed;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+        .page {
+            max-width: 1320px;
+            padding: 32px clamp(18px,4vw,52px) 28px;
+        }
+        .hero { margin-bottom: 22px; }
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            color: rgba(227,237,255,.60);
+            font-size: 10px;
+            font-weight: 650;
+            letter-spacing: 2.8px;
+            margin-bottom: 12px;
+        }
+        .hero-dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 100%;
+            background: #9debcf;
+            box-shadow: 0 0 0 4px rgba(157,235,207,.09),0 0 14px rgba(157,235,207,.6);
+        }
+        .clock { font-size: clamp(58px,6.4vw,88px); font-weight: 350; letter-spacing: -3px; }
+        .hero-subtitle { margin-top: 6px; color: rgba(230,237,252,.53); font-size: 12px; letter-spacing: 2.3px; }
+        .search-wrap {
+            width: min(720px,100%);
+            margin-bottom: 32px;
+            background: rgba(13,21,35,.77);
+            border: 1px solid rgba(255,255,255,.19);
+            box-shadow: 0 16px 45px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.08);
+        }
+        .search-wrap:focus-within { border-color: rgba(245,199,106,.52); }
+        .search-input { font-size: 15px; }
+        .search-input::-webkit-search-cancel-button { cursor: pointer; }
+        .search-submit { color: #e9e0cf; }
+        .widget-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+        .widget {
+            min-height: 176px;
+            border-color: rgba(255,255,255,.13);
+            box-shadow: 0 15px 38px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.06);
+        }
+        .widget-calendar { background: linear-gradient(130deg,rgba(35,49,71,.86),rgba(19,30,49,.84)); }
+        .widget-countdown { background: linear-gradient(130deg,rgba(56,43,99,.83),rgba(26,29,74,.86)); }
+        .widget-inner { padding: 21px; }
+        .widget-label {
+            margin: 0 16px;
+            padding: 9px 0 10px;
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            color: rgba(255,255,255,.43);
+        }
+        .section-heading {
+            display: flex;
+            align-items: end;
+            gap: 22px;
+            width: 100%;
+            min-width: 0;
+        }
+        .tools-heading { margin-top: 34px; margin-bottom: 13px; }
+        .section-eyebrow { color: rgba(231,240,255,.41);font-size:10px;font-weight:650;letter-spacing:2.1px;margin-bottom:4px; }
+        .section-heading h2 { font-size: 20px;font-weight: 660;letter-spacing: .35px;color:#f8faff;line-height:1.45;white-space:nowrap; }
+        .section-heading h2 > span:not(.leisure-heading-icon) { font-size: 12px; font-weight: 400;color:rgba(233,241,253,.41);letter-spacing: .1px; margin-left:9px; }
+        .section-line { flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.20),rgba(255,255,255,0));margin-bottom:12px; }
+        .app-zone { margin-top: 0; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+        .category-block {
+            border-radius: 22px;
+            padding: 20px 20px 18px;
+            background: rgba(19,29,44,.68);
+            border: 1px solid rgba(255,255,255,.12);
+            box-shadow: 0 14px 38px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.055);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .category-block:hover { border-color:rgba(255,255,255,.23); }
+        .category-title { font-size: 14px;font-weight:600;letter-spacing:.45px;color:rgba(255,255,255,.86);margin-bottom:17px; }
+        .category-title i { font-size: 15px; }
+        .app-cluster { grid-template-columns: repeat(3,minmax(0,1fr));gap: 15px 10px; }
+        .app-icon { border-radius: 14px;padding: 6px 5px; }
+        .app-icon:hover { transform: translateY(-4px);background:rgba(255,255,255,.05); }
+        .app-icon .icon-box {
+            width: 60px;
+            height: 60px;
+            font-size: 25px;
+            border-radius: 17px;
+            border-color: rgba(255,255,255,.19);
+            box-shadow: 0 10px 22px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.12);
+        }
+        .app-icon .label { font-size: 12px;margin-top: 8px;color:rgba(240,245,255,.82); }
+        .app-icon:focus-visible,.leisure-card:focus-visible,.engine-button:focus-visible,
+        .search-submit:focus-visible,.engine-option:focus-visible { outline: 2px solid #f5c76a;outline-offset: 4px; }
+        .leisure-section { width: 100%; margin-top: 32px; }
+        .leisure-heading { margin-bottom: 16px; }
+        .leisure-heading-icon {
+            display:inline-grid;
+            place-items:center;
+            width:34px;
+            height:34px;
+            margin-right: 4px;
+            border:1px solid rgba(255,255,255,.12);
+            border-radius: 11px;
+            background: linear-gradient(135deg,#ff5f77,#b9355f);
+            box-shadow: 0 6px 20px rgba(236,51,92,.25);
+            color: white;
+            vertical-align: -3px;
+            font-size: 15px;
+        }
+        .leisure-grid { display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px; }
+        .leisure-card {
+            display:flex;
+            flex-direction: column;
+            align-items:flex-start;
+            min-width:0;
+            min-height:182px;
+            padding:20px 19px 19px;
+            border-radius:23px;
+            position:relative;
+            isolation:isolate;
+            overflow:hidden;
+            color:#f6f8ff;
+            background:linear-gradient(155deg,rgba(36,46,63,.83),rgba(14,22,37,.79));
+            border:1px solid rgba(255,255,255,.14);
+            box-shadow:0 15px 36px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.065);
+            backdrop-filter:blur(18px);
+            -webkit-backdrop-filter:blur(18px);
+            transition:transform var(--transition),border-color var(--transition),box-shadow var(--transition),background var(--transition);
+        }
+        .leisure-card::before {
+            content:"";
+            position:absolute;
+            z-index:-1;
+            inset:0;
+            background:radial-gradient(circle at 0 0,var(--card-tint),transparent 65%);
+            opacity:.80;
+            transition:opacity var(--transition);
+        }
+        .leisure-card:hover {
+            transform:translateY(-6px);
+            border-color:var(--card-edge);
+            box-shadow:0 24px 46px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.11);
+        }
+        .leisure-card:hover::before { opacity: 1; }
+        .leisure-card:active { transform:translateY(-2px) scale(.99); }
+        .leisure-card-top { display:flex;align-items:flex-start;justify-content:space-between;width:100%;margin-bottom:auto; }
+        .leisure-icon {
+            width:64px;
+            height:64px;
+            flex-shrink:0;
+            display:grid;
+            place-items:center;
+            border-radius:19px;
+            border:1px solid rgba(255,255,255,.16);
+            box-shadow:0 12px 25px rgba(0,0,0,.19),inset 0 1px 0 rgba(255,255,255,.16);
+            color:white;
+            font-size:28px;
+            transition:transform var(--transition);
+        }
+        .leisure-card:hover .leisure-icon { transform:scale(1.065) rotate(-2deg); }
+        .launch-arrow { font-size:13px;opacity:.33;transition:transform var(--transition),opacity var(--transition);margin:3px 2px 0 0; }
+        .leisure-card:hover .launch-arrow { transform:translate(3px,-3px);opacity:.9; }
+        .leisure-title { display:block;font-size:16px;font-weight:670;letter-spacing:.1px;margin-top:16px;line-height:1.35; }
+        .leisure-desc { display:block;font-size:12px;color:rgba(235,243,255,.56);margin-top:5px;line-height:1.45; }
+        .footer-quote { width:100%;margin-top:37px;padding:15px 0 0;color:rgba(238,245,255,.43);font-size:11px;letter-spacing:1px;border-top-color:rgba(255,255,255,.10); }
+        @media (max-width:1080px) {
+            .leisure-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+        }
+        @media (max-width:720px) {
+            .page { padding: 23px 16px 24px; }
+            .hero { margin-bottom:20px; }
+            .hero-eyebrow { font-size:9px;letter-spacing:1.8px; }
+            .clock { font-size:clamp(52px,12vw,74px); }
+            .search-wrap { width:100%; margin-bottom:25px; }
+            .widget-grid { grid-template-columns: repeat(2,minmax(0,1fr));gap:11px; }
+            .widget { min-height:158px; }
+            .widget-inner { padding:14px 10px; }
+            .cal-month { font-size:11px; }
+            .cal-day { font-size:41px; }
+            .cal-week-row { gap: 1px; }
+            .cal-week-row span { width:20px;height:23px;font-size:10px; }
+            .countdown-time { font-size:clamp(21px,4.8vw,32px);letter-spacing:1px; }
+            .countdown-foot { font-size:10px; }
+            .tools-heading { margin-top:28px; }
+            .section-heading h2 { font-size:18px; }
+            .section-heading h2 > span:not(.leisure-heading-icon) { font-size:11px; }
+            .app-zone { grid-template-columns:1fr;gap:12px; }
+            .category-block { padding:16px 13px; }
+            .app-cluster { grid-template-columns:repeat(3,minmax(0,1fr)); }
+            .app-icon .icon-box { width:58px;height:58px;font-size:24px; }
+            .leisure-section { margin-top:26px; }
+            .leisure-grid { grid-template-columns:repeat(2,minmax(0,1fr));gap:12px; }
+            .leisure-card { min-height:164px;padding:15px;border-radius:19px; }
+            .leisure-icon { width:58px;height:58px;border-radius:16px;font-size:25px; }
+            .leisure-title { font-size:15px; }
+            .leisure-desc { font-size:11px; }
+        }
+        @media (max-width:400px) {
+            .widget-grid { grid-template-columns:1fr; }
+            .widget { min-height:148px; }
+            .clock { font-size:51px; }
+            .engine-button { padding:0 7px 0 11px; }
+            .search-submit { padding:0 9px 0 7px; }
+            .search-input { font-size:12px; }
+            .section-heading h2 > span:not(.leisure-heading-icon) { display:none; }
+            .leisure-card { min-height:157px;padding:13px; }
+            .leisure-icon { width:53px;height:53px; }
+        }
+        @media (prefers-reduced-motion:reduce) {
+            .leisure-card,.leisure-icon,.launch-arrow { transition:none; }
+        }
+
+
+        /* 字体图标 CDN 不可用时，快捷入口仍保持可识别。 */
+        .fa-unavailable .app-icon .icon-box > i,
+        .fa-unavailable .leisure-icon > i,
+        .fa-unavailable .leisure-heading-icon > i { display: none; }
+        .fa-unavailable .app-icon .icon-box::after,
+        .fa-unavailable .leisure-icon::after {
+            content: attr(data-glyph);
+            font-weight: 750;
+            font-family: -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+            color: white;
+            letter-spacing:-.7px;
+        }
+        .fa-unavailable .app-icon .icon-box::after {font-size:21px;}
+        .fa-unavailable .leisure-icon::after {font-size:25px;}
+        .fa-unavailable .leisure-heading-icon::after {content:"☕";font-size:18px;}
+        .fa-unavailable .launch-arrow {font-size:0;}
+        .fa-unavailable .launch-arrow::after {content:"↗";font-size:21px;}
+
     </style>
+
 </head>
+
 <body>
+
     <main class="page" id="home">
 
         <!-- ===== Hero：仅显示时钟 ===== -->
-        <section class="hero">
+
+        <section class="hero" aria-label="当前时间">
+            <div class="hero-eyebrow"><span class="hero-dot"></span> PERSONAL SPACE / MY DASHBOARD</div>
+
             <div class="clock" id="clock">--:--</div>
+            <div class="hero-subtitle">专注科研 · 自在生活</div>
+
             <div class="date-line" id="dateLine">加载中…</div>
+
         </section>
 
         <!-- ===== 搜索栏 ===== -->
+
         <form class="search-wrap" id="searchForm">
+
             <button class="engine-button" type="button" id="engineButton" title="切换搜索引擎">
+
                 <i class="fa-brands fa-microsoft"></i> Bing <i class="fa-solid fa-chevron-down arrow"></i>
+
             </button>
-            <input class="search-input" id="searchInput" autocomplete="off" placeholder="在Bing中搜索..." />
+
+            <input class="search-input" id="searchInput" type="search" autocomplete="off" aria-label="搜索关键词" spellcheck="false" placeholder="在 Bing 中搜索..." />
+
             <button class="search-submit" type="submit" aria-label="搜索">
+
                 <i class="fa-solid fa-magnifying-glass"></i> 搜索
+
             </button>
+
             <div class="engine-menu" id="engineMenu">
+
                 <button class="engine-option" type="button" data-engine="google" data-icon="fa-brands fa-google">
+
                     <i class="fa-brands fa-google"></i> Google
+
                 </button>
+
                 <button class="engine-option" type="button" data-engine="bing" data-icon="fa-brands fa-microsoft">
+
                     <i class="fa-brands fa-microsoft"></i> Bing
+
                 </button>
+
                 <button class="engine-option" type="button" data-engine="scholar" data-icon="fa-solid fa-graduation-cap">
+
                     <i class="fa-solid fa-graduation-cap"></i> Scholar
+
                 </button>
+
                 <!-- Yandex 已添加 -->
+
                 <button class="engine-option" type="button" data-engine="yandex" data-icon="fa-brands fa-yandex">
+
                     <i class="fa-brands fa-yandex"></i> Yandex
+
                 </button>
+
             </div>
+
         </form>
 
         <!-- ===== Widget 网格 ===== -->
+
         <section class="workspace">
+
             <div class="widget-grid">
 
                 <!-- Calendar -->
+
                 <article class="widget widget-calendar">
+
                     <div class="widget-inner">
+
                         <div>
+
                             <div class="cal-month" id="calMonth">----年--月</div>
+
                             <div class="cal-day" id="calDay">--</div>
+
                             <div class="cal-meta" id="calMeta">第---天 · 第--周</div>
+
                         </div>
+
                         <div class="cal-week-row" id="calWeekRow"></div>
+
                     </div>
+
                     <div class="widget-label">日历</div>
+
                 </article>
 
                 <!-- Countdown -->
+
                 <article class="widget widget-countdown">
+
                     <div class="widget-inner">
+
                         <div class="countdown-header" id="countTitle">
+
                             <i class="fa-regular fa-clock"></i> 距离十点收工还有
+
                         </div>
+
                         <div class="countdown-time" id="countTime">--:--:--</div>
+
                         <div class="countdown-foot" id="countFoot">⏳ 加油，学术孤儿</div>
+
                     </div>
+
                     <div class="widget-label">摆烂倒计时</div>
+
                 </article>
 
             </div>
+
         </section>
 
         <!-- ===== 应用快捷方式 ===== -->
-        <aside class="app-zone" id="apps">
+
+        <div class="section-heading tools-heading">
+            <div>
+                <div class="section-eyebrow">YOUR EVERYDAY TOOLS</div>
+                <h2>常用工作台 <span>Quick access</span></h2>
+            </div>
+            <div class="section-line" aria-hidden="true"></div>
+        </div>
+
+        <aside class="app-zone" id="apps" aria-label="常用快捷入口">
 
             <!-- AI 助手 -->
+
             <div class="category-block">
+
                 <div class="category-title"><i class="fa-solid fa-robot"></i> AI</div>
+
                 <div class="app-cluster">
-                    <a class="app-icon" href="https://chatgpt.com" target="_blank" rel="noopener">
-                        <div class="icon-box" style="background:#10a37f"><i class="fa-solid fa-comment-dots"></i></div>
+
+                    <a class="app-icon" href="https://chatgpt.com" target="_blank" rel="noopener noreferrer">
+
+                        <div class="icon-box" data-glyph="AI" style="background:#10a37f"><i class="fa-solid fa-comment-dots"></i></div>
+
                         <span class="label">ChatGPT</span>
+
                     </a>
-                    <a class="app-icon" href="https://gemini.google.com/app" target="_blank" rel="noopener">
-                        <div class="icon-box" style="background:#4285f4"><i class="fa-solid fa-gem"></i></div>
+
+                    <a class="app-icon" href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer">
+
+                        <div class="icon-box" data-glyph="◆" style="background:#4285f4"><i class="fa-solid fa-gem"></i></div>
+
                         <span class="label">Gemini</span>
+
                     </a>
-                    <a class="app-icon" href="https://chat.deepseek.com" target="_blank" rel="noopener">
-                        <div class="icon-box" style="background:#6c5ce7"><i class="fa-solid fa-brain"></i></div>
+
+                    <a class="app-icon" href="https://chat.deepseek.com" target="_blank" rel="noopener noreferrer">
+
+                        <div class="icon-box" data-glyph="DS" style="background:#6c5ce7"><i class="fa-solid fa-brain"></i></div>
+
                         <span class="label">DeepSeek</span>
+
                     </a>
-                    <a class="app-icon" href="https://grok.com" target="_blank" rel="noopener">
-                        <div class="icon-box" style="background:#bf2fbf"><i class="fa-solid fa-bolt"></i></div>
+
+                    <a class="app-icon" href="https://grok.com" target="_blank" rel="noopener noreferrer">
+
+                        <div class="icon-box" data-glyph="✦" style="background:#bf2fbf"><i class="fa-solid fa-bolt"></i></div>
+
                         <span class="label">Grok</span>
+
                     </a>
-                    <a class="app-icon" href="https://www.kimi.com" target="_blank" rel="noopener">
-                        <div class="icon-box" style="background:#1e90ff"><i class="fa-solid fa-moon"></i></div>
+
+                    <a class="app-icon" href="https://www.kimi.com" target="_blank" rel="noopener noreferrer">
+
+                        <div class="icon-box" data-glyph="☾" style="background:#1e90ff"><i class="fa-solid fa-moon"></i></div>
+
                         <span class="label">Kimi</span>
+
                     </a>
-                    <a class="app-icon" href="https://claude.ai/login" target="_blank" rel="noopener">
-                        <div class="icon-box" style="background:#cc785c"><i class="fa-solid fa-code"></i></div>
+
+                    <a class="app-icon" href="https://claude.ai/login" target="_blank" rel="noopener noreferrer">
+
+                        <div class="icon-box" data-glyph="C" style="background:#cc785c"><i class="fa-solid fa-code"></i></div>
+
                         <span class="label">Claude</span>
+
                     </a>
+
                 </div>
+
             </div>
 
             <!-- 科研办公 -->
+
             <div class="category-block">
+
                 <div class="category-title"><i class="fa-solid fa-graduation-cap"></i> 科研</div>
+
                 <div class="app-cluster">
-                    <a class="app-icon" href="https://scholar.google.com" target="_blank" rel="noopener">
-                        <div class="icon-box" style="background:#4285f4"><i class="fa-solid fa-graduation-cap"></i></div>
+
+                    <a class="app-icon" href="https://scholar.google.com" target="_blank" rel="noopener noreferrer">
+
+                        <div class="icon-box" data-glyph="学" style="background:#4285f4"><i class="fa-solid fa-graduation-cap"></i></div>
+
                         <span class="label">Google 学术</span>
+
                     </a>
-                    <a class="app-icon" href="https://mathscinet.ams.org/mathscinet/publications-search" target="_blank" rel="noopener">
-                        <div class="icon-box" style="background:#d63384"><i class="fa-solid fa-square-root-variable"></i></div>
+
+                    <a class="app-icon" href="https://mathscinet.ams.org/mathscinet/publications-search" target="_blank" rel="noopener noreferrer">
+
+                        <div class="icon-box" data-glyph="∑" style="background:#d63384"><i class="fa-solid fa-square-root-variable"></i></div>
+
                         <span class="label">MathSciNet</span>
+
                     </a>
-                    <a class="app-icon" href="https://www.researchgate.net" target="_blank" rel="noopener">
-                        <div class="icon-box" style="background:#00d084"><i class="fa-solid fa-flask"></i></div>
+
+                    <a class="app-icon" href="https://www.researchgate.net" target="_blank" rel="noopener noreferrer">
+
+                        <div class="icon-box" data-glyph="R" style="background:#00d084"><i class="fa-solid fa-flask"></i></div>
+
                         <span class="label">ResearchGate</span>
+
                     </a>
-                    <a class="app-icon" href="https://github.com" target="_blank" rel="noopener">
-                        <div class="icon-box" style="background:#2d2d2d"><i class="fa-brands fa-github"></i></div>
+
+                    <a class="app-icon" href="https://github.com" target="_blank" rel="noopener noreferrer">
+
+                        <div class="icon-box" data-glyph="GH" style="background:#2d2d2d"><i class="fa-brands fa-github"></i></div>
+
                         <span class="label">GitHub</span>
+
                     </a>
-                    <a class="app-icon" href="https://www.iamwawa.cn/daxiaoxie.html" target="_blank" rel="noopener">
-                        <div class="icon-box" style="background:#5e5ce6"><i class="fa-solid fa-font"></i></div>
+
+                    <a class="app-icon" href="https://www.iamwawa.cn/daxiaoxie.html" target="_blank" rel="noopener noreferrer">
+
+                        <div class="icon-box" data-glyph="Aa" style="background:#5e5ce6"><i class="fa-solid fa-font"></i></div>
+
                         <span class="label">大小写转换</span>
+
                     </a>
-                    <a class="app-icon" href="https://chenyangli-phd.github.io/" target="_blank" rel="noopener">
-                        <div class="icon-box" style="background:#5e5ce6"><i class="fa-solid fa-globe"></i></div>
+
+                    <a class="app-icon" href="https://chenyangli-phd.github.io/" target="_blank" rel="noopener noreferrer">
+
+                        <div class="icon-box" data-glyph="◎" style="background:#5e5ce6"><i class="fa-solid fa-globe"></i></div>
+
                         <span class="label">个人主页</span>
+
                     </a>
+
                 </div>
+
             </div>
 
         </aside>
 
+        <!-- ===== 摸鱼大卡片：五个显著的休闲入口 ===== -->
+        <section class="leisure-section" id="leisure" aria-labelledby="leisureTitle">
+            <div class="section-heading leisure-heading">
+                <div>
+                    <div class="section-eyebrow">TAKE A LITTLE BREAK</div>
+                    <h2 id="leisureTitle"><span class="leisure-heading-icon"><i class="fa-solid fa-mug-hot"></i></span> 摸鱼时间 <span>Refresh your mind</span></h2>
+                </div>
+                <div class="section-line" aria-hidden="true"></div>
+            </div>
+            <div class="leisure-grid">
+                <a href="https://www.youtube.com" class="leisure-card" style="--card-tint:rgba(255,34,54,.15);--card-edge:rgba(255,52,74,.30)" target="_blank" rel="noopener noreferrer" aria-label="在新标签页打开 YouTube">
+                    <span class="leisure-card-top"><span class="leisure-icon" data-glyph="▶" style="background:linear-gradient(135deg,#ff2929,#cc0000)"><i class="fa-brands fa-youtube"></i></span><i class="fa-solid fa-arrow-up-right-from-square launch-arrow"></i></span>
+                    <span class="leisure-title">YouTube</span>
+                    <span class="leisure-desc">视频分享平台</span>
+                </a>
+                <a href="https://www.bilibili.com" class="leisure-card" style="--card-tint:rgba(251,114,153,.17);--card-edge:rgba(251,114,153,.32)" target="_blank" rel="noopener noreferrer" aria-label="在新标签页打开哔哩哔哩">
+                    <span class="leisure-card-top"><span class="leisure-icon" data-glyph="哔" style="background:linear-gradient(135deg,#fb86ad,#ec4b81)"><i class="fa-solid fa-tv"></i></span><i class="fa-solid fa-arrow-up-right-from-square launch-arrow"></i></span>
+                    <span class="leisure-title">哔哩哔哩</span>
+                    <span class="leisure-desc">年轻人社区</span>
+                </a>
+                <a href="https://www.zhihu.com" class="leisure-card" style="--card-tint:rgba(0,132,255,.15);--card-edge:rgba(54,155,255,.32)" target="_blank" rel="noopener noreferrer" aria-label="在新标签页打开知乎">
+                    <span class="leisure-card-top"><span class="leisure-icon" data-glyph="知" style="background:linear-gradient(135deg,#2699ff,#006be7)"><i class="fa-solid fa-lightbulb"></i></span><i class="fa-solid fa-arrow-up-right-from-square launch-arrow"></i></span>
+                    <span class="leisure-title">知乎</span>
+                    <span class="leisure-desc">问答社区</span>
+                </a>
+                <a href="https://www.xiaohongshu.com/explore" class="leisure-card" style="--card-tint:rgba(255,36,66,.16);--card-edge:rgba(255,74,98,.32)" target="_blank" rel="noopener noreferrer" aria-label="在新标签页打开小红书">
+                    <span class="leisure-card-top"><span class="leisure-icon" data-glyph="小红" style="background:linear-gradient(135deg,#ff4460,#de1734)"><i class="fa-solid fa-book-open"></i></span><i class="fa-solid fa-arrow-up-right-from-square launch-arrow"></i></span>
+                    <span class="leisure-title">小红书</span>
+                    <span class="leisure-desc">生活分享社区</span>
+                </a>
+                <a href="https://www.pinterest.com" class="leisure-card" style="--card-tint:rgba(230,0,35,.15);--card-edge:rgba(248,51,81,.30)" target="_blank" rel="noopener noreferrer" aria-label="在新标签页打开 Pinterest">
+                    <span class="leisure-card-top"><span class="leisure-icon" data-glyph="P" style="background:linear-gradient(135deg,#e92042,#b40028)"><i class="fa-brands fa-pinterest"></i></span><i class="fa-solid fa-arrow-up-right-from-square launch-arrow"></i></span>
+                    <span class="leisure-title">Pinterest</span>
+                    <span class="leisure-desc">图片与灵感收藏</span>
+                </a>
+            </div>
+        </section>
+
         <!-- ===== 底部 ===== -->
+
         <div class="footer-quote">
+
             <span>⚡ Learn By Teaching - Chenyang Li</span>
+
         </div>
 
     </main>
 
     <script>
+
         // ============================================================
+
         // 1. 工具函数
+
         // ============================================================
+
         const $ = id => document.getElementById(id);
+
         const pad = n => String(n).padStart(2, '0');
 
         // ============================================================
+
         // 2. 搜索引擎配置（包含 Yandex）
+
         // ============================================================
+
         const engines = {
+
             google: {
+
                 url: q => `https://www.google.com/search?q=${encodeURIComponent(q)}`,
+
                 icon: 'fa-brands fa-google',
+
                 placeholder: '在Google中搜索...',
+
                 label: 'Google'
+
             },
+
             bing: {
+
                 url: q => `https://www.bing.com/search?q=${encodeURIComponent(q)}`,
+
                 icon: 'fa-brands fa-microsoft',
+
                 placeholder: '在Bing中搜索...',
+
                 label: 'Bing'
+
             },
+
             scholar: {
+
                 url: q => `https://scholar.google.com/scholar?q=${encodeURIComponent(q)}`,
+
                 icon: 'fa-solid fa-graduation-cap',
+
                 placeholder: '在Google Scholar中搜索...',
+
                 label: 'Scholar'
+
             },
+
             // Yandex 搜索引擎配置
+
             yandex: {
+
                 url: q => `https://yandex.com/search/?text=${encodeURIComponent(q)}`,
+
                 icon: 'fa-brands fa-yandex',
+
                 placeholder: '在Yandex中搜索...',
+
                 label: 'Yandex'
+
             }
+
         };
 
-        let currentEngine = localStorage.getItem('dashboardEngine') || 'bing';
+        // 某些浏览器的本地文件/无痕模式会阻止 localStorage；此时仍应正常工作。
+        function safeStorageGet(key) {
+            try { return window.localStorage.getItem(key); } catch (e) { return null; }
+        }
+        function safeStorageSet(key, value) {
+            try { window.localStorage.setItem(key, value); } catch (e) { /* 忽略存储限制 */ }
+        }
+        let currentEngine = safeStorageGet('dashboardEngine') || 'bing';
 
-        function setEngine(name) {
+        function setEngine(name, shouldFocus = true) {
+
             if (!engines[name]) return;
+
             currentEngine = name;
-            localStorage.setItem('dashboardEngine', name);
+
+            safeStorageSet('dashboardEngine', name);
 
             const eng = engines[name];
+
             $('engineButton').innerHTML = `<i class="${eng.icon}"></i> ${eng.label} <i class="fa-solid fa-chevron-down arrow"></i>`;
+
             $('searchInput').placeholder = eng.placeholder;
 
             $('engineMenu').classList.remove('open');
-            $('searchInput').focus();
+
+            if (shouldFocus) $('searchInput').focus();
+
         }
 
         // ============================================================
+
         // 3. 事件绑定
+
         // ============================================================
+
         $('engineButton').addEventListener('click', e => {
+
             e.stopPropagation();
+
             $('engineMenu').classList.toggle('open');
+
         });
 
         document.querySelectorAll('.engine-option').forEach(btn => {
+
             btn.addEventListener('click', () => setEngine(btn.dataset.engine));
+
         });
 
         document.addEventListener('click', e => {
+
             if (!e.target.closest('.search-wrap')) $('engineMenu').classList.remove('open');
+
         });
 
         $('searchForm').addEventListener('submit', e => {
+
             e.preventDefault();
+
             const q = $('searchInput').value.trim();
+
             if (q) {
+
                 window.open(engines[currentEngine].url(q), '_blank', 'noopener');
+
                 $('searchInput').value = '';
+
             }
+
         });
 
         // 初始化引擎
-        setEngine(currentEngine);
+
+        setEngine(currentEngine, false);
 
         // ============================================================
+
         // 4. 日期 & 时钟 & 日历 & 纪念日 & 倒计时
+
         // ============================================================
+
         function daysInYear(date) {
-            const start = new Date(date.getFullYear(), 0, 0);
-            return Math.floor((date - start) / 86400000);
+
+            return Math.floor((Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 86400000);
+
         }
 
         function weekNumber(date) {
+
             const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+
             const dayNum = d.getUTCDay() || 7;
+
             d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+
             const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+
             return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+
         }
 
         function updateDateTime() {
+
             const now = new Date();
+
             const week = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+
             const weekShort = ['日', '一', '二', '三', '四', '五', '六'];
 
             $('clock').textContent = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
+
             $('dateLine').textContent = `${now.getMonth() + 1}月${now.getDate()}日  ${week[now.getDay()]}`;
 
             $('calMonth').textContent = `${now.getFullYear()}年${now.getMonth() + 1}月`;
+
             $('calDay').textContent = now.getDate();
+
             $('calMeta').textContent = `第${daysInYear(now)}天 · 第${weekNumber(now)}周`;
 
             const todayIndex = now.getDay();
+
             let weekHtml = '';
+
             for (let i = 0; i < 7; i++) {
+
                 const isActive = (i === todayIndex);
+
                 weekHtml += `<span class="${isActive ? 'active' : ''}">${weekShort[i]}</span>`;
+
             }
+
             $('calWeekRow').innerHTML = weekHtml;
 
             const end = new Date(now);
+
             end.setHours(22, 0, 0, 0);
+
             if (now > end) end.setDate(end.getDate() + 1);
+
             const diff = Math.max(0, end - now);
+
             const h = Math.floor(diff / 3600000);
+
             const m = Math.floor((diff % 3600000) / 60000);
+
             const s = Math.floor((diff % 60000) / 1000);
 
             const isTomorrow = now.getHours() >= 22;
+
             const titleText = isTomorrow ? '明天十点收工还有' : '距离十点收工还有';
+
             $('countTitle').innerHTML = `<i class="fa-regular fa-clock"></i> ${titleText}`;
+
             $('countTime').textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
+
             $('countFoot').textContent = isTomorrow ? '🌙 今晚好好玩手机，明天继续摆' : '⏳ 就不能不玩手机吗';
+
         }
 
         updateDateTime();
+
         setInterval(updateDateTime, 1000);
 
         // ============================================================
+
         // 5. 键盘快捷键
+
         // ============================================================
+
         document.addEventListener('keydown', e => {
+
             if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+
                 e.preventDefault();
+
                 $('searchInput').focus();
+
                 $('searchInput').select();
+
             }
+
             if (e.key === 'Escape') {
+
                 $('searchInput').blur();
+
                 $('engineMenu').classList.remove('open');
+
             }
+
         });
 
-        console.log('🌙 不喝水就犯困 · 桌面导航 (已添加 Yandex 搜索引擎)');
+        console.log('🌙 不喝水就犯困 · 个人工作台');
+
         console.log('📌 快捷键 Ctrl+K / Cmd+K 聚焦搜索');
+
+
+        // 在线加载 Font Awesome 失败时，显示内置文字/符号图标，而非空白色块。
+        function refreshIconFallback() {
+            if (!document.fonts) return;
+            const faces = Array.from(document.fonts).filter(face => /Font Awesome/i.test(face.family));
+            const available = faces.some(face => face.status === 'loaded');
+            document.documentElement.classList.toggle('fa-unavailable', !available);
+        }
+        window.addEventListener('load', refreshIconFallback);
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(refreshIconFallback);
+        setTimeout(refreshIconFallback, 2500);
+
     </script>
+
 </body>
+
 </html>
